@@ -11,7 +11,7 @@ export default function Registration() {
   const navigate = useNavigate();
   const [formState, setFormState] = useState({
     email: '',
-    password: ''
+    password: '',
   });
 
   const [registerUser, { error }] = useMutation(REGISTER_USER);
@@ -31,7 +31,7 @@ export default function Registration() {
       loginUser(user, token);
       navigate('/dashboard');
     } catch (e) {
-    // eslint-disable-next-line no-console
+      // eslint-disable-next-line no-console
       console.log(e);
     }
   };
@@ -90,13 +90,10 @@ export default function Registration() {
             onChange={handleChange}
           />
         </label>
-        <button type="submit">
-          Sign Up
-        </button>
+        <button type="submit">Sign Up</button>
         <p>
           Already have an account? Login
-          {' '}
-          <Link to="/register">here</Link>
+          <Link to="/login">here</Link>
         </p>
       </form>
     </div>
