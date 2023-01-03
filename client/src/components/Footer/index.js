@@ -1,10 +1,10 @@
-import React from 'react';
-
 function Footer() {
   return (
-    <footer className="flex justify-center">
-      <h1 className="font-bold text-5xl text-white">Footer</h1>
-    </footer>
+    <div>
+      <footer className="flex justify-center mt-10">
+        <h1 className="font-bold text-5xl text-white">Footer</h1>
+      </footer>
+    </div>
   );
 }
 

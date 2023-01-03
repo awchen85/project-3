@@ -19,11 +19,12 @@ body h2 {
 
 nav {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  align-items: flex-end;
   padding: 20px;
-  background-color: #006db0;
-  color: #fff;
+  background-image: url("./assets/nav-bg/skyline.png");
+  background-size: cover;
+  background-position: 50%;
+  background-color: #000000;
 }
 
 
@@ -248,6 +249,7 @@ footer {
 @media screen and (max-width: 768px) {
   nav {
     display: flex;
+    justify-content:center ;
     flex-direction: column;
   }
 
@@ -278,4 +280,21 @@ footer {
     height: min-content;
     align-self: center;
   }
+}
+
+.stagger {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 17rem;
+  height: 17rem;
+}
+
+.stagger div {
+  /*position: absolute;*/
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid rgb(74, 110, 255);
+  background-color: rgb(74, 110, 255);
 }
