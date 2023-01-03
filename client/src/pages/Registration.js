@@ -48,11 +48,12 @@ export default function Registration() {
           <p className="error-text">The provided credentials are incorrect</p>
         </div>
       ) : null}
-      <form onSubmit={handleFormSubmit}>
+      <form className="form" onSubmit={handleFormSubmit}>
         <h2>Register</h2>
         <label htmlFor="firstName">
           First name:
           <input
+            className="form-input"
             type="text"
             id="firstName"
             name="firstName"
@@ -63,6 +64,7 @@ export default function Registration() {
         <label htmlFor="lastName">
           Last name:
           <input
+            className="form-input"
             type="text"
             id="lastName"
             name="lastName"
@@ -73,6 +75,7 @@ export default function Registration() {
         <label htmlFor="email">
           Email:
           <input
+            className="form-input"
             placeholder="youremail@test.com"
             name="email"
             type="email"
@@ -83,6 +86,7 @@ export default function Registration() {
         <label htmlFor="password">
           Password
           <input
+            className="form-input"
             placeholder="******"
             name="password"
             type="password"
@@ -90,7 +94,9 @@ export default function Registration() {
             onChange={handleChange}
           />
         </label>
-        <button type="submit">Sign Up</button>
+        <button className="form-button" type="submit">
+          Sign Up
+        </button>
         <p>
           Already have an account? Login
           <Link to="/login">here</Link>

@@ -38,7 +38,7 @@ nav button {
   outline: inherit
 }
 
-form {
+.form {
   margin: 1rem auto;
   display: flex;
   flex-direction: column;
@@ -48,7 +48,7 @@ form {
   box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2);
 }
 
-form input {
+.form-input {
   box-sizing: border-box;
   line-height: 1.15rem;
   width: 100%;
@@ -57,7 +57,7 @@ form input {
   border-radius: 0.625rem;
 }
 
-form button {
+.form-button {
   font-size: 1.25rem;
   padding: 0.625rem;
   margin: 1rem 0;
@@ -71,4 +71,23 @@ form button {
 form p {
   margin: 0.5rem;
   text-align: center;
+}
+
+.map-div {
+  display: flex;
+  justify-content: center;
+}
+
+.map {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.form-input-address {
+  box-sizing: border-box;
+  line-height: 1.15rem;
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border-radius: 0.625rem;
 }
