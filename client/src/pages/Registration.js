@@ -30,7 +30,7 @@ export default function Registration() {
       });
       const { token, user } = mutationResponse.data.createUser;
       loginUser(user, token);
-      navigate('/dashboard');
+      navigate('/profile');
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log(e);
@@ -44,7 +44,7 @@ export default function Registration() {
 
   return (
     <div className="md:flex justify-center">
-      <div className="mt-5" style={{ width: '600px' }}>
+      <div className="mt-5">
         {error ? (
           <div>
             <p className="error-text">The provided credentials are incorrect</p>
@@ -85,19 +85,21 @@ export default function Registration() {
               onChange={handleChange}
             />
           </label>
-          <label htmlFor="password">
-            Password
-            <input
-              className="form-input"
-              placeholder="******"
-              name="password"
-              type="password"
-              value={formState.password}
-              onChange={handleChange}
-            />
-          </label>
-          <div>
-            <p>Must contain 7 characters</p>
+          <div className="group">
+            <label htmlFor="password">
+              Password
+              <input
+                className="form-input"
+                placeholder="******"
+                name="password"
+                type="password"
+                value={formState.password}
+                onChange={handleChange}
+              />
+            </label>
+            <div className="invisible">
+              <p className="text-zinc-400 text-xs group-hover:visible flex-wrap">7 characters long, lowercase/uppercase, 1 number, 1 special character</p>
+            </div>
           </div>
           <button className="form-button hover:bg-teal-300" type="submit">
             Sign Up
