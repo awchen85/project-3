@@ -103,7 +103,7 @@ export default function Navigation() {
           </Link>
         </div>
       </div>
-      <div>
+      <div className="flex nav-links">
         {isLoggedIn() ? (
           <>
             <Link to="/landing">Dashboard</Link>
