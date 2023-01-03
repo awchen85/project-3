@@ -16,12 +16,16 @@ function Home() {
   // });
 
   return (
-    <div>
-      <h2>Home</h2>
+    <div className="mt-8">
+      <h2 className="font-semibold text-2xl mb-5">Find Your Next Roommate</h2>
       <div className="map-div">
-        <img src={GoogleMapPic} alt="" className="map" />
+        <img
+          src={GoogleMapPic}
+          alt=""
+          className="map border-2 border-slate-700"
+        />
       </div>
-      <div>
+      <div className="form-div">
         <form className="search-form">
           <input
             className="form-input-address"
@@ -30,10 +34,10 @@ function Home() {
             type="address"
             id="address"
           />
+          <button className="search-button" type="submit">
+            Search For Roommates!
+          </button>
         </form>
-        <button className="search-button" type="submit">
-          Search For Roommates!
-        </button>
       </div>
     </div>
   );

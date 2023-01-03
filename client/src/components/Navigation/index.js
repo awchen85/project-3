@@ -100,19 +100,21 @@ export default function Navigation() {
           </svg>
         </div>
       </div>
-      {isLoggedIn() ? (
-        <>
-          <Link to="/landing">Dashboard</Link>
-          <button type="button" onClick={logoutUser}>
-            Logout
-          </button>
-        </>
-      ) : (
-        <>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Sign Up</Link>
-        </>
-      )}
+      <div className="flex">
+        {isLoggedIn() ? (
+          <>
+            <Link to="/landing">Dashboard</Link>
+            <button type="button" onClick={logoutUser}>
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login">Login</Link>
+            <Link to="/register">Sign Up</Link>
+          </>
+        )}
+      </div>
     </nav>
   );
 }
