@@ -77,11 +77,10 @@ export default function Login() {
             onChange={handleChange}
           />
         </label>
-        <button className="form-button" type="submit">
+        <button className="form-button hover:bg-cyan-200" type="submit">
           Login
         </button>
         <p>
-          Need an account? Sign up <Link to="/register">here</Link>
           Need an account? Sign up{' '}
           <Link className="hover:text-green-400" to="/register">
             here
