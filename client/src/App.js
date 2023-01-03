@@ -18,6 +18,7 @@ import Login from './pages/Login';
 import Registration from './pages/Registration';
 import Dashboard from './pages/Dashboard';
 import NotFound from './pages/NotFound';
+import Profile from './pages/ProfileSetup';
 
 import './App.css';
 
@@ -51,6 +52,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Registration />} />
+              <Route path="/Profile" element={<Profile />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/*" element={<NotFound />} />
             </Routes>

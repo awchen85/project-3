@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
+import { AiFillHome } from 'react-icons/ai';
 import { useCurrentUserContext } from '../../context/currentUser';
-// import anime from "animejs/lib/anime.es.js";
 
 export default function Navigation() {
   const { isLoggedIn, logoutUser } = useCurrentUserContext();
 
   return (
-    <nav className="md:justify-between justify-center" style={{ width: '100%', height: '290px' }}>
+    <nav className="md:justify-between justify-center" style={{ width: '100%' }}>
       <div>
         <div className="ml-4 md:visible invisible title">
           <Link to="/">
@@ -106,8 +106,9 @@ export default function Navigation() {
       <div className="flex nav-links">
         {isLoggedIn() ? (
           <>
-            <Link to="/landing">Dashboard</Link>
-            <button type="button" onClick={logoutUser}>
+            <Link className="mr-1 text-2xl hover:scale-125 hover:-translate-x-1 hover:text-teal-300" to="/"><AiFillHome /></Link>
+            <Link to="/dashboard" className="hover:text-emerald-200 hover:scale-125 hover:-translate-y-1">Dashboard</Link>
+            <button className="text-white hover:text-red-600 hover:scale-125 hover:translate-x-1" type="button" onClick={logoutUser}>
               Logout
             </button>
           </>
