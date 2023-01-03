@@ -1,6 +1,5 @@
 @tailwind base;
 @tailwind components;
-@tailwind pages;
 @tailwind utilities;
 
 html, body {
@@ -20,11 +19,12 @@ body h2 {
 
 nav {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  align-items: flex-end;
   padding: 20px;
-  background-color: #006db0;
-  color: #fff;
+  background-image: url("./assets/nav-bg/skyline.png");
+  background-size: cover;
+  background-position: 50%;
+  background-color: #000000;
 }
 
 
