@@ -225,7 +225,8 @@ footer {
 
   .search-form {
     padding: 4px;
-    /* width: 100%; */
+    margin: 0;
+    width: 100%;
   }
 
   .form-input-address {
@@ -237,11 +238,58 @@ footer {
   }
 
   .card {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
     border: 2px solid black;
     border-radius: 8px;
     margin: 4px;
+    padding-bottom: 12px;
+    font-weight: bold;
+    color: white;
     min-width: 150px;
     min-height: 150px;
+  }
+
+  .card-city-text {
+    background-color: rgba(0, 0, 0, 0.7);
+    font-size: 18px;
+  }
+
+  .card-1 {
+    background-image: url("./assets/cards/los-angeles-bg.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .card-2 {
+    background-image: url("./assets/cards/new-york-city-bg.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .card-3 {
+    background-image: url("./assets/cards/dallas-texas-bg.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .card-4 {
+    background-image: url("./assets/cards/chicago-bg.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .card-5 {
+    background-image: url("./assets/cards/atlanta-bg.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .card-6 {
+    background-image: url("./assets/cards/portland-oregon-bg.jpg");
+    background-position: center;
+    background-size: cover;
   }
 
   footer {

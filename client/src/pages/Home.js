@@ -46,6 +46,11 @@ function Home() {
               Verified
             </button>
           </section>
+          <section>
+            <div className="card-header">
+              <img src="https://via.placeholder.com/200x150" alt="" />
+            </div>
+          </section>
         </div>
         <div className="right-side">
           <div className="map-div">
@@ -70,23 +75,35 @@ function Home() {
             </form>
             <h3 className="text-3xl font-semibold">Popular Cities</h3>
             <div className="grid grid-cols-3">
-              <div className="card">
-                <h3 className="">Los Angeles, CA</h3>
+              <div className="card card-1">
+                <h3 className="flex justify-center card-city-text">
+                  Los Angeles, CA
+                </h3>
               </div>
-              <div className="card">
-                <h3 className="">Los Angeles, CA</h3>
+              <div className="card card-2">
+                <h3 className="flex justify-center card-city-text">
+                  New York, NY
+                </h3>
               </div>
-              <div className="card">
-                <h3 className="">Los Angeles, CA</h3>
+              <div className="card card-3">
+                <h3 className="flex justify-center card-city-text">
+                  Dallas, TX
+                </h3>
               </div>
-              <div className="card">
-                <h3 className="">Los Angeles, CA</h3>
+              <div className="card card-4">
+                <h3 className="flex justify-center card-city-text">
+                  Chicago, IL
+                </h3>
               </div>
-              <div className="card">
-                <h3 className="">Los Angeles, CA</h3>
+              <div className="card card-5">
+                <h3 className="flex justify-center card-city-text">
+                  Atlanta, GA
+                </h3>
               </div>
-              <div className="card">
-                <h3 className="">Los Angeles, CA</h3>
+              <div className="card card-6">
+                <h3 className="flex justify-center card-city-text">
+                  Portland, OR
+                </h3>
               </div>
             </div>
           </div>
