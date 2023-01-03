@@ -21,31 +21,33 @@ function Home() {
       <h2 className="font-semibold text-2xl mb-5">Find Your Next Roommate</h2>
       <div className="flex justify-between mt-12">
         <div className="left-side">
-          <section className="btn-section flex border-2 border-black rounded-md py-4 px-4">
-            <button
-              type="submit"
-              className="filter-btn mx-2 my-2 px-4 py-2 border-2 border-black rounded-md"
-            >
-              Distance
-            </button>
-            <button
-              type="submit"
-              className="filter-btn mx-2 my-2 px-4 py-2 border-2 border-black rounded-md"
-            >
-              Budget
-            </button>
-            <button
-              type="submit"
-              className="filter-btn mx-2 my-2 px-4 py-2 border-2 border-black rounded-md"
-            >
-              Filter
-            </button>
-            <button
-              type="submit"
-              className="filter-btn mx-2 my-2 px-4 py-2 border-2 border-black rounded-md"
-            >
-              Verified
-            </button>
+          <section className="btn-section border-2 border-black rounded-md py-4 px-4">
+            <div className="filter-buttons grid grid-cols-4 gap-2 md:grid-cols-4">
+              <button
+                type="submit"
+                className="filter-btn my-2 px-4 py-2 border-2 border-black rounded-md"
+              >
+                Distance
+              </button>
+              <button
+                type="submit"
+                className="filter-btn my-2 px-4 py-2 border-2 border-black rounded-md"
+              >
+                Budget
+              </button>
+              <button
+                type="submit"
+                className="filter-btn my-2 px-4 py-2 border-2 border-black rounded-md"
+              >
+                Filter
+              </button>
+              <button
+                type="submit"
+                className="filter-btn my-2 px-4 py-2 border-2 border-black rounded-md"
+              >
+                Verified
+              </button>
+            </div>
           </section>
           <div className="profile-section grid grid-cols-1 gap-4 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2">
             <section className="profile-card flex flex-col border-2 border-black rounded-md p-2">
@@ -199,37 +201,39 @@ function Home() {
                 Search For Roommates!
               </button>
             </form>
-            <h3 className="text-3xl font-semibold">Popular Cities</h3>
-            <div className="popular-cities grid grid-cols-3">
-              <div className="card card-1">
-                <h3 className="flex justify-center card-city-text">
-                  Los Angeles, CA
-                </h3>
-              </div>
-              <div className="card card-2">
-                <h3 className="flex justify-center card-city-text">
-                  New York, NY
-                </h3>
-              </div>
-              <div className="card card-3">
-                <h3 className="flex justify-center card-city-text">
-                  Dallas, TX
-                </h3>
-              </div>
-              <div className="card card-4">
-                <h3 className="flex justify-center card-city-text">
-                  Chicago, IL
-                </h3>
-              </div>
-              <div className="card card-5">
-                <h3 className="flex justify-center card-city-text">
-                  Atlanta, GA
-                </h3>
-              </div>
-              <div className="card card-6">
-                <h3 className="flex justify-center card-city-text">
-                  Portland, OR
-                </h3>
+            <div className="popular-cities-section text-center">
+              <h3 className="text-3xl font-semibold">Popular Cities</h3>
+              <div className="popular-cities grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <div className="card card-1">
+                  <h3 className="flex justify-center card-city-text">
+                    Los Angeles, CA
+                  </h3>
+                </div>
+                <div className="card card-2">
+                  <h3 className="flex justify-center card-city-text">
+                    New York, NY
+                  </h3>
+                </div>
+                <div className="card card-3">
+                  <h3 className="flex justify-center card-city-text">
+                    Dallas, TX
+                  </h3>
+                </div>
+                <div className="card card-4">
+                  <h3 className="flex justify-center card-city-text">
+                    Chicago, IL
+                  </h3>
+                </div>
+                <div className="card card-5">
+                  <h3 className="flex justify-center card-city-text">
+                    Atlanta, GA
+                  </h3>
+                </div>
+                <div className="card card-6">
+                  <h3 className="flex justify-center card-city-text">
+                    Portland, OR
+                  </h3>
+                </div>
               </div>
             </div>
           </div>
