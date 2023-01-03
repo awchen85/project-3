@@ -19,10 +19,10 @@ function Profile() {
           </div>
         </div>
         <div className="flex justify-center m-5">
-          <div className="text-7xl -translate-x-5">
+          <div className="text-7xl text-purple-400 -translate-x-5 rounded">
             <BsGenderTrans />
           </div>
-          <div className="text-7xl translate-x-5">
+          <div className="text-7xl translate-x-5 text-emerald-400">
             <FaGenderless />
           </div>
         </div>

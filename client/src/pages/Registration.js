@@ -44,7 +44,7 @@ export default function Registration() {
 
   return (
     <div className="md:flex justify-center">
-      <div className="mt-5">
+      <div className="mt-5 group">
         {error ? (
           <div>
             <p className="error-text">The provided credentials are incorrect</p>
@@ -85,7 +85,7 @@ export default function Registration() {
               onChange={handleChange}
             />
           </label>
-          <div className="group">
+          <div className="">
             <label htmlFor="password">
               Password
               <input
@@ -96,17 +96,23 @@ export default function Registration() {
                 value={formState.password}
                 onChange={handleChange}
               />
+              <div className="invisible">
+                <p className="text-zinc-400 text-xs group-hover:visible flex-wrap">
+                  7 characters long, lowercase/uppercase, 1 number, 1 special
+                  character
+                </p>
+              </div>
             </label>
-            <div className="invisible">
-              <p className="text-zinc-400 text-xs group-hover:visible flex-wrap">7 characters long, lowercase/uppercase, 1 number, 1 special character</p>
-            </div>
           </div>
           <button className="form-button hover:bg-teal-300" type="submit">
             Sign Up
           </button>
           <p>
             Already have an account? Login
-            <Link className="hover:text-teal-300" to="/login"> here</Link>
+            <Link className="hover:text-teal-300" to="/login">
+              {' '}
+              here
+            </Link>
           </p>
         </form>
       </div>
