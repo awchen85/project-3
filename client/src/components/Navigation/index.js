@@ -8,7 +8,7 @@ export default function Navigation() {
   return (
     <nav>
       <div>
-        <div className="flex">
+        <div className="flex title">
           <svg
             width="422"
             height="86"
@@ -100,7 +100,7 @@ export default function Navigation() {
           </svg>
         </div>
       </div>
-      <div className="flex">
+      <div className="flex nav-links">
         {isLoggedIn() ? (
           <>
             <Link to="/landing">Dashboard</Link>
