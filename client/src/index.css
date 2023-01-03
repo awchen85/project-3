@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind pages;
+@tailwind utilities;
+
 html, body {
   box-sizing: border-box;
   height: 100%;
@@ -12,6 +17,7 @@ body h2 {
   text-align: center;
 }
 
+
 nav {
   display: flex;
   align-items: center;
@@ -20,6 +26,7 @@ nav {
   background-color: #006db0;
   color: #fff;
 }
+
 
 nav a {
   color: #fff;
@@ -40,8 +47,10 @@ nav button {
 
 .form {
   margin: 1rem auto;
+  margin-top: 0;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   height: 100%;
   max-width: 30rem;
   padding: 2rem;
@@ -71,6 +80,56 @@ nav button {
 form p {
   margin: 0.5rem;
   text-align: center;
+}
+
+.path-0 {
+  stroke-dasharray: 1000px;
+  animation: dash 7s ease-in alternate infinite;
+}
+
+
+.path-1 {
+  stroke-dasharray: 1000px;
+  animation: dash 7s ease-in infinite alternate;
+}
+
+.path-2 {
+  stroke-dasharray: 1000px;
+  animation: dash 7s ease-in infinite alternate;
+}
+
+.path-3 {
+  stroke-dasharray: 1000px;
+  animation: dash 7s ease-in infinite alternate;
+}
+
+.path-4 {
+  stroke-dasharray: 1000px;
+  animation: dash 7s ease-in infinite alternate;
+}
+
+.path-5 {
+  stroke-dasharray: 1000px;
+  animation: dash 7s ease-in infinite alternate;
+}
+
+.path-6 {
+  stroke-dasharray: 1000px;
+  animation: dash 7s ease-in infinite alternate;
+}
+
+.path-7 {
+  stroke-dasharray: 1000px;
+  animation: dash 7s ease-in infinite alternate;
+}
+
+@keyframes dash {
+  from {
+    stroke-dasharray: 0 1000; 
+  }
+  to {
+    stroke-dasharray: 1000;
+  }
 }
 
 .map-div {
