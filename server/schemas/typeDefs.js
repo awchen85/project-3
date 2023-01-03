@@ -39,6 +39,17 @@ const typeDefs = gql`
     country: String
   }
 
+  input AddressInput {
+    _id: ID
+    addressLine1: String
+    addressLine2: String
+    addressLevel1: String
+    addressLevel2: String
+    addressLevel3: String
+    postalCode: String
+    country: String
+  }
+
   type Auth {
     token: ID
     user: User
