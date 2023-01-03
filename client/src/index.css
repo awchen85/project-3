@@ -205,6 +205,25 @@ footer {
     width: 100%;
   }
 
+  .profile-section {
+    margin-top: 20px;
+  }
+
+  .profile-card-image {
+    display: flex;
+    align-self: center;
+    max-height: 250px;
+  }
+
+  .profile-card-header {
+    text-align: center;
+  }
+
+  .profile-card-body {
+    font-size: large;
+    margin: 12px 4px;
+  }
+
   .right-side {
     width: 50%;
   }
@@ -226,7 +245,7 @@ footer {
   .search-form {
     padding: 4px;
     margin: 0;
-    width: 100%;
+    min-width: 90%;
   }
 
   .form-input-address {
@@ -235,6 +254,10 @@ footer {
 
   .search-button {
     margin: 12px 0 2px 0;
+  }
+
+  .popular-cities {
+    min-width: 90%;
   }
 
   .card {
