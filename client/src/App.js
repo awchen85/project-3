@@ -1,20 +1,18 @@
+/* eslint-disable comma-dangle */
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  createHttpLink
+  createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route
-} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie';
 
 import { CurrentUserContextProvider } from './context';
 
 import Navigation from './components/Navigation';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
@@ -59,6 +57,7 @@ function App() {
           </CurrentUserContextProvider>
         </Router>
       </CookiesProvider>
+      <Footer />
     </ApolloProvider>
   );
 }

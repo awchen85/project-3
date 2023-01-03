@@ -8,7 +8,7 @@ export default function Navigation() {
   return (
     <nav>
       <div>
-        <div className="flex">
+        <div className="flex title">
           <svg
             width="422"
             height="86"
@@ -100,19 +100,21 @@ export default function Navigation() {
           </svg>
         </div>
       </div>
-      {isLoggedIn() ? (
-        <>
-          <Link to="/landing">Dashboard</Link>
-          <button type="button" onClick={logoutUser}>
-            Logout
-          </button>
-        </>
-      ) : (
-        <>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Sign Up</Link>
-        </>
-      )}
+      <div className="flex nav-links">
+        {isLoggedIn() ? (
+          <>
+            <Link to="/landing">Dashboard</Link>
+            <button type="button" onClick={logoutUser}>
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login">Login</Link>
+            <Link to="/register">Sign Up</Link>
+          </>
+        )}
+      </div>
     </nav>
   );
 }
