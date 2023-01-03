@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Link, useNavigate } from 'react-router-dom';
+import logo from '../assets/logo/logo.jpg';
 
 import { LOGIN } from '../graphql/mutations';
 
@@ -41,9 +42,12 @@ export default function Login() {
 
   return (
     <div>
+      <div className="flex justify-center">
+        <img src={logo} alt="logo" />
+      </div>
       {error ? (
         <div>
-          <p className="error-text">The provided credentials are incorrect</p>
+          <p className="error-text text-center">The provided credentials are incorrect</p>
         </div>
       ) : null}
       <form onSubmit={handleFormSubmit}>
@@ -51,6 +55,7 @@ export default function Login() {
         <label htmlFor="email">
           Email:
           <input
+            className="focus:bg-indigo-50 focus:ring-1 focus:ring-indigo-900"
             placeholder="youremail@test.com"
             name="email"
             type="email"
@@ -61,6 +66,7 @@ export default function Login() {
         <label htmlFor="password">
           Password
           <input
+            className="focus:bg-indigo-50 focus:ring-1 focus:ring-indigo-900"
             placeholder="******"
             name="password"
             type="password"
@@ -74,7 +80,7 @@ export default function Login() {
         <p>
           Need an account? Sign up
           {' '}
-          <Link to="/register">here</Link>
+          <Link className="hover:text-green-400" to="/register">here</Link>
         </p>
       </form>
     </div>
