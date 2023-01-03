@@ -83,6 +83,13 @@ form p {
   max-height: 90%;
 }
 
+.search-form {
+  margin: 1rem auto;
+  height: 100%;
+  max-width: 30rem;
+  padding: 2rem;
+}
+
 .form-input-address {
   box-sizing: border-box;
   line-height: 1.15rem;
@@ -90,4 +97,15 @@ form p {
   margin: 0.5rem 0;
   padding: 0.5rem;
   border-radius: 0.625rem;
+}
+
+.search-button {
+  font-size: 1.25rem;
+  padding: 0.625rem;
+  margin: 1rem 0;
+  border: none;
+  background-color: #006db0;
+  color: #fff;
+  border-radius: 0.625rem;
+  width: 100%;
 }

@@ -22,7 +22,7 @@ function Home() {
         <img src={GoogleMapPic} alt="" className="map" />
       </div>
       <div>
-        <form>
+        <form className="search-form">
           <input
             className="form-input-address"
             placeholder="Enter an address, city, or ZIP code"
@@ -31,7 +31,9 @@ function Home() {
             id="address"
           />
         </form>
-        <button type="submit">Search For Roommates!</button>
+        <button className="search-button" type="submit">
+          Search For Roommates!
+        </button>
       </div>
     </div>
   );
