@@ -17,12 +17,15 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    match: [/.+@.+\..+/, 'Must match an email address!']
   },
+  //min 7 letter password, symbol, uppercase, lowercase, and a number
   password: {
     type: String,
     required: true,
-    minlength: 7
+    minlength: 7,
+    match: [/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{7,}$/, 'Must meet requirements!']
   },
 });
 
