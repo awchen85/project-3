@@ -16,8 +16,8 @@ body h2 {
   text-align: center;
 }
 
-
 nav {
+
   display: flex;
   align-items: flex-end;
   padding: 20px;
@@ -25,7 +25,9 @@ nav {
   background-size: cover;
   background-position: 50%;
   background-color: #000000;
-  max-height: 126px;
+  max-height: 10rem;
+  position: sticky;
+  top: 0;
 }
 
 
@@ -185,6 +187,140 @@ footer {
    background: #006db0;
 }
 
+@media screen and (min-width: 992px) {
+  h2 {
+    font-size: 2.5rem !important;
+  }
+
+  .left-side {
+    width: 50%;
+  }
+
+  .btn-section {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .filter-btn {
+    width: 100%;
+  }
+
+  .profile-section {
+    margin-top: 20px;
+  }
+
+  .profile-card-image {
+    display: flex;
+    align-self: center;
+    max-height: 250px;
+  }
+
+  .profile-card-header {
+    text-align: center;
+  }
+
+  .profile-card-body {
+    font-size: large;
+    margin: 12px 4px;
+  }
+
+  .right-side {
+    width: 50%;
+  }
+
+  .map-div {
+    display: flex;
+  }
+
+  .map {
+    min-width: 300px;
+    min-height: 300px;
+  }
+
+  .form-div {
+    width: 100%;
+    margin: 12px 0 4px 0;
+  }
+
+  .search-form {
+    padding: 4px;
+    margin: 0;
+    min-width: 90%;
+  }
+
+  .form-input-address {
+    padding: 12px;
+  }
+
+  .search-button {
+    margin: 12px 0 2px 0;
+  }
+
+  .popular-cities {
+    min-width: 90%;
+  }
+
+  .card {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 8px;
+    margin: 4px;
+    padding-bottom: 12px;
+    font-weight: bold;
+    color: white;
+    min-width: 150px;
+    min-height: 150px;
+  }
+
+  .card-city-text {
+    background-color: rgba(0, 0, 0, 0.7);
+    font-size: 18px;
+  }
+
+  .card-1 {
+    background-image: url("./assets/cards/los-angeles-bg.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .card-2 {
+    background-image: url("./assets/cards/new-york-city-bg.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .card-3 {
+    background-image: url("./assets/cards/dallas-texas-bg.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .card-4 {
+    background-image: url("./assets/cards/chicago-bg.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .card-5 {
+    background-image: url("./assets/cards/atlanta-bg.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .card-6 {
+    background-image: url("./assets/cards/portland-oregon-bg.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+
+  footer {
+    position: relative;
+    bottom: 0;
+  }
+}
+
 @media screen and (max-width: 768px) {
   nav {
     display: flex;
@@ -198,8 +334,21 @@ footer {
     font-size: large;
   }
 
+  form {
+    padding-bottom: 0;
+  }
+
+  .search-form {
+    padding-bottom: 0;
+  }
+
   .search-button {
     margin-top: 1em;
+  }
+
+  footer {
+    position: sticky;
+    bottom: 0;
   }
 
   footer h1 {
