@@ -16,8 +16,8 @@ body h2 {
   text-align: center;
 }
 
-
 nav {
+
   display: flex;
   align-items: flex-end;
   padding: 20px;
@@ -25,6 +25,9 @@ nav {
   background-size: cover;
   background-position: 50%;
   background-color: #000000;
+  max-height: 10rem;
+  position: sticky;
+  top: 0;
 }
 
 
@@ -222,6 +225,7 @@ footer {
 
   .search-form {
     padding: 4px;
+    /* width: 100%; */
   }
 
   .form-input-address {
@@ -236,12 +240,12 @@ footer {
     border: 2px solid black;
     border-radius: 8px;
     margin: 4px;
-    min-width: 100px;
-    min-height: 100px;
+    min-width: 150px;
+    min-height: 150px;
   }
 
   footer {
-    position: absolute;
+    position: relative;
     bottom: 0;
   }
 }
@@ -272,7 +276,7 @@ footer {
   }
 
   footer {
-    position: relative;
+    position: sticky;
     bottom: 0;
   }
 
