@@ -6,7 +6,6 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
-    "plugin:tailwindcss/recommend"
   ],
   overrides: [
   ],
@@ -19,14 +18,9 @@ module.exports = {
     'tailwindcss',
   ],
   rules: {
-    "tailwindcss/classnames-order": "warn",
-    "tailwindcss/enforces-negative-arbitrary-values": "warn",
-    "tailwindcss/enforces-shorthand": "warn",
-    "tailwindcss/migration-from-tailwind-2": "warn",
-    "tailwindcss/no-arbitrary-value": "off",
-    "tailwindcss/no-custom-classname": "warn",
-    "tailwindcss/no-contradicting-classname": "error",
-    indent: ['error', 2],
+    indent: 'off',
+    'react/jsx-indent': 'off',
+    'react/jsx-indent-props': 'off',
     'arrow-parens': [2, 'as-needed'],
     'arrow-body-style': [2, 'as-needed'],
     semi: ['error', 'always'],

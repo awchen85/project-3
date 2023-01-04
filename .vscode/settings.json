@@ -1,6 +1,4 @@
 {
-    "eslint.run": "onSave",
-    "cSpell.words": [
-        "tailwindcss"
-    ]
+  "eslint.run": "onSave",
+  "cSpell.words": ["Simu", "tailwindcss"]
 }
