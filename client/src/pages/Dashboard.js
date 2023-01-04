@@ -12,8 +12,15 @@ function Dashboard() {
 
   return (
     <div>
-      <h2>Dashboard</h2>
-      <h3>Viewing profile.</h3>
+      <div>
+        <h2>Dashboard</h2>
+      </div>
+      <section className="flex flex-col">
+        <button type="submit">Profile</button>
+        <button type="submit">Friends</button>
+        <button type="submit">Inbox</button>
+        <button type="submit">Connections</button>
+      </section>
     </div>
   );
 }
