@@ -16,11 +16,6 @@ function Dashboard() {
     return <Navigate to="/profile" />;
   }
 
-  // const clickHandler = e => {
-  //   const { target } = e;
-  //   console.log('Clicked', target.id);
-  // };
-
   const determineComponent = () => {
     if (currentComponent === 'DashboardProfile') {
       return <DashboardProfile />;
