@@ -16,12 +16,6 @@ function Dashboard() {
     return <Navigate to="/profile" />;
   }
 
-  const clickHandler = e => {
-    const { target } = e;
-    // eslint-disable-next-line no-console
-    console.log('Clicked', target.id);
-  };
-
   const determineComponent = () => {
     if (currentComponent === 'DashboardProfile') {
       return <DashboardProfile />;
@@ -45,7 +39,7 @@ function Dashboard() {
         <section className="dashboard-nav flex flex-col border-2 border-black">
           <button
             type="submit"
-            onClick={(determineComponent, clickHandler)}
+            onClick={() => handleComponentChange('DashboardProfile')}
             id="profile"
             className="dashboard-btn"
           >
@@ -53,7 +47,7 @@ function Dashboard() {
           </button>
           <button
             type="submit"
-            onClick={(determineComponent, clickHandler)}
+            onClick={() => handleComponentChange('DashboardFriends')}
             id="friends"
             className="dashboard-btn"
           >
@@ -61,7 +55,7 @@ function Dashboard() {
           </button>
           <button
             type="submit"
-            onClick={(determineComponent, clickHandler)}
+            onClick={() => handleComponentChange('DashboardInbox')}
             id="inbox"
             className="dashboard-btn"
           >
@@ -69,7 +63,7 @@ function Dashboard() {
           </button>
           <button
             type="submit"
-            onClick={(determineComponent, clickHandler)}
+            onClick={() => handleComponentChange('DashboardConnections')}
             id="connections"
             className="dashboard-btn"
           >
@@ -83,8 +77,8 @@ function Dashboard() {
           // eslint-disable-next-line react/no-unknown-property
           handleComponentChange={handleComponentChange}
         >
-          {/* {determineComponent()} */}
-          <DashboardProfile />
+          {determineComponent()}
+          {/* <DashboardProfile /> */}
         </div>
       </div>
     </div>
