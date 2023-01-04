@@ -5,6 +5,10 @@ import React from 'react';
 import { BsGenderMale, BsGenderFemale } from 'react-icons/bs';
 import { TbGenderGenderqueer } from 'react-icons/tb';
 import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
+import { MdOutlineAttachMoney } from 'react-icons/md';
+import { FaBirthdayCake } from 'react-icons/fa';
+import { BiBuildingHouse } from 'react-icons/bi';
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 
 function Profile() {
   const [open, setOpen] = React.useState(false);
@@ -17,25 +21,44 @@ function Profile() {
       <fieldset>
         <div className="m-5 flex justify-center flex-wrap rounded-full">
           <div>
-            <div className="flex">
-              <label htmlFor="city">
-                What city do you want to live in?
-                <input
-                  className="ml-2 p-1 rounded border-2"
-                  name="city"
-                  type="text"
-                  id="city-chosen"
-                />
+            <div className="flex border-y-stone-500">
+              <div>
+                <div className="flex">
+                  <h3 className="mt-1">What city do you want to live in?</h3>
+                  <div>
+                    <BiBuildingHouse className="text-blue-500 text-2xl mt-2" />
+                  </div>
+                  <div style={{ width: '100%' }}>
+                    <GooglePlacesAutocomplete apiKey="AIzaSyDPIRgjNXy2lQ2VKshs87mOEb9GmkouCHg" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <label htmlFor="budget">
+                <div className="flex mt-1">
+                  <h3 className="mt-2">What is your monthly budget?</h3>
+                  <div className="ml-1 mt-2 text-lg text-lime-600">
+                    <MdOutlineAttachMoney />
+                  </div>
+                  <input
+                    className="ml-2 p-1 rounded border-2"
+                    name="budget"
+                    type="number"
+                    min="100"
+                    max="2000"
+                    step="100"
+                    id="budget-chosen"
+                  />
+                </div>
               </label>
             </div>
-            <div className="translate-y-10">
-              <h1 className="text-black text-4xl text-center">
-                What is your Gender?
-              </h1>
+            <div className="translate-y-5">
+              <h1 className="text-black text-lg">What is your Gender?</h1>
             </div>
-            <div className="translate-y-16">
-              <div className="flex justify-center flex-wrap">
-                <div className="flex md:text-4xl text-xl rounded text-red-200 hover:bg-red-50 hover:border-4 hover:border-black m-10 p-3">
+            <div className="translate-y-5">
+              <div className="flex flex-col">
+                <div className="flex text-xl rounded text-red-200 hover:bg-red-50 hover:border-4 hover:border-red-300 m-1 p-1">
                   <label className="flex cursor-pointer" htmlFor="female">
                     <input
                       name="gender"
@@ -47,16 +70,16 @@ function Profile() {
                     <p>Female</p>
                   </label>
                 </div>
-                <div className="flex md:text-4xl text-xl rounded text-blue-400 hover:bg-sky-100 hover:border-4 hover:border-black m-10 p-3">
+                <div className="flex cursor-pointer text-xl rounded text-blue-400 hover:bg-sky-100 hover:border-4 hover:border-blue-500 m-1 p-1">
                   <label className="flex cursor-pointer" htmlFor="male">
                     <input name="gender" type="radio" id="male" value="male" />
-                    <BsGenderMale />
+                    <BsGenderMale className="ml-1 mt-1" />
                     <p>Male</p>
                   </label>
                 </div>
               </div>
-              <div className="flex justify-center flex-wrap">
-                <div className="flex md:text-4xl text-xl rounded text-emerald-400 hover:bg-emerald-100 hover:border-4 hover:border-black m-10 p-3">
+              <div className="flex flex-col">
+                <div className="flex cursor-pointer text-xl rounded text-emerald-400 hover:bg-emerald-100 hover:border-4 hover:border-green-500 m-1 p-1">
                   <label className="flex cursor-pointer" htmlFor="non-bin">
                     <input
                       name="gender"
@@ -68,7 +91,7 @@ function Profile() {
                     Non-binary
                   </label>
                 </div>
-                <div className="md:text-4xl text-xl rounded text-purple-400 hover:bg-purple-100 hover:border-4 hover:border-black m-10 p-3">
+                <div className="cursor-pointer text-xl rounded text-purple-400 hover:bg-purple-100 hover:border-4 hover:border-purple-500 m-1 p-1">
                   <label className="flex cursor-pointer" htmlFor="other">
                     <input
                       name="gender"
@@ -81,7 +104,7 @@ function Profile() {
                   </label>
                 </div>
               </div>
-              <div className="flex justify-center md:text-4xl text-xl rounded text-yellow-500 hover:bg-yellow-100 hover:border-4 hover:border-black m-10 p-3">
+              <div className="flex flex-col text-xl rounded text-yellow-500 hover:bg-yellow-100 hover:border-4 hover:border-yellow-600 m-1 p-1">
                 <label
                   className="flex cursor-pointer"
                   htmlFor="prefer-not-to-say"
@@ -95,6 +118,24 @@ function Profile() {
                   <p>Prefer Not to Say</p>
                 </label>
               </div>
+            </div>
+            <div className="mt-6">
+              <label htmlFor="age">
+                <div className="flex">
+                  <h3 className="mt-2 text-lg">How old are you?</h3>
+                  <div className="flex">
+                    <FaBirthdayCake className="m-1 text-2xl text-violet-400" />
+                    <input
+                      className="p-1 rounded border-2"
+                      name="budget"
+                      min="18"
+                      max="100"
+                      type="number"
+                      id="age-chosen"
+                    />
+                  </div>
+                </div>
+              </label>
             </div>
           </div>
         </div>
