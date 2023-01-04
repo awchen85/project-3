@@ -18,19 +18,17 @@ body h2 {
 }
 
 nav {
-
   display: flex;
   align-items: flex-end;
   padding: 20px;
   background-image: url("./assets/nav-bg/skyline.png");
-  background-size: cover;
+  background-size: contain;
   background-position: 50%;
   background-color: #000000;
   max-height: 10rem;
   position: sticky;
   top: 0;
 }
-
 
 nav a {
   color: #fff;
@@ -263,7 +261,7 @@ form p {
     margin: 12px 0 2px 0;
   }
 
-  .popular-cities {
+  .quick-search-cities {
     min-width: 90%;
   }
 
@@ -333,7 +331,7 @@ form p {
     content-visibility: hidden;
   }
 
-  .popular-cities-section {
+  .quick-search-cities-section {
     content-visibility: hidden;
   }
 
@@ -341,6 +339,7 @@ form p {
     display: flex;
     justify-content:center ;
     flex-direction: column;
+    background-size: cover;
   }
 
   .nav-links {

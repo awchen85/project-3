@@ -16,6 +16,32 @@ function Home() {
   //   });
   // });
 
+  const googleSearch = e => {
+    e.preventDefault();
+    const input = document.getElementById('address').value;
+    console.log('Searched for:', input);
+    const apiURL = `https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=${process.env.GOOGLE_MAPS}`;
+
+    fetch(apiURL)
+      .then(response => {
+        if (response.ok) {
+          response.json().then(data => {
+            console.log(data);
+          });
+        } else {
+          console.log('NOPE');
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const clickHandler = () => {
+    console.log('Clicked!');
+    // document.getElementById('Budget').removeAttribute('hidden');
+  };
+
   return (
     <div className="mt-8 mx-4">
       <h2 className="font-semibold text-2xl mb-5">Find Your Next Roommate</h2>
@@ -26,24 +52,38 @@ function Home() {
               <button
                 type="submit"
                 className="filter-btn my-2 px-4 py-2 border-2 border-black rounded-md"
+                onClick={clickHandler}
               >
                 Distance
               </button>
               <button
                 type="submit"
                 className="filter-btn my-2 px-4 py-2 border-2 border-black rounded-md"
+                onClick={clickHandler}
               >
                 Budget
               </button>
+              <div id="Budget" className="slidecontainer" hidden>
+                <input
+                  type="range"
+                  min="1"
+                  max="100"
+                  value="50"
+                  className="slider"
+                  id="myRange"
+                />
+              </div>
               <button
                 type="submit"
                 className="filter-btn my-2 px-4 py-2 border-2 border-black rounded-md"
+                onClick={clickHandler}
               >
                 Filter
               </button>
               <button
                 type="submit"
                 className="filter-btn my-2 px-4 py-2 border-2 border-black rounded-md"
+                onClick={clickHandler}
               >
                 Verified
               </button>
@@ -189,7 +229,7 @@ function Home() {
             />
           </div>
           <div className="form-div">
-            <form className="search-form">
+            <form className="search-form" onSubmit={googleSearch}>
               <input
                 className="form-input-address"
                 placeholder="Enter an address, city, or ZIP code"
@@ -197,13 +237,17 @@ function Home() {
                 type="address"
                 id="address"
               />
-              <button className="search-button" type="submit">
+              <button
+                className="search-button"
+                type="submit"
+                onClick={googleSearch}
+              >
                 Search For Roommates!
               </button>
             </form>
-            <div className="popular-cities-section text-center">
-              <h3 className="text-3xl font-semibold">Popular Cities</h3>
-              <div className="popular-cities grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="quick-search-cities-section text-center">
+              <h3 className="text-3xl font-semibold">Quick Search</h3>
+              <div className="quick-search-cities grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 <div className="card card-1">
                   <h3 className="flex justify-center card-city-text">
                     Los Angeles, CA
