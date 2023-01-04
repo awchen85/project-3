@@ -4,7 +4,12 @@ const { Schema } = mongoose;
 const bcrypt = require("bcrypt");
 
 const userSchema = new Schema({
-  name: {
+  firstName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  lastName: {
     type: String,
     required: true,
     trim: true,
@@ -13,13 +18,12 @@ const userSchema = new Schema({
     type: String,
     required: true,
     unique: true,
+    match: [/.+@.+\..+/, 'Must match an email address!']
   },
   phone: {
     type: String,
-    required: true,
     minlength: 10,
     unique: true,
-    match: [/.+@.+\..+/, 'Must match an email address!']
   },
   //min 7 letter password, symbol, uppercase, lowercase, and a number
   password: {
