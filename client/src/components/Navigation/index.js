@@ -6,8 +6,14 @@ export default function Navigation() {
   const { isLoggedIn, logoutUser } = useCurrentUserContext();
 
   return (
-    <nav className="md:justify-between justify-center" style={{ width: '100%' }}>
+    <nav
+      className="flex flex-row md:justify-between justify-center"
+      style={{ width: '100%' }}
+    >
       <div>
+        <h1 className="our-place text-white md:invisible visible text-start ml-12 text-5xl">
+          Our Place
+        </h1>
         <div className="ml-4 md:visible invisible title">
           <Link to="/">
             <svg
@@ -16,7 +22,6 @@ export default function Navigation() {
               viewBox="0 0 422 86"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="font-effect-fire-animation"
             >
               <mask
                 id="path-1-outside-1_1_5"
@@ -106,16 +111,40 @@ export default function Navigation() {
       <div className="flex nav-links">
         {isLoggedIn() ? (
           <>
-            <Link className="mr-1 text-2xl hover:scale-125 hover:-translate-x-1 hover:text-teal-300" to="/"><AiFillHome /></Link>
-            <Link to="/dashboard" className="hover:text-emerald-200 hover:scale-125 hover:-translate-y-1">Dashboard</Link>
-            <button className="text-white hover:text-red-600 hover:scale-125 hover:translate-x-1" type="button" onClick={logoutUser}>
+            <Link
+              className="mr-1 text-2xl hover:scale-125 hover:-translate-x-1 hover:text-teal-300"
+              to="/"
+            >
+              <AiFillHome />
+            </Link>
+            <Link
+              to="/dashboard"
+              className="hover:text-emerald-200 hover:scale-125 hover:-translate-y-1"
+            >
+              Dashboard
+            </Link>
+            <button
+              className="text-white hover:text-red-600 hover:scale-125 hover:translate-x-1"
+              type="button"
+              onClick={logoutUser}
+            >
               Logout
             </button>
           </>
         ) : (
           <>
-            <Link className="hover:text-emerald-200 hover:scale-125 hover:-translate-x-1" to="/login">Login</Link>
-            <Link className="hover:text-emerald-200 hover:scale-125 hover:translate-x-1" to="/register">Sign Up</Link>
+            <Link
+              className="hover:text-emerald-200 hover:scale-125 hover:-translate-x-1"
+              to="/login"
+            >
+              Login
+            </Link>
+            <Link
+              className="hover:text-emerald-200 hover:scale-125 hover:translate-x-1"
+              to="/register"
+            >
+              Sign Up
+            </Link>
           </>
         )}
       </div>
