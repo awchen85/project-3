@@ -40,9 +40,6 @@ function Dashboard() {
 
   return (
     <div>
-      <div>
-        <h2>Dashboard</h2>
-      </div>
       <div className="dashboard flex">
         <section className="dashboard-nav flex flex-col border-2 border-black">
           <button

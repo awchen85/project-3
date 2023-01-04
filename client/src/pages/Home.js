@@ -42,8 +42,10 @@ function Home() {
     console.log('Searched for:', input);
   };
 
-  const clickHandler = () => {
-    console.log('Clicked!');
+  const clickHandler = e => {
+    e.preventDefault();
+    const { target } = e;
+    console.log('Clicked!', target.id);
     // document.getElementById('Budget').removeAttribute('hidden');
   };
 
@@ -52,18 +54,20 @@ function Home() {
       <h2 className="font-semibold text-2xl mb-5">Find Your Next Roommate</h2>
       <div className="flex justify-between mt-12">
         <div className="left-side">
-          <section className="btn-section border-2 border-black rounded-md py-4 px-4">
+          <section className="btn-section">
             <div className="filter-buttons grid grid-cols-4 gap-2 md:grid-cols-4">
               <button
                 type="submit"
-                className="filter-btn my-2 px-4 py-2 border-2 border-black rounded-md"
+                id="Distance"
+                className="filter-btn filter-distance my-2 px-4 py-2"
                 onClick={clickHandler}
               >
                 Distance
               </button>
               <button
                 type="submit"
-                className="filter-btn my-2 px-4 py-2 border-2 border-black rounded-md"
+                id="Budget"
+                className="filter-btn filter-budget my-2 px-4 py-2"
                 onClick={clickHandler}
               >
                 Budget
@@ -80,14 +84,16 @@ function Home() {
               </div>
               <button
                 type="submit"
-                className="filter-btn my-2 px-4 py-2 border-2 border-black rounded-md"
+                id="Filter"
+                className="filter-btn filter-filter my-2 px-4 py-2"
                 onClick={clickHandler}
               >
                 Filter
               </button>
               <button
                 type="submit"
-                className="filter-btn my-2 px-4 py-2 border-2 border-black rounded-md"
+                id="Verified"
+                className="filter-btn filter-verified my-2 px-4 py-2"
                 onClick={clickHandler}
               >
                 Verified
@@ -235,7 +241,7 @@ function Home() {
             <form className="search-form" onSubmit={googleSearch}>
               <input
                 className="form-input-address"
-                placeholder="Enter an address, city, or ZIP code"
+                placeholder="Enter a city's name to search for people in that area"
                 name="address"
                 type="address"
                 id="address"
@@ -251,36 +257,48 @@ function Home() {
             <div className="quick-search-cities-section text-center">
               <h3 className="text-3xl font-semibold">Quick Search</h3>
               <div className="quick-search-cities grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                <div className="card card-1">
-                  <h3 className="flex justify-center card-city-text">
-                    Los Angeles, CA
-                  </h3>
-                </div>
-                <div className="card card-2">
-                  <h3 className="flex justify-center card-city-text">
-                    New York, NY
-                  </h3>
-                </div>
-                <div className="card card-3">
-                  <h3 className="flex justify-center card-city-text">
-                    Dallas, TX
-                  </h3>
-                </div>
-                <div className="card card-4">
-                  <h3 className="flex justify-center card-city-text">
-                    Chicago, IL
-                  </h3>
-                </div>
-                <div className="card card-5">
-                  <h3 className="flex justify-center card-city-text">
-                    Atlanta, GA
-                  </h3>
-                </div>
-                <div className="card card-6">
-                  <h3 className="flex justify-center card-city-text">
-                    Portland, OR
-                  </h3>
-                </div>
+                <a href="/" onClick={clickHandler}>
+                  <div id="LA" className="card card-1">
+                    <h3 className="flex justify-center card-city-text">
+                      Los Angeles, CA
+                    </h3>
+                  </div>
+                </a>
+                <a href="/" onClick={clickHandler}>
+                  <div id="NY" className="card card-2">
+                    <h3 className="flex justify-center card-city-text">
+                      New York, NY
+                    </h3>
+                  </div>
+                </a>
+                <a href="/" onClick={clickHandler}>
+                  <div id="TX" className="card card-3">
+                    <h3 className="flex justify-center card-city-text">
+                      Dallas, TX
+                    </h3>
+                  </div>
+                </a>
+                <a href="/" onClick={clickHandler}>
+                  <div id="IL" className="card card-4">
+                    <h3 className="flex justify-center card-city-text">
+                      Chicago, IL
+                    </h3>
+                  </div>
+                </a>
+                <a href="/" onClick={clickHandler}>
+                  <div id="GA" className="card card-5">
+                    <h3 className="flex justify-center card-city-text">
+                      Atlanta, GA
+                    </h3>
+                  </div>
+                </a>
+                <a href="/" onClick={clickHandler}>
+                  <div id="OR" className="card card-6">
+                    <h3 className="flex justify-center card-city-text">
+                      Portland, OR
+                    </h3>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
