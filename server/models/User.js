@@ -24,7 +24,6 @@ const userSchema = new Schema({
   phone: {
     type: String,
     minlength: 10,
-    unique: true,
   },
   // min 7 letter password, symbol, uppercase, lowercase, and a number
   password: {
@@ -54,6 +53,10 @@ const userSchema = new Schema({
       ref: 'Review',
     },
   ],
+  profile: {
+    type: Schema.Types.ObjectId,
+    ref: 'Profile',
+  },
 });
 
 // set up pre-save middleware to create password

@@ -1,7 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const omit = require('lodash.omit');
 
-const { User } = require('../models');
+const { User, Profile } = require('../models');
 
 const { signToken } = require('../utils/auth');
 
@@ -9,11 +9,13 @@ const resolvers = {
   Query: {
     getCurrentUser: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).select('-__v -password');
+        const user = await User.findById(context.user._id).select(
+          '-__v -password'
+        );
         return user;
       }
       throw new AuthenticationError('Not logged in');
-    }
+    },
   },
   Mutation: {
     createUser: async (parent, args) => {
@@ -51,8 +53,52 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
-    }
-  }
+    },
+    createProfile: async (parent, { input }, context) => {
+      if (context.user) {
+        const profile = await Profile.create({
+          ...input,
+          userId: context.user._id,
+        });
+
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { profile: { profile } },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
+    updateProfile: async (parent, { input }, context, id) => {
+      if (context.user) {
+        const updatedProfile = await Profile.findByIdAndUpdate(
+          { _id: id },
+          {
+            age: input.age,
+            gender: input.gender,
+            budget: input.budget,
+            location: input.location,
+            aboutMe: input.aboutMe,
+            allowPets: input.allowPets,
+            allowChildren: input.allowChildren,
+          },
+          { new: true }
+        );
+
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { profile: { updatedProfile } },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+  },
 };
 
 module.exports = resolvers;
