@@ -1,39 +1,28 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
   name: {
     type: String,
     required: true,
     trim: true,
-<<<<<<< HEAD
-  },
-  lastName: {
-    type: String,
-    required: true,
-    trim: true,
-=======
->>>>>>> develop
   },
   email: {
     type: String,
     required: true,
+    trim: true,
     unique: true,
-<<<<<<< HEAD
-    match: [/.+@.+\..+/, 'Must match an email address!'],
-=======
   },
   phone: {
     type: String,
     required: true,
     minlength: 10,
     unique: true,
-    match: [/.+@.+\..+/, 'Must match an email address!']
->>>>>>> develop
+    match: [/.+@.+\..+/, 'Must match an email address!'],
   },
-  //min 7 letter password, symbol, uppercase, lowercase, and a number
+  // min 7 letter password, symbol, uppercase, lowercase, and a number
   password: {
     type: String,
     required: true,
@@ -46,26 +35,26 @@ const userSchema = new Schema({
   likes: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Room",
+      ref: 'Room',
     },
   ],
   rooms: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Room",
+      ref: 'Room',
     },
   ],
   reviews: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Review",
+      ref: 'Review',
     },
   ],
 });
 
 // set up pre-save middleware to create password
-userSchema.pre("save", async function (next) {
-  if (this.isNew || this.isModified("password")) {
+userSchema.pre('save', async function (next) {
+  if (this.isNew || this.isModified('password')) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
@@ -78,6 +67,6 @@ userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;
