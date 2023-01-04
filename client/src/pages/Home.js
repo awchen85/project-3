@@ -40,21 +40,6 @@ function Home() {
     e.preventDefault();
     const input = document.getElementById('address').value;
     console.log('Searched for:', input);
-    // const apiURL = `https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=${process.env.GOOGLE_MAPS}`;
-
-    // fetch(apiURL)
-    //   .then(response => {
-    //     if (response.ok) {
-    //       response.json().then(data => {
-    //         console.log(data);
-    //       });
-    //     } else {
-    //       console.log('NOPE');
-    //     }
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
   };
 
   const clickHandler = () => {
