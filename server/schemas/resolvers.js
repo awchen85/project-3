@@ -9,11 +9,13 @@ const resolvers = {
   Query: {
     getCurrentUser: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).select('-__v -password');
+        const user = await User.findById(context.user._id).select(
+          '-__v -password'
+        );
         return user;
       }
       throw new AuthenticationError('Not logged in');
-    }
+    },
   },
   Mutation: {
     createUser: async (parent, args) => {
@@ -51,8 +53,8 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
-    }
-  }
+    },
+  },
 };
 
 module.exports = resolvers;

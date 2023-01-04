@@ -25,7 +25,7 @@ export default function Registration() {
           email: formState.email,
           password: formState.password,
           firstName: formState.firstName,
-          // lastName: formState.lastName,
+          lastName: formState.lastName,
         },
       });
       const { token, user } = mutationResponse.data.createUser;
