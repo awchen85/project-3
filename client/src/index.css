@@ -191,7 +191,7 @@ form p {
 }
 
 .dashboard-nav {
-  width: 20%;
+  min-width: 20%;
   min-height: 100%;
 }
 

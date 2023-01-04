@@ -85,7 +85,7 @@ function Dashboard() {
           // eslint-disable-next-line react/no-unknown-property
           handleComponentChange={handleComponentChange}
         >
-          {determineComponent()}
+          {/* {determineComponent()} */}
           <DashboardProfile />
         </div>
       </div>
