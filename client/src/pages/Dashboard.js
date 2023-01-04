@@ -18,6 +18,7 @@ function Dashboard() {
 
   const clickHandler = e => {
     const { target } = e;
+    // eslint-disable-next-line no-console
     console.log('Clicked', target.id);
   };
 
