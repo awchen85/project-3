@@ -19,7 +19,7 @@ import Registration from './pages/Registration';
 import Dashboard from './pages/Dashboard';
 import NotFound from './pages/NotFound';
 import Profile from './pages/ProfileSetup';
-
+import Cards from './pages/Cards';
 import './App.css';
 
 const httpLink = createHttpLink({
@@ -55,6 +55,8 @@ function App() {
               <Route path="/Profile" element={<Profile />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/*" element={<NotFound />} />
+              <Route path="/cards" element={<Cards />} />
+
             </Routes>
           </CurrentUserContextProvider>
         </Router>
