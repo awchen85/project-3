@@ -1,20 +1,40 @@
-// import { Loader } from '@googlemaps/js-api-loader';
-import GoogleMapPic from '../assets/images/GoogleMapTA.webp';
+/* eslint-disable react/jsx-one-expression-per-line */
+import React, { useRef, useEffect, useState } from 'react';
+// import GoogleMapPic from '../assets/images/GoogleMapTA.webp';
 import placeholder from '../assets/images/placeholder-icon.jpg';
+// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
+import mapboxgl from '!mapbox-gl';
 
 function Home() {
-  // const loader = new Loader({
-  //   apiKey: 'YOUR_API_KEY',
-  //   version: 'weekly',
-  //   ...additionalOptions,
-  // });
+  // eslint-disable-next-line operator-linebreak
+  mapboxgl.accessToken =
+    'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
 
-  // loader.load().then(() => {
-  //   map = new google.maps.Map(document.getElementById('map'), {
-  //     center: { lat: -34.397, lng: 150.644 },
-  //     zoom: 8,
-  //   });
-  // });
+  const mapContainer = useRef(null);
+  const map = useRef(null);
+  const [lng, setLng] = useState(-70.9);
+  const [lat, setLat] = useState(42.35);
+  const [zoom, setZoom] = useState(9);
+
+  useEffect(() => {
+    if (map.current) return; // initialize map only once
+    map.current = new mapboxgl.Map({
+      container: mapContainer.current,
+      style: 'mapbox://styles/mapbox/streets-v12',
+      center: [lng, lat],
+      // eslint-disable-next-line object-shorthand
+      zoom: zoom,
+    });
+  });
+
+  useEffect(() => {
+    if (!map.current) return; // wait for map to initialize
+    map.current.on('move', () => {
+      setLng(map.current.getCenter().lng.toFixed(4));
+      setLat(map.current.getCenter().lat.toFixed(4));
+      setZoom(map.current.getZoom().toFixed(2));
+    });
+  });
 
   const googleSearch = e => {
     e.preventDefault();
@@ -221,13 +241,11 @@ function Home() {
           </div>
         </div>
         <div className="right-side">
-          <div className="map-div">
-            <img
-              src={GoogleMapPic}
-              alt=""
-              className="map border-2 border-slate-700"
-            />
+          <div className="sidebar">
+            {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+            Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
           </div>
+          <div ref={mapContainer} className="map-container" />
           <div className="form-div">
             <form className="search-form" onSubmit={googleSearch}>
               <input

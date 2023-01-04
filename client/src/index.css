@@ -134,16 +134,6 @@ form p {
   }
 }
 
-.map-div {
-  display: flex;
-  justify-content: center;
-}
-
-.map {
-  max-width: 90%;
-  max-height: 90%;
-}
-
 .form-div {
   display: flex;
   flex-direction: column;
@@ -185,12 +175,6 @@ form p {
    height: 126px;
    background: #006db0;
 } */
-
-#map {
-  position: absolute;
-  bottom: 40%;
-  right: 10%;
-}
 
 .dashboard {
   min-height: 75vh;
@@ -258,14 +242,25 @@ form p {
     width: 50%;
   }
 
-  .map-div {
-    display: flex;
-  }
+.map-container {
+  margin: 0 1.5rem;
+  min-height: 400px;
+  height: 600px;
+  width: 95%;
+}
 
-  .map {
-    min-width: 300px;
-    min-height: 300px;
-  }
+.sidebar {
+  background-color: rgba(35, 55, 75, 0.9);
+  color: #fff;
+  padding: 6px 12px;
+  font-family: monospace;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 12px;
+  border-radius: 4px;
+}
 
   .form-div {
     width: 100%;
