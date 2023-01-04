@@ -186,6 +186,12 @@ form p {
    background: #006db0;
 } */
 
+#map {
+  position: absolute;
+  bottom: 40%;
+  right: 10%;
+}
+
 .dashboard {
   min-height: 75vh;
 }
