@@ -47,6 +47,10 @@ nav button {
   outline: inherit
 }
 
+.our-place {
+
+}
+
 .form {
   margin: 1rem auto;
   margin-top: 0;
@@ -327,6 +331,15 @@ form p {
 }
 
 @media screen and (max-width: 768px) {
+  .our-place {
+    margin: 0;
+    animation: font-effect-neon-animation-keyframes 4s ease-in 0.4s infinite;
+  }
+
+  .title {
+    content-visibility: hidden;
+  }
+
   .left-side {
     content-visibility: hidden;
   }
@@ -337,8 +350,8 @@ form p {
 
   nav {
     display: flex;
-    justify-content:center ;
-    flex-direction: column;
+    min-height: 20vh;
+    justify-content: space-between;
     background-size: cover;
   }
 
@@ -388,3 +401,17 @@ form p {
   border: 1px solid rgb(74, 110, 255);
   background-color: rgb(74, 110, 255);
 }
+
+@keyframes font-effect-neon-animation-keyframes {
+  0% {
+    text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #fff, 0 0 0.4em orange, 0 0 0.6em orange, 0 0 0.8em orange, 0 0 1em orange, 0 0 1.2em orange;
+  }
+
+  /* 100% {
+    text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #fff, 0 0 0.4em #fff, 0 0 0.6em #fff, 0 0 0.8em #fff, 0 0 1em #fff, 0 0 1.2em #fff;
+  } */
+}
+
+/* .font-effect-neon {
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #fff, 0 0 0.4em purple, 0 0 0.6em purple, 0 0 0.8em purple, 0 0 1em purple, 0 0 1.2em purple;
+} */
