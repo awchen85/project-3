@@ -1,13 +1,35 @@
 import React from 'react';
 
 function DashboardProfile() {
+  // const imageInput = document.querySelector('#imageInput');
+  // let uploadedImage = '';
+
+  // imageInput.addEventListener('change', function () {
+  //   const reader = new FileReader();
+  //   reader.addEventListener('load', () => {
+  //     uploadedImage = reader.result;
+  //     document.querySelector(
+  //       '#display_image'
+  //     ).style.backgroundImage = `url(${uploadedImage})`;
+  //   });
+  //   // eslint-disable-next-line react/no-this-in-sfc
+  //   reader.readAsDataURL(this.files[0]);
+  // });
+
   return (
     <div>
       <h1 className="text-center font-bold text-3xl m-8">
         Welcome, USER_NAME, To Your Profile!
       </h1>
+      {/* eslint-disable-next-line react/self-closing-comp */}
+      <div id="display_image"></div>
       <form>
-        <input type="file" name="upload" accept="image/*" />
+        <input
+          type="file"
+          id="imageInput"
+          name="upload"
+          accept="image/png, image/jpg"
+        />
       </form>
       <div className="profile text-2xl">
         <div className="profile-field">
