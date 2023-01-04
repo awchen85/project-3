@@ -13,47 +13,59 @@ function Profile() {
   const onCloseModal = () => setOpen(false);
 
   const profileModal = (
-    <div className="m-5 flex justify-center flex-wrap rounded-full">
-      <div>
-        <div className="translate-y-10">
-          <h1 className="text-black text-5xl text-center">
-            What is your Gender?
-          </h1>
+    <form>
+      <fieldset>
+        <div className="m-5 flex justify-center flex-wrap rounded-full">
+          <div>
+            <div className="translate-y-10">
+              <h1 className="text-black text-5xl text-center">
+                What is your Gender?
+              </h1>
+            </div>
+            <div className="translate-y-16">
+              <div className="flex justify-center flex-wrap">
+                <div className="flex md:text-5xl cursor-pointer text-xl rounded text-red-200 hover:bg-red-50 hover:border-4 hover:border-black m-10 p-3">
+                  <label className="flex" htmlFor="female">
+                    <input name="gender" type="radio" id="female" value="female" />
+                    <BsGenderFemale />
+                    <p>Female</p>
+                  </label>
+                </div>
+                <div className="flex md:text-5xl cursor-pointer text-xl rounded text-blue-400 hover:bg-sky-100 hover:border-4 hover:border-black m-10 p-3">
+                  <label className="flex" htmlFor="male">
+                    <input name="gender" type="radio" id="male" value="male" />
+                    <BsGenderMale />
+                    <p>Male</p>
+                  </label>
+                </div>
+              </div>
+              <div className="flex justify-center flex-wrap">
+                <div className="flex md:text-5xl cursor-pointer text-xl rounded text-emerald-400 hover:bg-emerald-100 hover:border-4 hover:border-black m-10 p-3">
+                  <label className="flex" htmlFor="non-bin">
+                    <input name="gender" type="radio" id="non-bin" value="non-bin" />
+                    <TbGenderGenderqueer />
+                    Non-binary
+                  </label>
+                </div>
+                <div className="md:text-5xl cursor-pointer text-xl rounded text-purple-400 hover:bg-purple-100 hover:border-4 hover:border-black m-10 p-3">
+                  <label className="flex" htmlFor="other">
+                    <input name="gender" type="radio" id="other" value="other" />
+                    <HiOutlineDotsCircleHorizontal />
+                    Other
+                  </label>
+                </div>
+              </div>
+              <div className="flex justify-center md:text-5xl cursor-pointer text-xl rounded text-yellow-500 hover:bg-yellow-100 hover:border-4 hover:border-black m-10 p-3">
+                <label className="flex" htmlFor="prefer-not-to-say">
+                  <input name="gender" type="radio" id="prefer-not-to-say" value="prefer-not-to-say" />
+                  <p>Prefer Not to Say</p>
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="translate-y-16">
-          <div className="flex justify-center flex-wrap">
-            <div className="flex md:text-5xl cursor-pointer text-xl rounded text-red-200 hover:bg-red-50 hover:border-4 hover:border-black m-10 p-3">
-              <input type="radio" id="female" value="female" />
-              <BsGenderFemale />
-              <p>Female</p>
-            </div>
-            <div className="flex md:text-5xl cursor-pointer text-xl rounded text-blue-400 hover:bg-sky-100 hover:border-4 hover:border-black m-10 p-3">
-              <input type="radio" id="male" value="male" />
-              <BsGenderMale />
-              <p>Male</p>
-            </div>
-          </div>
-          <div className="flex justify-center flex-wrap">
-            <div className="flex md:text-5xl cursor-pointer text-xl rounded text-emerald-400 hover:bg-emerald-100 hover:border-4 hover:border-black m-10 p-3">
-              <input type="radio" id="non-binary" value="non-binary" />
-              <TbGenderGenderqueer />
-              <p>Non-binary</p>
-            </div>
-            <div className="md:text-5xl cursor-pointer text-xl rounded text-purple-400 hover:bg-purple-100 hover:border-4 hover:border-black m-10 p-3">
-              <label className="flex" htmlFor="other">
-                <input type="radio" id="other" value="other" />
-                <HiOutlineDotsCircleHorizontal />
-                Other
-              </label>
-            </div>
-          </div>
-          <div className="flex justify-center md:text-5xl cursor-pointer text-xl rounded text-yellow-500 hover:bg-yellow-100 hover:border-4 hover:border-black m-10 p-3">
-            <input type="radio" id="prefer-not-to-say" value="prefer-not-to-say" />
-            <p>Prefer Not to Say</p>
-          </div>
-        </div>
-      </div>
-    </div>
+      </fieldset>
+    </form>
   );
   return (
     <div>
