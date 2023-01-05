@@ -32,7 +32,7 @@ function DashboardProfile() {
         />
       </form>
       <div className="profile text-2xl">
-        <div className="profile-field">
+        <div className="profile-field profile-field-section">
           <h3 className="profile-h3">First Name</h3>
           <div className="border-2 border-black">
             <input
@@ -42,7 +42,7 @@ function DashboardProfile() {
             />
           </div>
         </div>
-        <div className="profile-field">
+        <div className="profile-field profile-field-section">
           <h3 className="profile-h3">Email</h3>
           <div className="border-2 border-black">
             <input
@@ -52,7 +52,7 @@ function DashboardProfile() {
             />
           </div>
         </div>
-        <div className="profile-field">
+        <div className="profile-field-section">
           <h3 className="profile-h3">Looking for a place in:</h3>
           <div className="border-2 border-black">
             <input
@@ -62,7 +62,7 @@ function DashboardProfile() {
             />
           </div>
         </div>
-        <div className="profile-field">
+        <div className="profile-field-section">
           <h3 className="profile-h3">Age</h3>
           <div className="border-2 border-black w-1/6">
             <input
@@ -73,27 +73,47 @@ function DashboardProfile() {
             />
           </div>
         </div>
-        <div className="profile-field">
+        <div className="profile-field-section">
           <h3 className="profile-h3">Gender</h3>
-          <div className="">
-            <input type="radio" name="Gender" />
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label htmlFor="Gender">Male</label>
-            <input type="radio" name="Gender" />
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label htmlFor="Gender">Female</label>
-            <input type="radio" name="Gender" />
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label htmlFor="Gender">Non-Binary</label>
-            <input type="radio" name="Gender" />
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label htmlFor="Gender">Other</label>
-            <input type="radio" name="Gender" />
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label htmlFor="Gender">Prefer Not To Say</label>
+          <div className="flex">
+            <div className="flex cursor-pointer text-xl rounded text-blue-400 hover:bg-sky-100 hover:border-4 hover:border-blue-500 m-1 p-1">
+              <label htmlFor="gender" className="px-4 cursor-pointer">
+                <input type="checkbox" value="male" />
+                Male
+              </label>
+            </div>
+            <br />
+            <div className="flex text-xl rounded text-red-200 hover:bg-red-50 hover:border-4 hover:border-red-300 m-1 p-1">
+              <label htmlFor="gender" className="px-4 cursor-pointer">
+                <input type="checkbox" value="female" />
+                Female
+              </label>
+            </div>
+            <br />
+            <div className="flex cursor-pointer text-xl rounded text-emerald-400 hover:bg-emerald-100 hover:border-4 hover:border-green-500 m-1 p-1">
+              <label htmlFor="gender" className="px-4 cursor-pointer">
+                <input type="checkbox" value="non-binary" />
+                Non-binary
+              </label>
+            </div>
+            <br />
+            <div className="cursor-pointer text-xl rounded text-purple-400 hover:bg-purple-100 hover:border-4 hover:border-purple-500 m-1 p-1">
+              <label htmlFor="gender" className="px-4 cursor-pointer">
+                <input type="checkbox" value="male" />
+                Other
+              </label>
+            </div>
+            <br />
+            <div className="flex cursor-pointer text-xl rounded text-yellow-500 hover:bg-yellow-100 hover:border-4 hover:border-yellow-600 m-1 p-1">
+              <label htmlFor="gender" className="px-4 cursor-pointer">
+                <input type="checkbox" value="male" />
+                Prefer Not To Say
+              </label>
+            </div>
+            <br />
           </div>
         </div>
-        <div className="profile-field">
+        <div className="profile-field-section">
           <h3 className="profile-h3">Budget</h3>
           <div className="border-2 border-black">
             <input
@@ -103,7 +123,7 @@ function DashboardProfile() {
             />
           </div>
         </div>
-        <div className="profile-field">
+        <div className="profile-field-section">
           <h3 className="profile-h3">Pets</h3>
           <div className="border-2 border-black">
             <input
@@ -113,7 +133,7 @@ function DashboardProfile() {
             />
           </div>
         </div>
-        <div className="profile-field">
+        <div className="profile-field-section">
           <h3 className="profile-h3">Children</h3>
           <div className="border-2 border-black">
             <input
