@@ -1,11 +1,71 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useRef, useEffect, useState } from 'react';
 // import GoogleMapPic from '../assets/images/GoogleMapTA.webp';
+import { Modal } from 'react-responsive-modal';
+import 'react-responsive-modal/styles.css';
 import placeholder from '../assets/images/placeholder-icon.jpg';
 // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
 import mapboxgl from '!mapbox-gl';
 
 function Home() {
+  const [open, setOpen] = React.useState(false);
+
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
+
+  const filterModal = (
+    <div id="myModal" className="modal">
+      <div className="modal-header">
+        <h2>Filter Options</h2>
+      </div>
+      <div className="modal-body">
+        <form>
+          <div className="form-group">
+            <label htmlFor="category">
+              Category:
+              <select className="form-control" id="category">
+                <option value="all">All</option>
+                <option value="books">Books</option>
+                <option value="movies">Movies</option>
+                <option value="music">Music</option>
+              </select>
+            </label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="rating">
+              Minimum Rating:
+              <input
+                type="number"
+                className="form-control"
+                id="rating"
+                min="1"
+                max="5"
+              />
+            </label>
+          </div>
+          <div className="form-group form-check">
+            <label className="form-check-label" htmlFor="in-stock">
+              In Stock
+              <input
+                type="checkbox"
+                className="form-check-input"
+                id="in-stock"
+              />
+            </label>
+          </div>
+        </form>
+      </div>
+      <div className="modal-footer">
+        <button type="submit" className="btn btn-primary" id="apply-filters">
+          Apply
+        </button>
+        <button type="submit" className="btn btn-secondary" id="cancel-filters">
+          Cancel
+        </button>
+      </div>
+    </div>
+  );
+
   // eslint-disable-next-line operator-linebreak
   mapboxgl.accessToken =
     'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
@@ -58,45 +118,11 @@ function Home() {
             <div className="filter-buttons grid grid-cols-4 gap-2 md:grid-cols-4">
               <button
                 type="submit"
-                id="Distance"
-                className="filter-btn filter-distance my-2 px-4 py-2"
-                onClick={clickHandler}
-              >
-                Distance
-              </button>
-              <button
-                type="submit"
-                id="Budget"
-                className="filter-btn filter-budget my-2 px-4 py-2"
-                onClick={clickHandler}
-              >
-                Budget
-              </button>
-              <div id="Budget" className="slidecontainer" hidden>
-                <input
-                  type="range"
-                  min="1"
-                  max="100"
-                  value="50"
-                  className="slider"
-                  id="myRange"
-                />
-              </div>
-              <button
-                type="submit"
                 id="Filter"
-                className="filter-btn filter-filter my-2 px-4 py-2"
-                onClick={clickHandler}
+                className="filter-btn my-2 px-4 py-2"
+                onClick={onOpenModal}
               >
                 Filter
-              </button>
-              <button
-                type="submit"
-                id="Verified"
-                className="filter-btn filter-verified my-2 px-4 py-2"
-                onClick={clickHandler}
-              >
-                Verified
               </button>
             </div>
           </section>
@@ -304,6 +330,9 @@ function Home() {
           </div>
         </div>
       </div>
+      <Modal classNames="" open={open} onClose={onCloseModal} center>
+        {filterModal}
+      </Modal>
     </div>
   );
 }
