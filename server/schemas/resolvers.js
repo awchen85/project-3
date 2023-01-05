@@ -15,19 +15,18 @@ const resolvers = {
         return user;
       }
       throw new AuthenticationError('Not logged in');
-    }
     },
-
-    getUsers: async (parent, args, context) => {
+    getUsers: async () => {
       const users = await User.find();
       return users;
     },
 
-    getProfiles: async (parent, args, context) => {
+    getProfiles: async () => {
       const profiles = await Profile.find();
       return profiles;
     },
   },
+
   Mutation: {
     createUser: async (parent, args) => {
       const user = await User.create(args);
