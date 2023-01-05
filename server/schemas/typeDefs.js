@@ -34,7 +34,6 @@ const typeDefs = gql`
     aboutMe: String
     allowPets: Boolean
     allowChildren: Boolean
-    userId: ID
   }
 
   type Room {
@@ -83,7 +82,8 @@ const typeDefs = gql`
   type Query {
     getCurrentUser: User
     getProfile: User
-    getProfiles: [User]
+    getUsers: [User]
+    getProfiles: [Profile]
   }
 
   type Mutation {
@@ -97,7 +97,7 @@ const typeDefs = gql`
     deleteUser: User
     login(email: String!, password: String!): Auth
     createProfile(input: ProfileInput!): User
-    updateProfile(input: ProfileInput!, id: ID!): User
+    updateProfile(input: ProfileInput!): User
   }
 `;
 

@@ -9,12 +9,22 @@ const resolvers = {
   Query: {
     getCurrentUser: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).select(
-          '-__v -password'
-        );
+        const user = await User.findById(context.user._id)
+          .select('-__v -password')
+          .populate('profile');
         return user;
       }
       throw new AuthenticationError('Not logged in');
+    },
+
+    getUsers: async (parent, args, context) => {
+      const users = await User.find();
+      return users;
+    },
+
+    getProfiles: async (parent, args, context) => {
+      const profiles = await Profile.find();
+      return profiles;
     },
   },
   Mutation: {
@@ -63,38 +73,30 @@ const resolvers = {
 
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { profile: { profile } },
+          {
+            profile: profile,
+          },
           { new: true }
-        );
+        ).populate('profile');
 
         return updatedUser;
       }
 
       throw new AuthenticationError('Not logged in');
     },
-    updateProfile: async (parent, { input }, context, id) => {
+    updateProfile: async (parent, { input }, context) => {
       if (context.user) {
-        const updatedProfile = await Profile.findByIdAndUpdate(
-          { _id: id },
+        const user = await User.findById({ _id: context.user._id });
+        const userId = user.profile._id;
+        await Profile.findByIdAndUpdate(
+          { _id: userId },
           {
-            age: input.age,
-            gender: input.gender,
-            budget: input.budget,
-            location: input.location,
-            aboutMe: input.aboutMe,
-            allowPets: input.allowPets,
-            allowChildren: input.allowChildren,
+            ...input,
           },
           { new: true }
         );
 
-        const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { profile: { updatedProfile } },
-          { new: true }
-        );
-
-        return updatedUser;
+        return User.findById({ _id: context.user._id }).populate('profile');
       }
       throw new AuthenticationError('Not logged in');
     },
