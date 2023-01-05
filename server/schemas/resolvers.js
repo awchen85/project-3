@@ -15,6 +15,7 @@ const resolvers = {
         return user;
       }
       throw new AuthenticationError('Not logged in');
+    }
     },
 
     getUsers: async (parent, args, context) => {

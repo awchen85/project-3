@@ -18,19 +18,19 @@ body h2 {
 }
 
 nav {
-
   display: flex;
   align-items: flex-end;
   padding: 20px;
   background-image: url("./assets/nav-bg/skyline.png");
-  background-size: cover;
+  background-size: contain;
   background-position: 50%;
   background-color: #000000;
   max-height: 10rem;
   position: sticky;
   top: 0;
+  /* This makes it so that the interactive map doesn't overlap this navbar */
+  z-index: 1;
 }
-
 
 nav a {
   color: #fff;
@@ -136,16 +136,6 @@ form p {
   }
 }
 
-.map-div {
-  display: flex;
-  justify-content: center;
-}
-
-.map {
-  max-width: 90%;
-  max-height: 90%;
-}
-
 .form-div {
   display: flex;
   flex-direction: column;
@@ -180,12 +170,48 @@ form p {
   width: 100%;
 }
 
-/* footer {
-   position: relative;
-   bottom: 0;
-   width: 100%;
-   height: 126px;
-   background: #006db0;
+.dashboard {
+  min-height: 80vh;
+}
+
+.dashboard-nav {
+  min-width: 20%;
+  min-height: 100%;
+}
+
+.dashboard-btn {
+  border-bottom: 2px solid black;
+  padding: 15px;
+}
+
+.dashboard-main {
+  width: 80%;
+  min-height: 100%;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+}
+
+.profile-field {
+  /* display: flex; */
+  /* justify-content: space-between; */
+  width: 100%;
+  margin: 10px;
+}
+
+/* .profile-h3 {
+  width: 25%;
+} */
+
+.profile-input {
+  width: 100%;
+}
+
+/* #profile-age-input {
+  width: 10%;
 } */
 
 @media screen and (min-width: 768px) {
@@ -197,10 +223,13 @@ form p {
     width: 50%;
   }
 
-  .btn-section {
+  /* .btn-section {
     display: flex;
     justify-content: space-around;
-  }
+    border: 2px solid rgba(201, 201, 201, 0.5);
+    border-radius: 4px;
+    box-shadow: 10px 5px 5px gray;
+  } */
 
   .filter-buttons {
     display: flex;
@@ -210,6 +239,16 @@ form p {
 
   .filter-btn {
     width: 100%;
+    border: 2px solid rgba(201, 201, 201, 0.5);
+    border-radius: 4px;
+    box-shadow: 10px 5px 5px gray;
+    font-weight: bold;
+  }
+
+  .filter-btn:hover {
+    box-shadow: none;
+    border: 2px solid black;
+    background-color: rgba(201, 201, 201, 0.2);
   }
 
   .profile-section {
@@ -235,14 +274,27 @@ form p {
     width: 50%;
   }
 
-  .map-div {
-    display: flex;
-  }
+.map-container {
+  margin: 0 1.5rem;
+  min-height: 400px;
+  height: 600px;
+  width: 95%;
+}
 
-  .map {
-    min-width: 300px;
-    min-height: 300px;
-  }
+.sidebar {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(35, 55, 75, 0.9);
+  color: #fff;
+  padding: 6px 12px;
+  font-family: monospace;
+  /* z-index: 1; */
+  position: relative;
+  top: 0;
+  left: 0;
+  margin: 12px;
+  border-radius: 4px;
+}
 
   .form-div {
     width: 100%;
@@ -257,13 +309,20 @@ form p {
 
   .form-input-address {
     padding: 12px;
+    box-shadow: 10px 5px 5px gray;
   }
 
   .search-button {
     margin: 12px 0 2px 0;
+    box-shadow: 10px 5px 5px gray;
   }
 
-  .popular-cities {
+  .search-button:hover {
+    box-shadow: none;
+    background-color: rgb(36, 205, 205);
+  }
+
+  .quick-search-cities {
     min-width: 90%;
   }
 
@@ -271,7 +330,8 @@ form p {
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    border: 2px solid black;
+    border: 2px solid gray;
+    box-shadow: 10px 5px 5px gray;
     border-radius: 8px;
     margin: 4px;
     padding-bottom: 12px;
@@ -279,6 +339,12 @@ form p {
     color: white;
     min-width: 150px;
     min-height: 150px;
+  }
+
+  .card:hover {
+    border-color: black;
+    opacity: 0.8;
+    box-shadow: none;
   }
 
   .card-city-text {
@@ -329,18 +395,28 @@ form p {
 }
 
 @media screen and (max-width: 768px) {
+  .our-place {
+    margin: 0;
+    animation: font-effect-neon-animation-keyframes 4s ease-in 0.4s infinite;
+  }
+
+  .title {
+    content-visibility: hidden;
+  }
+
   .left-side {
     content-visibility: hidden;
   }
 
-  .popular-cities-section {
+  .quick-search-cities-section {
     content-visibility: hidden;
   }
 
   nav {
     display: flex;
-    justify-content:center ;
-    flex-direction: column;
+    min-height: 20vh;
+    justify-content: space-between;
+    background-size: cover;
   }
 
   .nav-links {
@@ -389,3 +465,17 @@ form p {
   border: 1px solid rgb(74, 110, 255);
   background-color: rgb(74, 110, 255);
 }
+
+@keyframes font-effect-neon-animation-keyframes {
+  0% {
+    text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #fff, 0 0 0.4em orange, 0 0 0.6em orange, 0 0 0.8em orange, 0 0 1em orange, 0 0 1.2em orange;
+  }
+
+  /* 100% {
+    text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #fff, 0 0 0.4em #fff, 0 0 0.6em #fff, 0 0 0.8em #fff, 0 0 1em #fff, 0 0 1.2em #fff;
+  } */
+}
+
+/* .font-effect-neon {
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #fff, 0 0 0.4em purple, 0 0 0.6em purple, 0 0 0.8em purple, 0 0 1em purple, 0 0 1.2em purple;
+} */
