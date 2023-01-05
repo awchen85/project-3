@@ -1,11 +1,147 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useRef, useEffect, useState } from 'react';
 // import GoogleMapPic from '../assets/images/GoogleMapTA.webp';
+import { Modal } from 'react-responsive-modal';
+import 'react-responsive-modal/styles.css';
 import placeholder from '../assets/images/placeholder-icon.jpg';
 // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
 import mapboxgl from '!mapbox-gl';
 
 function Home() {
+  const [open, setOpen] = React.useState(false);
+
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
+
+  const [value, setValue] = React.useState(1000);
+
+  const handleChange = event => {
+    setValue(event.target.value);
+  };
+
+  const [option, setOption] = React.useState('Option 1');
+
+  const handleAgeChange = event => {
+    setOption(event.target.value === 'Option 1' ? 'Option 2' : 'Option 1');
+  };
+
+  const filterModal = (
+    <div id="filterModal" className="modal">
+      <div className="modal-header">
+        <h2 className="filters-title">Filters</h2>
+      </div>
+      <div className="modal-body">
+        <form>
+          {/* Budget */}
+          <div className="flex justify-center">
+            <div className="py-4">
+              <label
+                htmlFor="Budget"
+                className="flex flex-col text-center filters my-1"
+              >
+                Max Rent You Pay
+                <input
+                  type="range"
+                  min="100"
+                  max="4000"
+                  value={value}
+                  onChange={handleChange}
+                />
+                {/* Age */}
+              </label>
+              <div className="flex flex-col py-4">
+                <label htmlFor="age" className="flex flex-col filters my-1">
+                  Age Range
+                  <input
+                    type="range"
+                    min="18"
+                    max="100"
+                    step="1"
+                    value={option === 'Option 1' ? '18' : '100'}
+                    onChange={handleAgeChange}
+                  />
+                </label>
+                <br />
+                {/* Gender */}
+                <div className="py-4 filters my-1">
+                  Gender
+                  <div className="flex">
+                    <div className="flex cursor-pointer text-xl rounded text-blue-400 hover:bg-sky-100 hover:border-4 hover:border-blue-500 m-1 p-1">
+                      <label htmlFor="gender" className="px-4 cursor-pointer">
+                        <input type="checkbox" value="male" /> Male
+                      </label>
+                    </div>
+                    <br />
+                    <div className="flex text-xl rounded text-red-200 hover:bg-red-50 hover:border-4 hover:border-red-300 m-1 p-1">
+                      <label htmlFor="gender" className="px-4 cursor-pointer">
+                        <input type="checkbox" value="female" /> Female
+                      </label>
+                    </div>
+                    <br />
+                    <div className="flex cursor-pointer text-xl rounded text-emerald-400 hover:bg-emerald-100 hover:border-4 hover:border-green-500 m-1 p-1">
+                      <label htmlFor="gender" className="px-4 cursor-pointer">
+                        <input type="checkbox" value="non-binary" /> Non-binary
+                      </label>
+                    </div>
+                    <br />
+                    <div className="cursor-pointer text-xl rounded text-purple-400 hover:bg-purple-100 hover:border-4 hover:border-purple-500 m-1 p-1">
+                      <label htmlFor="gender" className="px-4 cursor-pointer">
+                        <input type="checkbox" value="male" /> Other
+                      </label>
+                    </div>
+                    <br />
+                  </div>
+                </div>
+                <br />
+                {/* Allow Pets */}
+                <div className="filters mb-4">
+                  Allow Pets
+                  <div className="flex justify-center my-1">
+                    <label htmlFor="pets" className="px-4">
+                      <input type="radio" name="pets" value="yes" /> Yes
+                    </label>
+                    <label htmlFor="pets" className="px-4">
+                      <input type="radio" name="pets" value="no" /> No
+                    </label>
+                  </div>
+                </div>
+                {/* Allow Children */}
+                <div className="filters my-4">
+                  Allow Children
+                  <div className="flex justify-center my-1">
+                    <label htmlFor="children" className="px-4">
+                      <input type="radio" name="children" value="yes" /> Yes
+                    </label>
+                    <label htmlFor="children" className="px-4">
+                      <input type="radio" name="children" value="no" /> No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div id="filterModalFooter" className="modal-footer">
+        <button
+          type="submit"
+          className="btn btn-primary button-3d font-effect-neon-green"
+          id="apply-filters"
+        >
+          Apply
+        </button>
+        <button
+          type="submit"
+          className="btn btn-secondary button-3d font-effect-neon-red"
+          id="cancel-filters"
+          onClick={onCloseModal}
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  );
+
   // eslint-disable-next-line operator-linebreak
   mapboxgl.accessToken =
     'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
@@ -58,45 +194,11 @@ function Home() {
             <div className="filter-buttons grid grid-cols-4 gap-2 md:grid-cols-4">
               <button
                 type="submit"
-                id="Distance"
-                className="filter-btn filter-distance my-2 px-4 py-2"
-                onClick={clickHandler}
-              >
-                Distance
-              </button>
-              <button
-                type="submit"
-                id="Budget"
-                className="filter-btn filter-budget my-2 px-4 py-2"
-                onClick={clickHandler}
-              >
-                Budget
-              </button>
-              <div id="Budget" className="slidecontainer" hidden>
-                <input
-                  type="range"
-                  min="1"
-                  max="100"
-                  value="50"
-                  className="slider"
-                  id="myRange"
-                />
-              </div>
-              <button
-                type="submit"
                 id="Filter"
-                className="filter-btn filter-filter my-2 px-4 py-2"
-                onClick={clickHandler}
+                className="filter-btn my-2 px-4 py-2"
+                onClick={onOpenModal}
               >
                 Filter
-              </button>
-              <button
-                type="submit"
-                id="Verified"
-                className="filter-btn filter-verified my-2 px-4 py-2"
-                onClick={clickHandler}
-              >
-                Verified
               </button>
             </div>
           </section>
@@ -304,6 +406,9 @@ function Home() {
           </div>
         </div>
       </div>
+      <Modal classNames="" open={open} onClose={onCloseModal} center>
+        {filterModal}
+      </Modal>
     </div>
   );
 }

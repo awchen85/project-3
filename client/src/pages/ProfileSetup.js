@@ -8,7 +8,6 @@ import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
 import { MdOutlineAttachMoney } from 'react-icons/md';
 import { FaBirthdayCake } from 'react-icons/fa';
 import { BiBuildingHouse } from 'react-icons/bi';
-import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 
 function Profile() {
   const [open, setOpen] = React.useState(false);
@@ -28,9 +27,7 @@ function Profile() {
                   <div>
                     <BiBuildingHouse className="text-blue-500 text-2xl mt-2" />
                   </div>
-                  <div style={{ width: '100%' }}>
-                    <GooglePlacesAutocomplete apiKey="AIzaSyDPIRgjNXy2lQ2VKshs87mOEb9GmkouCHg" />
-                  </div>
+                  <div style={{ width: '100%' }} />
                 </div>
               </div>
             </div>
@@ -46,7 +43,7 @@ function Profile() {
                     name="budget"
                     type="number"
                     min="100"
-                    max="2000"
+                    max="4000"
                     step="100"
                     id="budget-chosen"
                   />
