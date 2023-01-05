@@ -32,8 +32,9 @@ function Home() {
       </div>
       <div className="modal-body">
         <form>
+          {/* Budget */}
           <div className="flex justify-between">
-            <div>
+            <div className="py-4">
               <label htmlFor="Budget" className="flex flex-col text-center">
                 Max Rent You Pay
                 <input
@@ -43,9 +44,10 @@ function Home() {
                   value={value}
                   onChange={handleChange}
                 />
+                {/* Age */}
               </label>
-              <div className="flex flex-col">
-                <label htmlFor="age">
+              <div className="flex flex-col py-4">
+                <label htmlFor="age" className="flex flex-col">
                   Age Range
                   <input
                     type="range"
@@ -56,18 +58,54 @@ function Home() {
                     onChange={handleAgeChange}
                   />
                 </label>
-                {/* <br />
-                <label htmlFor="age">
-                  Max:
-                  <input
-                    type="range"
-                    min="0"
-                    max="100"
-                    step="1"
-                    value={maxValue}
-                    onChange={handleMaxChange}
-                  />
-                </label> */}
+                <br />
+                {/* Gender */}
+                <div className="py-4">
+                  Gender
+                  <div className="flex">
+                    <label htmlFor="gender" className="px-4">
+                      <input type="checkbox" value="male" /> Male
+                    </label>
+                    <br />
+                    <label htmlFor="gender" className="px-4">
+                      <input type="checkbox" value="female" /> Female
+                    </label>
+                    <br />
+                    <label htmlFor="gender" className="px-4">
+                      <input type="checkbox" value="non-binary" /> Non-binary
+                    </label>
+                    <br />
+                    <label htmlFor="gender" className="px-4">
+                      <input type="checkbox" value="male" /> Other
+                    </label>
+                    <br />
+                  </div>
+                </div>
+                <br />
+                {/* Allow Pets */}
+                <div>
+                  Allow Pets
+                  <div className="flex">
+                    <label htmlFor="pets" className="px-4">
+                      <input type="checkbox" value="yes" /> Yes
+                    </label>
+                    <label htmlFor="pets" className="px-4">
+                      <input type="checkbox" value="no" /> No
+                    </label>
+                  </div>
+                </div>
+                {/* Allow Children */}
+                <div>
+                  Allow Pets
+                  <div className="flex">
+                    <label htmlFor="pets" className="px-4">
+                      <input type="checkbox" value="yes" /> Yes
+                    </label>
+                    <label htmlFor="pets" className="px-4">
+                      <input type="checkbox" value="no" /> No
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
