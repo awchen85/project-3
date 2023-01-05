@@ -17,13 +17,13 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
+    trim: true,
     unique: true,
     match: [/.+@.+\..+/, 'Must match an email address!'],
   },
   phone: {
     type: String,
     minlength: 10,
-    unique: true,
   },
   // min 7 letter password, symbol, uppercase, lowercase, and a number
   password: {
@@ -53,6 +53,10 @@ const userSchema = new Schema({
       ref: 'Review',
     },
   ],
+  profile: {
+    type: Schema.Types.ObjectId,
+    ref: 'Profile',
+  },
 });
 
 // set up pre-save middleware to create password
