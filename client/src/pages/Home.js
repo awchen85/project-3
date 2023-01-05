@@ -1,9 +1,12 @@
+/* eslint-disable react/jsx-max-props-per-line */
+/* eslint-disable react/jsx-first-prop-new-line */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useRef, useEffect, useState } from 'react';
 // import GoogleMapPic from '../assets/images/GoogleMapTA.webp';
-import placeholder from '../assets/images/placeholder-icon.jpg';
 // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
 import mapboxgl from '!mapbox-gl';
+import Cards from './Cards';
+// import Carousel from './Carousel';
 
 function Home() {
   // eslint-disable-next-line operator-linebreak
@@ -15,7 +18,17 @@ function Home() {
   const [lng, setLng] = useState(-70.9);
   const [lat, setLat] = useState(42.35);
   const [zoom, setZoom] = useState(9);
-
+  // const items = [
+  //   <Cards title="Card 1" description="This is card 1"
+  //   imageUrl="card1.jpg"
+  //   />,
+  //   <Cards title="Card 2" description="This is card 2"
+  //   imageUrl="card1.jpg"
+  //   />,
+  //   <Cards title="Card 3" description="This is card 3"
+  //   imageUrl="card1.jpg"
+  //   />,
+  // ];
   useEffect(() => {
     if (map.current) return; // initialize map only once
     map.current = new mapboxgl.Map({
@@ -100,134 +113,9 @@ function Home() {
               </button>
             </div>
           </section>
-          <div className="profile-section grid grid-cols-1 gap-4 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2">
-            <section className="profile-card flex flex-col border-2 border-black rounded-md p-2">
-              <div className="profile-card-image">
-                <a href="/">
-                  <img
-                    className="profile-card-image"
-                    src={placeholder}
-                    alt=""
-                  />
-                </a>
-              </div>
-              <div className="profile-card-header">
-                <h2>
-                  <a href="/">
-                    John Doe, &nbsp;
-                    <span>26</span>
-                  </a>
-                </h2>
-                <h3 className="text-2xl">Male</h3>
-              </div>
-              <div className="flex flex-col profile-card-body">
-                <h4>Los Angeles, CA</h4>
-                <h4>Budget: $1000</h4>
-                <h4>Pets: Yes</h4>
-                <h4>Other Minimum Info</h4>
-              </div>
-              <button
-                type="submit"
-                className="connect-btn border-2 border-black rounded-md"
-              >
-                Connect!
-              </button>
-            </section>
-            <section className="profile-card flex flex-col border-2 border-black rounded-md p-2">
-              <div className="profile-card-image">
-                <a href="/">
-                  <img
-                    className="profile-card-image"
-                    src={placeholder}
-                    alt=""
-                  />
-                </a>
-              </div>
-              <div className="profile-card-header">
-                <h2>
-                  <a href="/">
-                    John Doe, &nbsp;
-                    <span>26</span>
-                  </a>
-                </h2>
-                <h3 className="text-2xl">Male</h3>
-              </div>
-              <div className="flex flex-col profile-card-body">
-                <h4>Los Angeles, CA</h4>
-                <h4>Budget: $1000</h4>
-                <h4>Pets: Yes</h4>
-                <h4>Other Minimum Info</h4>
-              </div>
-              <button
-                type="submit"
-                className="connect-btn border-2 border-black rounded-md"
-              >
-                Connect!
-              </button>
-            </section>
-            <section className="profile-card flex flex-col border-2 border-black rounded-md p-2">
-              <div className="profile-card-image">
-                <a href="/">
-                  <img
-                    className="profile-card-image"
-                    src={placeholder}
-                    alt=""
-                  />
-                </a>
-              </div>
-              <div className="profile-card-header">
-                <h2>
-                  <a href="/">
-                    John Doe, &nbsp;
-                    <span>26</span>
-                  </a>
-                </h2>
-                <h3 className="text-2xl">Male</h3>
-              </div>
-              <div className="flex flex-col profile-card-body">
-                <h4>Los Angeles, CA</h4>
-                <h4>Budget: $1000</h4>
-                <h4>Pets: Yes</h4>
-                <h4>Other Minimum Info</h4>
-              </div>
-              <button
-                type="submit"
-                className="connect-btn border-2 border-black rounded-md"
-              >
-                Connect!
-              </button>
-            </section>
-            <section className="profile-card flex flex-col border-2 border-black rounded-md p-2">
-              <div className="profile-card-image">
-                <a href="/">
-                  <img
-                    className="profile-card-image"
-                    src={placeholder}
-                    alt=""
-                  />
-                </a>
-              </div>
-              <div className="profile-card-header">
-                <h2>
-                  <a href="/">
-                    John Doe, &nbsp;
-                    <span>26</span>
-                  </a>
-                </h2>
-                <h3 className="text-2xl">Male</h3>
-              </div>
-              <div className="flex flex-col profile-card-body">
-                <h4>Los Angeles, CA</h4>
-                <h4>Budget: $1000</h4>
-                <h4>Pets: Yes</h4>
-                <h4>Other Minimum Info</h4>
-              </div>
-              <button
-                type="submit"
-                className="connect-btn border-2 border-black rounded-md"
-              >
-                Connect!
-              </button>
+          <div className="profile-section grid grid-cols-1 gap-4">
+            <section className="profile-card flex flex-col border-2 border-black rounded-md p-2 xl:grid-cols-3">
+              <Cards />
             </section>
           </div>
         </div>

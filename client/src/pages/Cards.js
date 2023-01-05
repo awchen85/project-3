@@ -6,8 +6,9 @@ import Simu from '../assets/images/simu.jpg';
 function Cards() {
   return (
     <div>
-    <div className="max-w-[1000px] mx-auto p-8 py-10 flex justify-between w-full h-full grid md:grid-cols-2 gap-5">
-    <div className="max-w-sm rounded overflow-hidden shadow-lg object-center border-black border-1 bg-yellow-200">
+      {/* Grid */}
+    <div className="max-w-[1000px] mx-auto p-1 py-10 grid grid-border-2 md:grid-cols-2 gap-10 justify-around">
+    <div className="max-w-auto border-black border-2 bg-yellow-200">
   <div className="px-6 py-4">
       <div className="font-bold text-xl mb-2 text-center">Simu</div>
       <img src={Simu} alt="thing" className="w-full" />
@@ -17,10 +18,10 @@ function Cards() {
       <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">City: Los Angeles</span>
       <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Male</span>
     </div>
-    <button className="text-white border-2 bg-blue-600 hover:border-blue-600 px-4 py-3 my-8 mx-auto flex items-center">Contact me!</button>
+    <button className="text-white border-2 bg-blue-600 hover:border-blue-600 px-4 py-3 my-8 mx-auto flex items-center rounded-lg">Contact me!</button>
   </div>
     </div>
-    <div className="max-w-sm rounded overflow-hidden shadow-lg object-center border-black border-1 bg-yellow-200">
+    <div className="max-w-auto border-black border-2 bg-yellow-200">
   <div className="px-6 py-4">
       <div className="font-bold text-xl mb-2 text-center">Simu</div>
       <img src={Simu} alt="thing" className="w-full" />
@@ -30,10 +31,10 @@ function Cards() {
       <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">City: Los Angeles</span>
       <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Male</span>
     </div>
-    <button className="text-white border-2 bg-blue-600 hover:border-blue-600 px-4 py-3 my-8 mx-auto flex items-center">Contact me!</button>
+    <button className="text-white border-2 bg-blue-600 hover:border-blue-600 px-4 py-3 my-8 mx-auto flex items-center rounded-lg">Contact me!</button>
   </div>
     </div>
-    <div className="max-w-sm rounded overflow-hidden shadow-lg object-center border-black border-1 bg-yellow-200">
+    <div className="max-w-auto border-black border-2 bg-yellow-200">
   <div className="px-6 py-4">
       <div className="font-bold text-xl mb-2 text-center">Simu</div>
       <img src={Simu} alt="thing" className="w-full" />
@@ -43,10 +44,10 @@ function Cards() {
       <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">City: Los Angeles</span>
       <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Male</span>
     </div>
-    <button className="text-white border-2 bg-blue-600 hover:border-blue-600 px-4 py-3 my-8 mx-auto flex items-center">Contact me!</button>
+    <button className="text-white border-2 bg-blue-600 hover:border-blue-600 px-4 py-3 my-8 mx-auto flex items-center rounded-lg">Contact me!</button>
   </div>
     </div>
-    <div className="max-w-sm rounded overflow-hidden shadow-lg object-center border-black border-1 bg-yellow-200">
+    <div className="max-w-auto border-black border-2 bg-yellow-200">
   <div className="px-6 py-4">
       <div className="font-bold text-xl mb-2 text-center">Simu</div>
       <img src={Simu} alt="thing" className="w-full" />
@@ -56,7 +57,7 @@ function Cards() {
       <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">City: Los Angeles</span>
       <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Male</span>
     </div>
-    <button className="text-white border-2 bg-blue-600 hover:border-blue-600 px-4 py-3 my-8 mx-auto flex items-center">Contact me!</button>
+    <button className="text-white border-2 bg-blue-600 hover:border-blue-600 px-4 py-3 my-8 mx-auto flex items-center rounded-lg">Contact me!</button>
   </div>
     </div>
     </div>
