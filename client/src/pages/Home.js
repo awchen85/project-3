@@ -28,14 +28,17 @@ function Home() {
   const filterModal = (
     <div id="filterModal" className="modal">
       <div className="modal-header">
-        <h2>Filter Options</h2>
+        <h2 className="filters-title">Filters</h2>
       </div>
       <div className="modal-body">
         <form>
           {/* Budget */}
-          <div className="flex justify-between">
+          <div className="flex justify-center">
             <div className="py-4">
-              <label htmlFor="Budget" className="flex flex-col text-center">
+              <label
+                htmlFor="Budget"
+                className="flex flex-col text-center filters my-1"
+              >
                 Max Rent You Pay
                 <input
                   type="range"
@@ -47,7 +50,7 @@ function Home() {
                 {/* Age */}
               </label>
               <div className="flex flex-col py-4">
-                <label htmlFor="age" className="flex flex-col">
+                <label htmlFor="age" className="flex flex-col filters my-1">
                   Age Range
                   <input
                     type="range"
@@ -60,49 +63,57 @@ function Home() {
                 </label>
                 <br />
                 {/* Gender */}
-                <div className="py-4">
+                <div className="py-4 filters my-1">
                   Gender
                   <div className="flex">
-                    <label htmlFor="gender" className="px-4">
-                      <input type="checkbox" value="male" /> Male
-                    </label>
+                    <div className="flex cursor-pointer text-xl rounded text-blue-400 hover:bg-sky-100 hover:border-4 hover:border-blue-500 m-1 p-1">
+                      <label htmlFor="gender" className="px-4 cursor-pointer">
+                        <input type="checkbox" value="male" /> Male
+                      </label>
+                    </div>
                     <br />
-                    <label htmlFor="gender" className="px-4">
-                      <input type="checkbox" value="female" /> Female
-                    </label>
+                    <div className="flex text-xl rounded text-red-200 hover:bg-red-50 hover:border-4 hover:border-red-300 m-1 p-1">
+                      <label htmlFor="gender" className="px-4 cursor-pointer">
+                        <input type="checkbox" value="female" /> Female
+                      </label>
+                    </div>
                     <br />
-                    <label htmlFor="gender" className="px-4">
-                      <input type="checkbox" value="non-binary" /> Non-binary
-                    </label>
+                    <div className="flex cursor-pointer text-xl rounded text-emerald-400 hover:bg-emerald-100 hover:border-4 hover:border-green-500 m-1 p-1">
+                      <label htmlFor="gender" className="px-4 cursor-pointer">
+                        <input type="checkbox" value="non-binary" /> Non-binary
+                      </label>
+                    </div>
                     <br />
-                    <label htmlFor="gender" className="px-4">
-                      <input type="checkbox" value="male" /> Other
-                    </label>
+                    <div className="cursor-pointer text-xl rounded text-purple-400 hover:bg-purple-100 hover:border-4 hover:border-purple-500 m-1 p-1">
+                      <label htmlFor="gender" className="px-4 cursor-pointer">
+                        <input type="checkbox" value="male" /> Other
+                      </label>
+                    </div>
                     <br />
                   </div>
                 </div>
                 <br />
                 {/* Allow Pets */}
-                <div>
+                <div className="filters mb-4">
                   Allow Pets
-                  <div className="flex">
+                  <div className="flex justify-center my-1">
                     <label htmlFor="pets" className="px-4">
-                      <input type="checkbox" value="yes" /> Yes
+                      <input type="radio" name="pets" value="yes" /> Yes
                     </label>
                     <label htmlFor="pets" className="px-4">
-                      <input type="checkbox" value="no" /> No
+                      <input type="radio" name="pets" value="no" /> No
                     </label>
                   </div>
                 </div>
                 {/* Allow Children */}
-                <div>
-                  Allow Pets
-                  <div className="flex">
-                    <label htmlFor="pets" className="px-4">
-                      <input type="checkbox" value="yes" /> Yes
+                <div className="filters my-4">
+                  Allow Children
+                  <div className="flex justify-center my-1">
+                    <label htmlFor="children" className="px-4">
+                      <input type="radio" name="children" value="yes" /> Yes
                     </label>
-                    <label htmlFor="pets" className="px-4">
-                      <input type="checkbox" value="no" /> No
+                    <label htmlFor="children" className="px-4">
+                      <input type="radio" name="children" value="no" /> No
                     </label>
                   </div>
                 </div>
@@ -112,10 +123,19 @@ function Home() {
         </form>
       </div>
       <div id="filterModalFooter" className="modal-footer">
-        <button type="submit" className="btn btn-primary" id="apply-filters">
+        <button
+          type="submit"
+          className="btn btn-primary button-3d font-effect-neon-green"
+          id="apply-filters"
+        >
           Apply
         </button>
-        <button type="submit" className="btn btn-secondary" id="cancel-filters">
+        <button
+          type="submit"
+          className="btn btn-secondary button-3d font-effect-neon-red"
+          id="cancel-filters"
+          onClick={onCloseModal}
+        >
           Cancel
         </button>
       </div>

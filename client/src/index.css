@@ -214,39 +214,120 @@ form p {
   width: 10%;
 } */
 
+.button-3d {
+  position:relative;
+  width: auto;
+  display:inline-block;
+  color:#ecf0f1;
+  text-decoration:none;
+  border-radius:5px;
+  border:solid 1px gray;
+  background: lightgray;
+  text-align:center;
+  padding:16px 18px 14px;
+  margin: 12px;
+ 
+  -webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	transition: all 0.1s;
+	
+  -webkit-box-shadow: 0px 6px 0px darkgray;
+  -moz-box-shadow: 0px 6px 0px darkgray;
+  box-shadow: 0px 6px 0px darkgray;
+}
+
+.button-3d:active{
+    -webkit-box-shadow: 0px 2px 0px darkgray;
+    -moz-box-shadow: 0px 2px 0px darkgray;
+    box-shadow: 0px 2px 0px darkgray;
+    position:relative;
+    top:4px;
+}
+
+.react-responsive-modal-modal {
+  padding: 0 !important;
+  border-radius: 8px;
+}
+
 #filterModal {
   min-width: 60vw;
   min-height: 50vh;
+  border: 2px solid rgba(201, 201, 201, 0.5);
+  border-radius: 4px;
+  box-shadow: 10px 5px 5px gray;
+  padding: 20px;
+  text-align: center;
+}
+
+.filters-title {
+  color: #006db0;
+  font-weight: bold;
+}
+
+.filters {
+  border: 2px solid rgba(201, 201, 201, 0.5);
+  border-radius: 4px;
+  box-shadow: 10px 5px 5px gray;
+  padding: 10px;
 }
 
 #filterModalFooter {
-  position: absolute;
   bottom: 10%;
   display: flex;
   justify-content: space-around;
-  width: 90%;
+  width: 100%;
 }
 
-#apply-filters, #cancel-filters {
-  border: 2px solid rgba(201, 201, 201, 0.5);
-  box-shadow: 10px 5px 5px gray;
+#apply-filters {
+  border:solid 1px green;
+  background: lightgreen;
   border-radius: 10px;
   width: 40%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em green, 0 0 0.3em green, 0 0 0.4em green, 0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
+  -webkit-box-shadow: 0px 6px 0px green;
+  -moz-box-shadow: 0px 6px 0px green;
+  box-shadow: 0px 6px 0px green;
+}
+
+#cancel-filters {
+  border:solid 1px red;
+  background: lightcoral;
+  border-radius: 10px;
+  width: 40%;
+  padding: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em red, 0 0 0.3em red, 0 0 0.4em red, 0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+  -webkit-box-shadow: 0px 6px 0px red;
+  -moz-box-shadow: 0px 6px 0px red;
+  box-shadow: 0px 6px 0px red;
 }
 
 #apply-filters:hover {
-  background-color: lightgreen;
   border: 2px solid green;
-  border-radius: 10px;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em green, 0 0 0.4em green, 0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
 }
 
 #cancel-filters:hover {
-  background-color: lightcoral;
   border: 2px solid red;
-  border-radius: 10px;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red, 0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+}
+
+#apply-filters:active {
+  border: 2px solid lightgray;
+  -webkit-box-shadow: 0px 2px 0px darkgreen;
+  -moz-box-shadow: 0px 2px 0px darkgreen;
+  box-shadow: 0px 2px 0px darkgreen;
+}
+
+#cancel-filters:active {
+  border: 2px solid lightgray;
+  -webkit-box-shadow: 0px 2px 0px darkred;
+  -moz-box-shadow: 0px 2px 0px darkred;
+  box-shadow: 0px 2px 0px darkred;
 }
 
 @media screen and (min-width: 768px) {
