@@ -1,7 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const omit = require('lodash.omit');
 
-const { User } = require('../models');
+const { User, Profile } = require('../models');
 
 const { signToken } = require('../utils/auth');
 
@@ -9,14 +9,24 @@ const resolvers = {
   Query: {
     getCurrentUser: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).select(
-          '-__v -password'
-        );
+        const user = await User.findById(context.user._id)
+          .select('-__v -password')
+          .populate('profile');
         return user;
       }
       throw new AuthenticationError('Not logged in');
     },
+    getUsers: async () => {
+      const users = await User.find();
+      return users;
+    },
+
+    getProfiles: async () => {
+      const profiles = await Profile.find();
+      return profiles;
+    },
   },
+
   Mutation: {
     createUser: async (parent, args) => {
       const user = await User.create(args);
@@ -53,6 +63,42 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+    createProfile: async (parent, { input }, context) => {
+      if (context.user) {
+        const profile = await Profile.create({
+          ...input,
+          userId: context.user._id,
+        });
+
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          {
+            profile: profile,
+          },
+          { new: true }
+        ).populate('profile');
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
+    updateProfile: async (parent, { input }, context) => {
+      if (context.user) {
+        const user = await User.findById({ _id: context.user._id });
+        const userId = user.profile._id;
+        await Profile.findByIdAndUpdate(
+          { _id: userId },
+          {
+            ...input,
+          },
+          { new: true }
+        );
+
+        return User.findById({ _id: context.user._id }).populate('profile');
+      }
+      throw new AuthenticationError('Not logged in');
     },
   },
 };
