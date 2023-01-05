@@ -214,6 +214,41 @@ form p {
   width: 10%;
 } */
 
+#filterModal {
+  min-width: 60vw;
+  min-height: 50vh;
+}
+
+#filterModalFooter {
+  position: absolute;
+  bottom: 10%;
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+}
+
+#apply-filters, #cancel-filters {
+  border: 2px solid rgba(201, 201, 201, 0.5);
+  box-shadow: 10px 5px 5px gray;
+  border-radius: 10px;
+  width: 40%;
+  padding: 10px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+#apply-filters:hover {
+  background-color: lightgreen;
+  border: 2px solid green;
+  border-radius: 10px;
+}
+
+#cancel-filters:hover {
+  background-color: lightcoral;
+  border: 2px solid red;
+  border-radius: 10px;
+}
+
 @media screen and (min-width: 768px) {
   h2 {
     font-size: 2.5rem !important;

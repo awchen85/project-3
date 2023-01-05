@@ -13,49 +13,67 @@ function Home() {
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
 
+  const [value, setValue] = React.useState(1000);
+
+  const handleChange = event => {
+    setValue(event.target.value);
+  };
+
+  const [option, setOption] = React.useState('Option 1');
+
+  const handleAgeChange = event => {
+    setOption(event.target.value === 'Option 1' ? 'Option 2' : 'Option 1');
+  };
+
   const filterModal = (
-    <div id="myModal" className="modal">
+    <div id="filterModal" className="modal">
       <div className="modal-header">
         <h2>Filter Options</h2>
       </div>
       <div className="modal-body">
         <form>
-          <div className="form-group">
-            <label htmlFor="category">
-              Category:
-              <select className="form-control" id="category">
-                <option value="all">All</option>
-                <option value="books">Books</option>
-                <option value="movies">Movies</option>
-                <option value="music">Music</option>
-              </select>
-            </label>
-          </div>
-          <div className="form-group">
-            <label htmlFor="rating">
-              Minimum Rating:
-              <input
-                type="number"
-                className="form-control"
-                id="rating"
-                min="1"
-                max="5"
-              />
-            </label>
-          </div>
-          <div className="form-group form-check">
-            <label className="form-check-label" htmlFor="in-stock">
-              In Stock
-              <input
-                type="checkbox"
-                className="form-check-input"
-                id="in-stock"
-              />
-            </label>
+          <div className="flex justify-between">
+            <div>
+              <label htmlFor="Budget" className="flex flex-col text-center">
+                Max Rent You Pay
+                <input
+                  type="range"
+                  min="0"
+                  max="10000"
+                  value={value}
+                  onChange={handleChange}
+                />
+              </label>
+              <div className="flex flex-col">
+                <label htmlFor="age">
+                  Age Range
+                  <input
+                    type="range"
+                    min="18"
+                    max="100"
+                    step="1"
+                    value={option === 'Option 1' ? '18' : '100'}
+                    onChange={handleAgeChange}
+                  />
+                </label>
+                {/* <br />
+                <label htmlFor="age">
+                  Max:
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    step="1"
+                    value={maxValue}
+                    onChange={handleMaxChange}
+                  />
+                </label> */}
+              </div>
+            </div>
           </div>
         </form>
       </div>
-      <div className="modal-footer">
+      <div id="filterModalFooter" className="modal-footer">
         <button type="submit" className="btn btn-primary" id="apply-filters">
           Apply
         </button>
