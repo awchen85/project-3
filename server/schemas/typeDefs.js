@@ -11,6 +11,29 @@ const typeDefs = gql`
     rooms: [Room]
     reviews: [Review]
     isAuthenticated: Boolean
+    profile: Profile
+  }
+
+  type Profile {
+    _id: ID
+    age: Int
+    gender: String
+    budget: Int
+    location: String
+    aboutMe: String
+    allowPets: Boolean
+    allowChildren: Boolean
+    userId: ID
+  }
+
+  input ProfileInput {
+    age: Int
+    gender: String
+    budget: Int
+    location: String
+    aboutMe: String
+    allowPets: Boolean
+    allowChildren: Boolean
   }
 
   type Room {
@@ -58,6 +81,9 @@ const typeDefs = gql`
 
   type Query {
     getCurrentUser: User
+    getProfile: User
+    getUsers: [User]
+    getProfiles: [Profile]
   }
 
   type Mutation {
@@ -70,6 +96,8 @@ const typeDefs = gql`
     updateUser(firstName: String!, lastName: String!, email: String!): User
     deleteUser: User
     login(email: String!, password: String!): Auth
+    createProfile(input: ProfileInput!): User
+    updateProfile(input: ProfileInput!): User
   }
 `;
 
