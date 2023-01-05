@@ -184,6 +184,57 @@ form p {
   padding: 15px;
 }
 
+.dash-nav-profile, .dash-nav-friends, .dash-nav-inbox, .dash-nav-connections {
+  position:relative;
+  width: auto;
+  display:inline-block;
+  color:#ecf0f1;
+  text-decoration:none;
+  border-radius:5px;
+  border:solid 1px green;
+  background: lightgreen;
+  text-align:center;
+  padding:16px 18px 14px;
+  margin: 12px;
+ 
+  -webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	transition: all 0.1s;
+	
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em green, 0 0 0.3em green, 0 0 0.4em green, 0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
+  -webkit-box-shadow: 0px 6px 0px green;
+  -moz-box-shadow: 0px 6px 0px green;
+  box-shadow: 0px 6px 0px green;
+}
+
+.dash-nav-profile:hover, .dash-nav-friends:hover, .dash-nav-inbox:hover, .dash-nav-connections:hover {
+  border: 2px solid green;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em green, 0 0 0.4em green, 0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
+}
+
+.dash-nav-profile:active, .dash-nav-friends:active, .dash-nav-inbox:active, .dash-nav-connections:active {
+  border: 2px solid red;
+  background: lightcoral;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red, 0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+  -webkit-box-shadow: 0px 2px 0px darkred;
+  -moz-box-shadow: 0px 2px 0px darkred;
+  box-shadow: 0px 2px 0px darkred;
+}
+
+.dash-nav-active {
+  border: 2px solid red;
+  background: lightcoral;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red, 0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+  -webkit-box-shadow: 0px 2px 0px darkred;
+  -moz-box-shadow: 0px 2px 0px darkred;
+  box-shadow: 0px 2px 0px darkred;
+}
+
+.dash-nav-active:hover {
+  border: 2px solid red;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red, 0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+}
+
 .dashboard-main {
   width: 80%;
   min-height: 100%;
