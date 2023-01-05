@@ -42,8 +42,8 @@ function Home() {
                 Max Rent You Pay
                 <input
                   type="range"
-                  min="0"
-                  max="10000"
+                  min="100"
+                  max="4000"
                   value={value}
                   onChange={handleChange}
                 />

@@ -43,7 +43,7 @@ function Profile() {
                     name="budget"
                     type="number"
                     min="100"
-                    max="2000"
+                    max="4000"
                     step="100"
                     id="budget-chosen"
                   />
