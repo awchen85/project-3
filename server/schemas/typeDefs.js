@@ -81,6 +81,7 @@ const typeDefs = gql`
 
   type Query {
     getCurrentUser: User
+    getUser(userId: ID!): User
     getProfile: User
     getUsers: [User]
     getProfiles: [Profile]
