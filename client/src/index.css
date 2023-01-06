@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
+html,
+body {
   box-sizing: border-box;
   height: 100%;
 }
@@ -46,7 +47,7 @@ nav button {
   margin-left: 1rem;
   font: inherit;
   cursor: pointer;
-  outline: inherit
+  outline: inherit;
 }
 
 .form {
@@ -91,7 +92,6 @@ form p {
   animation: dash 7s ease-in alternate infinite;
 }
 
-
 .path-1 {
   stroke-dasharray: 1000px;
   animation: dash 7s ease-in infinite alternate;
@@ -129,7 +129,7 @@ form p {
 
 @keyframes dash {
   from {
-    stroke-dasharray: 0 1000; 
+    stroke-dasharray: 0 1000;
   }
   to {
     stroke-dasharray: 1000;
@@ -185,23 +185,24 @@ form p {
 }
 
 .dash-nav {
-  position:relative;
+  position: relative;
   width: auto;
-  display:inline-block;
-  color:#ecf0f1;
-  text-decoration:none;
-  border-radius:5px;
-  border:solid 1px green;
+  display: inline-block;
+  color: #ecf0f1;
+  text-decoration: none;
+  border-radius: 5px;
+  border: solid 1px green;
   background: lightgreen;
-  text-align:center;
-  padding:16px 18px 14px;
+  text-align: center;
+  padding: 16px 18px 14px;
   margin: 12px;
- 
+
   -webkit-transition: all 0.1s;
-	-moz-transition: all 0.1s;
-	transition: all 0.1s;
-	
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em green, 0 0 0.3em green, 0 0 0.4em green, 0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
+  -moz-transition: all 0.1s;
+  transition: all 0.1s;
+
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em green, 0 0 0.3em green, 0 0 0.4em green,
+    0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
   -webkit-box-shadow: 0px 6px 0px green;
   -moz-box-shadow: 0px 6px 0px green;
   box-shadow: 0px 6px 0px green;
@@ -209,13 +210,15 @@ form p {
 
 .dash-nav:hover {
   border: 2px solid green;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em green, 0 0 0.4em green, 0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em green, 0 0 0.4em green,
+    0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
 }
 
 .dash-nav:active {
   border: 2px solid red;
   background: lightcoral;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red, 0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
+    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
   -webkit-box-shadow: 0px 2px 0px darkred;
   -moz-box-shadow: 0px 2px 0px darkred;
   box-shadow: 0px 2px 0px darkred;
@@ -224,7 +227,8 @@ form p {
 .dash-nav-active {
   border: 2px solid red;
   background: lightcoral;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red, 0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
+    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
   -webkit-box-shadow: 0px 2px 0px darkred;
   -moz-box-shadow: 0px 2px 0px darkred;
   box-shadow: 0px 2px 0px darkred;
@@ -232,7 +236,8 @@ form p {
 
 .dash-nav-active:hover {
   border: 2px solid red;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red, 0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
+    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
 }
 
 .dashboard-main {
@@ -272,22 +277,22 @@ form p {
 }
 
 .profile-view {
-  position:relative;
+  position: relative;
   width: auto;
-  display:inline-block;
-  color:#ecf0f1;
-  text-decoration:none;
-  border-radius:5px;
-  border:solid 1px lightblue;
+  display: inline-block;
+  color: #ecf0f1;
+  text-decoration: none;
+  border-radius: 5px;
+  border: solid 1px lightblue;
   background: #006db0;
-  text-align:center;
-  padding:16px 18px 14px;
+  text-align: center;
+  padding: 16px 18px 14px;
   margin: 12px;
- 
+
   -webkit-transition: all 0.1s;
-	-moz-transition: all 0.1s;
-	transition: all 0.1s;
-	
+  -moz-transition: all 0.1s;
+  transition: all 0.1s;
+
   -webkit-box-shadow: 0px 6px 0px blue;
   -moz-box-shadow: 0px 6px 0px blue;
   box-shadow: 0px 6px 0px blue;
@@ -295,7 +300,9 @@ form p {
 
 .profile-view:hover {
   border: 2px solid blue;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em lightblue, 0 0 0.4em lightblue, 0 0 0.6em lightblue, 0 0 0.8em lightblue, 0 0 1em lightblue, 0 0 1.2em lightblue;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em lightblue,
+    0 0 0.4em lightblue, 0 0 0.6em lightblue, 0 0 0.8em lightblue,
+    0 0 1em lightblue, 0 0 1.2em lightblue;
 }
 
 .profile-view:active {
@@ -303,37 +310,38 @@ form p {
   -webkit-box-shadow: 0px 2px 0px darkblue;
   -moz-box-shadow: 0px 2px 0px darkblue;
   box-shadow: 0px 2px 0px darkblue;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em blue, 0 0 0.4em blue, 0 0 0.6em blue, 0 0 0.8em blue, 0 0 1em blue, 0 0 1.2em blue;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em blue, 0 0 0.4em blue,
+    0 0 0.6em blue, 0 0 0.8em blue, 0 0 1em blue, 0 0 1.2em blue;
 }
 
 .button-3d {
-  position:relative;
+  position: relative;
   width: auto;
-  display:inline-block;
-  color:#ecf0f1;
-  text-decoration:none;
-  border-radius:5px;
-  border:solid 1px gray;
+  display: inline-block;
+  color: #ecf0f1;
+  text-decoration: none;
+  border-radius: 5px;
+  border: solid 1px gray;
   background: lightgray;
-  text-align:center;
-  padding:16px 18px 14px;
+  text-align: center;
+  padding: 16px 18px 14px;
   margin: 12px;
- 
+
   -webkit-transition: all 0.1s;
-	-moz-transition: all 0.1s;
-	transition: all 0.1s;
-	
+  -moz-transition: all 0.1s;
+  transition: all 0.1s;
+
   -webkit-box-shadow: 0px 6px 0px darkgray;
   -moz-box-shadow: 0px 6px 0px darkgray;
   box-shadow: 0px 6px 0px darkgray;
 }
 
-.button-3d:active{
+.button-3d:active {
   -webkit-box-shadow: 0px 2px 0px darkgray;
   -moz-box-shadow: 0px 2px 0px darkgray;
   box-shadow: 0px 2px 0px darkgray;
-  position:relative;
-  top:4px;
+  position: relative;
+  top: 4px;
 }
 
 .react-responsive-modal-modal {
@@ -371,28 +379,30 @@ form p {
 }
 
 #apply-filters {
-  border:solid 1px green;
+  border: solid 1px green;
   background: lightgreen;
   border-radius: 10px;
   width: 40%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em green, 0 0 0.3em green, 0 0 0.4em green, 0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em green, 0 0 0.3em green, 0 0 0.4em green,
+    0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
   -webkit-box-shadow: 0px 6px 0px green;
   -moz-box-shadow: 0px 6px 0px green;
   box-shadow: 0px 6px 0px green;
 }
 
 #cancel-filters {
-  border:solid 1px red;
+  border: solid 1px red;
   background: lightcoral;
   border-radius: 10px;
   width: 40%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em red, 0 0 0.3em red, 0 0 0.4em red, 0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em red, 0 0 0.3em red, 0 0 0.4em red,
+    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
   -webkit-box-shadow: 0px 6px 0px red;
   -moz-box-shadow: 0px 6px 0px red;
   box-shadow: 0px 6px 0px red;
@@ -400,12 +410,14 @@ form p {
 
 #apply-filters:hover {
   border: 2px solid green;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em green, 0 0 0.4em green, 0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em green, 0 0 0.4em green,
+    0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
 }
 
 #cancel-filters:hover {
   border: 2px solid red;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red, 0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
+    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
 }
 
 #apply-filters:active {
@@ -422,6 +434,35 @@ form p {
   box-shadow: 0px 2px 0px darkred;
 }
 
+.footer {
+  background-color: #372b70;
+  padding: 50px;
+  min-height: 250;
+  color: #fff;
+}
+
+.footer-left p {
+  max-width: 400px;
+}
+
+.footer-menu {
+  color: #e4d022;
+  font-weight: bold;
+}
+
+.footer-title {
+  font-size: 25px;
+}
+
+.brand {
+  font-size: 40px;
+  color: #e49f9f;
+}
+
+.footer-divider img {
+  width: 100vw;
+}
+
 @media screen and (min-width: 768px) {
   h2 {
     font-size: 2.5rem !important;
@@ -430,6 +471,7 @@ form p {
   .left-side {
     width: 50%;
   }
+
 
   /* .btn-section {
     display: flex;
@@ -450,30 +492,32 @@ form p {
     box-shadow: 10px 5px 5px gray;
     font-weight: bold;
     font-size: 20px;
-    position:relative;
-    display:inline-block;
+    position: relative;
+    display: inline-block;
     color: black;
-    text-decoration:none;
-    border-radius:5px;
-    border:solid 1px gray;
+    text-decoration: none;
+    border-radius: 5px;
+    border: solid 1px gray;
     background: lightgray;
-    text-align:center;
+    text-align: center;
     padding: 10px 10px 10px;
     margin: 12px;
- 
-  -webkit-transition: all 0.1s;
-	-moz-transition: all 0.1s;
-	transition: all 0.1s;
-	
-  -webkit-box-shadow: 0px 6px 0px gray;
-  -moz-box-shadow: 0px 6px 0px gray;
-  box-shadow: 0px 6px 0px gray;
+
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    transition: all 0.1s;
+
+    -webkit-box-shadow: 0px 6px 0px gray;
+    -moz-box-shadow: 0px 6px 0px gray;
+    box-shadow: 0px 6px 0px gray;
   }
 
   .filter-btn:hover {
     background-color: darkgray;
     border: 2px solid black;
-    text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em darkgray, 0 0 0.4em darkgray, 0 0 0.6em darkgray, 0 0 0.8em darkgray, 0 0 1em darkgray, 0 0 1.2em darkgray;
+    text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em darkgray,
+      0 0 0.4em darkgray, 0 0 0.6em darkgray, 0 0 0.8em darkgray,
+      0 0 1em darkgray, 0 0 1.2em darkgray;
   }
 
   .filter-btn:active {
@@ -755,7 +799,9 @@ form p {
 
 @keyframes font-effect-neon-animation-keyframes {
   0% {
-    text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #fff, 0 0 0.4em orange, 0 0 0.6em orange, 0 0 0.8em orange, 0 0 1em orange, 0 0 1.2em orange;
+    text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #fff,
+      0 0 0.4em orange, 0 0 0.6em orange, 0 0 0.8em orange, 0 0 1em orange,
+      0 0 1.2em orange;
   }
 
   /* 100% {
