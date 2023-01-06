@@ -1,15 +1,87 @@
 import { Modal } from 'react-responsive-modal';
 import { AiOutlineProfile } from 'react-icons/ai';
 import 'react-responsive-modal/styles.css';
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { BsGenderMale, BsGenderFemale } from 'react-icons/bs';
 import { TbGenderGenderqueer } from 'react-icons/tb';
 import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
 import { MdOutlineAttachMoney } from 'react-icons/md';
 import { FaBirthdayCake } from 'react-icons/fa';
 import { BiBuildingHouse } from 'react-icons/bi';
+import MapboxGeocoder from '@mapbox/mapbox-sdk/services/geocoding';
+// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
+import mapboxgl from '!mapbox-gl';
 
 function Profile() {
+  const [searchResults, setSearchResults] = useState([]);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const searchInput = useRef(null);
+
+  // eslint-disable-next-line operator-linebreak
+  mapboxgl.accessToken =
+    'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
+
+  // Handles the search bar underneath the map
+  const handleSearch = event => {
+    const geocoder = MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+    });
+
+    geocoder
+      .forwardGeocode({
+        query: event.target.value,
+        types: ['place'],
+        countries: ['us'],
+      })
+      .send()
+      .then(response => {
+        const results = response.body.features.map(feature => {
+          // Remove "United States" from the end of the place_name
+          // eslint-disable-next-line no-param-reassign
+          feature.place_name = feature.place_name.replace(
+            /, United States$/,
+            ''
+          );
+          return feature;
+        });
+        setSearchResults(results);
+      });
+  };
+
+  const handleResultClick = result => {
+    searchInput.current.value = result.place_name;
+  };
+
+  // eslint-disable-next-line max-len
+  // When the autocomplete results are displayed you can use arrow keys and the "Enter" button to interact with them
+  const handleKeyDown = event => {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      // The user can't select something that is not a result
+      setSelectedIndex(
+        // eslint-disable-next-line no-confusing-arrow
+        prevIndex =>
+          // eslint-disable-next-line no-sequences, implicit-arrow-linebreak
+          prevIndex === null
+            ? 0
+            : Math.min(prevIndex + 1, searchResults.length - 1)
+        // eslint-disable-next-line function-paren-newline
+      );
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      setSelectedIndex(
+        // eslint-disable-next-line no-confusing-arrow
+        prevIndex =>
+          // eslint-disable-next-line implicit-arrow-linebreak
+          prevIndex > 0 ? prevIndex - 1 : prevIndex === 0
+        // eslint-disable-next-line function-paren-newline
+      );
+    } else if (event.key === 'Enter' && selectedIndex !== null) {
+      event.preventDefault();
+      handleResultClick(searchResults[selectedIndex]);
+    }
+  };
+
   const [open, setOpen] = React.useState(false);
 
   const onOpenModal = () => setOpen(true);
@@ -26,6 +98,43 @@ function Profile() {
                   <h3 className="mt-1">What city do you want to live in?</h3>
                   <div>
                     <BiBuildingHouse className="text-blue-500 text-2xl mt-2" />
+                    <input
+                      className="form-input-address"
+                      placeholder="Enter a city's name to search for people in that area"
+                      name="address"
+                      type="text"
+                      ref={searchInput}
+                      onChange={handleSearch}
+                      onKeyDown={handleKeyDown}
+                    />
+                    <ul>
+                      {searchResults.map((result, index) => (
+                        // eslint-disable-next-line max-len
+                        // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
+                        <li
+                          key={result.id}
+                          onClick={() => handleResultClick(result)}
+                          tabIndex={index === selectedIndex ? 0 : -1}
+                          onKeyDown={event => {
+                            if (event.key === 'Enter') {
+                              event.preventDefault();
+                              handleResultClick(result);
+                            }
+                          }}
+                          onMouseEnter={() => setSelectedIndex(index)}
+                          onMouseLeave={() => setSelectedIndex(null)}
+                          style={{
+                            backgroundColor:
+                              index === selectedIndex ? 'lightgray' : 'white',
+                            cursor: 'pointer',
+                          }}
+                          className={index === selectedIndex ? 'selected' : ''}
+                          id="autocomplete-result"
+                        >
+                          {result.place_name}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                   <div style={{ width: '100%' }} />
                 </div>

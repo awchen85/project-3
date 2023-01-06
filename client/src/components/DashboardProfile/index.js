@@ -68,29 +68,49 @@ function DashboardProfile() {
           <h3 className="profile-h3">Gender</h3>
           <div className="flex">
             <div className="flex cursor-pointer text-xl rounded text-blue-400 hover:bg-sky-100 hover:border-4 hover:border-blue-500 m-1 p-1">
-              <label htmlFor="gender" className="px-4 cursor-pointer">
-                <input type="checkbox" value="male" className="mx-2" />
+              <label htmlFor="male" className="px-4 cursor-pointer">
+                <input
+                  id="male"
+                  type="checkbox"
+                  value="male"
+                  className="mx-2"
+                />
                 Male
               </label>
             </div>
             <br />
             <div className="flex text-xl rounded text-red-200 hover:bg-red-50 hover:border-4 hover:border-red-300 m-1 p-1">
-              <label htmlFor="gender" className="px-4 cursor-pointer">
-                <input type="checkbox" value="female" className="mx-2" />
+              <label htmlFor="female" className="px-4 cursor-pointer">
+                <input
+                  id="female"
+                  type="checkbox"
+                  value="female"
+                  className="mx-2"
+                />
                 Female
               </label>
             </div>
             <br />
             <div className="flex cursor-pointer text-xl rounded text-emerald-400 hover:bg-emerald-100 hover:border-4 hover:border-green-500 m-1 p-1">
-              <label htmlFor="gender" className="px-4 cursor-pointer">
-                <input type="checkbox" value="non-binary" className="mx-2" />
+              <label htmlFor="non-binary" className="px-4 cursor-pointer">
+                <input
+                  id="non-binary"
+                  type="checkbox"
+                  value="non-binary"
+                  className="mx-2"
+                />
                 Non-binary
               </label>
             </div>
             <br />
             <div className="cursor-pointer text-xl rounded text-purple-400 hover:bg-purple-100 hover:border-4 hover:border-purple-500 m-1 p-1">
-              <label htmlFor="gender" className="px-4 cursor-pointer">
-                <input type="checkbox" value="other" className="mx-2" />
+              <label htmlFor="other" className="px-4 cursor-pointer">
+                <input
+                  id="other"
+                  type="checkbox"
+                  value="other"
+                  className="mx-2"
+                />
                 Other
               </label>
             </div>
