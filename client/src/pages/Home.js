@@ -34,9 +34,9 @@ function Home() {
       </div>
       <div className="modal-body">
         <form>
-          {/* Budget */}
           <div className="flex justify-center">
             <div className="py-4">
+              {/* Budget */}
               <label
                 htmlFor="Budget"
                 className="flex flex-col text-center filters my-1"
@@ -69,26 +69,35 @@ function Home() {
                   Gender
                   <div className="flex">
                     <div className="flex cursor-pointer text-xl rounded text-blue-400 hover:bg-sky-100 hover:border-4 hover:border-blue-500 m-1 p-1">
-                      <label htmlFor="gender" className="px-4 cursor-pointer">
-                        <input type="checkbox" value="male" /> Male
+                      <label htmlFor="male" className="px-4 cursor-pointer">
+                        <input id="male" type="checkbox" value="male" /> Male
                       </label>
                     </div>
                     <br />
                     <div className="flex text-xl rounded text-red-200 hover:bg-red-50 hover:border-4 hover:border-red-300 m-1 p-1">
-                      <label htmlFor="gender" className="px-4 cursor-pointer">
-                        <input type="checkbox" value="female" /> Female
+                      <label htmlFor="female" className="px-4 cursor-pointer">
+                        <input id="female" type="checkbox" value="female" />{' '}
+                        Female
                       </label>
                     </div>
                     <br />
                     <div className="flex cursor-pointer text-xl rounded text-emerald-400 hover:bg-emerald-100 hover:border-4 hover:border-green-500 m-1 p-1">
-                      <label htmlFor="gender" className="px-4 cursor-pointer">
-                        <input type="checkbox" value="non-binary" /> Non-binary
+                      <label
+                        htmlFor="non-binary"
+                        className="px-4 cursor-pointer"
+                      >
+                        <input
+                          id="non-binary"
+                          type="checkbox"
+                          value="non-binary"
+                        />{' '}
+                        Non-binary
                       </label>
                     </div>
                     <br />
                     <div className="cursor-pointer text-xl rounded text-purple-400 hover:bg-purple-100 hover:border-4 hover:border-purple-500 m-1 p-1">
-                      <label htmlFor="gender" className="px-4 cursor-pointer">
-                        <input type="checkbox" value="male" /> Other
+                      <label htmlFor="other" className="px-4 cursor-pointer">
+                        <input id="other" type="checkbox" value="male" /> Other
                       </label>
                     </div>
                     <br />
@@ -159,8 +168,8 @@ function Home() {
 
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const [lng, setLng] = useState(-70.9);
-  const [lat, setLat] = useState(42.35);
+  const [lng, setLng] = useState(-79.05);
+  const [lat, setLat] = useState(35.92);
   const [zoom, setZoom] = useState(9);
 
   useEffect(() => {
@@ -197,7 +206,15 @@ function Home() {
       })
       .send()
       .then(response => {
-        const results = response.body.features;
+        const results = response.body.features.map(feature => {
+          // Remove "United States" from the end of the place_name
+          // eslint-disable-next-line no-param-reassign
+          feature.place_name = feature.place_name.replace(
+            /, United States$/,
+            ''
+          );
+          return feature;
+        });
         setSearchResults(results);
       });
   };
@@ -210,6 +227,8 @@ function Home() {
     searchInput.current.value = result.place_name;
   };
 
+  // eslint-disable-next-line max-len
+  // When the autocomplete results are displayed you can use arrow keys and the "Enter" button to interact with them
   const handleKeyDown = event => {
     if (event.key === 'ArrowDown') {
       event.preventDefault();
@@ -432,11 +451,11 @@ function Home() {
                     }}
                     onMouseEnter={() => setSelectedIndex(index)}
                     onMouseLeave={() => setSelectedIndex(null)}
-                    // style={{
-                    //   backgroundColor:
-                    //     index === selectedIndex ? 'lightgray' : 'white',
-                    //   cursor: 'pointer',
-                    // }}
+                    style={{
+                      backgroundColor:
+                        index === selectedIndex ? 'lightgray' : 'white',
+                      cursor: 'pointer',
+                    }}
                     className={index === selectedIndex ? 'selected' : ''}
                     id="autocomplete-result"
                   >
