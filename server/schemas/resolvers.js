@@ -27,8 +27,8 @@ const resolvers = {
       return users;
     },
 
-    getProfiles: async () => {
-      const profiles = await Profile.find();
+    getProfiles: async (parent, { filter }) => {
+      const profiles = await Profile.find(filter);
       return profiles;
     },
   },
