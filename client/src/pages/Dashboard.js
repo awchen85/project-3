@@ -1,19 +1,49 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
+import { useQuery, useMutation } from '@apollo/client';
 import DashboardProfile from '../components/DashboardProfile';
 import DashboardFriends from '../components/DashboardFriends';
 import DashboardInbox from '../components/DashboardInbox';
 import DashboardConnections from '../components/DashboardConnections';
+import { QUERY_GET_USERS, QUERY_GET_CURRENT_USER } from '../utils/queries';
 import auth from '../utils/auth';
 
 function Dashboard() {
   const [currentComponent, setCurrentComponent] = useState('DashboardProfile');
 
-  const { firstName: userParam } = useParams();
+  const { username: userParam } = useParams();
 
-  if (auth.loggedIn() && auth.getProfile().data.firstName === userParam) {
+  const { loading, data } = useQuery(
+    userParam ? QUERY_GET_CURRENT_USER : QUERY_GET_USERS,
+    {
+      variables: { username: userParam },
+    }
+  );
+
+  const user = data?.me || data?.user || {};
+
+  // navigate to personal profile page if username is yours
+  if (auth.loggedIn() && auth.getProfile().data.username === userParam) {
+    console.log('Logged In');
     return <Navigate to="/profile" />;
+    // eslint-disable-next-line no-else-return
+  } else {
+    console.log('Not Logged In');
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!user?.username) {
+    return (
+      <h4>
+        You need to be logged in to see this. Use the navigation links above to
+        sign up or log in!
+      </h4>
+    );
   }
 
   const determineComponent = () => {
