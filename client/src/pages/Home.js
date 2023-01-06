@@ -2,6 +2,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 // import GoogleMapPic from '../assets/images/GoogleMapTA.webp';
 import { Modal } from 'react-responsive-modal';
+// eslint-disable-next-line import/no-unresolved
+import MapboxGeocoder from '@mapbox/mapbox-sdk/services/geocoding';
 import 'react-responsive-modal/styles.css';
 import placeholder from '../assets/images/placeholder-icon.jpg';
 // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
@@ -146,6 +148,15 @@ function Home() {
   mapboxgl.accessToken =
     'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
 
+  // eslint-disable-next-line operator-linebreak
+  // const accessToken =
+  // eslint-disable-next-line max-len
+  //   'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
+
+  const [searchResults, setSearchResults] = useState([]);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const searchInput = useRef(null);
+
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(-70.9);
@@ -171,6 +182,61 @@ function Home() {
       setZoom(map.current.getZoom().toFixed(2));
     });
   });
+
+  // Handles the search bar underneath the map
+  const handleSearch = event => {
+    const geocoder = MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+    });
+
+    geocoder
+      .forwardGeocode({
+        query: event.target.value,
+        types: ['place'],
+        countries: ['us'],
+      })
+      .send()
+      .then(response => {
+        const results = response.body.features;
+        setSearchResults(results);
+      });
+  };
+
+  const handleResultClick = result => {
+    map.flyTo({
+      center: result.geometry.coordinates,
+      zoom: 12,
+    });
+    searchInput.current.value = result.place_name;
+  };
+
+  const handleKeyDown = event => {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      // The user can't select something that is not a result
+      setSelectedIndex(
+        // eslint-disable-next-line no-confusing-arrow
+        prevIndex =>
+          // eslint-disable-next-line no-sequences, implicit-arrow-linebreak
+          prevIndex === null
+            ? 0
+            : Math.min(prevIndex + 1, searchResults.length - 1)
+        // eslint-disable-next-line function-paren-newline
+      );
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      setSelectedIndex(
+        // eslint-disable-next-line no-confusing-arrow
+        prevIndex =>
+          // eslint-disable-next-line implicit-arrow-linebreak
+          prevIndex > 0 ? prevIndex - 1 : prevIndex === 0
+        // eslint-disable-next-line function-paren-newline
+      );
+    } else if (event.key === 'Enter' && selectedIndex !== null) {
+      event.preventDefault();
+      handleResultClick(searchResults[selectedIndex]);
+    }
+  };
 
   const googleSearch = e => {
     e.preventDefault();
@@ -338,16 +404,46 @@ function Home() {
             {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
             Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
           </div>
-          <div ref={mapContainer} className="map-container" />
+          <div id="map" ref={mapContainer} className="map-container" />
           <div className="form-div">
             <form className="search-form" onSubmit={googleSearch}>
               <input
                 className="form-input-address"
                 placeholder="Enter a city's name to search for people in that area"
                 name="address"
-                type="address"
-                id="address"
+                type="text"
+                ref={searchInput}
+                onChange={handleSearch}
+                onKeyDown={handleKeyDown}
               />
+              <ul>
+                {searchResults.map((result, index) => (
+                  // eslint-disable-next-line max-len
+                  // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
+                  <li
+                    key={result.id}
+                    onClick={() => handleResultClick(result)}
+                    tabIndex={index === selectedIndex ? 0 : -1}
+                    onKeyDown={event => {
+                      if (event.key === 'Enter') {
+                        event.preventDefault();
+                        handleResultClick(result);
+                      }
+                    }}
+                    onMouseEnter={() => setSelectedIndex(index)}
+                    onMouseLeave={() => setSelectedIndex(null)}
+                    // style={{
+                    //   backgroundColor:
+                    //     index === selectedIndex ? 'lightgray' : 'white',
+                    //   cursor: 'pointer',
+                    // }}
+                    className={index === selectedIndex ? 'selected' : ''}
+                    id="autocomplete-result"
+                  >
+                    {result.place_name}
+                  </li>
+                ))}
+              </ul>
               <button
                 className="search-button"
                 type="submit"

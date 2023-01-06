@@ -184,7 +184,7 @@ form p {
   padding: 15px;
 }
 
-.dash-nav-profile, .dash-nav-friends, .dash-nav-inbox, .dash-nav-connections {
+.dash-nav {
   position:relative;
   width: auto;
   display:inline-block;
@@ -207,12 +207,12 @@ form p {
   box-shadow: 0px 6px 0px green;
 }
 
-.dash-nav-profile:hover, .dash-nav-friends:hover, .dash-nav-inbox:hover, .dash-nav-connections:hover {
+.dash-nav:hover {
   border: 2px solid green;
   text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em green, 0 0 0.4em green, 0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
 }
 
-.dash-nav-profile:active, .dash-nav-friends:active, .dash-nav-inbox:active, .dash-nav-connections:active {
+.dash-nav:active {
   border: 2px solid red;
   background: lightcoral;
   text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red, 0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
@@ -447,16 +447,41 @@ form p {
 
   .filter-btn {
     width: 75%;
-    border: 2px solid rgba(201, 201, 201, 0.5);
-    border-radius: 4px;
     box-shadow: 10px 5px 5px gray;
     font-weight: bold;
+    font-size: 20px;
+    position:relative;
+    display:inline-block;
+    color: black;
+    text-decoration:none;
+    border-radius:5px;
+    border:solid 1px gray;
+    background: lightgray;
+    text-align:center;
+    padding: 10px 10px 10px;
+    margin: 12px;
+ 
+  -webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	transition: all 0.1s;
+	
+  -webkit-box-shadow: 0px 6px 0px gray;
+  -moz-box-shadow: 0px 6px 0px gray;
+  box-shadow: 0px 6px 0px gray;
   }
 
   .filter-btn:hover {
-    box-shadow: none;
+    background-color: darkgray;
     border: 2px solid black;
-    background-color: rgba(201, 201, 201, 0.2);
+    text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em darkgray, 0 0 0.4em darkgray, 0 0 0.6em darkgray, 0 0 0.8em darkgray, 0 0 1em darkgray, 0 0 1.2em darkgray;
+  }
+
+  .filter-btn:active {
+    border: 2px solid lightgray;
+    background-color: gray;
+    -webkit-box-shadow: 0px 2px 0px gray;
+    -moz-box-shadow: 0px 2px 0px gray;
+    box-shadow: 0px 2px 0px gray;
   }
 
   .profile-section {
@@ -482,27 +507,52 @@ form p {
     width: 50%;
   }
 
-.map-container {
-  margin: 0 1.5rem;
-  min-height: 400px;
-  height: 600px;
-  width: 95%;
-}
+  .map-container {
+    margin: 0 1.5rem;
+    min-height: 400px;
+    height: 600px;
+    width: 95%;
+  }
 
-.sidebar {
-  display: flex;
-  justify-content: center;
-  background-color: rgba(35, 55, 75, 0.9);
-  color: #fff;
-  padding: 6px 12px;
-  font-family: monospace;
-  /* z-index: 1; */
-  position: relative;
-  top: 0;
-  left: 0;
-  margin: 12px;
-  border-radius: 4px;
-}
+  .sidebar {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(35, 55, 75, 0.9);
+    color: #fff;
+    padding: 6px 12px;
+    font-family: monospace;
+    /* z-index: 1; */
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 12px;
+    border-radius: 4px;
+  }
+
+  #autocomplete-result {
+    width: 75%;
+    box-shadow: 10px 5px 5px gray;
+    font-weight: bold;
+    font-size: 14px;
+    position: relative;
+    display:inline-block;
+    color: black;
+    text-decoration:none;
+    border-radius:5px;
+    border:solid 1px gray;
+    background: lightgray;
+    text-align:center;
+    padding: 10px 10px 10px;
+    margin: 12px;
+ 
+    -webkit-transition: all 0.1s;
+	  -moz-transition: all 0.1s;
+	  transition: all 0.1s;
+	
+    -webkit-box-shadow: 0px 6px 0px gray;
+    -moz-box-shadow: 0px 6px 0px gray;
+    box-shadow: 0px 6px 0px gray;
+  }
 
   .form-div {
     width: 100%;

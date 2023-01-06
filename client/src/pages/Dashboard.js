@@ -18,45 +18,25 @@ function Dashboard() {
 
   const determineComponent = () => {
     if (currentComponent === 'DashboardProfile') {
-      document.getElementById('profile').classList.add('dash-nav-active');
-      document.getElementById('friends').classList.remove('dash-nav-active');
-      document.getElementById('inbox').classList.remove('dash-nav-active');
-      document
-        .getElementById('connections')
-        .classList.remove('dash-nav-active');
       return <DashboardProfile />;
       // eslint-disable-next-line no-else-return
     } else if (currentComponent === 'DashboardFriends') {
-      document.getElementById('friends').classList.add('dash-nav-active');
-      document.getElementById('profile').classList.remove('dash-nav-active');
-      document.getElementById('inbox').classList.remove('dash-nav-active');
-      document
-        .getElementById('connections')
-        .classList.remove('dash-nav-active');
       return <DashboardFriends />;
     } else if (currentComponent === 'DashboardInbox') {
-      document.getElementById('inbox').classList.add('dash-nav-active');
-      document.getElementById('friends').classList.remove('dash-nav-active');
-      document.getElementById('profile').classList.remove('dash-nav-active');
-      document
-        .getElementById('connections')
-        .classList.remove('dash-nav-active');
       return <DashboardInbox />;
     } else if (currentComponent === 'DashboardConnections') {
-      document.getElementById('connections').classList.add('dash-nav-active');
-      document.getElementById('friends').classList.remove('dash-nav-active');
-      document.getElementById('inbox').classList.remove('dash-nav-active');
-      document.getElementById('profile').classList.remove('dash-nav-active');
       return <DashboardConnections />;
     } else {
-      document.getElementById('profile').classList.add('dash-nav-active');
-      document.getElementById('friends').classList.remove('dash-nav-active');
-      document.getElementById('inbox').classList.remove('dash-nav-active');
-      document
-        .getElementById('connections')
-        .classList.remove('dash-nav-active');
       return <DashboardProfile />;
     }
+  };
+
+  const determineIsActive = component => {
+    let linkClass = 'dashboard-btn dash-nav';
+    if (component === currentComponent) {
+      linkClass += ' dash-nav-active';
+    }
+    return linkClass;
   };
 
   const handleComponentChange = component => setCurrentComponent(component);
@@ -69,7 +49,7 @@ function Dashboard() {
             type="submit"
             onClick={() => handleComponentChange('DashboardProfile')}
             id="profile"
-            className="dashboard-btn dash-nav-profile"
+            className={determineIsActive('DashboardProfile')}
           >
             Profile
           </button>
@@ -77,7 +57,7 @@ function Dashboard() {
             type="submit"
             onClick={() => handleComponentChange('DashboardFriends')}
             id="friends"
-            className="dashboard-btn dash-nav-friends"
+            className={determineIsActive('DashboardFriends')}
           >
             Friends
           </button>
@@ -85,7 +65,7 @@ function Dashboard() {
             type="submit"
             onClick={() => handleComponentChange('DashboardInbox')}
             id="inbox"
-            className="dashboard-btn dash-nav-inbox"
+            className={determineIsActive('DashboardInbox')}
           >
             Inbox
           </button>
@@ -93,7 +73,7 @@ function Dashboard() {
             type="submit"
             onClick={() => handleComponentChange('DashboardConnections')}
             id="connections"
-            className="dashboard-btn dash-nav-connections"
+            className={determineIsActive('DashboardConnections')}
           >
             Connections
           </button>
