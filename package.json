@@ -27,6 +27,7 @@
     "eslint-plugin-tailwindcss": "^3.8.0"
   },
   "dependencies": {
+    "graphql-tag": "^2.12.6",
     "react-easy-swipe": "^0.0.22",
     "react-icons": "^4.7.1",
     "tailwindcss": "^3.2.4"
