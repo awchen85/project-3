@@ -3,20 +3,176 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useRef, useEffect, useState } from 'react';
 // import GoogleMapPic from '../assets/images/GoogleMapTA.webp';
+import { Modal } from 'react-responsive-modal';
+// eslint-disable-next-line import/no-unresolved
+import MapboxGeocoder from '@mapbox/mapbox-sdk/services/geocoding';
+import 'react-responsive-modal/styles.css';
 // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
 import mapboxgl from '!mapbox-gl';
 import Cards from './Cards';
 // import Carousel from './Carousel';
 
 function Home() {
+  const [open, setOpen] = React.useState(false);
+
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
+
+  const [value, setValue] = React.useState(1000);
+
+  const handleChange = event => {
+    setValue(event.target.value);
+  };
+
+  const [option, setOption] = React.useState('Option 1');
+
+  const handleAgeChange = event => {
+    setOption(event.target.value === 'Option 1' ? 'Option 2' : 'Option 1');
+  };
+
+  const filterModal = (
+    <div id="filterModal" className="modal">
+      <div className="modal-header">
+        <h2 className="filters-title">Filters</h2>
+      </div>
+      <div className="modal-body">
+        <form>
+          <div className="flex justify-center">
+            <div className="py-4">
+              {/* Budget */}
+              <label
+                htmlFor="Budget"
+                className="flex flex-col text-center filters my-1"
+              >
+                Max Rent You Pay
+                <input
+                  type="range"
+                  min="100"
+                  max="4000"
+                  value={value}
+                  onChange={handleChange}
+                />
+                {/* Age */}
+              </label>
+              <div className="flex flex-col py-4">
+                <label htmlFor="age" className="flex flex-col filters my-1">
+                  Age Range
+                  <input
+                    type="range"
+                    min="18"
+                    max="100"
+                    step="1"
+                    value={option === 'Option 1' ? '18' : '100'}
+                    onChange={handleAgeChange}
+                  />
+                </label>
+                <br />
+                {/* Gender */}
+                <div className="py-4 filters my-1">
+                  Gender
+                  <div className="flex">
+                    <div className="flex cursor-pointer text-xl rounded text-blue-400 hover:bg-sky-100 hover:border-4 hover:border-blue-500 m-1 p-1">
+                      <label htmlFor="male" className="px-4 cursor-pointer">
+                        <input id="male" type="checkbox" value="male" /> Male
+                      </label>
+                    </div>
+                    <br />
+                    <div className="flex text-xl rounded text-red-200 hover:bg-red-50 hover:border-4 hover:border-red-300 m-1 p-1">
+                      <label htmlFor="female" className="px-4 cursor-pointer">
+                        <input id="female" type="checkbox" value="female" />{' '}
+                        Female
+                      </label>
+                    </div>
+                    <br />
+                    <div className="flex cursor-pointer text-xl rounded text-emerald-400 hover:bg-emerald-100 hover:border-4 hover:border-green-500 m-1 p-1">
+                      <label
+                        htmlFor="non-binary"
+                        className="px-4 cursor-pointer"
+                      >
+                        <input
+                          id="non-binary"
+                          type="checkbox"
+                          value="non-binary"
+                        />{' '}
+                        Non-binary
+                      </label>
+                    </div>
+                    <br />
+                    <div className="cursor-pointer text-xl rounded text-purple-400 hover:bg-purple-100 hover:border-4 hover:border-purple-500 m-1 p-1">
+                      <label htmlFor="other" className="px-4 cursor-pointer">
+                        <input id="other" type="checkbox" value="male" /> Other
+                      </label>
+                    </div>
+                    <br />
+                  </div>
+                </div>
+                <br />
+                {/* Allow Pets */}
+                <div className="filters mb-4">
+                  Allow Pets
+                  <div className="flex justify-center my-1">
+                    <label htmlFor="pets" className="px-4">
+                      <input type="radio" name="pets" value="yes" /> Yes
+                    </label>
+                    <label htmlFor="pets" className="px-4">
+                      <input type="radio" name="pets" value="no" /> No
+                    </label>
+                  </div>
+                </div>
+                {/* Allow Children */}
+                <div className="filters my-4">
+                  Allow Children
+                  <div className="flex justify-center my-1">
+                    <label htmlFor="children" className="px-4">
+                      <input type="radio" name="children" value="yes" /> Yes
+                    </label>
+                    <label htmlFor="children" className="px-4">
+                      <input type="radio" name="children" value="no" /> No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div id="filterModalFooter" className="modal-footer">
+        <button
+          type="submit"
+          className="btn btn-primary button-3d font-effect-neon-green"
+          id="apply-filters"
+        >
+          Apply
+        </button>
+        <button
+          type="submit"
+          className="btn btn-secondary button-3d font-effect-neon-red"
+          id="cancel-filters"
+          onClick={onCloseModal}
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  );
+
   // eslint-disable-next-line operator-linebreak
   mapboxgl.accessToken =
     'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
 
+  // eslint-disable-next-line operator-linebreak
+  // const accessToken =
+  // eslint-disable-next-line max-len
+  //   'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
+
+  const [searchResults, setSearchResults] = useState([]);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const searchInput = useRef(null);
+
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const [lng, setLng] = useState(-70.9);
-  const [lat, setLat] = useState(42.35);
+  const [lng, setLng] = useState(-79.05);
+  const [lat, setLat] = useState(35.92);
   const [zoom, setZoom] = useState(9);
   // const items = [
   //   <Cards title="Card 1" description="This is card 1"
@@ -49,6 +205,71 @@ function Home() {
     });
   });
 
+  // Handles the search bar underneath the map
+  const handleSearch = event => {
+    const geocoder = MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+    });
+
+    geocoder
+      .forwardGeocode({
+        query: event.target.value,
+        types: ['place'],
+        countries: ['us'],
+      })
+      .send()
+      .then(response => {
+        const results = response.body.features.map(feature => {
+          // Remove "United States" from the end of the place_name
+          // eslint-disable-next-line no-param-reassign
+          feature.place_name = feature.place_name.replace(
+            /, United States$/,
+            ''
+          );
+          return feature;
+        });
+        setSearchResults(results);
+      });
+  };
+
+  const handleResultClick = result => {
+    map.flyTo({
+      center: result.geometry.coordinates,
+      zoom: 12,
+    });
+    searchInput.current.value = result.place_name;
+  };
+
+  // eslint-disable-next-line max-len
+  // When the autocomplete results are displayed you can use arrow keys and the "Enter" button to interact with them
+  const handleKeyDown = event => {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      // The user can't select something that is not a result
+      setSelectedIndex(
+        // eslint-disable-next-line no-confusing-arrow
+        prevIndex =>
+          // eslint-disable-next-line no-sequences, implicit-arrow-linebreak
+          prevIndex === null
+            ? 0
+            : Math.min(prevIndex + 1, searchResults.length - 1)
+        // eslint-disable-next-line function-paren-newline
+      );
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      setSelectedIndex(
+        // eslint-disable-next-line no-confusing-arrow
+        prevIndex =>
+          // eslint-disable-next-line implicit-arrow-linebreak
+          prevIndex > 0 ? prevIndex - 1 : prevIndex === 0
+        // eslint-disable-next-line function-paren-newline
+      );
+    } else if (event.key === 'Enter' && selectedIndex !== null) {
+      event.preventDefault();
+      handleResultClick(searchResults[selectedIndex]);
+    }
+  };
+
   const googleSearch = e => {
     e.preventDefault();
     const input = document.getElementById('address').value;
@@ -71,45 +292,11 @@ function Home() {
             <div className="filter-buttons grid grid-cols-4 gap-2 md:grid-cols-4">
               <button
                 type="submit"
-                id="Distance"
-                className="filter-btn filter-distance my-2 px-4 py-2"
-                onClick={clickHandler}
-              >
-                Distance
-              </button>
-              <button
-                type="submit"
-                id="Budget"
-                className="filter-btn filter-budget my-2 px-4 py-2"
-                onClick={clickHandler}
-              >
-                Budget
-              </button>
-              <div id="Budget" className="slidecontainer" hidden>
-                <input
-                  type="range"
-                  min="1"
-                  max="100"
-                  value="50"
-                  className="slider"
-                  id="myRange"
-                />
-              </div>
-              <button
-                type="submit"
                 id="Filter"
-                className="filter-btn filter-filter my-2 px-4 py-2"
-                onClick={clickHandler}
+                className="filter-btn my-2 px-4 py-2"
+                onClick={onOpenModal}
               >
                 Filter
-              </button>
-              <button
-                type="submit"
-                id="Verified"
-                className="filter-btn filter-verified my-2 px-4 py-2"
-                onClick={clickHandler}
-              >
-                Verified
               </button>
             </div>
           </section>
@@ -124,16 +311,46 @@ function Home() {
             {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
             Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
           </div>
-          <div ref={mapContainer} className="map-container" />
+          <div id="map" ref={mapContainer} className="map-container" />
           <div className="form-div">
             <form className="search-form" onSubmit={googleSearch}>
               <input
                 className="form-input-address"
                 placeholder="Enter a city's name to search for people in that area"
                 name="address"
-                type="address"
-                id="address"
+                type="text"
+                ref={searchInput}
+                onChange={handleSearch}
+                onKeyDown={handleKeyDown}
               />
+              <ul>
+                {searchResults.map((result, index) => (
+                  // eslint-disable-next-line max-len
+                  // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
+                  <li
+                    key={result.id}
+                    onClick={() => handleResultClick(result)}
+                    tabIndex={index === selectedIndex ? 0 : -1}
+                    onKeyDown={event => {
+                      if (event.key === 'Enter') {
+                        event.preventDefault();
+                        handleResultClick(result);
+                      }
+                    }}
+                    onMouseEnter={() => setSelectedIndex(index)}
+                    onMouseLeave={() => setSelectedIndex(null)}
+                    style={{
+                      backgroundColor:
+                        index === selectedIndex ? 'lightgray' : 'white',
+                      cursor: 'pointer',
+                    }}
+                    className={index === selectedIndex ? 'selected' : ''}
+                    id="autocomplete-result"
+                  >
+                    {result.place_name}
+                  </li>
+                ))}
+              </ul>
               <button
                 className="search-button"
                 type="submit"
@@ -192,6 +409,9 @@ function Home() {
           </div>
         </div>
       </div>
+      <Modal classNames="" open={open} onClose={onCloseModal} center>
+        {filterModal}
+      </Modal>
     </div>
   );
 }

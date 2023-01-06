@@ -31,6 +31,14 @@ function Dashboard() {
     }
   };
 
+  const determineIsActive = component => {
+    let linkClass = 'dashboard-btn dash-nav';
+    if (component === currentComponent) {
+      linkClass += ' dash-nav-active';
+    }
+    return linkClass;
+  };
+
   const handleComponentChange = component => setCurrentComponent(component);
 
   return (
@@ -41,7 +49,7 @@ function Dashboard() {
             type="submit"
             onClick={() => handleComponentChange('DashboardProfile')}
             id="profile"
-            className="dashboard-btn"
+            className={determineIsActive('DashboardProfile')}
           >
             Profile
           </button>
@@ -49,7 +57,7 @@ function Dashboard() {
             type="submit"
             onClick={() => handleComponentChange('DashboardFriends')}
             id="friends"
-            className="dashboard-btn"
+            className={determineIsActive('DashboardFriends')}
           >
             Friends
           </button>
@@ -57,7 +65,7 @@ function Dashboard() {
             type="submit"
             onClick={() => handleComponentChange('DashboardInbox')}
             id="inbox"
-            className="dashboard-btn"
+            className={determineIsActive('DashboardInbox')}
           >
             Inbox
           </button>
@@ -65,7 +73,7 @@ function Dashboard() {
             type="submit"
             onClick={() => handleComponentChange('DashboardConnections')}
             id="connections"
-            className="dashboard-btn"
+            className={determineIsActive('DashboardConnections')}
           >
             Connections
           </button>
