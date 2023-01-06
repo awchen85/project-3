@@ -16,6 +16,12 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
+    getUser: async (parent, { userId }) => {
+      const user = await User.findById({ userId })
+        .select('-__v -password')
+        .populate('profile');
+      return user;
+    },
     getUsers: async () => {
       const users = await User.find().populate('profile');
       return users;
