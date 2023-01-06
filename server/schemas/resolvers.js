@@ -17,7 +17,7 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
     getUsers: async () => {
-      const users = await User.find();
+      const users = await User.find().populate('profile');
       return users;
     },
 
