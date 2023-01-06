@@ -220,9 +220,9 @@ function Home() {
   };
 
   const handleResultClick = result => {
-    map.flyTo({
+    map.current.flyTo({
       center: result.geometry.coordinates,
-      zoom: 12,
+      zoom: 10,
     });
     searchInput.current.value = result.place_name;
   };
@@ -426,43 +426,45 @@ function Home() {
           <div id="map" ref={mapContainer} className="map-container" />
           <div className="form-div">
             <form className="search-form" onSubmit={googleSearch}>
-              <input
-                className="form-input-address"
-                placeholder="Enter a city's name to search for people in that area"
-                name="address"
-                type="text"
-                ref={searchInput}
-                onChange={handleSearch}
-                onKeyDown={handleKeyDown}
-              />
-              <ul>
-                {searchResults.map((result, index) => (
-                  // eslint-disable-next-line max-len
-                  // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
-                  <li
-                    key={result.id}
-                    onClick={() => handleResultClick(result)}
-                    tabIndex={index === selectedIndex ? 0 : -1}
-                    onKeyDown={event => {
-                      if (event.key === 'Enter') {
-                        event.preventDefault();
-                        handleResultClick(result);
-                      }
-                    }}
-                    onMouseEnter={() => setSelectedIndex(index)}
-                    onMouseLeave={() => setSelectedIndex(null)}
-                    style={{
-                      backgroundColor:
-                        index === selectedIndex ? 'lightgray' : 'white',
-                      cursor: 'pointer',
-                    }}
-                    className={index === selectedIndex ? 'selected' : ''}
-                    id="autocomplete-result"
-                  >
-                    {result.place_name}
-                  </li>
-                ))}
-              </ul>
+              <div>
+                <input
+                  className="form-input-address"
+                  placeholder="Enter a city's name to search for people in that area"
+                  name="address"
+                  type="text"
+                  ref={searchInput}
+                  onChange={handleSearch}
+                  onKeyDown={handleKeyDown}
+                />
+                <ul>
+                  {searchResults.map((result, index) => (
+                    // eslint-disable-next-line max-len
+                    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
+                    <li
+                      key={result.id}
+                      onClick={() => handleResultClick(result)}
+                      tabIndex={index === selectedIndex ? 0 : -1}
+                      onKeyDown={event => {
+                        if (event.key === 'Enter') {
+                          event.preventDefault();
+                          handleResultClick(result);
+                        }
+                      }}
+                      onMouseEnter={() => setSelectedIndex(index)}
+                      onMouseLeave={() => setSelectedIndex(null)}
+                      style={{
+                        backgroundColor:
+                          index === selectedIndex ? 'lightgray' : 'white',
+                        cursor: 'pointer',
+                      }}
+                      className={index === selectedIndex ? 'selected' : ''}
+                      id="autocomplete-result"
+                    >
+                      {result.place_name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <button
                 className="search-button"
                 type="submit"

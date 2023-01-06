@@ -536,22 +536,51 @@ form p {
     font-size: 14px;
     position: relative;
     display:inline-block;
+    text-decoration:none;
+    border-radius:5px;
+    border:solid 1px gray;
+    background: lightgray;
+    text-align:center;
+    padding: 6px 6px 6px;
+    margin: 4px;
+ 
+    /* -webkit-transition: all 0.1s;
+	  -moz-transition: all 0.1s;
+	  transition: all 0.1s;
+	
+    -webkit-box-shadow: 0px 6px 0px gray;
+    -moz-box-shadow: 0px 6px 0px gray;
+    box-shadow: 0px 6px 0px gray; */
+  }
+
+   #profile-autocomplete-result {
+    width: 75%;
+    /* box-shadow: 10px 5px 5px gray; */
+    font-weight: bold;
+    font-size: 14px;
+    /* position: relative; */
+    display:inline-block;
     color: black;
     text-decoration:none;
     border-radius:5px;
     border:solid 1px gray;
     background: lightgray;
     text-align:center;
-    padding: 10px 10px 10px;
-    margin: 12px;
- 
-    -webkit-transition: all 0.1s;
-	  -moz-transition: all 0.1s;
-	  transition: all 0.1s;
-	
-    -webkit-box-shadow: 0px 6px 0px gray;
-    -moz-box-shadow: 0px 6px 0px gray;
-    box-shadow: 0px 6px 0px gray;
+    margin: 4px;
+  }
+
+  .form-input-address-profile {
+    width: 75%;
+    box-sizing: border-box;
+    border: 2px solid #006db0;
+    line-height: 1.15rem;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border-radius: 0.625rem;
+  }
+
+  .profile-location {
+    justify-content: space-evenly;
   }
 
   .form-div {
