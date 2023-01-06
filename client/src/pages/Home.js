@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useRef, useEffect, useState } from 'react';
 // import GoogleMapPic from '../assets/images/GoogleMapTA.webp';
@@ -263,11 +264,41 @@ function Home() {
     console.log('Searched for:', input);
   };
 
-  const clickHandler = e => {
-    e.preventDefault();
-    const { target } = e;
-    console.log('Clicked!', target.id);
-    // document.getElementById('Budget').removeAttribute('hidden');
+  // const clickHandler = e => {
+  //   e.preventDefault();
+  //   const { target } = e;
+  //   console.log('Clicked!', target.id);
+  // };
+
+  const cities1 = ['Greensboro, NC'];
+  const cities2 = ['Durham, NC'];
+  const cities3 = ['Boone, NC'];
+  const cities4 = ['Hickory, NC'];
+  const cities5 = ['Wilmington, NC'];
+  const cities6 = ['Raleigh, NC'];
+  const cities7 = ['Charlotte, NC'];
+  const cities8 = ['Winston-Salem, NC'];
+
+  const searchForCity = city => {
+    const geocoder = MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+    });
+
+    geocoder
+      .forwardGeocode({
+        query: city,
+        types: ['place'],
+        countries: ['US'],
+      })
+      .send()
+      .then(response => {
+        const result = response.body.features[0];
+        map.current.flyTo({
+          center: result.geometry.coordinates,
+          zoom: 12,
+        });
+        searchInput.current.value = result.place_name;
+      });
   };
 
   return (
@@ -476,48 +507,118 @@ function Home() {
             <div className="quick-search-cities-section text-center">
               <h3 className="text-3xl font-semibold">Quick Search</h3>
               <div className="quick-search-cities grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                <a href="/" onClick={clickHandler}>
-                  <div id="LA" className="card card-1">
-                    <h3 className="flex justify-center card-city-text">
-                      Los Angeles, CA
-                    </h3>
-                  </div>
-                </a>
-                <a href="/" onClick={clickHandler}>
-                  <div id="NY" className="card card-2">
-                    <h3 className="flex justify-center card-city-text">
-                      New York, NY
-                    </h3>
-                  </div>
-                </a>
-                <a href="/" onClick={clickHandler}>
-                  <div id="TX" className="card card-3">
-                    <h3 className="flex justify-center card-city-text">
-                      Dallas, TX
-                    </h3>
-                  </div>
-                </a>
-                <a href="/" onClick={clickHandler}>
-                  <div id="IL" className="card card-4">
-                    <h3 className="flex justify-center card-city-text">
-                      Chicago, IL
-                    </h3>
-                  </div>
-                </a>
-                <a href="/" onClick={clickHandler}>
-                  <div id="GA" className="card card-5">
-                    <h3 className="flex justify-center card-city-text">
-                      Atlanta, GA
-                    </h3>
-                  </div>
-                </a>
-                <a href="/" onClick={clickHandler}>
-                  <div id="OR" className="card card-6">
-                    <h3 className="flex justify-center card-city-text">
-                      Portland, OR
-                    </h3>
-                  </div>
-                </a>
+                {/* eslint-disable-next-line react/button-has-type */}
+                {cities1.map(city => (
+                  // eslint-disable-next-line react/button-has-type
+                  <button key={city} onClick={() => searchForCity(city)}>
+                    <div className="card card-1">
+                      <h3
+                        id="city-value"
+                        className="flex justify-center card-city-text"
+                      >
+                        {city}
+                      </h3>
+                    </div>
+                  </button>
+                ))}
+                {/* eslint-disable-next-line react/button-has-type */}
+                {cities2.map(city => (
+                  // eslint-disable-next-line react/button-has-type
+                  <button key={city} onClick={() => searchForCity(city)}>
+                    <div className="card card-2">
+                      <h3
+                        id="city-value"
+                        className="flex justify-center card-city-text"
+                      >
+                        {city}
+                      </h3>
+                    </div>
+                  </button>
+                ))}
+                {/* eslint-disable-next-line react/button-has-type */}
+                {cities3.map(city => (
+                  // eslint-disable-next-line react/button-has-type
+                  <button key={city} onClick={() => searchForCity(city)}>
+                    <div className="card card-3">
+                      <h3
+                        id="city-value"
+                        className="flex justify-center card-city-text"
+                      >
+                        {city}
+                      </h3>
+                    </div>
+                  </button>
+                ))}
+                {/* eslint-disable-next-line react/button-has-type */}
+                {cities4.map(city => (
+                  // eslint-disable-next-line react/button-has-type
+                  <button key={city} onClick={() => searchForCity(city)}>
+                    <div className="card card-4">
+                      <h3
+                        id="city-value"
+                        className="flex justify-center card-city-text"
+                      >
+                        {city}
+                      </h3>
+                    </div>
+                  </button>
+                ))}
+                {/* eslint-disable-next-line react/button-has-type */}
+                {cities5.map(city => (
+                  // eslint-disable-next-line react/button-has-type
+                  <button key={city} onClick={() => searchForCity(city)}>
+                    <div className="card card-5">
+                      <h3
+                        id="city-value"
+                        className="flex justify-center card-city-text"
+                      >
+                        {city}
+                      </h3>
+                    </div>
+                  </button>
+                ))}
+                {/* eslint-disable-next-line react/button-has-type */}
+                {cities6.map(city => (
+                  // eslint-disable-next-line react/button-has-type
+                  <button key={city} onClick={() => searchForCity(city)}>
+                    <div className="card card-6">
+                      <h3
+                        id="city-value"
+                        className="flex justify-center card-city-text"
+                      >
+                        {city}
+                      </h3>
+                    </div>
+                  </button>
+                ))}
+                {/* eslint-disable-next-line react/button-has-type */}
+                {cities7.map(city => (
+                  // eslint-disable-next-line react/button-has-type
+                  <button key={city} onClick={() => searchForCity(city)}>
+                    <div className="card card-7">
+                      <h3
+                        id="city-value"
+                        className="flex justify-center card-city-text"
+                      >
+                        {city}
+                      </h3>
+                    </div>
+                  </button>
+                ))}
+                {/* eslint-disable-next-line react/button-has-type */}
+                {cities8.map(city => (
+                  // eslint-disable-next-line react/button-has-type
+                  <button key={city} onClick={() => searchForCity(city)}>
+                    <div className="card card-8">
+                      <h3
+                        id="city-value"
+                        className="flex justify-center card-city-text"
+                      >
+                        {city}
+                      </h3>
+                    </div>
+                  </button>
+                ))}
               </div>
             </div>
           </div>

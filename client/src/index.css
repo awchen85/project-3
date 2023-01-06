@@ -684,38 +684,50 @@ form p {
   }
 
   .card-1 {
-    background-image: url("./assets/cards/los-angeles-bg.jpg");
+    background-image: url("./assets/cards/greensboro-bg.png");
     background-position: center;
     background-size: cover;
   }
 
   .card-2 {
-    background-image: url("./assets/cards/new-york-city-bg.jpg");
+    background-image: url("./assets/cards/durham-bg.jpg");
     background-position: center;
     background-size: cover;
   }
 
   .card-3 {
-    background-image: url("./assets/cards/dallas-texas-bg.jpg");
+    background-image: url("./assets/cards/boone-bg.jpg");
     background-position: center;
     background-size: cover;
   }
 
   .card-4 {
-    background-image: url("./assets/cards/chicago-bg.jpg");
+    background-image: url("./assets/cards/hickory-bg.jpg");
     background-position: center;
     background-size: cover;
   }
 
   .card-5 {
-    background-image: url("./assets/cards/atlanta-bg.jpg");
+    background-image: url("./assets/cards/wilmington-bg.jpg");
     background-position: center;
     background-size: cover;
   }
 
   .card-6 {
-    background-image: url("./assets/cards/portland-oregon-bg.jpg");
+    background-image: url("./assets/cards/raleigh-bg.jpg");
     background-position: center;
+    background-size: cover;
+  }
+
+    .card-7 {
+    background-image: url("./assets/cards/charlotte-bg.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+
+    .card-8 {
+    background-image: url("./assets/cards/winston-salem-bg.jpg");
+    background-position: left;
     background-size: cover;
   }
 
