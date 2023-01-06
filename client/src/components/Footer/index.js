@@ -1,10 +1,59 @@
+/* eslint-disable */
+import footerDivider from "../../assets/images/footer-divider.png";
+import footerGitHub from "../../assets/images/github-mark-white.png";
+
 function Footer() {
   return (
-    <div className="flex bg-slate-400" style={{ width: '100%' }}>
-      <footer className="flex justify-center mt-10">
-        <h1 className="font-bold text-5xl text-white">Footer</h1>
-      </footer>
-    </div>
+    <footer>
+      <div className="footer-divider">
+        <img src={footerDivider} alt="Footer Divider" />
+      </div>
+      <div className="grid xl:grid-cols-2 footer sm:grid-cols-1 gap-8">
+        <div className="footer-left">
+          <span className="brand">OurPlace</span>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pro in
+            tincidunt quam vitae elit efficitur, consequat lacinia lectus
+            hendrerit.
+          </p>
+        </div>
+        <div className="footer-right grid md:grid-cols-2 sm:grid-cols-1 gap-8">
+          <div className="footer-menu self-center">
+            <ul>
+              <li>link</li>
+              <li>link</li>
+              <li>link</li>
+              <li>link</li>
+            </ul>
+          </div>
+          <div>
+            <p className="footer-title">Project Developed By:</p>
+            <ul className="grid grid-cols-1 gap-2">
+              <li className="flex items-center">
+                <img src={footerGitHub} alt="GitHub Logo" className="mr-3" />
+                Git Hub Username
+              </li>
+              <li className="flex items-center">
+                <img src={footerGitHub} alt="GitHub Logo" className="mr-3" />
+                Git Hub Username
+              </li>
+              <li className="flex items-center">
+                <img src={footerGitHub} alt="GitHub Logo" className="mr-3" />
+                Git Hub Username
+              </li>
+              <li className="flex items-center">
+                <img src={footerGitHub} alt="GitHub Logo" className="mr-3" />
+                Git Hub Username
+              </li>
+              <li className="flex items-center">
+                <img src={footerGitHub} alt="GitHub Logo" className="mr-3" />
+                Git Hub Username
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 }
 
