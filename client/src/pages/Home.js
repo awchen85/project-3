@@ -15,6 +15,26 @@ function Home() {
 
   const [value, setValue] = React.useState(1000);
 
+  // Allow Pets Radio Buttons
+  const options1 = [{ value: 'option1', label: 'Yes' }];
+  const options2 = [{ value: 'option2', label: 'No' }];
+  // Allow Pets
+  const [selectedPetValue, setSelectedPetValue] = useState(null);
+  // Allow Pets
+  const handlePetChange = event => {
+    setSelectedPetValue(event.target.value);
+  };
+
+  // Allow Children Radio Buttons
+  const options3 = [{ value: 'option3', label: 'Yes' }];
+  const options4 = [{ value: 'option4', label: 'No' }];
+  // Allow Pets
+  const [selectedChildValue, setSelectedChildValue] = useState(null);
+  // Allow Pets
+  const handleChildChange = event => {
+    setSelectedChildValue(event.target.value);
+  };
+
   const handleChange = event => {
     setValue(event.target.value);
   };
@@ -33,14 +53,20 @@ function Home() {
                 htmlFor="Budget"
                 className="flex flex-col text-center filters my-1"
               >
-                Max Rent You Pay
+                Max Rent You Pay Per Month: ${value}
                 <input
                   type="range"
                   min="100"
                   max="4000"
+                  step="50"
                   value={value}
                   onChange={handleChange}
+                  className="mt-8"
                 />
+                <div className="flex justify-between">
+                  <label>$0</label>
+                  <label>$4000</label>
+                </div>
                 {/* Age */}
               </label>
               <div className="flex flex-col py-4">
@@ -97,24 +123,148 @@ function Home() {
                 <div className="filters mb-4">
                   Allow Pets
                   <div className="flex justify-center my-1">
-                    <label htmlFor="pets" className="px-4">
-                      <input type="radio" name="pets" value="yes" /> Yes
-                    </label>
-                    <label htmlFor="pets" className="px-4">
-                      <input type="radio" name="pets" value="no" /> No
-                    </label>
+                    {/* <label
+                      htmlFor="pets-yes"
+                      className="filter-pets-yes px-4 mx-2"
+                    >
+                      <input
+                        id="pets-yes"
+                        type="radio"
+                        name="pets"
+                        value="yes"
+                        hidden
+                      />{' '}
+                      Yes
+                    </label> */}
+                    {options1.map(option => (
+                      <label
+                        // htmlFor="pets-yes"
+                        id="filter-pets-yes"
+                        key={option.value}
+                        className={
+                          selectedPetValue === option.value
+                            ? 'active-pets-yes'
+                            : ''
+                        }
+                      >
+                        <input
+                          id="filter-pets-yes"
+                          type="radio"
+                          name="pets"
+                          value={option.value}
+                          checked={selectedPetValue === option.value}
+                          onChange={handlePetChange}
+                          hidden
+                        />
+                        {option.label}
+                      </label>
+                    ))}
+                    {options2.map(option => (
+                      <label
+                        // htmlFor="pets-no"
+                        id="filter-pets-no"
+                        key={option.value}
+                        className={
+                          selectedPetValue === option.value
+                            ? 'active-pets-no'
+                            : ''
+                        }
+                      >
+                        <input
+                          id="filter-pets-no"
+                          type="radio"
+                          name="pets"
+                          value={option.value}
+                          checked={selectedPetValue === option.value}
+                          onChange={handlePetChange}
+                          hidden
+                        />
+                        {option.label}
+                      </label>
+                    ))}
+                    {/* <label
+                      htmlFor="pets-no"
+                      className="filter-pets-no px-4 mx-2"
+                    >
+                      <input
+                        id="pets-no"
+                        type="radio"
+                        name="pets"
+                        value="no"
+                        hidden
+                      />{' '}
+                      No
+                    </label> */}
                   </div>
                 </div>
                 {/* Allow Children */}
                 <div className="filters my-4">
                   Allow Children
                   <div className="flex justify-center my-1">
-                    <label htmlFor="children" className="px-4">
-                      <input type="radio" name="children" value="yes" /> Yes
-                    </label>
-                    <label htmlFor="children" className="px-4">
-                      <input type="radio" name="children" value="no" /> No
-                    </label>
+                    {/* <label htmlFor="children-yes" className="px-4">
+                      <input
+                        id="children-yes"
+                        type="radio"
+                        name="children"
+                        value="yes"
+                      />{' '}
+                      Yes
+                    </label> */}
+                    {options3.map(option => (
+                      <label
+                        // htmlFor="children-yes"
+                        id="filter-children-yes"
+                        key={option.value}
+                        className={
+                          selectedChildValue === option.value
+                            ? 'active-children-yes'
+                            : ''
+                        }
+                      >
+                        <input
+                          id="filter-children-yes"
+                          type="radio"
+                          name="children"
+                          value={option.value}
+                          checked={selectedChildValue === option.value}
+                          onChange={handleChildChange}
+                          hidden
+                        />
+                        {option.label}
+                      </label>
+                    ))}
+                    {options4.map(option => (
+                      <label
+                        // htmlFor="children-no"
+                        id="filter-children-no"
+                        key={option.value}
+                        className={
+                          selectedChildValue === option.value
+                            ? 'active-children-no'
+                            : ''
+                        }
+                      >
+                        <input
+                          id="filter-children-no"
+                          type="radio"
+                          name="children"
+                          value={option.value}
+                          checked={selectedChildValue === option.value}
+                          onChange={handleChildChange}
+                          hidden
+                        />
+                        {option.label}
+                      </label>
+                    ))}
+                    {/* <label htmlFor="children-no" className="px-4">
+                      <input
+                        id="children-no"
+                        type="radio"
+                        name="children"
+                        value="no"
+                      />{' '}
+                      No
+                    </label> */}
                   </div>
                 </div>
               </div>

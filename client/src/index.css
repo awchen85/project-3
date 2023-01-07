@@ -371,6 +371,66 @@ form p {
   padding: 10px;
 }
 
+#filter-pets-yes, #filter-children-yes {
+  width: 50%;
+  text-align: center;
+  border: solid 1px green;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0 4px;
+}
+
+#filter-pets-yes:hover, #filter-children-yes:hover {
+  background-color: lightgreen;
+}
+
+.active-pets-yes, .active-children-yes {
+  border: solid 1px green;
+  background: lightgreen;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em green, 0 0 0.4em green,
+    0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
+  -webkit-box-shadow: 0px 6px 0px green;
+  -moz-box-shadow: 0px 6px 0px green;
+  box-shadow: 0px 6px 0px green;
+}
+
+#filter-pets-no, #filter-children-no {
+  width: 50%;
+  text-align: center;
+  border: solid 1px red;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0 4px;
+}
+
+#filter-pets-no:hover, #filter-children-no:hover {
+  background-color: lightcoral;
+}
+
+.active-pets-no, .active-children-no {
+  border: solid 1px red;
+  background: lightcoral;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
+    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+  -webkit-box-shadow: 0px 6px 0px red;
+  -moz-box-shadow: 0px 6px 0px red;
+  box-shadow: 0px 6px 0px red;
+}
+
 #filterModalFooter {
   bottom: 10%;
   display: flex;
