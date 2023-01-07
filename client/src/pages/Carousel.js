@@ -1,93 +1,50 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/button-has-type */
+/* eslint-disable no-shadow */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-unused-vars */
-/* eslint-disable react/button-has-type */
-/* eslint-disable eol-last */
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import gql from 'graphql-tag';
+/* eslint-disable react/jsx-closing-tag-location */
+/* eslint-disable arrow-body-style */
+/* eslint-disable no-undef */
+import React, { useState, useEffect } from 'react';
+import Cards from './Cards';
 
-const ADD_CARD = gql`
-mutation addCard($userId: String!, $aboutMe: String!, $budget: Number!, $location: String!, $allowPets: Boolean!, $allowChildren: Boolean!, $age: Number!, $gender: String!)
-{
-addCard(userId: $userId, aboutMe: $aboutMe, budget: $budget, location: $location, allowPets: $allowPets, allowChildren: $allowChildren, age: $age, gender: $gender) {
-  userId,
-  aboutMe,
-  budget,
-  location,
-  allowPets,
-  allowChildren,
-  age,
-  gender
-}
-}`;
-const Card = ({ userId, aboutMe, budget, location, allowPets, allowChildren, age, gender }) => {
-  const [addCard, { data }] = useMutation(ADD_CARD);
+function Carousel() {
+  const [currentCard, setCurrentCard] = useState(0);
+  const [cards, setCard] = useState([]);
 
-  const handleAddCard = () => {
-    addCard({ variables: { userId, aboutMe, budget, location, allowPets, allowChildren, age, gender } });
-  };
-}
-function Carousel({ items, Cards }) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [translate, setTranslate] = useState(0);
-  const [transition, setTransition] = useState(0.45);
+  useEffect(() => {
+    // Fetch data for cards
+  const data = [
+    { image: 'simu.jpg', caption: 'Im great' },
+    { image: 'simu.jpg', caption: 'Im great' },
+    { image: 'simu.jpg', caption: 'Im great' },
+  ];
+const cardElements = data.map((cards, index) => (
+<Cards key={index} image={cards.image} caption={cards.caption} />
+));
+  setCard(cardElements);
+}, []);
 
-  const nextSlide = () => {
-    if (activeIndex === items.length - 1) {
-      setActiveIndex(0);
-      setTranslate(0);
-    } else {
-      setActiveIndex(activeIndex + 1);
-      setTranslate(-100 * (activeIndex + 1));
-    }
-  };
+const handleNextClick = () => {
+  setCurrentCard((currentCard + 1) % numCard);
+};
 
-  const prevSlide = () => {
-    if (activeIndex === 0) {
-      setActiveIndex(items.length - 1);
-      setTranslate(-100 * (items.length - 1));
-    } else {
-      setActiveIndex(activeIndex - 1);
-      setTranslate(-100 * (activeIndex - 1));
-    }
-  };
-
-  return (
-    <div className="relative w-full h-64">
-      <div
-        className="w-full h-full flex items-center justify-center overflow-hidden"
+return (
+  <div>
+    {cards.map((cards, index) => {
+      return (
+        <div
+        key={index}
         style={{
-          transform: `translateX(${translate}%)`,
-          transition: `transform ease-out ${transition}s`,
+          display: index === currentCard ? 'block' : 'none',
         }}
-      >
-        {items.map((item, index) => (
-          <div
-            key={index}
-            className="w-full h-full absolute bg-gray-800 text-center"
-            style={{
-              transform: `translateX(${100 * index}%)`,
-            }}
-          >
-            <Cards {...item} />
+        >
+          {cards}
           </div>
-        ))}
-      </div>
-      <button
-        className="absolute top-0 left-0 w-12 h-12 m-4 rounded-full bg-gray-300 hover:bg-gray-400"
-        onClick={prevSlide}
-      >
-        Prev
-      </button>
-      <button
-        className="absolute top-0 right-0 w-12 h-12 m-4 rounded-full bg-gray-300 hover:bg-gray-400"
-        onClick={nextSlide}
-      >
-        Next
-      </button>
-    </div>
+      );
+    })}
+  <button onClick={handleNextClick}>Next</button>
+  </div>
   );
 }
 

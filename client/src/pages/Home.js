@@ -9,8 +9,8 @@ import MapboxGeocoder from '@mapbox/mapbox-sdk/services/geocoding';
 import 'react-responsive-modal/styles.css';
 // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
 import mapboxgl from '!mapbox-gl';
-import Cards from './Cards';
-// import Carousel from './Carousel';
+
+import Carousel from './Carousel';
 
 function Home() {
   const [open, setOpen] = React.useState(false);
@@ -302,7 +302,10 @@ function Home() {
           </section>
           <div className="profile-section grid grid-cols-1 gap-4">
             <section className="profile-card flex flex-col border-2 border-black rounded-md p-2 xl:grid-cols-3">
-              <Cards />
+              {/* Carousel Container */}
+              <div>
+              <Carousel />
+              </div>
             </section>
           </div>
         </div>

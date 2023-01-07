@@ -24,6 +24,7 @@ import Dashboard from './pages/Dashboard';
 import NotFound from './pages/NotFound';
 import Profile from './pages/ProfileSetup';
 import Cards from './pages/Cards';
+import Carousel from './pages/Carousel';
 import './App.css';
 
 // // eslint-disable-next-line operator-linebreak
@@ -90,7 +91,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/*" element={<NotFound />} />
               <Route path="/cards" element={<Cards />} />
-
+              <Route path="/carousel" element={<Carousel />} />
             </Routes>
           </CurrentUserContextProvider>
         </Router>

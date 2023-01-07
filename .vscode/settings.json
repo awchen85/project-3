@@ -1,4 +1,8 @@
 {
   "eslint.run": "onSave",
-  "cSpell.words": ["Simu", "tailwindcss"]
+  "cSpell.words": [
+    "mapboxgl",
+    "Simu",
+    "tailwindcss"
+  ]
 }

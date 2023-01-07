@@ -3,11 +3,19 @@ import React from 'react';
 import Simu from '../assets/images/simu.jpg';
 /* eslint-disable indent */
 
+
+const data = [
+  { image: 'simu.jpg', caption: 'Im great' },
+  { image: 'simu.jpg', caption: 'Im great' },
+  { image: 'simu.jpg', caption: 'Im great' },
+];
+
 function Cards() {
   return (
     <div>
       {/* Grid */}
     <div className="max-w-[1000px] mx-auto p-1 py-10 grid grid-border-2 md:grid-cols-2 gap-10 justify-around">
+    {/* Individual Card */}
     <div className="max-w-auto border-black border-2 bg-yellow-200">
   <div className="px-6 py-4">
       <div className="font-bold text-xl mb-2 text-center">Simu</div>
