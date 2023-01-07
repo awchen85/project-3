@@ -1,7 +1,6 @@
+/* eslint-disable */
 const jwt = require('jsonwebtoken');
-
 const secret = process.env.JWT_SECRET;
-
 const expiration = '2h';
 
 module.exports = {
@@ -28,9 +27,7 @@ module.exports = {
 
     return req;
   },
-  // eslint-disable-next-line object-curly-newline
   signToken({ firstName, lastName, email, _id }) {
-    // eslint-disable-next-line object-curly-newline
     const payload = { firstName, lastName, email, _id };
 
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
