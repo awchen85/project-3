@@ -3,25 +3,25 @@ import React, { useState, useRef, useEffect } from 'react';
 import placeholder from '../../assets/images/placeholder-icon.jpg';
 
 function DashboardProfile() {
-  // Allow Pets Radio Buttons
-  const options1 = [{ value: 'option1', label: 'Yes' }];
-  const options2 = [{ value: 'option2', label: 'No' }];
-  // Allow Pets
-  const [selectedPetValue, setSelectedPetValue] = useState(null);
-  // Allow Pets
-  const handlePetChange = event => {
-    setSelectedPetValue(event.target.value);
-  };
+  // // Allow Pets Radio Buttons
+  // const options1 = [{ value: 'option1', label: 'Yes' }];
+  // const options2 = [{ value: 'option2', label: 'No' }];
+  // // Allow Pets
+  // const [selectedPetValue, setSelectedPetValue] = useState(null);
+  // // Allow Pets
+  // const handlePetChange = event => {
+  //   setSelectedPetValue(event.target.value);
+  // };
 
-  // Allow Children Radio Buttons
-  const options3 = [{ value: 'option3', label: 'Yes' }];
-  const options4 = [{ value: 'option4', label: 'No' }];
-  // Allow Pets
-  const [selectedChildValue, setSelectedChildValue] = useState(null);
-  // Allow Pets
-  const handleChildChange = event => {
-    setSelectedChildValue(event.target.value);
-  };
+  // // Allow Children Radio Buttons
+  // const options3 = [{ value: 'option3', label: 'Yes' }];
+  // const options4 = [{ value: 'option4', label: 'No' }];
+  // // Allow Pets
+  // const [selectedChildValue, setSelectedChildValue] = useState(null);
+  // // Allow Pets
+  // const handleChildChange = event => {
+  //   setSelectedChildValue(event.target.value);
+  // };
 
   return (
     <div>
@@ -172,7 +172,7 @@ function DashboardProfile() {
           </div>
         </div>
         {/* Allow Pets */}
-        <div className="profile-field-section">
+        {/* <div className="profile-field-section">
           <h3 className="profile-h3 mb-4">You Have Pets</h3>
           <div className="profile-pets">
             {options1.map(option => (
@@ -218,9 +218,9 @@ function DashboardProfile() {
               </label>
             ))}
           </div>
-        </div>
+        </div> */}
         {/* Allow Children */}
-        <div className="profile-field-section">
+        {/* <div className="profile-field-section">
           <h3 className="profile-h3 mb-4">You Have Children</h3>
           <div className="profile-children">
             {options3.map(option => (
@@ -270,7 +270,7 @@ function DashboardProfile() {
               </label>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="flex justify-center">
         <button type="submit" className="profile-view text-2xl">

@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
+import { Modal } from 'react-responsive-modal';
+import 'react-responsive-modal/styles.css';
 import DashboardProfile from '../components/DashboardProfile';
 import DashboardFriends from '../components/DashboardFriends';
 import DashboardInbox from '../components/DashboardInbox';
@@ -41,6 +43,22 @@ function Dashboard() {
 
   const handleComponentChange = component => setCurrentComponent(component);
 
+  const [open, setOpen] = React.useState(false);
+
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
+
+  const modal = (
+    <div id="inboxModal" className="modal">
+      <div className="modal-header">
+        <h1>Hello</h1>
+      </div>
+      <button type="submit" onClick={onCloseModal}>
+        Go Back
+      </button>
+    </div>
+  );
+
   return (
     <div>
       <div className="dashboard flex">
@@ -63,7 +81,8 @@ function Dashboard() {
           </button>
           <button
             type="submit"
-            onClick={() => handleComponentChange('DashboardInbox')}
+            // onClick={() => handleComponentChange('DashboardInbox')}
+            onClick={onOpenModal}
             id="inbox"
             className={determineIsActive('DashboardInbox')}
           >
@@ -89,6 +108,9 @@ function Dashboard() {
           {/* <DashboardProfile /> */}
         </div>
       </div>
+      <Modal classNames="" open={open} onClose={onCloseModal} center>
+        {modal}
+      </Modal>
     </div>
   );
 }

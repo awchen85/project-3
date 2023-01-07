@@ -325,6 +325,22 @@ form p {
     0 0 0.6em blue, 0 0 0.8em blue, 0 0 1em blue, 0 0 1.2em blue;
 }
 
+#inbox {
+  cursor: not-allowed;
+}
+
+#inboxModal {
+  width: fit-content;
+  min-height: 50vh;
+  justify-content: center;
+  border: 2px solid rgba(201, 201, 201, 0.5);
+  border-radius: 4px;
+  box-shadow: 10px 5px 5px gray;
+  padding: 20px;
+  /* margin: 100px; */
+  text-align: center;
+}
+
 .button-3d {
   position: relative;
   width: auto;
@@ -371,7 +387,7 @@ form p {
   padding: 20px;
   /* margin: 100px; */
   text-align: center;
-  font-family: "";
+  font-family: "Martian Mono";
 }
 
 .filters-title {
@@ -413,6 +429,10 @@ form p {
   width: 100%;
 }
 
+#filter-pets-yes:hover, #filter-children-yes:hover {
+  background-color: lightgreen;
+}
+
 #profile-pets-yes:hover, #profile-children-yes:hover {
   background-color: lightgreen;
 }
@@ -432,6 +452,17 @@ form p {
   box-shadow: 0px 6px 0px green;
 }
 
+#filter-pets-no, #filter-children-no {
+  width: 50%;
+  text-align: center;
+  border: solid 1px red;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0 4px;
+}
+
 #profile-pets-no, #profile-children-no {
   width: 100%;
   text-align: center;
@@ -441,6 +472,10 @@ form p {
   font-size: 22px;
   font-weight: bold;
   margin: 0 4px;
+}
+
+#filter-pets-no:hover, #filter-children-no:hover {
+  background-color: lightcoral;
 }
 
 #profile-pets-no:hover, #profile-children-no:hover {
@@ -473,7 +508,7 @@ form p {
   border: solid 1px green;
   background: lightgreen;
   border-radius: 10px;
-  width: 40%;
+  width: 50%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
@@ -488,7 +523,7 @@ form p {
   border: solid 1px red;
   background: lightcoral;
   border-radius: 10px;
-  width: 40%;
+  width: 50%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
