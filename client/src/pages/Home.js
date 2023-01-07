@@ -1,14 +1,11 @@
-/* eslint-disable max-len */
-/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable */
 import React, { useRef, useEffect, useState } from 'react';
-// import GoogleMapPic from '../assets/images/GoogleMapTA.webp';
 import { Modal } from 'react-responsive-modal';
-// eslint-disable-next-line import/no-unresolved
 import MapboxGeocoder from '@mapbox/mapbox-sdk/services/geocoding';
 import 'react-responsive-modal/styles.css';
 import placeholder from '../assets/images/placeholder-icon.jpg';
-// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
 import mapboxgl from '!mapbox-gl';
+import MultiRangeSlider from '../components/multiRangeSlider';
 
 function Home() {
   const [open, setOpen] = React.useState(false);
@@ -20,12 +17,6 @@ function Home() {
 
   const handleChange = event => {
     setValue(event.target.value);
-  };
-
-  const [option, setOption] = React.useState('Option 1');
-
-  const handleAgeChange = event => {
-    setOption(event.target.value === 'Option 1' ? 'Option 2' : 'Option 1');
   };
 
   const filterModal = (
@@ -55,13 +46,10 @@ function Home() {
               <div className="flex flex-col py-4">
                 <label htmlFor="age" className="flex flex-col filters my-1">
                   Age Range
-                  <input
-                    type="range"
-                    min="18"
-                    max="100"
-                    step="1"
-                    value={option === 'Option 1' ? '18' : '100'}
-                    onChange={handleAgeChange}
+                  <MultiRangeSlider
+                    min={18}
+                    max={100}
+                    onChange={({ min, max }) => console.log()}
                   />
                 </label>
                 <br />

@@ -528,6 +528,11 @@ form p {
     box-shadow: 0px 2px 0px gray;
   }
 
+  .range-value {
+  font-size: 18px;
+  font-weight: bold;
+}
+
   .profile-section {
     margin-top: 20px;
   }
