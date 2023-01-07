@@ -94,12 +94,14 @@ function Profile() {
           <div>
             <div className="flex border-y-stone-500">
               <div>
-                <div className="flex">
-                  <h3 className="mt-1">What city do you want to live in?</h3>
-                  <div>
+                <div className="profile-location flex">
+                  <div className="flex w-3/4">
+                    <h3 className="mt-1">What city do you want to live in?</h3>
                     <BiBuildingHouse className="text-blue-500 text-2xl mt-2" />
+                  </div>
+                  <div>
                     <input
-                      className="form-input-address"
+                      className="form-input-address-profile"
                       placeholder="Enter a city's name to search for people in that area"
                       name="address"
                       type="text"
@@ -129,14 +131,14 @@ function Profile() {
                             cursor: 'pointer',
                           }}
                           className={index === selectedIndex ? 'selected' : ''}
-                          id="autocomplete-result"
+                          id="profile-autocomplete-result"
                         >
                           {result.place_name}
                         </li>
                       ))}
                     </ul>
                   </div>
-                  <div style={{ width: '100%' }} />
+                  {/* <div style={{ width: '100%' }} /> */}
                 </div>
               </div>
             </div>

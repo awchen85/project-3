@@ -26,36 +26,6 @@ import Profile from './pages/ProfileSetup';
 import Cards from './pages/Cards';
 import './App.css';
 
-// // eslint-disable-next-line operator-linebreak
-// mapboxgl.accessToken =
-// 'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
-
-// const mapContainer = useRef(null);
-// const map = useRef(null);
-// const [lng, setLng] = useState(-70.9);
-// const [lat, setLat] = useState(42.35);
-// const [zoom, setZoom] = useState(9);
-
-// useEffect(() => {
-//   if (map.current) return; // initialize map only once
-//   map.current = new mapboxgl.Map({
-//     container: mapContainer.current,
-//     style: 'mapbox://styles/mapbox/streets-v12',
-//     center: [lng, lat],
-//     // eslint-disable-next-line object-shorthand
-//     zoom: zoom,
-//   });
-// });
-
-// useEffect(() => {
-//   if (!map.current) return; // wait for map to initialize
-//   map.current.on('move', () => {
-//     setLng(map.current.getCenter().lng.toFixed(4));
-//     setLat(map.current.getCenter().lat.toFixed(4));
-//     setZoom(map.current.getZoom().toFixed(2));
-//   });
-// });
-
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -87,10 +57,13 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Registration />} />
               <Route path="/Profile" element={<Profile />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/dashboard">
+                <Route path=":email" element={<Dashboard />} />
+                <Route path="" element={<Dashboard />} />
+              </Route>
+              {/* <Route path="/dashboard" element={<Dashboard />} /> */}
               <Route path="/*" element={<NotFound />} />
               <Route path="/cards" element={<Cards />} />
-
             </Routes>
           </CurrentUserContextProvider>
         </Router>

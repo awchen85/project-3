@@ -80,6 +80,7 @@ const resolvers = {
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
           {
+            // eslint-disable-next-line object-shorthand
             profile: profile,
           },
           { new: true }
