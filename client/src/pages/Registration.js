@@ -1,7 +1,9 @@
+/* eslint-disable */
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo/logo.jpg';
+// import auth from '../utils/auth';
 
 import { REGISTER_USER } from '../graphql/mutations';
 
@@ -13,6 +15,8 @@ export default function Registration() {
   const [formState, setFormState] = useState({
     email: '',
     password: '',
+    firstName: '',
+    lastName: ''
   });
 
   const [registerUser, { error }] = useMutation(REGISTER_USER);

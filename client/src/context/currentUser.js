@@ -9,6 +9,7 @@ import {
 import decode from 'jwt-decode';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+// import auth from '../utils/auth';
 
 export const CurrentUserContext = createContext();
 
