@@ -690,42 +690,48 @@ form p {
   }
 
   .card-2 {
-    background-image: url("./assets/cards/durham-bg.jpg");
+    background-image: url("./assets/cards/apex-bg.jpg");
     background-position: center;
     background-size: cover;
   }
 
   .card-3 {
-    background-image: url("./assets/cards/boone-bg.jpg");
+    background-image: url("./assets/cards/durham-bg.jpg");
     background-position: center;
     background-size: cover;
   }
 
   .card-4 {
-    background-image: url("./assets/cards/hickory-bg.jpg");
+    background-image: url("./assets/cards/boone-bg.jpg");
     background-position: center;
     background-size: cover;
   }
 
   .card-5 {
-    background-image: url("./assets/cards/wilmington-bg.jpg");
+    background-image: url("./assets/cards/hickory-bg.jpg");
     background-position: center;
     background-size: cover;
   }
 
   .card-6 {
+    background-image: url("./assets/cards/wilmington-bg.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .card-7 {
     background-image: url("./assets/cards/raleigh-bg.jpg");
     background-position: center;
     background-size: cover;
   }
 
-    .card-7 {
+  .card-8 {
     background-image: url("./assets/cards/charlotte-bg.jpg");
-    background-position: center;
+    background-position: left;
     background-size: cover;
   }
 
-    .card-8 {
+  .card-9 {
     background-image: url("./assets/cards/winston-salem-bg.jpg");
     background-position: left;
     background-size: cover;

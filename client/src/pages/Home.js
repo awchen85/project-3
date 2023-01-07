@@ -264,20 +264,15 @@ function Home() {
     console.log('Searched for:', input);
   };
 
-  // const clickHandler = e => {
-  //   e.preventDefault();
-  //   const { target } = e;
-  //   console.log('Clicked!', target.id);
-  // };
-
   const cities1 = ['Greensboro, NC'];
-  const cities2 = ['Durham, NC'];
-  const cities3 = ['Boone, NC'];
-  const cities4 = ['Hickory, NC'];
-  const cities5 = ['Wilmington, NC'];
-  const cities6 = ['Raleigh, NC'];
-  const cities7 = ['Charlotte, NC'];
-  const cities8 = ['Winston-Salem, NC'];
+  const cities2 = ['Apex, NC'];
+  const cities3 = ['Durham, NC'];
+  const cities4 = ['Boone, NC'];
+  const cities5 = ['Hickory, NC'];
+  const cities6 = ['Wilmington, NC'];
+  const cities7 = ['Raleigh, NC'];
+  const cities8 = ['Charlotte, NC'];
+  const cities9 = ['Winston-Salem, NC'];
 
   const searchForCity = city => {
     const geocoder = MapboxGeocoder({
@@ -610,6 +605,20 @@ function Home() {
                   // eslint-disable-next-line react/button-has-type
                   <button key={city} onClick={() => searchForCity(city)}>
                     <div className="card card-8">
+                      <h3
+                        id="city-value"
+                        className="flex justify-center card-city-text"
+                      >
+                        {city}
+                      </h3>
+                    </div>
+                  </button>
+                ))}
+                {/* eslint-disable-next-line react/button-has-type */}
+                {cities9.map(city => (
+                  // eslint-disable-next-line react/button-has-type
+                  <button key={city} onClick={() => searchForCity(city)}>
+                    <div className="card card-9">
                       <h3
                         id="city-value"
                         className="flex justify-center card-city-text"
