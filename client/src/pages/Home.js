@@ -457,6 +457,7 @@ function Home() {
                   className="form-input-address"
                   placeholder="Enter a city's name to search for people in that area"
                   name="address"
+                  id="address"
                   type="text"
                   ref={searchInput}
                   onChange={handleSearch}

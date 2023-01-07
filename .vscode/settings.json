@@ -1,5 +1,6 @@
 {
   "eslint.run": "onSave",
   "cSpell.words": ["Simu", "tailwindcss"],
-  "emmet.preferences": {}
+  "emmet.preferences": {},
+  "editor.linkedEditing": true
 }
