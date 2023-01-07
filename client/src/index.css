@@ -341,6 +341,41 @@ form p {
   text-align: center;
 }
 
+.stop-sign {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.construction-button {
+  border: solid 1px red;
+  background: lightcoral;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
+    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+  -webkit-box-shadow: 0px 6px 0px red;
+  -moz-box-shadow: 0px 6px 0px red;
+  box-shadow: 0px 6px 0px red;
+  width: 50%;
+  margin: 20px 4px 10px 4px;
+}
+
+.construction-button:hover {
+  border: 2px solid red;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
+    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+}
+
+.construction-button:active {
+  border: 2px solid lightgray;
+  -webkit-box-shadow: 0px 2px 0px darkred;
+  -moz-box-shadow: 0px 2px 0px darkred;
+  box-shadow: 0px 2px 0px darkred;
+}
+
 .button-3d {
   position: relative;
   width: auto;
