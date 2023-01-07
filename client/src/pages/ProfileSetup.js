@@ -1,5 +1,5 @@
-import { Modal } from 'react-responsive-modal';
-import { AiOutlineProfile } from 'react-icons/ai';
+// import { Modal } from 'react-responsive-modal';
+// import { AiOutlineProfile } from 'react-icons/ai';
 import 'react-responsive-modal/styles.css';
 import React, { useState, useRef } from 'react';
 import { BsGenderMale, BsGenderFemale } from 'react-icons/bs';
@@ -82,22 +82,18 @@ function Profile() {
     }
   };
 
-  const [open, setOpen] = React.useState(false);
-
-  const onOpenModal = () => setOpen(true);
-  const onCloseModal = () => setOpen(false);
-
-  const profileModal = (
+  return (
     <form>
       <fieldset>
-        <div className="m-5 flex justify-center flex-wrap rounded-full">
+        <div className="m-5 flex justify-start rounded-full">
           <div>
             <div className="flex border-y-stone-500">
               <div>
                 <div className="flex">
-                  <h3 className="mt-1">What city do you want to live in?</h3>
-                  <div>
+                    <h3 className="mt-1">What city do you want to live in?</h3>
                     <BiBuildingHouse className="text-blue-500 text-2xl mt-2" />
+                </div>
+                  <div>
                     <input
                       className="form-input-address"
                       placeholder="Enter a city's name to search for people in that area"
@@ -129,14 +125,15 @@ function Profile() {
                             cursor: 'pointer',
                           }}
                           className={index === selectedIndex ? 'selected' : ''}
-                          id="autocomplete-result"
+                          id="profile-autocomplete-result"
                         >
                           {result.place_name}
                         </li>
                       ))}
                     </ul>
+                    </div>
                   </div>
-                  <div style={{ width: '100%' }} />
+                  <div />
                 </div>
               </div>
             </div>
@@ -247,23 +244,6 @@ function Profile() {
         </div>
       </fieldset>
     </form>
-  );
-  return (
-    <div>
-      <div className="flex justify-center m-5">
-        <button
-          className="flex md:text-4xl text-3xl p-10 rounded-full border-4 border-black"
-          type="button"
-          onClick={onOpenModal}
-        >
-          Create Profile
-          <AiOutlineProfile />
-        </button>
-      </div>
-      <Modal classNames="" open={open} onClose={onCloseModal} center>
-        {profileModal}
-      </Modal>
-    </div>
   );
 }
 
