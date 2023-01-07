@@ -1,5 +1,5 @@
 // import React, { useRef, useEffect, useState } from 'react';
-/* eslint-disable comma-dangle */
+/* eslint-disable */
 import {
   ApolloClient,
   InMemoryCache,
@@ -23,8 +23,8 @@ import Registration from './pages/Registration';
 import Dashboard from './pages/Dashboard';
 import NotFound from './pages/NotFound';
 import Profile from './pages/ProfileSetup';
-import Cards from './pages/Cards';
-import Carousel from './pages/Carousel';
+import Cards from './components/Cards';
+import Carousel from './components/Carousel';
 import './App.css';
 
 const httpLink = createHttpLink({
@@ -68,7 +68,6 @@ function App() {
               </Route>
               {/* <Route path="/dashboard" element={<Dashboard />} /> */}
               <Route path="/*" element={<NotFound />} />
-              <Route path="/cards" element={<Cards />} />
             </Routes>
           </CurrentUserContextProvider>
         </Router>

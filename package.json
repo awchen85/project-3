@@ -28,6 +28,8 @@
     "eslint-plugin-tailwindcss": "^3.8.0"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.3",
+    "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6",
     "react-easy-swipe": "^0.0.22",
     "react-icons": "^4.7.1",

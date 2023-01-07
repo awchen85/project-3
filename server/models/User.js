@@ -35,24 +35,24 @@ const userSchema = new Schema({
       'Must meet requirements!',
     ],
   },
-  likes: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Room',
-    },
-  ],
-  rooms: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Room',
-    },
-  ],
-  reviews: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Review',
-    },
-  ],
+  // likes: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: 'Room',
+  //   },
+  // ],
+  // rooms: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: 'Room',
+  //   },
+  // ],
+  // reviews: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: 'Review',
+  //   },
+  // ],
   profile: {
     type: Schema.Types.ObjectId,
     ref: 'Profile',

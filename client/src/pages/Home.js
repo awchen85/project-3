@@ -6,10 +6,15 @@ import 'react-responsive-modal/styles.css';
 import mapboxgl from '!mapbox-gl';
 import MultiRangeSlider from '../components/multiRangeSlider';
 import { GiTrashCan } from 'react-icons/gi';
+import { useQuery } from '@apollo/client';
+import { QUERY_GET_PROFILES } from '../utils/queries';
+import Cards from '../components/Cards';
+import Carousel from '../components/Carousel';
 
-import Carousel from './Carousel';
+const Home = () => {
+  const { loading, data } = useQuery(QUERY_GET_PROFILES);
+  const profile = data?.getProfiles || [];
 
-function Home() {
   const [open, setOpen] = React.useState(false);
 
   const onOpenModal = () => setOpen(true);
@@ -472,7 +477,11 @@ function Home() {
             <section className="profile-card flex flex-col border-2 border-black rounded-md p-2 xl:grid-cols-3">
               {/* Carousel Container */}
               <div>
-              <Carousel />
+                {loading ? (
+                  <div>Loading</div>
+                ) : (
+              <Cards getProfiles={profile} title="Matches"/>
+                )}
               </div>
             </section>
           </div>
