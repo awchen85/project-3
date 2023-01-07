@@ -1,7 +1,28 @@
-import React from 'react';
+/* eslint-disable */
+import React, { useState, useRef, useEffect } from 'react';
 import placeholder from '../../assets/images/placeholder-icon.jpg';
 
 function DashboardProfile() {
+  // Allow Pets Radio Buttons
+  const options1 = [{ value: 'option1', label: 'Yes' }];
+  const options2 = [{ value: 'option2', label: 'No' }];
+  // Allow Pets
+  const [selectedPetValue, setSelectedPetValue] = useState(null);
+  // Allow Pets
+  const handlePetChange = event => {
+    setSelectedPetValue(event.target.value);
+  };
+
+  // Allow Children Radio Buttons
+  const options3 = [{ value: 'option3', label: 'Yes' }];
+  const options4 = [{ value: 'option4', label: 'No' }];
+  // Allow Pets
+  const [selectedChildValue, setSelectedChildValue] = useState(null);
+  // Allow Pets
+  const handleChildChange = event => {
+    setSelectedChildValue(event.target.value);
+  };
+
   return (
     <div>
       <h1 className="text-center font-bold text-3xl m-8">
@@ -150,30 +171,148 @@ function DashboardProfile() {
             />
           </div>
         </div>
+        {/* Allow Pets */}
         <div className="profile-field-section">
-          <h3 className="profile-h3">You Have Pets</h3>
-          <div className="">
-            <label htmlFor="pets" className="px-4">
-              <input type="radio" name="pets" value="yes" />
-              Yes
-            </label>
-            <label htmlFor="pets" className="px-4">
-              <input type="radio" name="pets" value="no" />
-              No
-            </label>
+          <h3 className="profile-h3 mb-4">You Have Pets</h3>
+          <div className="profile-pets">
+            {/* <label
+                      htmlFor="pets-yes"
+                      className="filter-pets-yes px-4 mx-2"
+                    >
+                      <input
+                        id="pets-yes"
+                        type="radio"
+                        name="pets"
+                        value="yes"
+                        hidden
+                      />{' '}
+                      Yes
+                    </label> */}
+            {options1.map(option => (
+              <label
+                // htmlFor="pets-yes"
+                id="profile-pets-yes"
+                key={option.value}
+                className={
+                  selectedPetValue === option.value ? 'active-pets-yes' : ''
+                }
+              >
+                <input
+                  id="profile-pets-yes"
+                  type="radio"
+                  name="pets"
+                  value={option.value}
+                  checked={selectedPetValue === option.value}
+                  onChange={handlePetChange}
+                  hidden
+                />
+                {option.label}
+              </label>
+            ))}
+            {options2.map(option => (
+              <label
+                // htmlFor="pets-no"
+                id="profile-pets-no"
+                key={option.value}
+                className={
+                  selectedPetValue === option.value ? 'active-pets-no' : ''
+                }
+              >
+                <input
+                  id="profile-pets-no"
+                  type="radio"
+                  name="pets"
+                  value={option.value}
+                  checked={selectedPetValue === option.value}
+                  onChange={handlePetChange}
+                  hidden
+                />
+                {option.label}
+              </label>
+            ))}
+            {/* <label
+                      htmlFor="pets-no"
+                      className="filter-pets-no px-4 mx-2"
+                    >
+                      <input
+                        id="pets-no"
+                        type="radio"
+                        name="pets"
+                        value="no"
+                        hidden
+                      />{' '}
+                      No
+                    </label> */}
           </div>
         </div>
+        {/* Allow Children */}
         <div className="profile-field-section">
-          <h3 className="profile-h3">You Have Children</h3>
-          <div className="">
-            <label htmlFor="children" className="px-4">
-              <input type="radio" name="children" value="yes" />
-              Yes
-            </label>
-            <label htmlFor="children" className="px-4">
-              <input type="radio" name="children" value="no" />
-              No
-            </label>
+          <h3 className="profile-h3 mb-4">You Have Children</h3>
+          <div className="profile-children">
+            {/* <label htmlFor="children-yes" className="px-4">
+                      <input
+                        id="children-yes"
+                        type="radio"
+                        name="children"
+                        value="yes"
+                      />{' '}
+                      Yes
+                    </label> */}
+            {options3.map(option => (
+              <label
+                // htmlFor="children-yes"
+                id="profile-children-yes"
+                key={option.value}
+                className={
+                  selectedChildValue === option.value
+                    ? 'active-children-yes'
+                    : ''
+                }
+              >
+                <input
+                  id="profile-children-yes"
+                  type="radio"
+                  name="children"
+                  value={option.value}
+                  checked={selectedChildValue === option.value}
+                  onChange={handleChildChange}
+                  hidden
+                />
+                {option.label}
+              </label>
+            ))}
+            {options4.map(option => (
+              <label
+                // htmlFor="children-no"
+                id="profile-children-no"
+                key={option.value}
+                className={
+                  selectedChildValue === option.value
+                    ? 'active-children-no'
+                    : ''
+                }
+              >
+                <input
+                  id="profile-children-no"
+                  type="radio"
+                  name="children"
+                  value={option.value}
+                  checked={selectedChildValue === option.value}
+                  onChange={handleChildChange}
+                  hidden
+                />
+                {option.label}
+              </label>
+            ))}
+            {/* <label htmlFor="children-no" className="px-4">
+                      <input
+                        id="children-no"
+                        type="radio"
+                        name="children"
+                        value="no"
+                      />{' '}
+                      No
+                    </label> */}
           </div>
         </div>
       </div>

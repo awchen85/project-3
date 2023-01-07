@@ -6,6 +6,7 @@ import 'react-responsive-modal/styles.css';
 import placeholder from '../assets/images/placeholder-icon.jpg';
 import mapboxgl from '!mapbox-gl';
 import MultiRangeSlider from '../components/multiRangeSlider';
+import { GiTrashCan } from 'react-icons/gi';
 
 function Home() {
   const [open, setOpen] = React.useState(false);
@@ -366,6 +367,11 @@ function Home() {
     searchInput.current.value = result.place_name;
   };
 
+  // When the trash can icon in the search bar is clicked it will clear the search bar input
+  const clearInput = event => {
+    searchInput.current.value = '';
+  };
+
   // eslint-disable-next-line max-len
   // When the autocomplete results are displayed you can use arrow keys and the "Enter" button to interact with them
   const handleKeyDown = event => {
@@ -591,16 +597,23 @@ function Home() {
           <div className="form-div">
             <form className="search-form" onSubmit={googleSearch}>
               <div>
-                <input
-                  className="form-input-address"
-                  placeholder="Enter a city's name to search for people in that area"
-                  name="address"
-                  id="address"
-                  type="text"
-                  ref={searchInput}
-                  onChange={handleSearch}
-                  onKeyDown={handleKeyDown}
-                />
+                <div className="flex">
+                  <input
+                    className="form-input-address"
+                    placeholder="Enter a city's name to search for people in that area"
+                    name="address"
+                    id="address"
+                    type="text"
+                    ref={searchInput}
+                    onChange={handleSearch}
+                    onKeyDown={handleKeyDown}
+                  />
+                  <span className="input-clear text-3xl text-red-600">
+                    <a onClick={clearInput}>
+                      <GiTrashCan />
+                    </a>
+                  </span>
+                </div>
                 <ul>
                   {searchResults.map((result, index) => (
                     // eslint-disable-next-line max-len

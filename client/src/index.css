@@ -10,8 +10,8 @@ body {
 
 body {
   margin: 0;
-  font-family: Helvetica, Arial, Sans-Serif;
-  background-color: #ffffff;
+  font-family: "Play";
+  background-color: white;
 }
 
 body h2 {
@@ -21,6 +21,7 @@ body h2 {
 nav {
   display: flex;
   align-items: flex-end;
+  font-family: "Fredoka One";
   padding: 20px;
   background-image: url("./assets/nav-bg/skyline.png");
   background-size: contain;
@@ -56,6 +57,7 @@ nav button {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-family: "Martian Mono";
   height: 100%;
   max-width: 30rem;
   padding: 2rem;
@@ -146,6 +148,7 @@ form p {
   margin: 0 auto;
   height: 100%;
   max-width: 30rem;
+  font-family: "Play";
   padding: 2rem;
 }
 
@@ -159,11 +162,18 @@ form p {
   border-radius: 0.625rem;
 }
 
+.input-clear {
+  position: relative;
+  left: -40px;
+  bottom: -15px;
+}
+
 .search-button {
   font-size: 1.25rem;
   padding: 0.625rem;
   margin: 2rem 0;
   border: none;
+  font-weight: bold;
   background-color: #006db0;
   color: #fff;
   border-radius: 0.625rem;
@@ -177,6 +187,7 @@ form p {
 .dashboard-nav {
   min-width: 20%;
   min-height: 100%;
+  font-family: "Martian Mono";
 }
 
 .dashboard-btn {
@@ -345,18 +356,22 @@ form p {
 }
 
 .react-responsive-modal-modal {
+  width: fit-content;
   padding: 0 !important;
   border-radius: 8px;
 }
 
 #filterModal {
-  min-width: 60vw;
+  width: fit-content;
   min-height: 50vh;
+  justify-content: center;
   border: 2px solid rgba(201, 201, 201, 0.5);
   border-radius: 4px;
   box-shadow: 10px 5px 5px gray;
   padding: 20px;
+  /* margin: 100px; */
   text-align: center;
+  font-family: "";
 }
 
 .filters-title {
@@ -382,7 +397,23 @@ form p {
   margin: 0 4px;
 }
 
-#filter-pets-yes:hover, #filter-children-yes:hover {
+#profile-pets-yes, #profile-children-yes {
+  width: 100%;
+  text-align: center;
+  border: solid 1px green;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0 4px;
+}
+
+.profile-children, .profile-pets {
+  display: flex;
+  width: 100%;
+}
+
+#profile-pets-yes:hover, #profile-children-yes:hover {
   background-color: lightgreen;
 }
 
@@ -401,8 +432,8 @@ form p {
   box-shadow: 0px 6px 0px green;
 }
 
-#filter-pets-no, #filter-children-no {
-  width: 50%;
+#profile-pets-no, #profile-children-no {
+  width: 100%;
   text-align: center;
   border: solid 1px red;
   border-radius: 10px;
@@ -412,7 +443,7 @@ form p {
   margin: 0 4px;
 }
 
-#filter-pets-no:hover, #filter-children-no:hover {
+#profile-pets-no:hover, #profile-children-no:hover {
   background-color: lightcoral;
 }
 
@@ -551,7 +582,7 @@ form p {
     width: 75%;
     box-shadow: 10px 5px 5px gray;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 24px;
     position: relative;
     display: inline-block;
     color: black;
