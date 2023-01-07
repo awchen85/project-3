@@ -67,8 +67,8 @@ export const QUERY_GET_USERS = gql`
 `;
 
 export const QUERY_GET_PROFILES = gql`
-  query getProfiles {
-    getProfiles {
+  query getProfiles($filter: ProfileInput) {
+    getProfiles(filter: $filter) {
       _id
       age
       gender
