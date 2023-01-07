@@ -175,19 +175,6 @@ function DashboardProfile() {
         <div className="profile-field-section">
           <h3 className="profile-h3 mb-4">You Have Pets</h3>
           <div className="profile-pets">
-            {/* <label
-                      htmlFor="pets-yes"
-                      className="filter-pets-yes px-4 mx-2"
-                    >
-                      <input
-                        id="pets-yes"
-                        type="radio"
-                        name="pets"
-                        value="yes"
-                        hidden
-                      />{' '}
-                      Yes
-                    </label> */}
             {options1.map(option => (
               <label
                 // htmlFor="pets-yes"
@@ -230,34 +217,12 @@ function DashboardProfile() {
                 {option.label}
               </label>
             ))}
-            {/* <label
-                      htmlFor="pets-no"
-                      className="filter-pets-no px-4 mx-2"
-                    >
-                      <input
-                        id="pets-no"
-                        type="radio"
-                        name="pets"
-                        value="no"
-                        hidden
-                      />{' '}
-                      No
-                    </label> */}
           </div>
         </div>
         {/* Allow Children */}
         <div className="profile-field-section">
           <h3 className="profile-h3 mb-4">You Have Children</h3>
           <div className="profile-children">
-            {/* <label htmlFor="children-yes" className="px-4">
-                      <input
-                        id="children-yes"
-                        type="radio"
-                        name="children"
-                        value="yes"
-                      />{' '}
-                      Yes
-                    </label> */}
             {options3.map(option => (
               <label
                 // htmlFor="children-yes"
@@ -304,15 +269,6 @@ function DashboardProfile() {
                 {option.label}
               </label>
             ))}
-            {/* <label htmlFor="children-no" className="px-4">
-                      <input
-                        id="children-no"
-                        type="radio"
-                        name="children"
-                        value="no"
-                      />{' '}
-                      No
-                    </label> */}
           </div>
         </div>
       </div>
