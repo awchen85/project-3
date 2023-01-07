@@ -293,13 +293,10 @@ function Home() {
     </div>
   );
 
-  // eslint-disable-next-line operator-linebreak
   mapboxgl.accessToken =
     'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
 
-  // eslint-disable-next-line operator-linebreak
   // const accessToken =
-  // eslint-disable-next-line max-len
   //   'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
 
   const [searchResults, setSearchResults] = useState([]);
@@ -318,7 +315,6 @@ function Home() {
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v12',
       center: [lng, lat],
-      // eslint-disable-next-line object-shorthand
       zoom: zoom,
     });
   });
@@ -348,7 +344,6 @@ function Home() {
       .then(response => {
         const results = response.body.features.map(feature => {
           // Remove "United States" from the end of the place_name
-          // eslint-disable-next-line no-param-reassign
           feature.place_name = feature.place_name.replace(
             /, United States$/,
             ''
@@ -432,6 +427,14 @@ function Home() {
       .send()
       .then(response => {
         const result = response.body.features[0];
+        const results = response.body.features.map(feature => {
+          // Remove "United States" from the end of the place_name
+          feature.place_name = feature.place_name.replace(
+            /, United States$/,
+            ''
+          );
+          return feature;
+        });
         map.current.flyTo({
           center: result.geometry.coordinates,
           zoom: 12,

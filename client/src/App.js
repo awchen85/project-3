@@ -62,7 +62,7 @@ function App() {
                 <Route path="" element={<Profile />} />
               </Route>
               <Route path="/dashboard">
-                <Route path=":email" element={<Dashboard />} />
+                <Route path=":id" element={<Dashboard />} />
                 <Route path="" element={<Dashboard />} />
               </Route>
               {/* <Route path="/dashboard" element={<Dashboard />} /> */}
