@@ -1,19 +1,19 @@
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
-const { Schema } = mongoose;
+// const { Schema } = mongoose;
 
-const reviewSchema = new Schema({
-  body: {
-    type: String,
-    required: true,
-    maxlength: 250,
-  },
-  rating: {
-    type: Number,
-    required: true,
-  },
-});
+// const reviewSchema = new Schema({
+//   body: {
+//     type: String,
+//     required: true,
+//     maxlength: 250,
+//   },
+//   rating: {
+//     type: Number,
+//     required: true,
+//   },
+// });
 
-const Review = mongoose.model("Review", reviewSchema);
+// const Review = mongoose.model("Review", reviewSchema);
 
-module.exports = Review;
+// module.exports = Review;

@@ -1,20 +1,16 @@
+/* eslint-disable */
 const jwt = require('jsonwebtoken');
-
 const secret = process.env.JWT_SECRET;
-
 const expiration = '2h';
 
 module.exports = {
   authMiddleware({ req }) {
     // allows token to be sent via req.body, req.query, or headers
-    let token = req.body.token || req.query.token || req.headers.authorization;
+    let token = req.body.token ||  req.query.token ||  req.headers.authorization;
 
     // ["Bearer", "<tokenvalue>"]
     if (req.headers.authorization) {
-      token = token
-        .split(' ')
-        .pop()
-        .trim();
+      token = token.split(' ').pop().trim();
     }
 
     if (!token) {
@@ -24,19 +20,16 @@ module.exports = {
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
-    } catch {
+    } catch (err) {
       console.log('Invalid token');
+      console.log(err);
     }
 
     return req;
   },
-  signToken({ firstName, email, _id }) {
-    const payload = { firstName, email, _id };
+  signToken({ firstName, lastName, email, _id }) {
+    const payload = { firstName, lastName, email, _id };
 
-    return jwt.sign(
-      { data: payload },
-      secret,
-      { expiresIn: expiration }
-    );
-  }
+    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
+  },
 };

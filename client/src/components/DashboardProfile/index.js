@@ -71,8 +71,9 @@ function DashboardProfile() {
               <label htmlFor="male" className="px-4 cursor-pointer">
                 <input
                   id="male"
-                  type="checkbox"
+                  type="radio"
                   value="male"
+                  name="gender"
                   className="mx-2"
                 />
                 Male
@@ -83,8 +84,9 @@ function DashboardProfile() {
               <label htmlFor="female" className="px-4 cursor-pointer">
                 <input
                   id="female"
-                  type="checkbox"
+                  type="radio"
                   value="female"
+                  name="gender"
                   className="mx-2"
                 />
                 Female
@@ -95,8 +97,9 @@ function DashboardProfile() {
               <label htmlFor="non-binary" className="px-4 cursor-pointer">
                 <input
                   id="non-binary"
-                  type="checkbox"
+                  type="radio"
                   value="non-binary"
+                  name="gender"
                   className="mx-2"
                 />
                 Non-binary
@@ -107,8 +110,9 @@ function DashboardProfile() {
               <label htmlFor="other" className="px-4 cursor-pointer">
                 <input
                   id="other"
-                  type="checkbox"
+                  type="radio"
                   value="other"
+                  name="gender"
                   className="mx-2"
                 />
                 Other
@@ -116,10 +120,15 @@ function DashboardProfile() {
             </div>
             <br />
             <div className="flex cursor-pointer text-xl rounded text-yellow-500 hover:bg-yellow-100 hover:border-4 hover:border-yellow-600 m-1 p-1">
-              <label htmlFor="gender" className="px-4 cursor-pointer">
+              <label
+                htmlFor="prefer-not-to-say"
+                className="px-4 cursor-pointer"
+              >
                 <input
-                  type="checkbox"
+                  id="prefer-not-to-say"
+                  type="radio"
                   value="prefer-not-to-say"
+                  name="gender"
                   className="mx-2"
                 />
                 Prefer Not To Say
