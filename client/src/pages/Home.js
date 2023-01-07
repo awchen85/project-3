@@ -1,14 +1,11 @@
-/* eslint-disable react/jsx-max-props-per-line */
-/* eslint-disable react/jsx-first-prop-new-line */
-/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable */
 import React, { useRef, useEffect, useState } from 'react';
-// import GoogleMapPic from '../assets/images/GoogleMapTA.webp';
 import { Modal } from 'react-responsive-modal';
-// eslint-disable-next-line import/no-unresolved
 import MapboxGeocoder from '@mapbox/mapbox-sdk/services/geocoding';
 import 'react-responsive-modal/styles.css';
-// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
 import mapboxgl from '!mapbox-gl';
+import MultiRangeSlider from '../components/multiRangeSlider';
+import { GiTrashCan } from 'react-icons/gi';
 
 import Carousel from './Carousel';
 
@@ -20,14 +17,28 @@ function Home() {
 
   const [value, setValue] = React.useState(1000);
 
-  const handleChange = event => {
-    setValue(event.target.value);
+  // Allow Pets Radio Buttons
+  const options1 = [{ value: 'option1', label: 'Yes' }];
+  const options2 = [{ value: 'option2', label: 'No' }];
+  // Allow Pets
+  const [selectedPetValue, setSelectedPetValue] = useState(null);
+  // Allow Pets
+  const handlePetChange = event => {
+    setSelectedPetValue(event.target.value);
   };
 
-  const [option, setOption] = React.useState('Option 1');
+  // Allow Children Radio Buttons
+  const options3 = [{ value: 'option3', label: 'Yes' }];
+  const options4 = [{ value: 'option4', label: 'No' }];
+  // Allow Pets
+  const [selectedChildValue, setSelectedChildValue] = useState(null);
+  // Allow Pets
+  const handleChildChange = event => {
+    setSelectedChildValue(event.target.value);
+  };
 
-  const handleAgeChange = event => {
-    setOption(event.target.value === 'Option 1' ? 'Option 2' : 'Option 1');
+  const handleChange = event => {
+    setValue(event.target.value);
   };
 
   const filterModal = (
@@ -44,26 +55,29 @@ function Home() {
                 htmlFor="Budget"
                 className="flex flex-col text-center filters my-1"
               >
-                Max Rent You Pay
+                Max Rent You Pay Per Month: ${value}
                 <input
                   type="range"
                   min="100"
                   max="4000"
+                  step="50"
                   value={value}
                   onChange={handleChange}
+                  className="mt-8"
                 />
+                <div className="flex justify-between">
+                  <label>$0</label>
+                  <label>$4000</label>
+                </div>
                 {/* Age */}
               </label>
               <div className="flex flex-col py-4">
                 <label htmlFor="age" className="flex flex-col filters my-1">
                   Age Range
-                  <input
-                    type="range"
-                    min="18"
-                    max="100"
-                    step="1"
-                    value={option === 'Option 1' ? '18' : '100'}
-                    onChange={handleAgeChange}
+                  <MultiRangeSlider
+                    min={18}
+                    max={100}
+                    onChange={({ min, max }) => console.log()}
                   />
                 </label>
                 <br />
@@ -111,24 +125,148 @@ function Home() {
                 <div className="filters mb-4">
                   Allow Pets
                   <div className="flex justify-center my-1">
-                    <label htmlFor="pets" className="px-4">
-                      <input type="radio" name="pets" value="yes" /> Yes
-                    </label>
-                    <label htmlFor="pets" className="px-4">
-                      <input type="radio" name="pets" value="no" /> No
-                    </label>
+                    {/* <label
+                      htmlFor="pets-yes"
+                      className="filter-pets-yes px-4 mx-2"
+                    >
+                      <input
+                        id="pets-yes"
+                        type="radio"
+                        name="pets"
+                        value="yes"
+                        hidden
+                      />{' '}
+                      Yes
+                    </label> */}
+                    {options1.map(option => (
+                      <label
+                        // htmlFor="pets-yes"
+                        id="filter-pets-yes"
+                        key={option.value}
+                        className={
+                          selectedPetValue === option.value
+                            ? 'active-pets-yes'
+                            : ''
+                        }
+                      >
+                        <input
+                          id="filter-pets-yes"
+                          type="radio"
+                          name="pets"
+                          value={option.value}
+                          checked={selectedPetValue === option.value}
+                          onChange={handlePetChange}
+                          hidden
+                        />
+                        {option.label}
+                      </label>
+                    ))}
+                    {options2.map(option => (
+                      <label
+                        // htmlFor="pets-no"
+                        id="filter-pets-no"
+                        key={option.value}
+                        className={
+                          selectedPetValue === option.value
+                            ? 'active-pets-no'
+                            : ''
+                        }
+                      >
+                        <input
+                          id="filter-pets-no"
+                          type="radio"
+                          name="pets"
+                          value={option.value}
+                          checked={selectedPetValue === option.value}
+                          onChange={handlePetChange}
+                          hidden
+                        />
+                        {option.label}
+                      </label>
+                    ))}
+                    {/* <label
+                      htmlFor="pets-no"
+                      className="filter-pets-no px-4 mx-2"
+                    >
+                      <input
+                        id="pets-no"
+                        type="radio"
+                        name="pets"
+                        value="no"
+                        hidden
+                      />{' '}
+                      No
+                    </label> */}
                   </div>
                 </div>
                 {/* Allow Children */}
                 <div className="filters my-4">
                   Allow Children
                   <div className="flex justify-center my-1">
-                    <label htmlFor="children" className="px-4">
-                      <input type="radio" name="children" value="yes" /> Yes
-                    </label>
-                    <label htmlFor="children" className="px-4">
-                      <input type="radio" name="children" value="no" /> No
-                    </label>
+                    {/* <label htmlFor="children-yes" className="px-4">
+                      <input
+                        id="children-yes"
+                        type="radio"
+                        name="children"
+                        value="yes"
+                      />{' '}
+                      Yes
+                    </label> */}
+                    {options3.map(option => (
+                      <label
+                        // htmlFor="children-yes"
+                        id="filter-children-yes"
+                        key={option.value}
+                        className={
+                          selectedChildValue === option.value
+                            ? 'active-children-yes'
+                            : ''
+                        }
+                      >
+                        <input
+                          id="filter-children-yes"
+                          type="radio"
+                          name="children"
+                          value={option.value}
+                          checked={selectedChildValue === option.value}
+                          onChange={handleChildChange}
+                          hidden
+                        />
+                        {option.label}
+                      </label>
+                    ))}
+                    {options4.map(option => (
+                      <label
+                        // htmlFor="children-no"
+                        id="filter-children-no"
+                        key={option.value}
+                        className={
+                          selectedChildValue === option.value
+                            ? 'active-children-no'
+                            : ''
+                        }
+                      >
+                        <input
+                          id="filter-children-no"
+                          type="radio"
+                          name="children"
+                          value={option.value}
+                          checked={selectedChildValue === option.value}
+                          onChange={handleChildChange}
+                          hidden
+                        />
+                        {option.label}
+                      </label>
+                    ))}
+                    {/* <label htmlFor="children-no" className="px-4">
+                      <input
+                        id="children-no"
+                        type="radio"
+                        name="children"
+                        value="no"
+                      />{' '}
+                      No
+                    </label> */}
                   </div>
                 </div>
               </div>
@@ -233,11 +371,16 @@ function Home() {
   };
 
   const handleResultClick = result => {
-    map.flyTo({
+    map.current.flyTo({
       center: result.geometry.coordinates,
-      zoom: 12,
+      zoom: 10,
     });
     searchInput.current.value = result.place_name;
+  };
+
+  // When the trash can icon in the search bar is clicked it will clear the search bar input
+  const clearInput = event => {
+    searchInput.current.value = '';
   };
 
   // eslint-disable-next-line max-len
@@ -276,11 +419,36 @@ function Home() {
     console.log('Searched for:', input);
   };
 
-  const clickHandler = e => {
-    e.preventDefault();
-    const { target } = e;
-    console.log('Clicked!', target.id);
-    // document.getElementById('Budget').removeAttribute('hidden');
+  const cities1 = ['Greensboro, NC'];
+  const cities2 = ['Apex, NC'];
+  const cities3 = ['Durham, NC'];
+  const cities4 = ['Boone, NC'];
+  const cities5 = ['Hickory, NC'];
+  const cities6 = ['Wilmington, NC'];
+  const cities7 = ['Raleigh, NC'];
+  const cities8 = ['Charlotte, NC'];
+  const cities9 = ['Winston-Salem, NC'];
+
+  const searchForCity = city => {
+    const geocoder = MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+    });
+
+    geocoder
+      .forwardGeocode({
+        query: city,
+        types: ['place'],
+        countries: ['US'],
+      })
+      .send()
+      .then(response => {
+        const result = response.body.features[0];
+        map.current.flyTo({
+          center: result.geometry.coordinates,
+          zoom: 12,
+        });
+        searchInput.current.value = result.place_name;
+      });
   };
 
   return (
@@ -317,43 +485,53 @@ function Home() {
           <div id="map" ref={mapContainer} className="map-container" />
           <div className="form-div">
             <form className="search-form" onSubmit={googleSearch}>
-              <input
-                className="form-input-address"
-                placeholder="Enter a city's name to search for people in that area"
-                name="address"
-                type="text"
-                ref={searchInput}
-                onChange={handleSearch}
-                onKeyDown={handleKeyDown}
-              />
-              <ul>
-                {searchResults.map((result, index) => (
-                  // eslint-disable-next-line max-len
-                  // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
-                  <li
-                    key={result.id}
-                    onClick={() => handleResultClick(result)}
-                    tabIndex={index === selectedIndex ? 0 : -1}
-                    onKeyDown={event => {
-                      if (event.key === 'Enter') {
-                        event.preventDefault();
-                        handleResultClick(result);
-                      }
-                    }}
-                    onMouseEnter={() => setSelectedIndex(index)}
-                    onMouseLeave={() => setSelectedIndex(null)}
-                    style={{
-                      backgroundColor:
-                        index === selectedIndex ? 'lightgray' : 'white',
-                      cursor: 'pointer',
-                    }}
-                    className={index === selectedIndex ? 'selected' : ''}
-                    id="autocomplete-result"
-                  >
-                    {result.place_name}
-                  </li>
-                ))}
-              </ul>
+              <div>
+                <div className="flex">
+                  <input
+                    className="form-input-address"
+                    placeholder="Enter a city's name to search for people in that area"
+                    name="address"
+                    id="address"
+                    type="text"
+                    ref={searchInput}
+                    onChange={handleSearch}
+                    onKeyDown={handleKeyDown}
+                  />
+                  <span className="input-clear text-3xl text-red-600">
+                    <a onClick={clearInput}>
+                      <GiTrashCan />
+                    </a>
+                  </span>
+                </div>
+                <ul>
+                  {searchResults.map((result, index) => (
+                    // eslint-disable-next-line max-len
+                    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
+                    <li
+                      key={result.id}
+                      onClick={() => handleResultClick(result)}
+                      tabIndex={index === selectedIndex ? 0 : -1}
+                      onKeyDown={event => {
+                        if (event.key === 'Enter') {
+                          event.preventDefault();
+                          handleResultClick(result);
+                        }
+                      }}
+                      onMouseEnter={() => setSelectedIndex(index)}
+                      onMouseLeave={() => setSelectedIndex(null)}
+                      style={{
+                        backgroundColor:
+                          index === selectedIndex ? 'lightgray' : 'white',
+                        cursor: 'pointer',
+                      }}
+                      className={index === selectedIndex ? 'selected' : ''}
+                      id="autocomplete-result"
+                    >
+                      {result.place_name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <button
                 className="search-button"
                 type="submit"
@@ -365,48 +543,132 @@ function Home() {
             <div className="quick-search-cities-section text-center">
               <h3 className="text-3xl font-semibold">Quick Search</h3>
               <div className="quick-search-cities grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                <a href="/" onClick={clickHandler}>
-                  <div id="LA" className="card card-1">
-                    <h3 className="flex justify-center card-city-text">
-                      Los Angeles, CA
-                    </h3>
-                  </div>
-                </a>
-                <a href="/" onClick={clickHandler}>
-                  <div id="NY" className="card card-2">
-                    <h3 className="flex justify-center card-city-text">
-                      New York, NY
-                    </h3>
-                  </div>
-                </a>
-                <a href="/" onClick={clickHandler}>
-                  <div id="TX" className="card card-3">
-                    <h3 className="flex justify-center card-city-text">
-                      Dallas, TX
-                    </h3>
-                  </div>
-                </a>
-                <a href="/" onClick={clickHandler}>
-                  <div id="IL" className="card card-4">
-                    <h3 className="flex justify-center card-city-text">
-                      Chicago, IL
-                    </h3>
-                  </div>
-                </a>
-                <a href="/" onClick={clickHandler}>
-                  <div id="GA" className="card card-5">
-                    <h3 className="flex justify-center card-city-text">
-                      Atlanta, GA
-                    </h3>
-                  </div>
-                </a>
-                <a href="/" onClick={clickHandler}>
-                  <div id="OR" className="card card-6">
-                    <h3 className="flex justify-center card-city-text">
-                      Portland, OR
-                    </h3>
-                  </div>
-                </a>
+                {/* eslint-disable-next-line react/button-has-type */}
+                {cities1.map(city => (
+                  // eslint-disable-next-line react/button-has-type
+                  <button key={city} onClick={() => searchForCity(city)}>
+                    <div className="card card-1">
+                      <h3
+                        id="city-value"
+                        className="flex justify-center card-city-text"
+                      >
+                        {city}
+                      </h3>
+                    </div>
+                  </button>
+                ))}
+                {/* eslint-disable-next-line react/button-has-type */}
+                {cities2.map(city => (
+                  // eslint-disable-next-line react/button-has-type
+                  <button key={city} onClick={() => searchForCity(city)}>
+                    <div className="card card-2">
+                      <h3
+                        id="city-value"
+                        className="flex justify-center card-city-text"
+                      >
+                        {city}
+                      </h3>
+                    </div>
+                  </button>
+                ))}
+                {/* eslint-disable-next-line react/button-has-type */}
+                {cities3.map(city => (
+                  // eslint-disable-next-line react/button-has-type
+                  <button key={city} onClick={() => searchForCity(city)}>
+                    <div className="card card-3">
+                      <h3
+                        id="city-value"
+                        className="flex justify-center card-city-text"
+                      >
+                        {city}
+                      </h3>
+                    </div>
+                  </button>
+                ))}
+                {/* eslint-disable-next-line react/button-has-type */}
+                {cities4.map(city => (
+                  // eslint-disable-next-line react/button-has-type
+                  <button key={city} onClick={() => searchForCity(city)}>
+                    <div className="card card-4">
+                      <h3
+                        id="city-value"
+                        className="flex justify-center card-city-text"
+                      >
+                        {city}
+                      </h3>
+                    </div>
+                  </button>
+                ))}
+                {/* eslint-disable-next-line react/button-has-type */}
+                {cities5.map(city => (
+                  // eslint-disable-next-line react/button-has-type
+                  <button key={city} onClick={() => searchForCity(city)}>
+                    <div className="card card-5">
+                      <h3
+                        id="city-value"
+                        className="flex justify-center card-city-text"
+                      >
+                        {city}
+                      </h3>
+                    </div>
+                  </button>
+                ))}
+                {/* eslint-disable-next-line react/button-has-type */}
+                {cities6.map(city => (
+                  // eslint-disable-next-line react/button-has-type
+                  <button key={city} onClick={() => searchForCity(city)}>
+                    <div className="card card-6">
+                      <h3
+                        id="city-value"
+                        className="flex justify-center card-city-text"
+                      >
+                        {city}
+                      </h3>
+                    </div>
+                  </button>
+                ))}
+                {/* eslint-disable-next-line react/button-has-type */}
+                {cities7.map(city => (
+                  // eslint-disable-next-line react/button-has-type
+                  <button key={city} onClick={() => searchForCity(city)}>
+                    <div className="card card-7">
+                      <h3
+                        id="city-value"
+                        className="flex justify-center card-city-text"
+                      >
+                        {city}
+                      </h3>
+                    </div>
+                  </button>
+                ))}
+                {/* eslint-disable-next-line react/button-has-type */}
+                {cities8.map(city => (
+                  // eslint-disable-next-line react/button-has-type
+                  <button key={city} onClick={() => searchForCity(city)}>
+                    <div className="card card-8">
+                      <h3
+                        id="city-value"
+                        className="flex justify-center card-city-text"
+                      >
+                        {city}
+                      </h3>
+                    </div>
+                  </button>
+                ))}
+                {/* eslint-disable-next-line react/button-has-type */}
+                {cities9.map(city => (
+                  // eslint-disable-next-line react/button-has-type
+                  <button key={city} onClick={() => searchForCity(city)}>
+                    <div className="card card-9">
+                      <h3
+                        id="city-value"
+                        className="flex justify-center card-city-text"
+                      >
+                        {city}
+                      </h3>
+                    </div>
+                  </button>
+                ))}
               </div>
             </div>
           </div>

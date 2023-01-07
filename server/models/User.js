@@ -21,10 +21,10 @@ const userSchema = new Schema({
     unique: true,
     match: [/.+@.+\..+/, 'Must match an email address!'],
   },
-  phone: {
-    type: String,
-    minlength: 10,
-  },
+  // phone: {
+  //   type: String,
+  //   minlength: 10,
+  // },
   // min 7 letter password, symbol, uppercase, lowercase, and a number
   password: {
     type: String,

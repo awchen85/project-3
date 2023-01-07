@@ -2,15 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
+html,
+body {
   box-sizing: border-box;
   height: 100%;
 }
 
 body {
   margin: 0;
-  font-family: Helvetica, Arial, Sans-Serif;
-  background-color: #ffffff;
+  font-family: "Play";
+  background-color: white;
 }
 
 body h2 {
@@ -20,6 +21,7 @@ body h2 {
 nav {
   display: flex;
   align-items: flex-end;
+  font-family: "Fredoka One";
   padding: 20px;
   background-image: url("./assets/nav-bg/skyline.png");
   background-size: contain;
@@ -46,7 +48,7 @@ nav button {
   margin-left: 1rem;
   font: inherit;
   cursor: pointer;
-  outline: inherit
+  outline: inherit;
 }
 
 .form {
@@ -55,6 +57,7 @@ nav button {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-family: "Martian Mono";
   height: 100%;
   max-width: 30rem;
   padding: 2rem;
@@ -90,7 +93,6 @@ form p {
   stroke-dasharray: 1000px;
   animation: dash 7s ease-in alternate infinite;
 }
-
 
 .path-1 {
   stroke-dasharray: 1000px;
@@ -129,7 +131,7 @@ form p {
 
 @keyframes dash {
   from {
-    stroke-dasharray: 0 1000; 
+    stroke-dasharray: 0 1000;
   }
   to {
     stroke-dasharray: 1000;
@@ -146,6 +148,7 @@ form p {
   margin: 0 auto;
   height: 100%;
   max-width: 30rem;
+  font-family: "Play";
   padding: 2rem;
 }
 
@@ -159,11 +162,18 @@ form p {
   border-radius: 0.625rem;
 }
 
+.input-clear {
+  position: relative;
+  left: -40px;
+  bottom: -15px;
+}
+
 .search-button {
   font-size: 1.25rem;
   padding: 0.625rem;
   margin: 2rem 0;
   border: none;
+  font-weight: bold;
   background-color: #006db0;
   color: #fff;
   border-radius: 0.625rem;
@@ -177,6 +187,7 @@ form p {
 .dashboard-nav {
   min-width: 20%;
   min-height: 100%;
+  font-family: "Martian Mono";
 }
 
 .dashboard-btn {
@@ -185,23 +196,24 @@ form p {
 }
 
 .dash-nav {
-  position:relative;
+  position: relative;
   width: auto;
-  display:inline-block;
-  color:#ecf0f1;
-  text-decoration:none;
-  border-radius:5px;
-  border:solid 1px green;
+  display: inline-block;
+  color: #ecf0f1;
+  text-decoration: none;
+  border-radius: 5px;
+  border: solid 1px green;
   background: lightgreen;
-  text-align:center;
-  padding:16px 18px 14px;
+  text-align: center;
+  padding: 16px 18px 14px;
   margin: 12px;
- 
+
   -webkit-transition: all 0.1s;
-	-moz-transition: all 0.1s;
-	transition: all 0.1s;
-	
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em green, 0 0 0.3em green, 0 0 0.4em green, 0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
+  -moz-transition: all 0.1s;
+  transition: all 0.1s;
+
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em green, 0 0 0.3em green, 0 0 0.4em green,
+    0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
   -webkit-box-shadow: 0px 6px 0px green;
   -moz-box-shadow: 0px 6px 0px green;
   box-shadow: 0px 6px 0px green;
@@ -209,13 +221,15 @@ form p {
 
 .dash-nav:hover {
   border: 2px solid green;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em green, 0 0 0.4em green, 0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em green, 0 0 0.4em green,
+    0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
 }
 
 .dash-nav:active {
   border: 2px solid red;
   background: lightcoral;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red, 0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
+    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
   -webkit-box-shadow: 0px 2px 0px darkred;
   -moz-box-shadow: 0px 2px 0px darkred;
   box-shadow: 0px 2px 0px darkred;
@@ -224,7 +238,8 @@ form p {
 .dash-nav-active {
   border: 2px solid red;
   background: lightcoral;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red, 0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
+    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
   -webkit-box-shadow: 0px 2px 0px darkred;
   -moz-box-shadow: 0px 2px 0px darkred;
   box-shadow: 0px 2px 0px darkred;
@@ -232,7 +247,8 @@ form p {
 
 .dash-nav-active:hover {
   border: 2px solid red;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red, 0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
+    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
 }
 
 .dashboard-main {
@@ -272,22 +288,22 @@ form p {
 }
 
 .profile-view {
-  position:relative;
+  position: relative;
   width: auto;
-  display:inline-block;
-  color:#ecf0f1;
-  text-decoration:none;
-  border-radius:5px;
-  border:solid 1px lightblue;
+  display: inline-block;
+  color: #ecf0f1;
+  text-decoration: none;
+  border-radius: 5px;
+  border: solid 1px lightblue;
   background: #006db0;
-  text-align:center;
-  padding:16px 18px 14px;
+  text-align: center;
+  padding: 16px 18px 14px;
   margin: 12px;
- 
+
   -webkit-transition: all 0.1s;
-	-moz-transition: all 0.1s;
-	transition: all 0.1s;
-	
+  -moz-transition: all 0.1s;
+  transition: all 0.1s;
+
   -webkit-box-shadow: 0px 6px 0px blue;
   -moz-box-shadow: 0px 6px 0px blue;
   box-shadow: 0px 6px 0px blue;
@@ -295,7 +311,9 @@ form p {
 
 .profile-view:hover {
   border: 2px solid blue;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em lightblue, 0 0 0.4em lightblue, 0 0 0.6em lightblue, 0 0 0.8em lightblue, 0 0 1em lightblue, 0 0 1.2em lightblue;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em lightblue,
+    0 0 0.4em lightblue, 0 0 0.6em lightblue, 0 0 0.8em lightblue,
+    0 0 1em lightblue, 0 0 1.2em lightblue;
 }
 
 .profile-view:active {
@@ -303,52 +321,108 @@ form p {
   -webkit-box-shadow: 0px 2px 0px darkblue;
   -moz-box-shadow: 0px 2px 0px darkblue;
   box-shadow: 0px 2px 0px darkblue;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em blue, 0 0 0.4em blue, 0 0 0.6em blue, 0 0 0.8em blue, 0 0 1em blue, 0 0 1.2em blue;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em blue, 0 0 0.4em blue,
+    0 0 0.6em blue, 0 0 0.8em blue, 0 0 1em blue, 0 0 1.2em blue;
+}
+
+#inbox {
+  cursor: not-allowed;
+}
+
+#inboxModal {
+  width: fit-content;
+  min-height: 50vh;
+  justify-content: center;
+  border: 2px solid rgba(201, 201, 201, 0.5);
+  border-radius: 4px;
+  box-shadow: 10px 5px 5px gray;
+  padding: 20px;
+  /* margin: 100px; */
+  text-align: center;
+}
+
+.stop-sign {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.construction-button {
+  border: solid 1px red;
+  background: lightcoral;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
+    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+  -webkit-box-shadow: 0px 6px 0px red;
+  -moz-box-shadow: 0px 6px 0px red;
+  box-shadow: 0px 6px 0px red;
+  width: 50%;
+  margin: 20px 4px 10px 4px;
+}
+
+.construction-button:hover {
+  border: 2px solid red;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
+    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+}
+
+.construction-button:active {
+  border: 2px solid lightgray;
+  -webkit-box-shadow: 0px 2px 0px darkred;
+  -moz-box-shadow: 0px 2px 0px darkred;
+  box-shadow: 0px 2px 0px darkred;
 }
 
 .button-3d {
-  position:relative;
+  position: relative;
   width: auto;
-  display:inline-block;
-  color:#ecf0f1;
-  text-decoration:none;
-  border-radius:5px;
-  border:solid 1px gray;
+  display: inline-block;
+  color: #ecf0f1;
+  text-decoration: none;
+  border-radius: 5px;
+  border: solid 1px gray;
   background: lightgray;
-  text-align:center;
-  padding:16px 18px 14px;
+  text-align: center;
+  padding: 16px 18px 14px;
   margin: 12px;
- 
+
   -webkit-transition: all 0.1s;
-	-moz-transition: all 0.1s;
-	transition: all 0.1s;
-	
+  -moz-transition: all 0.1s;
+  transition: all 0.1s;
+
   -webkit-box-shadow: 0px 6px 0px darkgray;
   -moz-box-shadow: 0px 6px 0px darkgray;
   box-shadow: 0px 6px 0px darkgray;
 }
 
-.button-3d:active{
+.button-3d:active {
   -webkit-box-shadow: 0px 2px 0px darkgray;
   -moz-box-shadow: 0px 2px 0px darkgray;
   box-shadow: 0px 2px 0px darkgray;
-  position:relative;
-  top:4px;
+  position: relative;
+  top: 4px;
 }
 
 .react-responsive-modal-modal {
+  width: fit-content;
   padding: 0 !important;
   border-radius: 8px;
 }
 
 #filterModal {
-  min-width: 60vw;
+  width: fit-content;
   min-height: 50vh;
+  justify-content: center;
   border: 2px solid rgba(201, 201, 201, 0.5);
   border-radius: 4px;
   box-shadow: 10px 5px 5px gray;
   padding: 20px;
+  /* margin: 100px; */
   text-align: center;
+  font-family: "Martian Mono";
 }
 
 .filters-title {
@@ -363,6 +437,101 @@ form p {
   padding: 10px;
 }
 
+#filter-pets-yes, #filter-children-yes {
+  width: 50%;
+  text-align: center;
+  border: solid 1px green;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0 4px;
+}
+
+#profile-pets-yes, #profile-children-yes {
+  width: 100%;
+  text-align: center;
+  border: solid 1px green;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0 4px;
+}
+
+.profile-children, .profile-pets {
+  display: flex;
+  width: 100%;
+}
+
+#filter-pets-yes:hover, #filter-children-yes:hover {
+  background-color: lightgreen;
+}
+
+#profile-pets-yes:hover, #profile-children-yes:hover {
+  background-color: lightgreen;
+}
+
+.active-pets-yes, .active-children-yes {
+  border: solid 1px green;
+  background: lightgreen;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em green, 0 0 0.4em green,
+    0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
+  -webkit-box-shadow: 0px 6px 0px green;
+  -moz-box-shadow: 0px 6px 0px green;
+  box-shadow: 0px 6px 0px green;
+}
+
+#filter-pets-no, #filter-children-no {
+  width: 50%;
+  text-align: center;
+  border: solid 1px red;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0 4px;
+}
+
+#profile-pets-no, #profile-children-no {
+  width: 100%;
+  text-align: center;
+  border: solid 1px red;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0 4px;
+}
+
+#filter-pets-no:hover, #filter-children-no:hover {
+  background-color: lightcoral;
+}
+
+#profile-pets-no:hover, #profile-children-no:hover {
+  background-color: lightcoral;
+}
+
+.active-pets-no, .active-children-no {
+  border: solid 1px red;
+  background: lightcoral;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
+    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+  -webkit-box-shadow: 0px 6px 0px red;
+  -moz-box-shadow: 0px 6px 0px red;
+  box-shadow: 0px 6px 0px red;
+}
+
 #filterModalFooter {
   bottom: 10%;
   display: flex;
@@ -371,28 +540,30 @@ form p {
 }
 
 #apply-filters {
-  border:solid 1px green;
+  border: solid 1px green;
   background: lightgreen;
   border-radius: 10px;
-  width: 40%;
+  width: 50%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em green, 0 0 0.3em green, 0 0 0.4em green, 0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em green, 0 0 0.3em green, 0 0 0.4em green,
+    0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
   -webkit-box-shadow: 0px 6px 0px green;
   -moz-box-shadow: 0px 6px 0px green;
   box-shadow: 0px 6px 0px green;
 }
 
 #cancel-filters {
-  border:solid 1px red;
+  border: solid 1px red;
   background: lightcoral;
   border-radius: 10px;
-  width: 40%;
+  width: 50%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em red, 0 0 0.3em red, 0 0 0.4em red, 0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em red, 0 0 0.3em red, 0 0 0.4em red,
+    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
   -webkit-box-shadow: 0px 6px 0px red;
   -moz-box-shadow: 0px 6px 0px red;
   box-shadow: 0px 6px 0px red;
@@ -400,12 +571,14 @@ form p {
 
 #apply-filters:hover {
   border: 2px solid green;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em green, 0 0 0.4em green, 0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em green, 0 0 0.4em green,
+    0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
 }
 
 #cancel-filters:hover {
   border: 2px solid red;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red, 0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
+    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
 }
 
 #apply-filters:active {
@@ -422,6 +595,35 @@ form p {
   box-shadow: 0px 2px 0px darkred;
 }
 
+.footer {
+  background-color: #372b70;
+  padding: 50px;
+  min-height: 250;
+  color: #fff;
+}
+
+.footer-left p {
+  max-width: 400px;
+}
+
+.footer-menu {
+  color: #e4d022;
+  font-weight: bold;
+}
+
+.footer-title {
+  font-size: 25px;
+}
+
+.brand {
+  font-size: 40px;
+  color: #e49f9f;
+}
+
+.footer-divider img {
+  width: 100vw;
+}
+
 @media screen and (min-width: 768px) {
   h2 {
     font-size: 2.5rem !important;
@@ -430,6 +632,7 @@ form p {
   .left-side {
     width: 50%;
   }
+
 
   /* .btn-section {
     display: flex;
@@ -449,31 +652,33 @@ form p {
     width: 75%;
     box-shadow: 10px 5px 5px gray;
     font-weight: bold;
-    font-size: 20px;
-    position:relative;
-    display:inline-block;
+    font-size: 24px;
+    position: relative;
+    display: inline-block;
     color: black;
-    text-decoration:none;
-    border-radius:5px;
-    border:solid 1px gray;
+    text-decoration: none;
+    border-radius: 5px;
+    border: solid 1px gray;
     background: lightgray;
-    text-align:center;
+    text-align: center;
     padding: 10px 10px 10px;
     margin: 12px;
- 
-  -webkit-transition: all 0.1s;
-	-moz-transition: all 0.1s;
-	transition: all 0.1s;
-	
-  -webkit-box-shadow: 0px 6px 0px gray;
-  -moz-box-shadow: 0px 6px 0px gray;
-  box-shadow: 0px 6px 0px gray;
+
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    transition: all 0.1s;
+
+    -webkit-box-shadow: 0px 6px 0px gray;
+    -moz-box-shadow: 0px 6px 0px gray;
+    box-shadow: 0px 6px 0px gray;
   }
 
   .filter-btn:hover {
     background-color: darkgray;
     border: 2px solid black;
-    text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em darkgray, 0 0 0.4em darkgray, 0 0 0.6em darkgray, 0 0 0.8em darkgray, 0 0 1em darkgray, 0 0 1.2em darkgray;
+    text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em darkgray,
+      0 0 0.4em darkgray, 0 0 0.6em darkgray, 0 0 0.8em darkgray,
+      0 0 1em darkgray, 0 0 1.2em darkgray;
   }
 
   .filter-btn:active {
@@ -483,6 +688,11 @@ form p {
     -moz-box-shadow: 0px 2px 0px gray;
     box-shadow: 0px 2px 0px gray;
   }
+
+  .range-value {
+  font-size: 18px;
+  font-weight: bold;
+}
 
   .profile-section {
     margin-top: 20px;
@@ -536,22 +746,51 @@ form p {
     font-size: 14px;
     position: relative;
     display:inline-block;
+    text-decoration:none;
+    border-radius:5px;
+    border:solid 1px gray;
+    background: lightgray;
+    text-align:center;
+    padding: 6px 6px 6px;
+    margin: 4px;
+ 
+    /* -webkit-transition: all 0.1s;
+	  -moz-transition: all 0.1s;
+	  transition: all 0.1s;
+	
+    -webkit-box-shadow: 0px 6px 0px gray;
+    -moz-box-shadow: 0px 6px 0px gray;
+    box-shadow: 0px 6px 0px gray; */
+  }
+
+   #profile-autocomplete-result {
+    width: 100%;
+    display: flex;
+    /* box-shadow: 10px 5px 5px gray; */
+    font-weight: bold;
+    font-size: 14px;
+    /* position: relative; */
     color: black;
     text-decoration:none;
     border-radius:5px;
     border:solid 1px gray;
     background: lightgray;
     text-align:center;
-    padding: 10px 10px 10px;
-    margin: 12px;
- 
-    -webkit-transition: all 0.1s;
-	  -moz-transition: all 0.1s;
-	  transition: all 0.1s;
-	
-    -webkit-box-shadow: 0px 6px 0px gray;
-    -moz-box-shadow: 0px 6px 0px gray;
-    box-shadow: 0px 6px 0px gray;
+    margin: 4px;
+  }
+
+  .form-input-address-profile {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #006db0;
+    line-height: 1.15rem;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border-radius: 0.625rem;
+  }
+
+  .profile-location {
+    justify-content: space-evenly;
   }
 
   .form-div {
@@ -611,38 +850,56 @@ form p {
   }
 
   .card-1 {
-    background-image: url("./assets/cards/los-angeles-bg.jpg");
+    background-image: url("./assets/cards/greensboro-bg.png");
     background-position: center;
     background-size: cover;
   }
 
   .card-2 {
-    background-image: url("./assets/cards/new-york-city-bg.jpg");
+    background-image: url("./assets/cards/apex-bg.jpg");
     background-position: center;
     background-size: cover;
   }
 
   .card-3 {
-    background-image: url("./assets/cards/dallas-texas-bg.jpg");
+    background-image: url("./assets/cards/durham-bg.jpg");
     background-position: center;
     background-size: cover;
   }
 
   .card-4 {
-    background-image: url("./assets/cards/chicago-bg.jpg");
+    background-image: url("./assets/cards/boone-bg.jpg");
     background-position: center;
     background-size: cover;
   }
 
   .card-5 {
-    background-image: url("./assets/cards/atlanta-bg.jpg");
+    background-image: url("./assets/cards/hickory-bg.jpg");
     background-position: center;
     background-size: cover;
   }
 
   .card-6 {
-    background-image: url("./assets/cards/portland-oregon-bg.jpg");
+    background-image: url("./assets/cards/wilmington-bg.jpg");
     background-position: center;
+    background-size: cover;
+  }
+
+  .card-7 {
+    background-image: url("./assets/cards/raleigh-bg.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .card-8 {
+    background-image: url("./assets/cards/charlotte-bg.jpg");
+    background-position: left;
+    background-size: cover;
+  }
+
+  .card-9 {
+    background-image: url("./assets/cards/winston-salem-bg.jpg");
+    background-position: left;
     background-size: cover;
   }
 
@@ -726,7 +983,9 @@ form p {
 
 @keyframes font-effect-neon-animation-keyframes {
   0% {
-    text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #fff, 0 0 0.4em orange, 0 0 0.6em orange, 0 0 0.8em orange, 0 0 1em orange, 0 0 1.2em orange;
+    text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #fff,
+      0 0 0.4em orange, 0 0 0.6em orange, 0 0 0.8em orange, 0 0 1em orange,
+      0 0 1.2em orange;
   }
 
   /* 100% {

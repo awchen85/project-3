@@ -16,13 +16,19 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
+    getUser: async (parent, { userId }) => {
+      const user = await User.findById(userId)
+        .select('-__v -password')
+        .populate('profile');
+      return user;
+    },
     getUsers: async () => {
       const users = await User.find().populate('profile');
       return users;
     },
 
-    getProfiles: async () => {
-      const profiles = await Profile.find();
+    getProfiles: async (parent, { filter }) => {
+      const profiles = await Profile.find(filter);
       return profiles;
     },
   },
@@ -74,6 +80,7 @@ const resolvers = {
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
           {
+            // eslint-disable-next-line object-shorthand
             profile: profile,
           },
           { new: true }

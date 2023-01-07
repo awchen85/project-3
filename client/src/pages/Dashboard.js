@@ -1,11 +1,15 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
+import { Modal } from 'react-responsive-modal';
+import 'react-responsive-modal/styles.css';
 import DashboardProfile from '../components/DashboardProfile';
 import DashboardFriends from '../components/DashboardFriends';
 import DashboardInbox from '../components/DashboardInbox';
 import DashboardConnections from '../components/DashboardConnections';
 import auth from '../utils/auth';
+import underConstruction from '../assets/images/under-construction-2.png';
+import stopSign from '../assets/images/stop-sign.png';
 
 function Dashboard() {
   const [currentComponent, setCurrentComponent] = useState('DashboardProfile');
@@ -41,6 +45,37 @@ function Dashboard() {
 
   const handleComponentChange = component => setCurrentComponent(component);
 
+  const [open, setOpen] = React.useState(false);
+
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
+
+  const modal = (
+    <div id="inboxModal" className="modal bg-red-100">
+      <div className="flex justify-center mb-4">
+        <span className="px-4">
+          <img src={stopSign} alt="" className="stop-sign" />
+        </span>
+        <h1 className="text-5xl">Under Construction</h1>
+        <span className="px-4">
+          <img src={stopSign} alt="" className="stop-sign" />
+        </span>
+      </div>
+      <img src={underConstruction} alt="" className="under-construction" />
+      <h3 className="text-3xl">This Feature is Currently Under Construction</h3>
+      <h3 className="text-2xl">
+        Our Team is Very Hard at Work Getting This Ready For You!
+      </h3>
+      <button
+        type="submit"
+        onClick={onCloseModal}
+        className="construction-button"
+      >
+        Go Back
+      </button>
+    </div>
+  );
+
   return (
     <div>
       <div className="dashboard flex">
@@ -63,7 +98,8 @@ function Dashboard() {
           </button>
           <button
             type="submit"
-            onClick={() => handleComponentChange('DashboardInbox')}
+            // onClick={() => handleComponentChange('DashboardInbox')}
+            onClick={onOpenModal}
             id="inbox"
             className={determineIsActive('DashboardInbox')}
           >
@@ -89,6 +125,9 @@ function Dashboard() {
           {/* <DashboardProfile /> */}
         </div>
       </div>
+      <Modal classNames="" open={open} onClose={onCloseModal} center>
+        {modal}
+      </Modal>
     </div>
   );
 }

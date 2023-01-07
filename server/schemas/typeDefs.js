@@ -81,9 +81,10 @@ const typeDefs = gql`
 
   type Query {
     getCurrentUser: User
+    getUser(userId: ID!): User
     getProfile: User
     getUsers: [User]
-    getProfiles: [Profile]
+    getProfiles(filter: ProfileInput): [Profile]
   }
 
   type Mutation {
@@ -97,7 +98,7 @@ const typeDefs = gql`
     deleteUser: User
     login(email: String!, password: String!): Auth
     createProfile(input: ProfileInput!): User
-    updateProfile(input: ProfileInput!): User
+    updateProfile(input: ProfileInput): User
   }
 `;
 
