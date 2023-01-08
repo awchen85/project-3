@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Link, useNavigate } from 'react-router-dom';
@@ -33,7 +34,6 @@ export default function Registration() {
       loginUser(user, token);
       navigate('/profile');
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.log(e);
     }
   };

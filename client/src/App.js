@@ -1,5 +1,5 @@
-// import React, { useRef, useEffect, useState } from 'react';
 /* eslint-disable */
+import React, { useRef, useEffect, useState } from 'react';
 import {
   ApolloClient,
   InMemoryCache,
@@ -12,7 +12,6 @@ import { CookiesProvider } from 'react-cookie';
 
 import { CurrentUserContextProvider } from './context';
 
-// // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
 // import mapboxgl from '!mapbox-gl';
 
 import Navigation from './components/Navigation';
@@ -62,7 +61,7 @@ function App() {
                 <Route path="" element={<Profile />} />
               </Route>
               <Route path="/dashboard">
-                <Route path=":id" element={<Dashboard />} />
+                <Route path=":email" element={<Dashboard />} />
                 <Route path="" element={<Dashboard />} />
               </Route>
               {/* <Route path="/dashboard" element={<Dashboard />} /> */}
