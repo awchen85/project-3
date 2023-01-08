@@ -4,7 +4,8 @@ import { useMutation } from '@apollo/client';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo/logo.jpg';
 
-import { REGISTER_USER } from '../graphql/mutations';
+import { CREATE_USER } from '../utils/mutations';
+// import { REGISTER_USER } from '../graphql/mutations';
 
 import { useCurrentUserContext } from '../context/currentUser';
 
@@ -16,12 +17,12 @@ export default function Registration() {
     password: '',
   });
 
-  const [registerUser, { error }] = useMutation(REGISTER_USER);
+  const [createUser, { error }] = useMutation(CREATE_USER);
 
   const handleFormSubmit = async event => {
     event.preventDefault();
     try {
-      const mutationResponse = await registerUser({
+      const mutationResponse = await createUser({
         variables: {
           email: formState.email,
           password: formState.password,

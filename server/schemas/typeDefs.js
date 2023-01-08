@@ -6,6 +6,9 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
+    likes: [Room]
+    rooms: [Room]
+    reviews: [Review]
     isAuthenticated: Boolean
     profile: Profile
   }

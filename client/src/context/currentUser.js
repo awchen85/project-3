@@ -1,10 +1,12 @@
+/* eslint-disable */
+
 import {
   createContext,
   useCallback,
   useContext,
   useEffect,
   useMemo,
-  useState
+  useState,
 } from 'react';
 import decode from 'jwt-decode';
 import { useCookies } from 'react-cookie';
@@ -28,13 +30,18 @@ export default function CurrentUserContextProvider({ children }) {
         setCurrentUser({ ...user, isAuthenticated: true });
       }
     }
-    return () => { ignore = true; };
+    return () => {
+      ignore = true;
+    };
   }, [cookies]);
 
-  const loginUser = useCallback((user, token) => {
-    setCurrentUser({ ...user, isAuthenticated: true });
-    setCookies('auth_token', token, { path: '/' });
-  }, [setCurrentUser]);
+  const loginUser = useCallback(
+    (user, token) => {
+      setCurrentUser({ ...user, isAuthenticated: true });
+      setCookies('auth_token', token, { path: '/' });
+    },
+    [setCurrentUser]
+  );
 
   const logoutUser = useCallback(() => {
     removeCookies('auth_token');
@@ -42,14 +49,20 @@ export default function CurrentUserContextProvider({ children }) {
     navigate('/');
   }, [setCurrentUser]);
 
-  const isLoggedIn = useCallback(() => currentUser.isAuthenticated, [currentUser.isAuthenticated]);
+  const isLoggedIn = useCallback(
+    () => currentUser.isAuthenticated,
+    [currentUser.isAuthenticated]
+  );
 
-  const value = useMemo(() => ({
-    currentUser,
-    loginUser,
-    logoutUser,
-    isLoggedIn
-  }), [currentUser, setCurrentUser, isLoggedIn]);
+  const value = useMemo(
+    () => ({
+      currentUser,
+      loginUser,
+      logoutUser,
+      isLoggedIn,
+    }),
+    [currentUser, setCurrentUser, isLoggedIn]
+  );
 
   return (
     <CurrentUserContext.Provider value={value}>

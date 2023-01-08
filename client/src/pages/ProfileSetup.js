@@ -46,12 +46,14 @@ function Profile() {
 
     createProfile({
       variables: {
-        location: locationValue,
-        budget: budgetValue,
-        gender: genderValue,
-        age: ageValue,
-        allowPets: allowPetsValue,
-        allowChildren: allowChildrenValue,
+        input: {
+          location: locationValue,
+          budget: budgetValue,
+          gender: genderValue,
+          age: ageValue,
+          allowPets: allowPetsValue,
+          allowChildren: allowChildrenValue,
+        },
       },
     });
     console.log(locationValue);
