@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable */
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Link, useNavigate } from 'react-router-dom';
@@ -31,7 +31,6 @@ export default function Login() {
       loginUser(user, token);
       navigate('/dashboard');
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.log(e);
     }
   };

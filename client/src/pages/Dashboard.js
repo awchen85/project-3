@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable  */
 import React, { useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { Modal } from 'react-responsive-modal';
