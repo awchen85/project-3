@@ -24,7 +24,6 @@ import Dashboard from './pages/Dashboard';
 import NotFound from './pages/NotFound';
 import Profile from './pages/ProfileSetup';
 import Cards from './components/Cards';
-import Carousel from './components/Carousel';
 import './App.css';
 
 const httpLink = createHttpLink({
@@ -63,7 +62,7 @@ function App() {
                 <Route path="" element={<Profile />} />
               </Route>
               <Route path="/dashboard">
-                <Route path=":email" element={<Dashboard />} />
+                <Route path=":id" element={<Dashboard />} />
                 <Route path="" element={<Dashboard />} />
               </Route>
               {/* <Route path="/dashboard" element={<Dashboard />} /> */}

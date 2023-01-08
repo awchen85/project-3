@@ -9,11 +9,13 @@ import { GiTrashCan } from 'react-icons/gi';
 import { useQuery } from '@apollo/client';
 import { QUERY_GET_PROFILES } from '../utils/queries';
 import Cards from '../components/Cards';
-import Carousel from '../components/Carousel';
+
 
 const Home = () => {
+  // Queries everyone's profile
   const { loading, data } = useQuery(QUERY_GET_PROFILES);
   const profile = data?.getProfiles || [];
+  console.log(data);
 
   const [open, setOpen] = React.useState(false);
 
@@ -23,8 +25,8 @@ const Home = () => {
   const [value, setValue] = React.useState(1000);
 
   // Allow Pets Radio Buttons
-  const options1 = [{ value: 'option1', label: 'Yes' }];
-  const options2 = [{ value: 'option2', label: 'No' }];
+  const options1 = [{ value: 'true', label: 'Yes' }];
+  const options2 = [{ value: 'false', label: 'No' }];
   // Allow Pets
   const [selectedPetValue, setSelectedPetValue] = useState(null);
   // Allow Pets
@@ -33,8 +35,8 @@ const Home = () => {
   };
 
   // Allow Children Radio Buttons
-  const options3 = [{ value: 'option3', label: 'Yes' }];
-  const options4 = [{ value: 'option4', label: 'No' }];
+  const options3 = [{ value: 'true', label: 'Yes' }];
+  const options4 = [{ value: 'false', label: 'No' }];
   // Allow Pets
   const [selectedChildValue, setSelectedChildValue] = useState(null);
   // Allow Pets
@@ -46,13 +48,96 @@ const Home = () => {
     setValue(event.target.value);
   };
 
+
+  const filterSubmit = () => {
+    event.preventDefault();
+
+    const inputRent = document.querySelector('#rent').value;
+    const inputRentNum = parseInt(inputRent);
+    console.log(inputRent);
+
+    // const inputAge = document.querySelector('#age').value;
+    // console.log(inputAge);
+
+    // const inputGender = document.querySelector('#rent').value;
+    // console.log(inputGender);
+
+    const inputPetsYes = document.querySelector(
+      'input[id="filter-pets-yes"]:checked'
+    );
+    const inputPetsNo = document.querySelector(
+      'input[id="filter-pets-no"]:checked'
+    );
+    console.log(inputPetsYes ? true : inputPetsNo ? false : null);
+
+    const inputChildrenYes = document.querySelector(
+      'input[id="filter-children-yes"]:checked'
+    );
+    const inputChildrenNo = document.querySelector(
+      'input[id="filter-children-no"]:checked'
+    );
+    console.log(inputChildrenYes ? true : inputChildrenNo ? false : null);
+
+    filterProfiles({
+      inputRentNum,
+      inputPetsYes,
+      inputPetsNo,
+      inputChildrenYes,
+      inputChildrenNo,
+    });
+  };
+
+  function filterProfiles(data) {
+    console.log('HOORAY', data);
+
+    const rent = data.inputRentNum;
+    console.log('RENT IS:', rent);
+
+    // Checks the value of the pets filter. Whether the filter is active and it they allow pets or don't allow pets. If the filter is not selected then profiles with both options will be a part of the search.
+    if (data.inputPetsYes === null && data.inputPetsNo === null) {
+      console.log('PETS IS NOT A FILTER');
+    } else if (data.inputPetsYes !== null && data.inputPetsNo === null) {
+      console.log('ALLOW PETS');
+    } else if (data.inputPetsYes === null && data.inputPetsNo !== null) {
+      console.log("DON'T ALLOW PETS");
+    } else {
+      console.log('SOMETHING WENT WRONG WITH PETS');
+    }
+
+    // Checks the value of the children filter. Whether the filter is active and it they allow children or don't allow children. If the filter is not selected then profiles with both options will be a part of the search.
+    if (data.inputChildrenYes === null && data.inputChildrenNo === null) {
+      console.log('CHILDREN IS NOT A FILTER');
+    } else if (
+      data.inputChildrenYes !== null &&
+      data.inputChildrenNo === null
+    ) {
+      console.log('ALLOW children');
+    } else if (
+      data.inputChildrenYes === null &&
+      data.inputChildrenNo !== null
+    ) {
+      console.log("DON'T ALLOW children");
+    } else {
+      console.log('SOMETHING WENT WRONG WITH CHILDREN');
+    }
+
+    for (let i = 0; i < profile.length; i++) {
+      if (profile[i].allowChildren === true) {
+        console.log(profile[i]);
+      } else {
+        console.log('false');
+      }
+      // console.log('CHILDREN', profile[i].allowChildren);
+    }
+  }
+
   const filterModal = (
     <div id="filterModal" className="modal">
       <div className="modal-header">
         <h2 className="filters-title">Filters</h2>
       </div>
       <div className="modal-body">
-        <form>
+        <form onSubmit={filterSubmit}>
           <div className="flex justify-center">
             <div className="py-4">
               {/* Budget */}
@@ -63,6 +148,7 @@ const Home = () => {
                 Max Rent You Pay Per Month: ${value}
                 <input
                   type="range"
+                  id="rent"
                   min="100"
                   max="4000"
                   step="50"
@@ -277,16 +363,23 @@ const Home = () => {
               </div>
             </div>
           </div>
+          <button
+            type="submit"
+            className="btn btn-primary button-3d font-effect-neon-green"
+            id="apply-filters"
+          >
+            Apply
+          </button>
         </form>
       </div>
       <div id="filterModalFooter" className="modal-footer">
-        <button
+        {/* <button
           type="submit"
           className="btn btn-primary button-3d font-effect-neon-green"
           id="apply-filters"
         >
           Apply
-        </button>
+        </button> */}
         <button
           type="submit"
           className="btn btn-secondary button-3d font-effect-neon-red"
@@ -299,13 +392,10 @@ const Home = () => {
     </div>
   );
 
-  // eslint-disable-next-line operator-linebreak
   mapboxgl.accessToken =
     'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
 
-  // eslint-disable-next-line operator-linebreak
   // const accessToken =
-  // eslint-disable-next-line max-len
   //   'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
 
   const [searchResults, setSearchResults] = useState([]);
@@ -334,7 +424,6 @@ const Home = () => {
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v12',
       center: [lng, lat],
-      // eslint-disable-next-line object-shorthand
       zoom: zoom,
     });
   });
@@ -364,7 +453,6 @@ const Home = () => {
       .then(response => {
         const results = response.body.features.map(feature => {
           // Remove "United States" from the end of the place_name
-          // eslint-disable-next-line no-param-reassign
           feature.place_name = feature.place_name.replace(
             /, United States$/,
             ''
@@ -448,6 +536,14 @@ const Home = () => {
       .send()
       .then(response => {
         const result = response.body.features[0];
+        const results = response.body.features.map(feature => {
+          // Remove "United States" from the end of the place_name
+          feature.place_name = feature.place_name.replace(
+            /, United States$/,
+            ''
+          );
+          return feature;
+        });
         map.current.flyTo({
           center: result.geometry.coordinates,
           zoom: 12,

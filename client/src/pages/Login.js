@@ -1,10 +1,11 @@
-/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable */
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo/logo.jpg';
 
-import { LOGIN } from '../graphql/mutations';
+import { LOGIN_USER } from '../utils/mutations';
+// import { LOGIN } from '../graphql/mutations';
 
 import { useCurrentUserContext } from '../context/currentUser';
 
@@ -16,7 +17,7 @@ export default function Login() {
     password: '',
   });
 
-  const [login, { error }] = useMutation(LOGIN);
+  const [login, { error }] = useMutation(LOGIN_USER);
 
   const handleFormSubmit = async event => {
     event.preventDefault();
@@ -31,7 +32,6 @@ export default function Login() {
       loginUser(user, token);
       navigate('/dashboard');
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.log(e);
     }
   };

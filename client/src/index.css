@@ -31,7 +31,7 @@ nav {
   position: sticky;
   top: 0;
   /* This makes it so that the interactive map doesn't overlap this navbar */
-  z-index: 1;
+  z-index: 3;
 }
 
 nav a {
@@ -632,7 +632,6 @@ form p {
   .left-side {
     width: 50%;
   }
-
 
   /* .btn-section {
     display: flex;
