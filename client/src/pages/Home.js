@@ -557,9 +557,6 @@ function Home() {
       <h2 className="font-semibold text-2xl mb-5">Find Your Next Roommate</h2>
       <div className="flex justify-between mt-12">
         <div className="left-side">
-          <section className="profilesMap">
-            {loading ? <div>Loading...</div> : <CardList profiles={profiles} />}
-          </section>
           <section className="btn-section">
             <div className="filter-buttons grid grid-cols-4 gap-2 md:grid-cols-4">
               <button
@@ -575,13 +572,9 @@ function Home() {
           <div className="profile-section grid grid-cols-1 gap-4">
             <section className="profile-card flex flex-col border-2 border-black rounded-md p-2 xl:grid-cols-3">
               {/* Carousel Container */}
-              <div>
-                {loading ? (
-                  <div>Loading</div>
-                ) : (
-              <Cards getProfiles={profile} title="Matches"/>
-                )}
-              </div>
+              <section className="profilesMap">
+            {loading ? <div>Loading...</div> : <CardList profiles={profile} />}
+          </section>
             </section>
           </div>
         </div>
