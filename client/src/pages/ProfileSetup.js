@@ -15,28 +15,29 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_GET_CURRENT_USER, QUERY_GET_USER } from '../utils/queries';
 import gql from 'graphql-tag';
 import Auth from '../utils/auth';
+import { CREATE_PROFILE } from '../utils/mutations';
 
-const CREATE_PROFILE = gql`
-  mutation createProfile($input: ProfileInput!) {
-    createProfile(input: $input) {
-      _id
-      firstName
-      lastName
-      email
-      profile {
-        _id
-        age
-        gender
-        budget
-        location
-        aboutMe
-        allowPets
-        allowChildren
-        userId
-      }
-    }
-  }
-`;
+// const CREATE_PROFILE = gql`
+//   mutation createProfile($input: ProfileInput!) {
+//     createProfile(input: $input) {
+//       _id
+//       firstName
+//       lastName
+//       email
+//       profile {
+//         _id
+//         age
+//         gender
+//         budget
+//         location
+//         aboutMe
+//         allowPets
+//         allowChildren
+//         userId
+//       }
+//     }
+//   }
+// `;
 
 function Profile() {
   const { id } = useQuery(QUERY_GET_CURRENT_USER);
@@ -51,7 +52,7 @@ function Profile() {
 
   const [createProfile] = useMutation(CREATE_PROFILE);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
     const locationInput = document.querySelector('#location');
     const locationValue = locationInput.value;
@@ -97,7 +98,7 @@ function Profile() {
     'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
 
   // Handles the search bar underneath the map
-  const handleSearch = (event) => {
+  const handleSearch = event => {
     const geocoder = MapboxGeocoder({
       accessToken: mapboxgl.accessToken,
     });
@@ -109,8 +110,8 @@ function Profile() {
         countries: ['us'],
       })
       .send()
-      .then((response) => {
-        const results = response.body.features.map((feature) => {
+      .then(response => {
+        const results = response.body.features.map(feature => {
           // Remove "United States" from the end of the place_name
           // eslint-disable-next-line no-param-reassign
           feature.place_name = feature.place_name.replace(
@@ -123,19 +124,19 @@ function Profile() {
       });
   };
 
-  const handleResultClick = (result) => {
+  const handleResultClick = result => {
     searchInput.current.value = result.place_name;
   };
 
   // eslint-disable-next-line max-len
   // When the autocomplete results are displayed you can use arrow keys and the "Enter" button to interact with them
-  const handleKeyDown = (event) => {
+  const handleKeyDown = event => {
     if (event.key === 'ArrowDown') {
       event.preventDefault();
       // The user can't select something that is not a result
       setSelectedIndex(
         // eslint-disable-next-line no-confusing-arrow
-        (prevIndex) =>
+        prevIndex =>
           // eslint-disable-next-line no-sequences, implicit-arrow-linebreak
           prevIndex === null
             ? 0
@@ -143,7 +144,7 @@ function Profile() {
       );
     } else if (event.key === 'ArrowUp') {
       event.preventDefault();
-      setSelectedIndex((prevIndex) =>
+      setSelectedIndex(prevIndex =>
         prevIndex > 0 ? prevIndex - 1 : prevIndex === 0
       );
     } else if (event.key === 'Enter' && selectedIndex !== null) {
@@ -152,7 +153,7 @@ function Profile() {
     }
   };
 
-  const combinedFunction = (event) => {
+  const combinedFunction = event => {
     setLocation(event.target.value);
     handleSearch(event);
   };
@@ -191,7 +192,7 @@ function Profile() {
                           key={result.id}
                           onClick={() => handleResultClick(result)}
                           tabIndex={index === selectedIndex ? 0 : -1}
-                          onKeyDown={(event) => {
+                          onKeyDown={event => {
                             if (event.key === 'Enter') {
                               event.preventDefault();
                               handleResultClick(result);

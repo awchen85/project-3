@@ -10,13 +10,9 @@ import { useQuery } from '@apollo/client';
 import { QUERY_GET_PROFILES } from '../utils/queries';
 import Cards from '../components/Cards';
 
+import CardList from '../components/CardList';
 
-const Home = () => {
-  // Queries everyone's profile
-  const { loading, data } = useQuery(QUERY_GET_PROFILES);
-  const profile = data?.getProfiles || [];
-  console.log(data);
-
+function Home() {
   const [open, setOpen] = React.useState(false);
 
   const onOpenModal = () => setOpen(true);
@@ -48,6 +44,10 @@ const Home = () => {
     setValue(event.target.value);
   };
 
+  // Queries everyone's profile
+  const { loading, data } = useQuery(QUERY_GET_PROFILES);
+  const profile = data?.getProfiles || [];
+  // console.log(data);
 
   const filterSubmit = () => {
     event.preventDefault();
@@ -557,6 +557,9 @@ const Home = () => {
       <h2 className="font-semibold text-2xl mb-5">Find Your Next Roommate</h2>
       <div className="flex justify-between mt-12">
         <div className="left-side">
+          <section className="profilesMap">
+            {loading ? <div>Loading...</div> : <CardList profiles={profiles} />}
+          </section>
           <section className="btn-section">
             <div className="filter-buttons grid grid-cols-4 gap-2 md:grid-cols-4">
               <button
