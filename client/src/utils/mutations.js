@@ -54,12 +54,13 @@ export const UPDATE_USER = gql`
 `;
 
 export const DELETE_USER = gql`
-    mutation deleteUser() {
-        deleteUser() {
-            _id
-            email
-        }
+  mutation deleteUser {
+    deleteUser {
+      firstName
+      lastName
+      email
     }
+  }
 `;
 
 export const CREATE_PROFILE = gql`
@@ -85,7 +86,7 @@ export const CREATE_PROFILE = gql`
 `;
 
 export const UPDATE_PROFILE = gql`
-  mutation updateProfile($input: ProfileInput!) {
+  mutation updateProfile($input: ProfileInput) {
     updateProfile(input: $input) {
       _id
       firstName

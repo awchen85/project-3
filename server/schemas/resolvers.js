@@ -94,9 +94,9 @@ const resolvers = {
     updateProfile: async (parent, { input }, context) => {
       if (context.user) {
         const user = await User.findById({ _id: context.user._id });
-        const userId = user.profile._id;
+        const profileId = user.profile._id;
         await Profile.findByIdAndUpdate(
-          { _id: userId },
+          { _id: profileId },
           {
             ...input,
           },
