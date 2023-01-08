@@ -15,33 +15,10 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_GET_CURRENT_USER, QUERY_GET_USER } from '../utils/queries';
 import gql from 'graphql-tag';
 import Auth from '../utils/auth';
-import { CREATE_PROFILE } from '../utils/mutations';
-
-// const CREATE_PROFILE = gql`
-//   mutation createProfile($input: ProfileInput!) {
-//     createProfile(input: $input) {
-//       _id
-//       firstName
-//       lastName
-//       email
-//       profile {
-//         _id
-//         age
-//         gender
-//         budget
-//         location
-//         aboutMe
-//         allowPets
-//         allowChildren
-//         userId
-//       }
-//     }
-//   }
-// `;
 
 function Profile() {
   const { id } = useQuery(QUERY_GET_CURRENT_USER);
-  console.log(useQuery(QUERY_GET_CURRENT_USER));
+  // console.log(useQuery(QUERY_GET_CURRENT_USER));
 
   const [location, setLocation] = useState('');
   const [budget, setBudget] = useState(100);

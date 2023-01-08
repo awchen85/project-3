@@ -56,11 +56,48 @@ function Home() {
     const inputRentNum = parseInt(inputRent);
     console.log(inputRent);
 
-    // const inputAge = document.querySelector('#age').value;
-    // console.log(inputAge);
+    const inputMinAge = minValue;
+    const inputMaxAge = maxValue;
+    console.log('MinAge', inputMinAge);
+    console.log('MaxAge', inputMaxAge);
 
-    // const inputGender = document.querySelector('#rent').value;
-    // console.log(inputGender);
+    const inputGender = document.querySelector('input[id="male"]:checked');
+
+    if (inputGender) {
+      const inputGenderMale = inputGender.value;
+      console.log(inputGenderMale);
+    } else {
+      console.log('null');
+    }
+
+    const inputGender2 = document.querySelector('input[id="female"]:checked');
+
+    if (inputGender2) {
+      const inputGenderFemale = inputGender2.value;
+      console.log(inputGenderFemale);
+    } else {
+      console.log('null');
+    }
+
+    const inputGender3 = document.querySelector(
+      'input[id="non-binary"]:checked'
+    );
+
+    if (inputGender3) {
+      const inputGenderNonBinary = inputGender3.value;
+      console.log(inputGenderNonBinary);
+    } else {
+      console.log('null');
+    }
+
+    const inputGender4 = document.querySelector('input[id="other"]:checked');
+
+    if (inputGender4) {
+      const inputGenderOther = inputGender4.value;
+      console.log(inputGenderOther);
+    } else {
+      console.log('null');
+    }
 
     const inputPetsYes = document.querySelector(
       'input[id="filter-pets-yes"]:checked'
@@ -80,6 +117,12 @@ function Home() {
 
     filterProfiles({
       inputRentNum,
+      inputMinAge,
+      inputMaxAge,
+      inputGender,
+      inputGender2,
+      inputGender3,
+      inputGender4,
       inputPetsYes,
       inputPetsNo,
       inputChildrenYes,
@@ -90,15 +133,187 @@ function Home() {
   function filterProfiles(data) {
     console.log('HOORAY', data);
 
+    // This is the default values for each filter option
+    let results = [
+      { rent: 1000 },
+      { minAge: 18 },
+      { maxAge: 100 },
+      { gender: 'Male, Female, Non-binary, Other' },
+      // { pets: null },
+      // { children: null },
+    ];
+
+    // initial rent value from the user's input
     const rent = data.inputRentNum;
+    // Changing the default key-value pair from 1000 to the value the user input
+    results.splice(0, 1, { ...results[0], rent: rent });
     console.log('RENT IS:', rent);
+
+    const minAge = data.inputMinAge;
+    results.splice(1, 1, { ...results[1], minAge: minAge });
+    const maxAge = data.inputMaxAge;
+    results.splice(2, 2, { ...results[2], maxAge: maxAge });
+
+    if (
+      data.inputGender === null &&
+      data.inputGender2 === null &&
+      data.inputGender3 === null &&
+      data.inputGender4 === null
+    ) {
+      results.splice(3, 1, {
+        gender: 'Male, Female, Non-binary, Other',
+      });
+      console.log('Gender is not a filter');
+    } else if (
+      data.inputGender !== null &&
+      data.inputGender2 === null &&
+      data.inputGender3 === null &&
+      data.inputGender4 === null
+    ) {
+      results.splice(3, 1, {
+        gender: 'Male',
+      });
+      console.log('Male was selected');
+    } else if (
+      data.inputGender === null &&
+      data.inputGender2 !== null &&
+      data.inputGender3 === null &&
+      data.inputGender4 === null
+    ) {
+      results.splice(3, 1, {
+        gender: 'Female',
+      });
+      console.log('Female was selected');
+    } else if (
+      data.inputGender === null &&
+      data.inputGender2 === null &&
+      data.inputGender3 !== null &&
+      data.inputGender4 === null
+    ) {
+      results.splice(3, 1, {
+        gender: 'Non-binary',
+      });
+      console.log('Non-Binary was selected');
+    } else if (
+      data.inputGender === null &&
+      data.inputGender2 === null &&
+      data.inputGender3 === null &&
+      data.inputGender4 !== null
+    ) {
+      results.splice(3, 1, {
+        gender: 'Other',
+      });
+      console.log('Other was selected');
+    } else if (
+      data.inputGender !== null &&
+      data.inputGender2 !== null &&
+      data.inputGender3 === null &&
+      data.inputGender4 === null
+    ) {
+      results.splice(3, 1, {
+        gender: 'Male, Female',
+      });
+      console.log('Male and Female was selected');
+    } else if (
+      data.inputGender !== null &&
+      data.inputGender2 === null &&
+      data.inputGender3 !== null &&
+      data.inputGender4 === null
+    ) {
+      results.splice(3, 1, {
+        gender: 'Male, Non-binary',
+      });
+      console.log('Male and Non-Binary was selected');
+    } else if (
+      data.inputGender !== null &&
+      data.inputGender2 === null &&
+      data.inputGender3 === null &&
+      data.inputGender4 !== null
+    ) {
+      results.splice(3, 1, {
+        gender: 'Male, Other',
+      });
+      console.log('Male and Other was selected');
+    } else if (
+      data.inputGender === null &&
+      data.inputGender2 !== null &&
+      data.inputGender3 !== null &&
+      data.inputGender4 === null
+    ) {
+      results.splice(3, 1, {
+        gender: 'Female, Non-binary',
+      });
+      console.log('Female and Non-Binary was selected');
+    } else if (
+      data.inputGender === null &&
+      data.inputGender2 !== null &&
+      data.inputGender3 === null &&
+      data.inputGender4 !== null
+    ) {
+      results.splice(3, 1, {
+        gender: 'Female, Other',
+      });
+      console.log('Female and Other was selected');
+    } else if (
+      data.inputGender === null &&
+      data.inputGender2 === null &&
+      data.inputGender3 !== null &&
+      data.inputGender4 !== null
+    ) {
+      results.splice(3, 1, {
+        gender: 'Non-binary, Other',
+      });
+      console.log('Non-Binary and Other was selected');
+    } else if (
+      data.inputGender !== null &&
+      data.inputGender2 !== null &&
+      data.inputGender3 !== null &&
+      data.inputGender4 === null
+    ) {
+      results.splice(3, 1, {
+        gender: 'Male, Female, Non-binary',
+      });
+      console.log('Male and Female and Non-Binary was selected');
+    } else if (
+      data.inputGender !== null &&
+      data.inputGender2 !== null &&
+      data.inputGender3 === null &&
+      data.inputGender4 !== null
+    ) {
+      results.splice(3, 1, {
+        gender: 'Male, Female, Other',
+      });
+      console.log('Male and Female and Other was selected');
+    } else if (
+      data.inputGender === null &&
+      data.inputGender2 !== null &&
+      data.inputGender3 !== null &&
+      data.inputGender4 !== null
+    ) {
+      results.splice(3, 1, {
+        gender: 'Female, Non-binary, Other',
+      });
+      console.log('Female and Non-Binary and Other was selected');
+    } else if (
+      data.inputGender !== null &&
+      data.inputGender2 !== null &&
+      data.inputGender3 !== null &&
+      data.inputGender4 !== null
+    ) {
+      results.splice(3, 1, {
+        gender: 'Male, Female, Non-binary, Other',
+      });
+      console.log('Everything was selected');
+    }
 
     // Checks the value of the pets filter. Whether the filter is active and it they allow pets or don't allow pets. If the filter is not selected then profiles with both options will be a part of the search.
     if (data.inputPetsYes === null && data.inputPetsNo === null) {
       console.log('PETS IS NOT A FILTER');
     } else if (data.inputPetsYes !== null && data.inputPetsNo === null) {
+      results.splice(4, 4, { pets: true });
       console.log('ALLOW PETS');
     } else if (data.inputPetsYes === null && data.inputPetsNo !== null) {
+      results.splice(4, 4, { pets: false });
       console.log("DON'T ALLOW PETS");
     } else {
       console.log('SOMETHING WENT WRONG WITH PETS');
@@ -111,25 +326,53 @@ function Home() {
       data.inputChildrenYes !== null &&
       data.inputChildrenNo === null
     ) {
+      // changes the value of the children key-pair in the array
+      results.push({ children: true });
       console.log('ALLOW children');
     } else if (
       data.inputChildrenYes === null &&
       data.inputChildrenNo !== null
     ) {
+      // changes the value of the children key-pair in the array
+      results.push({ children: false });
       console.log("DON'T ALLOW children");
     } else {
       console.log('SOMETHING WENT WRONG WITH CHILDREN');
     }
 
-    for (let i = 0; i < profile.length; i++) {
-      if (profile[i].allowChildren === true) {
-        console.log(profile[i]);
-      } else {
-        console.log('false');
-      }
-      // console.log('CHILDREN', profile[i].allowChildren);
-    }
+    filteredResults(results);
   }
+
+  const filteredResults = results => {
+    console.log('THESE ARE THE RESULTS', results);
+    console.log(profiles);
+    console.log('><><><><><><><><', results[0].rent);
+
+    let profilesArr = [];
+
+    for (let i = 0; i < profiles.length; i++) {
+      if (profiles[i].budget <= results[0].rent) {
+        console.log(profiles[i]);
+        console.log(profilesArr);
+        profilesArr.push(profiles[i]);
+      }
+    }
+
+    console.log('-=-=-=-=-=-=-=', profilesArr);
+
+    // for (let i = 0; i < profilesArr.length; i++) {
+    //   if (profilesArr[i].)
+    // }
+
+    // for (let i = 0; i < profilesArr.length; i++) {
+    //   if (profilesArr[i].gender === results[3].gender) {
+    //     console.log('OTHER FILTER', profiles[i]);
+    //   }
+    // }
+  };
+
+  let minValue;
+  let maxValue;
 
   const filterModal = (
     <div id="filterModal" className="modal">
@@ -166,9 +409,13 @@ function Home() {
                 <label htmlFor="age" className="flex flex-col filters my-1">
                   Age Range
                   <MultiRangeSlider
+                    id="age-slider"
                     min={18}
                     max={100}
-                    onChange={({ min, max }) => console.log()}
+                    onChange={({ min, max }) => {
+                      minValue = min;
+                      maxValue = max;
+                    }}
                   />
                 </label>
                 <br />
@@ -205,7 +452,7 @@ function Home() {
                     <br />
                     <div className="cursor-pointer text-xl rounded text-purple-400 hover:bg-purple-100 hover:border-4 hover:border-purple-500 m-1 p-1">
                       <label htmlFor="other" className="px-4 cursor-pointer">
-                        <input id="other" type="checkbox" value="male" /> Other
+                        <input id="other" type="checkbox" value="other" /> Other
                       </label>
                     </div>
                     <br />
@@ -216,19 +463,6 @@ function Home() {
                 <div className="filters mb-4">
                   Allow Pets
                   <div className="flex justify-center my-1">
-                    {/* <label
-                      htmlFor="pets-yes"
-                      className="filter-pets-yes px-4 mx-2"
-                    >
-                      <input
-                        id="pets-yes"
-                        type="radio"
-                        name="pets"
-                        value="yes"
-                        hidden
-                      />{' '}
-                      Yes
-                    </label> */}
                     {options1.map(option => (
                       <label
                         // htmlFor="pets-yes"
@@ -275,34 +509,12 @@ function Home() {
                         {option.label}
                       </label>
                     ))}
-                    {/* <label
-                      htmlFor="pets-no"
-                      className="filter-pets-no px-4 mx-2"
-                    >
-                      <input
-                        id="pets-no"
-                        type="radio"
-                        name="pets"
-                        value="no"
-                        hidden
-                      />{' '}
-                      No
-                    </label> */}
                   </div>
                 </div>
                 {/* Allow Children */}
                 <div className="filters my-4">
                   Allow Children
                   <div className="flex justify-center my-1">
-                    {/* <label htmlFor="children-yes" className="px-4">
-                      <input
-                        id="children-yes"
-                        type="radio"
-                        name="children"
-                        value="yes"
-                      />{' '}
-                      Yes
-                    </label> */}
                     {options3.map(option => (
                       <label
                         // htmlFor="children-yes"
@@ -349,15 +561,6 @@ function Home() {
                         {option.label}
                       </label>
                     ))}
-                    {/* <label htmlFor="children-no" className="px-4">
-                      <input
-                        id="children-no"
-                        type="radio"
-                        name="children"
-                        value="no"
-                      />{' '}
-                      No
-                    </label> */}
                   </div>
                 </div>
               </div>
@@ -373,13 +576,6 @@ function Home() {
         </form>
       </div>
       <div id="filterModalFooter" className="modal-footer">
-        {/* <button
-          type="submit"
-          className="btn btn-primary button-3d font-effect-neon-green"
-          id="apply-filters"
-        >
-          Apply
-        </button> */}
         <button
           type="submit"
           className="btn btn-secondary button-3d font-effect-neon-red"
@@ -466,29 +662,20 @@ function Home() {
     searchInput.current.value = '';
   };
 
-  // eslint-disable-next-line max-len
   // When the autocomplete results are displayed you can use arrow keys and the "Enter" button to interact with them
   const handleKeyDown = event => {
     if (event.key === 'ArrowDown') {
       event.preventDefault();
       // The user can't select something that is not a result
-      setSelectedIndex(
-        // eslint-disable-next-line no-confusing-arrow
-        prevIndex =>
-          // eslint-disable-next-line no-sequences, implicit-arrow-linebreak
-          prevIndex === null
-            ? 0
-            : Math.min(prevIndex + 1, searchResults.length - 1)
-        // eslint-disable-next-line function-paren-newline
+      setSelectedIndex(prevIndex =>
+        prevIndex === null
+          ? 0
+          : Math.min(prevIndex + 1, searchResults.length - 1)
       );
     } else if (event.key === 'ArrowUp') {
       event.preventDefault();
-      setSelectedIndex(
-        // eslint-disable-next-line no-confusing-arrow
-        prevIndex =>
-          // eslint-disable-next-line implicit-arrow-linebreak
-          prevIndex > 0 ? prevIndex - 1 : prevIndex === 0
-        // eslint-disable-next-line function-paren-newline
+      setSelectedIndex(prevIndex =>
+        prevIndex > 0 ? prevIndex - 1 : prevIndex === 0
       );
     } else if (event.key === 'Enter' && selectedIndex !== null) {
       event.preventDefault();
@@ -695,7 +882,6 @@ function Home() {
         </div>
         <div className="right-side">
           <div className="sidebar">
-            {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
             Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
           </div>
           <div id="map" ref={mapContainer} className="map-container" />
@@ -721,8 +907,6 @@ function Home() {
                 </div>
                 <ul>
                   {searchResults.map((result, index) => (
-                    // eslint-disable-next-line max-len
-                    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
                     <li
                       key={result.id}
                       onClick={() => handleResultClick(result)}
@@ -759,9 +943,7 @@ function Home() {
             <div className="quick-search-cities-section text-center">
               <h3 className="text-3xl font-semibold">Quick Search</h3>
               <div className="quick-search-cities grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {/* eslint-disable-next-line react/button-has-type */}
                 {cities1.map(city => (
-                  // eslint-disable-next-line react/button-has-type
                   <button key={city} onClick={() => searchForCity(city)}>
                     <div className="card card-1">
                       <h3
@@ -773,9 +955,7 @@ function Home() {
                     </div>
                   </button>
                 ))}
-                {/* eslint-disable-next-line react/button-has-type */}
                 {cities2.map(city => (
-                  // eslint-disable-next-line react/button-has-type
                   <button key={city} onClick={() => searchForCity(city)}>
                     <div className="card card-2">
                       <h3
@@ -787,9 +967,7 @@ function Home() {
                     </div>
                   </button>
                 ))}
-                {/* eslint-disable-next-line react/button-has-type */}
                 {cities3.map(city => (
-                  // eslint-disable-next-line react/button-has-type
                   <button key={city} onClick={() => searchForCity(city)}>
                     <div className="card card-3">
                       <h3
@@ -801,9 +979,7 @@ function Home() {
                     </div>
                   </button>
                 ))}
-                {/* eslint-disable-next-line react/button-has-type */}
                 {cities4.map(city => (
-                  // eslint-disable-next-line react/button-has-type
                   <button key={city} onClick={() => searchForCity(city)}>
                     <div className="card card-4">
                       <h3
@@ -815,9 +991,7 @@ function Home() {
                     </div>
                   </button>
                 ))}
-                {/* eslint-disable-next-line react/button-has-type */}
                 {cities5.map(city => (
-                  // eslint-disable-next-line react/button-has-type
                   <button key={city} onClick={() => searchForCity(city)}>
                     <div className="card card-5">
                       <h3
@@ -829,9 +1003,7 @@ function Home() {
                     </div>
                   </button>
                 ))}
-                {/* eslint-disable-next-line react/button-has-type */}
                 {cities6.map(city => (
-                  // eslint-disable-next-line react/button-has-type
                   <button key={city} onClick={() => searchForCity(city)}>
                     <div className="card card-6">
                       <h3
@@ -843,9 +1015,7 @@ function Home() {
                     </div>
                   </button>
                 ))}
-                {/* eslint-disable-next-line react/button-has-type */}
                 {cities7.map(city => (
-                  // eslint-disable-next-line react/button-has-type
                   <button key={city} onClick={() => searchForCity(city)}>
                     <div className="card card-7">
                       <h3
@@ -857,9 +1027,7 @@ function Home() {
                     </div>
                   </button>
                 ))}
-                {/* eslint-disable-next-line react/button-has-type */}
                 {cities8.map(city => (
-                  // eslint-disable-next-line react/button-has-type
                   <button key={city} onClick={() => searchForCity(city)}>
                     <div className="card card-8">
                       <h3
@@ -871,9 +1039,7 @@ function Home() {
                     </div>
                   </button>
                 ))}
-                {/* eslint-disable-next-line react/button-has-type */}
                 {cities9.map(city => (
-                  // eslint-disable-next-line react/button-has-type
                   <button key={city} onClick={() => searchForCity(city)}>
                     <div className="card card-9">
                       <h3
