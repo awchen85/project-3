@@ -1,4 +1,4 @@
-/* eslint-disable class-methods-use-this */
+/* eslint-disable */
 import decode from 'jwt-decode';
 
 class AuthService {

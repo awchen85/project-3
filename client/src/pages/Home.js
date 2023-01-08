@@ -3,12 +3,12 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Modal } from 'react-responsive-modal';
 import MapboxGeocoder from '@mapbox/mapbox-sdk/services/geocoding';
 import 'react-responsive-modal/styles.css';
-import placeholder from '../assets/images/placeholder-icon.jpg';
 import mapboxgl from '!mapbox-gl';
 import MultiRangeSlider from '../components/multiRangeSlider';
 import { GiTrashCan } from 'react-icons/gi';
 import { useQuery } from '@apollo/client';
 import { QUERY_GET_PROFILES } from '../utils/queries';
+import Cards from '../components/Cards';
 
 import CardList from '../components/CardList';
 
@@ -46,7 +46,7 @@ function Home() {
 
   // Queries everyone's profile
   const { loading, data } = useQuery(QUERY_GET_PROFILES);
-  const profiles = data?.getProfiles || [];
+  const profile = data?.getProfiles || [];
   // console.log(data);
 
   const filterSubmit = () => {
@@ -603,7 +603,17 @@ function Home() {
   const [lng, setLng] = useState(-79.05);
   const [lat, setLat] = useState(35.92);
   const [zoom, setZoom] = useState(9);
-
+  // const items = [
+  //   <Cards title="Card 1" description="This is card 1"
+  //   imageUrl="card1.jpg"
+  //   />,
+  //   <Cards title="Card 2" description="This is card 2"
+  //   imageUrl="card1.jpg"
+  //   />,
+  //   <Cards title="Card 3" description="This is card 3"
+  //   imageUrl="card1.jpg"
+  //   />,
+  // ];
   useEffect(() => {
     if (map.current) return; // initialize map only once
     map.current = new mapboxgl.Map({
@@ -734,9 +744,6 @@ function Home() {
       <h2 className="font-semibold text-2xl mb-5">Find Your Next Roommate</h2>
       <div className="flex justify-between mt-12">
         <div className="left-side">
-          <section className="profilesMap">
-            {loading ? <div>Loading...</div> : <CardList profiles={profiles} />}
-          </section>
           <section className="btn-section">
             <div className="filter-buttons grid grid-cols-4 gap-2 md:grid-cols-4">
               <button
@@ -749,134 +756,12 @@ function Home() {
               </button>
             </div>
           </section>
-          <div className="profile-section grid grid-cols-1 gap-4 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2">
-            <section className="profile-card flex flex-col border-2 border-black rounded-md p-2">
-              <div className="profile-card-image">
-                <a href="/">
-                  <img
-                    className="profile-card-image"
-                    src={placeholder}
-                    alt=""
-                  />
-                </a>
-              </div>
-              <div className="profile-card-header">
-                <h2>
-                  <a href="/">
-                    John Doe, &nbsp;
-                    <span>26</span>
-                  </a>
-                </h2>
-                <h3 className="text-2xl">Male</h3>
-              </div>
-              <div className="flex flex-col profile-card-body">
-                <h4>Los Angeles, CA</h4>
-                <h4>Budget: $1000</h4>
-                <h4>Pets: Yes</h4>
-                <h4>Other Minimum Info</h4>
-              </div>
-              <button
-                type="submit"
-                className="connect-btn border-2 border-black rounded-md"
-              >
-                Connect!
-              </button>
-            </section>
-            <section className="profile-card flex flex-col border-2 border-black rounded-md p-2">
-              <div className="profile-card-image">
-                <a href="/">
-                  <img
-                    className="profile-card-image"
-                    src={placeholder}
-                    alt=""
-                  />
-                </a>
-              </div>
-              <div className="profile-card-header">
-                <h2>
-                  <a href="/">
-                    John Doe, &nbsp;
-                    <span>26</span>
-                  </a>
-                </h2>
-                <h3 className="text-2xl">Male</h3>
-              </div>
-              <div className="flex flex-col profile-card-body">
-                <h4>Los Angeles, CA</h4>
-                <h4>Budget: $1000</h4>
-                <h4>Pets: Yes</h4>
-                <h4>Other Minimum Info</h4>
-              </div>
-              <button
-                type="submit"
-                className="connect-btn border-2 border-black rounded-md"
-              >
-                Connect!
-              </button>
-            </section>
-            <section className="profile-card flex flex-col border-2 border-black rounded-md p-2">
-              <div className="profile-card-image">
-                <a href="/">
-                  <img
-                    className="profile-card-image"
-                    src={placeholder}
-                    alt=""
-                  />
-                </a>
-              </div>
-              <div className="profile-card-header">
-                <h2>
-                  <a href="/">
-                    John Doe, &nbsp;
-                    <span>26</span>
-                  </a>
-                </h2>
-                <h3 className="text-2xl">Male</h3>
-              </div>
-              <div className="flex flex-col profile-card-body">
-                <h4>Los Angeles, CA</h4>
-                <h4>Budget: $1000</h4>
-                <h4>Pets: Yes</h4>
-                <h4>Other Minimum Info</h4>
-              </div>
-              <button
-                type="submit"
-                className="connect-btn border-2 border-black rounded-md"
-              >
-                Connect!
-              </button>
-            </section>
-            <section className="profile-card flex flex-col border-2 border-black rounded-md p-2">
-              <div className="profile-card-image">
-                <a href="/">
-                  <img
-                    className="profile-card-image"
-                    src={placeholder}
-                    alt=""
-                  />
-                </a>
-              </div>
-              <div className="profile-card-header">
-                <h2>
-                  <a href="/">
-                    John Doe, &nbsp;
-                    <span>26</span>
-                  </a>
-                </h2>
-                <h3 className="text-2xl">Male</h3>
-              </div>
-              <div className="flex flex-col profile-card-body">
-                <h4>Los Angeles, CA</h4>
-                <h4>Budget: $1000</h4>
-                <h4>Pets: Yes</h4>
-                <h4>Other Minimum Info</h4>
-              </div>
-              <button
-                type="submit"
-                className="connect-btn border-2 border-black rounded-md"
-              >
-                Connect!
-              </button>
+          <div className="profile-section grid grid-cols-1 gap-4">
+            <section className="profile-card flex flex-col border-2 border-black rounded-md p-2 xl:grid-cols-3">
+              {/* Carousel Container */}
+              <section className="profilesMap">
+            {loading ? <div>Loading...</div> : <CardList profiles={profile} />}
+          </section>
             </section>
           </div>
         </div>
