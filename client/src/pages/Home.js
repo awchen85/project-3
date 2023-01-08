@@ -345,26 +345,30 @@ function Home() {
 
   const filteredResults = results => {
     console.log('THESE ARE THE RESULTS', results);
-    console.log(profile);
+    console.log(profiles);
     console.log('><><><><><><><><', results[0].rent);
 
-    let profiles = [];
-
-    for (let i = 0; i < profile.length; i++) {
-      if (profile[i].budget <= results[0].rent) {
-        console.log(profile[i]);
-        console.log(profiles);
-        profiles.push(profile[i]);
-      }
-    }
-
-    console.log('-=-=-=-=-=-=-=', profiles);
+    let profilesArr = [];
 
     for (let i = 0; i < profiles.length; i++) {
-      if (profiles[i].gender === results[3].gender) {
-        console.log('OTHER FILTER', profile[i]);
+      if (profiles[i].budget <= results[0].rent) {
+        console.log(profiles[i]);
+        console.log(profilesArr);
+        profilesArr.push(profiles[i]);
       }
     }
+
+    console.log('-=-=-=-=-=-=-=', profilesArr);
+
+    // for (let i = 0; i < profilesArr.length; i++) {
+    //   if (profilesArr[i].)
+    // }
+
+    // for (let i = 0; i < profilesArr.length; i++) {
+    //   if (profilesArr[i].gender === results[3].gender) {
+    //     console.log('OTHER FILTER', profiles[i]);
+    //   }
+    // }
   };
 
   let minValue;
