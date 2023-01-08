@@ -59,19 +59,43 @@ function Home() {
     console.log('MinAge', inputMinAge);
     console.log('MaxAge', inputMaxAge);
 
-    const inputGenderMale = document.querySelector(
-      'input[id="male"]:checked'
-    ).value;
-    console.log('Male', inputGenderMale);
+    const inputElement = document.querySelector('input[id="male"]:checked');
 
-    // const inputGenderFemale = document.querySelector('#female').value;
-    // console.log(inputGenderFemale);
+    if (inputElement) {
+      const inputGenderMale = inputElement.value;
+      console.log(inputGenderMale);
+    } else {
+      console.log('null');
+    }
 
-    // const inputGenderNonBinary = document.querySelector('#non-binary').value;
-    // console.log(inputGenderNonBinary);
+    const inputElement2 = document.querySelector('input[id="female"]:checked');
 
-    // const inputGenderOther = document.querySelector('#other').value;
-    // console.log(inputGenderOther);
+    if (inputElement2) {
+      const inputGenderFemale = inputElement2.value;
+      console.log(inputGenderFemale);
+    } else {
+      console.log('null');
+    }
+
+    const inputElement3 = document.querySelector(
+      'input[id="non-binary"]:checked'
+    );
+
+    if (inputElement3) {
+      const inputGenderNonBinary = inputElement3.value;
+      console.log(inputGenderNonBinary);
+    } else {
+      console.log('null');
+    }
+
+    const inputElement4 = document.querySelector('input[id="other"]:checked');
+
+    if (inputElement4) {
+      const inputGenderOther = inputElement4.value;
+      console.log(inputGenderOther);
+    } else {
+      console.log('null');
+    }
 
     const inputPetsYes = document.querySelector(
       'input[id="filter-pets-yes"]:checked'
@@ -246,7 +270,7 @@ function Home() {
                     <br />
                     <div className="cursor-pointer text-xl rounded text-purple-400 hover:bg-purple-100 hover:border-4 hover:border-purple-500 m-1 p-1">
                       <label htmlFor="other" className="px-4 cursor-pointer">
-                        <input id="other" type="checkbox" value="male" /> Other
+                        <input id="other" type="checkbox" value="other" /> Other
                       </label>
                     </div>
                     <br />
