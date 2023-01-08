@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const addressSchema = require('./Address');
 // const addressSchema = require("./Address");
 
-// const { Schema } = mongoose;
+const { Schema } = mongoose;
 
 const roomSchema = new Schema(
   {
