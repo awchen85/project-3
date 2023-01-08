@@ -355,6 +355,14 @@ function Home() {
         profiles.push(profile[i]);
       }
     }
+
+    console.log('-=-=-=-=-=-=-=', profiles);
+
+    for (let i = 0; i < profiles.length; i++) {
+      if (profiles[i].gender === results[3].gender) {
+        console.log('OTHER FILTER', profile[i]);
+      }
+    }
   };
 
   let minValue;
