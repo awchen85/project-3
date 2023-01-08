@@ -4,8 +4,11 @@ import Simu from '../../assets/images/simu.jpg';
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 
-const Cards = (props) => {
-  const { getProfiles } = props;
+const Cards = ({ getProfiles, _id }) => {
+  if (!getProfiles.length) {
+    return <h3>No Matches Yet</h3>
+  }
+
   console.log(getProfiles);
 
   return (
@@ -75,4 +78,4 @@ const Cards = (props) => {
     </div>
 );
               }
-export default Cards;
+              export default Cards;
