@@ -12,10 +12,10 @@ import { MdPets } from 'react-icons/md';
 import MapboxGeocoder from '@mapbox/mapbox-sdk/services/geocoding';
 import mapboxgl from '!mapbox-gl';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_GET_CURRENT_USER, QUERY_GET_USER, CREATE_USER } from '../utils/queries';
+import { QUERY_GET_CURRENT_USER, QUERY_GET_USER } from '../utils/queries';
+import { CREATE_PROFILE } from '../utils/mutations';
 import gql from 'graphql-tag';
 import Auth from '../utils/auth';
-
 
 function Profile() {
   const { id } = useQuery(QUERY_GET_CURRENT_USER);

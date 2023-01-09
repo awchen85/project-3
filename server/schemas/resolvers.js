@@ -12,6 +12,7 @@ const resolvers = {
         const user = await User.findById(context.user._id)
           .select('-__v -password')
           .populate('profile');
+        console.log(user);
         return user;
       }
       throw new AuthenticationError('Not logged in');
@@ -29,6 +30,7 @@ const resolvers = {
 
     getProfiles: async (parent, { filter }) => {
       const profiles = await Profile.find(filter);
+      console.log(profiles);
       return profiles;
     },
   },
