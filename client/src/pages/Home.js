@@ -758,7 +758,7 @@ function Home() {
           <div className="profile-section md:grid md:grid-cols-1 md:gap-4">
             <section className="profile-card flex flex-col border-2 border-black rounded-md p-2 xl:grid-cols-3">
               {/* Carousel Container */}
-              <section className="profilesMap">
+              <section className="profilesMap grid grid-cols-1 grid-rows-1">
             {loading ? <div>Loading...</div> : <CardList profiles={profile} />}
           </section>
             </section>
