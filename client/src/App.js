@@ -67,10 +67,10 @@ function App() {
               {/* <Route path="/dashboard" element={<Dashboard />} /> */}
               <Route path="/*" element={<NotFound />} />
             </Routes>
+            <Footer />
           </CurrentUserContextProvider>
         </Router>
       </CookiesProvider>
-      <Footer />
     </ApolloProvider>
   );
 }

@@ -46,7 +46,7 @@ function Home() {
 
   // Queries everyone's profile
   const { loading, data } = useQuery(QUERY_GET_PROFILES);
-  const profile = data?.getProfiles || [];
+  const profiles = data?.getProfiles || [];
   // console.log(data);
 
   const filterSubmit = () => {
@@ -760,8 +760,12 @@ function Home() {
             <section className="profile-card flex flex-col border-2 border-black rounded-md p-2 xl:grid-cols-3">
               {/* Carousel Container */}
               <section className="profilesMap">
-            {loading ? <div>Loading...</div> : <CardList profiles={profile} />}
-          </section>
+                {loading ? (
+                  <div>Loading...</div>
+                ) : (
+                  <CardList profiles={profiles} />
+                )}
+              </section>
             </section>
           </div>
         </div>
