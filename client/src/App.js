@@ -10,7 +10,7 @@ import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie';
 
-import { CurrentUserContextProvider } from './context';
+import CurrentUserContextProvider from './context/currentUser';
 
 // import mapboxgl from '!mapbox-gl';
 
@@ -22,6 +22,7 @@ import Registration from './pages/Registration';
 import Dashboard from './pages/Dashboard';
 import NotFound from './pages/NotFound';
 import Profile from './pages/ProfileSetup';
+import Footer from './components/Footer';
 import './App.css';
 
 const httpLink = createHttpLink({
