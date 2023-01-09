@@ -50,7 +50,7 @@ function Home() {
   // Queries everyone's profile
   const { loading, data } = useQuery(QUERY_GET_PROFILES);
   const profile = data?.getProfiles || [];
-  console.log(data);
+  // console.log(data);
 
   const filterSubmit = () => {
     event.preventDefault();
