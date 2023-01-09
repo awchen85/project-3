@@ -1,5 +1,5 @@
-/* eslint-disable */
-import React, { useRef, useEffect, useState } from 'react';
+// import React, { useRef, useEffect, useState } from 'react';
+/* eslint-disable comma-dangle */
 import {
   ApolloClient,
   InMemoryCache,
@@ -15,14 +15,13 @@ import { CurrentUserContextProvider } from './context';
 // import mapboxgl from '!mapbox-gl';
 
 import Navigation from './components/Navigation';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
 import Dashboard from './pages/Dashboard';
 import NotFound from './pages/NotFound';
 import Profile from './pages/ProfileSetup';
-import Cards from './components/Cards';
 import './App.css';
 
 const httpLink = createHttpLink({

@@ -78,6 +78,7 @@ export const QUERY_GET_PROFILES = gql`
       allowPets
       allowChildren
       userId
+      username
     }
   }
 `;

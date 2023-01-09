@@ -2,15 +2,18 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import placeholder from '../../assets/images/placeholder-icon.jpg';
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
 
-import { QUERY_GET_CURRENT_USER } from '../../utils/queries';
-import { CREATE_PROFILE, UPDATE_PROFILE } from '../../utils/mutations';
+const DashboardProfile = props => {
+  const { userId: userParam } = useParams();
 
-function DashboardProfile() {
-  // query getCurrentUser
+  const { loading, data } = useQuery(
+    userParam ? QUERY_USER : QUERY_GET_CURRENT_USER,
+    { variables: { userId: userParam } }
+  );
 
-  const [createProfile] = useMutation(CREATE_PROFILE);
-  const [updateProfile] = useMutation(UPDATE_PROFILE);
+  const user = data?.me || data?.user || {};
 
   // Allow Pets Radio Buttons
   const options1 = [{ value: 'option1', label: 'Yes' }];
@@ -288,6 +291,6 @@ function DashboardProfile() {
       </div>
     </div>
   );
-}
+};
 
 export default DashboardProfile;
