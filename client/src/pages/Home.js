@@ -385,46 +385,56 @@ function Home() {
     console.log(hasPetsObject);
 
     const petsTrueProfiles = profilesGenderArr.filter(
-      profile => profile.pets === true
+      profile => profile.allowPets === true
     );
     console.log('petsTrueProfiles', petsTrueProfiles);
 
     const petsFalseProfiles = profilesGenderArr.filter(
-      profile => profile.pets === false
+      profile => profile.allowPets === false
     );
     console.log('petsFalseProfiles', petsFalseProfiles);
     const allPetsProfiles = petsTrueProfiles.concat(petsFalseProfiles);
     console.log('allPetsProfiles', allPetsProfiles);
 
+    let filteredProfiles = profilesGenderArr;
+
     if (hasPetsObject && results[4].pets) {
       // hasPetsObject is true and the value of the pets key is true
-      const petsTrueProfiles = profilesGenderArr.filter(
+      filteredProfiles = filteredProfiles.filter(
         profile => profile.pets === true
       );
-      console.log('TRUE', petsTrueProfiles);
+      console.log('PETS TRUE', petsTrueProfiles);
     } else if (hasPetsObject && !results[4].pets) {
       // hasPetsObject is true and the value of the pets key is false
-      const petsFalseProfiles = profilesGenderArr.filter(
+      filteredProfiles = filteredProfiles.filter(
         profile => profile.pets === false
       );
-      console.log('FALSE', petsFalseProfiles);
+      console.log('PETS FALSE', petsFalseProfiles);
     } else {
-      console.log('WHAT?!?!?');
+      // hasPetsObject is false, use the original array
+      filteredProfiles = profilesGenderArr;
+      console.log('PETS NULL', profilesGenderArr);
     }
 
-    // if (hasPetsObject === true) {
-    //   const petsTrueProfiles = profilesGenderArr.filter(
-    //     profile => profile.pets === true
-    //   );
-    //   console.log('TRUE', petsTrueProfiles);
-    // } else if (hasPetsObject === false) {
-    //   const petsFalseProfiles = profilesGenderArr.filter(
-    //     profile => profile.pets === false
-    //   );
-    //   console.log('FALSE', petsFalseProfiles);
-    // } else {
-    //   console.log('WHAT?!?!?');
-    // }
+    const childrenObject = results.find(obj => obj.hasOwnProperty('children'));
+    if (childrenObject && childrenObject.children) {
+      // ChildrenObject is true and the value of the children key is true
+      filteredProfiles = filteredProfiles.filter(
+        profile => profile.children === true
+      );
+      console.log('CHILDREN TRUE', filteredProfiles);
+    } else if (childrenObject && !childrenObject.children) {
+      // ChildrenObject is true and the value of the children key is false
+      filteredProfiles = filteredProfiles.filter(
+        profile => profile.children === false
+      );
+      console.log('CHILDREN FALSE', filteredProfiles);
+    } else {
+      // ChildrenObject is false, use the filteredProfiles array
+      console.log('CHILDREN NULL', filteredProfiles);
+    }
+
+    console.log('FINAL RESULTS:', filteredProfiles);
   };
 
   let minValue;
