@@ -1,6 +1,6 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
-
+const path = require('path');
 require('dotenv').config();
 
 const { typeDefs, resolvers } = require('./schemas');
@@ -20,7 +20,15 @@ const server = new ApolloServer({
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-const startApolloServer = async () => {
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+}
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
+
+const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
   server.applyMiddleware({ app });
 
@@ -34,6 +42,6 @@ const startApolloServer = async () => {
   });
 };
 
-startApolloServer();
+startApolloServer(typeDefs, resolvers);
 
 // db.dropDatabase();

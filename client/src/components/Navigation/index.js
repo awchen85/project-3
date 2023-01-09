@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
 import { AiFillHome } from 'react-icons/ai';
-import { useCurrentUserContext } from '../../context/currentUser';
+import auth from '../../utils/auth';
 
 export default function Navigation() {
-  const { isLoggedIn, logoutUser } = useCurrentUserContext();
-
+  const logout = event => {
+    event.preventDefault();
+    auth.logout();
+  };
   return (
     <nav
       className="flex flex-row md:justify-between justify-center"
@@ -109,7 +111,7 @@ export default function Navigation() {
         </div>
       </div>
       <div className="flex nav-links">
-        {isLoggedIn() ? (
+        {auth.loggedIn() ? (
           <>
             <Link
               className="mr-1 text-2xl hover:scale-125 hover:-translate-x-1 hover:text-teal-300"
@@ -126,7 +128,7 @@ export default function Navigation() {
             <button
               className="text-white hover:text-red-600 hover:scale-125 hover:translate-x-1"
               type="button"
-              onClick={logoutUser}
+              onClick={logout}
             >
               Logout
             </button>

@@ -1,5 +1,6 @@
 // import React, { useRef, useEffect, useState } from 'react';
 /* eslint-disable comma-dangle */
+import React from 'react';
 import {
   ApolloClient,
   InMemoryCache,
@@ -8,9 +9,6 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { CookiesProvider } from 'react-cookie';
-
-import { CurrentUserContextProvider } from './context';
 
 // import mapboxgl from '!mapbox-gl';
 
@@ -46,9 +44,7 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <CookiesProvider>
         <Router>
-          <CurrentUserContextProvider>
             <Navigation />
             <Routes>
               <Route path="/" element={<Home />} />
@@ -66,9 +62,7 @@ function App() {
               {/* <Route path="/dashboard" element={<Dashboard />} /> */}
               <Route path="/*" element={<NotFound />} />
             </Routes>
-          </CurrentUserContextProvider>
         </Router>
-      </CookiesProvider>
     </ApolloProvider>
   );
 }
