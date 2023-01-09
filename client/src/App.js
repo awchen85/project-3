@@ -15,7 +15,7 @@ import CurrentUserContextProvider from './context/currentUser';
 // import mapboxgl from '!mapbox-gl';
 
 import Navigation from './components/Navigation';
-// import Footer from './components/Footer';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
