@@ -4,11 +4,13 @@ import placeholder from '../../assets/images/placeholder-icon.jpg';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-const DashboardProfile = (props) => {
+const DashboardProfile = props => {
   const { userId: userParam } = useParams();
 
-  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_GET_CURRENT_USER, { variables: { userId: userParam },
-  });
+  const { loading, data } = useQuery(
+    userParam ? QUERY_USER : QUERY_GET_CURRENT_USER,
+    { variables: { userId: userParam } }
+  );
 
   const user = data?.me || data?.user || {};
 
@@ -36,7 +38,7 @@ const DashboardProfile = (props) => {
     <div>
       <h1 className="text-center font-bold text-3xl m-8">
         Welcome, USER_NAME, To Your Profile!
-    </h1>
+      </h1>
       <div className="flex justify-center">
         <div className="border-2 border-black display-image">
           <img src={placeholder} className="profile-picture" alt="" />
@@ -288,6 +290,6 @@ const DashboardProfile = (props) => {
       </div>
     </div>
   );
-}
+};
 
 export default DashboardProfile;
