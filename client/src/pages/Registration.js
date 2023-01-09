@@ -1,18 +1,18 @@
 /* eslint-disable */
 import { useState } from 'react';
-import { useMutation, gql } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo/logo.jpg';
 
 import { CREATE_USER } from '../utils/mutations';
-import Auth from '../utils/auth';
+// import { REGISTER_USER } from '../graphql/mutations';
 
+import { useCurrentUserContext } from '../context/currentUser';
 
 export default function Registration() {
+  const { loginUser } = useCurrentUserContext();
   const navigate = useNavigate();
   const [formState, setFormState] = useState({
-    firstName: '',
-    lastName: '',
     email: '',
     password: '',
   });
@@ -22,10 +22,16 @@ export default function Registration() {
   const handleFormSubmit = async event => {
     event.preventDefault();
     try {
-      const { data } = await createUser({
-        variables: { ...formState },
+      const mutationResponse = await createUser({
+        variables: {
+          email: formState.email,
+          password: formState.password,
+          firstName: formState.firstName,
+          lastName: formState.lastName,
+        },
       });
-      Auth.login(data.createUser.idToken);
+      const { token, user } = mutationResponse.data.createUser;
+      loginUser(user, token);
       navigate('/profile');
     } catch (e) {
       console.log(e);

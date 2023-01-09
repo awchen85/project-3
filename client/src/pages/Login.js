@@ -1,16 +1,18 @@
 /* eslint-disable */
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo/logo.jpg';
+import Auth from '../utils/auth';
 
 import { LOGIN_USER } from '../utils/mutations';
-import auth from '../utils/auth';
 // import { LOGIN } from '../graphql/mutations';
 
-// import { useCurrentUserContext } from '../context/currentUser';
+import { useCurrentUserContext } from '../context/currentUser';
 
 export default function Login() {
+  const { loginUser } = useCurrentUserContext();
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({
     email: '',
     password: '',
@@ -18,24 +20,21 @@ export default function Login() {
 
   const [login, { error }] = useMutation(LOGIN_USER);
 
-  const handleFormSubmit = async (event) => {
+  const handleFormSubmit = async event => {
     event.preventDefault();
-
     try {
-      const { data } = await login({
-        variables: { ...formState },
+      const mutationResponse = await login({
+        variables: {
+          email: formState.email,
+          password: formState.password,
+        },
       });
-
-      auth.login(data.login.token);
+      const { token, user } = mutationResponse.data.login;
+      loginUser(user, token);
+      navigate('/dashboard');
     } catch (e) {
-      console.error(e);
+      console.log(e);
     }
-
-    // clear form values
-    setFormState({
-      email: '',
-      password: '',
-    });
   };
 
   const handleChange = event => {
@@ -80,9 +79,7 @@ export default function Login() {
           />
         </label>
         <button className="form-button hover:bg-cyan-200" type="submit">
-          <Link className="hover:text-green-400" to="/dashboard">
-            Login
-          </Link>
+          Login
         </button>
         <p>
           Need an account? Sign up{' '}
