@@ -1,19 +1,18 @@
 /* eslint-disable */
 import React, { useState, useRef, useEffect } from 'react';
 import placeholder from '../../assets/images/placeholder-icon.jpg';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { QUERY_GET_CURRENT_USER } from '../../utils/queries';
 
-function DashboardProfile() {
-  const { loading, data, error } = useQuery(QUERY_GET_CURRENT_USER);
-  const currentUser = data?.getCurrentUser || {};
-  if (loading) {
-    console.log('loading');
-  }
-  if (error) {
-    console.log(error);
-  }
-  console.log(currentUser);
+const DashboardProfile = props => {
+  const { userId: userParam } = useParams();
+
+  const { loading, data } = useQuery(
+    userParam ? QUERY_USER : QUERY_GET_CURRENT_USER,
+    { variables: { userId: userParam } }
+  );
+
+  const user = data?.me || data?.user || {};
 
   // Allow Pets Radio Buttons
   const options1 = [{ value: 'option1', label: 'Yes' }];
@@ -291,6 +290,6 @@ function DashboardProfile() {
       </div>
     </div>
   );
-}
+};
 
 export default DashboardProfile;

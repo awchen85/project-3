@@ -7,9 +7,8 @@ import mapboxgl from '!mapbox-gl';
 import MultiRangeSlider from '../components/multiRangeSlider';
 import { GiTrashCan } from 'react-icons/gi';
 import { useQuery } from '@apollo/client';
-import { QUERY_GET_PROFILES } from '../utils/queries';
+import { QUERY_GET_PROFILES, QUERY_GET_USER, QUERY_GET_USERS } from '../utils/queries';
 import Cards from '../components/Cards';
-
 import CardList from '../components/CardList';
 
 function Home() {
@@ -47,7 +46,7 @@ function Home() {
   // Queries everyone's profile
   const { loading, data } = useQuery(QUERY_GET_PROFILES);
   const profile = data?.getProfiles || [];
-  // console.log(data);
+  console.log(data);
 
   const filterSubmit = () => {
     event.preventDefault();
@@ -822,7 +821,7 @@ function Home() {
               </button>
             </div>
           </section>
-          <div className="profile-section grid grid-cols-1 gap-4">
+          <div className="profile-section md:grid md:grid-cols-1 md:gap-4">
             <section className="profile-card flex flex-col border-2 border-black rounded-md p-2 xl:grid-cols-3">
               {/* Carousel Container */}
               <section className="profilesMap">
@@ -836,7 +835,7 @@ function Home() {
           </div>
         </div>
         <div className="right-side">
-          <div className="sidebar">
+          <div className="sidebar hidden lg:visible">
             Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
           </div>
           <div id="map" ref={mapContainer} className="map-container" />

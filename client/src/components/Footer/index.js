@@ -4,11 +4,11 @@ import footerGitHub from "../../assets/images/github-mark-white.png";
 
 function Footer() {
   return (
-    <footer>
+    <footer className="h-0">
       <div className="footer-divider">
         <img src={footerDivider} alt="Footer Divider" />
       </div>
-      <div className="grid xl:grid-cols-2 footer sm:grid-cols-1 gap-8">
+      <div className="grid xl:grid-cols-2 footer grid-cols-1 gap-8">
         <div className="footer-left">
           <span className="brand">OurPlace</span>
           <p>
