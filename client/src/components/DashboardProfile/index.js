@@ -8,19 +8,9 @@ import { CREATE_PROFILE, UPDATE_PROFILE } from '../../utils/mutations';
 
 function DashboardProfile() {
   // query getCurrentUser
-  const { loading, data, error } = useQuery(QUERY_GET_CURRENT_USER);
 
   const [createProfile] = useMutation(CREATE_PROFILE);
   const [updateProfile] = useMutation(UPDATE_PROFILE);
-
-  const currentUser = data?.getCurrentUser || {};
-  if (loading) {
-    console.log('loading');
-  }
-  if (error) {
-    console.log(error);
-  }
-  console.log(currentUser);
 
   // Allow Pets Radio Buttons
   const options1 = [{ value: 'option1', label: 'Yes' }];

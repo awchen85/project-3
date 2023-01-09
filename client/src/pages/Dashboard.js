@@ -14,9 +14,8 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_GET_CURRENT_USER, QUERY_GET_USER } from '../utils/queries';
 
 function Dashboard() {
-  const { loading, data } = useQuery(QUERY_GET_CURRENT_USER);
-  // const user = data?.getCurrentUser || {};
-  // console.log(user);
+  const { loading, data, error } = useQuery(QUERY_GET_CURRENT_USER);
+  const currentUser = data?.getCurrentUser || {};
 
   const [currentComponent, setCurrentComponent] = useState('DashboardProfile');
 
