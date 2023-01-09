@@ -128,8 +128,6 @@ function Home() {
       inputGender4,
       inputPetsYes,
       inputPetsNo,
-      inputChildrenYes,
-      inputChildrenNo,
     });
   };
 
@@ -142,8 +140,7 @@ function Home() {
       { minAge: 18 },
       { maxAge: 100 },
       { gender: 'Male, Female, Non-binary, Other' },
-      // { pets: null },
-      // { children: null },
+      { pets: null },
     ];
 
     // initial rent value from the user's input
@@ -163,9 +160,7 @@ function Home() {
       data.inputGender3 === null &&
       data.inputGender4 === null
     ) {
-      results.splice(3, 1, {
-        gender: 'Male, Female, Non-binary, Other',
-      });
+      results[3] = { ...results[3], gender: 'Male, Female, Non-binary, Other' };
       console.log('Gender is not a filter');
     } else if (
       data.inputGender !== null &&
@@ -173,9 +168,7 @@ function Home() {
       data.inputGender3 === null &&
       data.inputGender4 === null
     ) {
-      results.splice(3, 1, {
-        gender: 'Male',
-      });
+      results[3] = { ...results[3], gender: 'Male' };
       console.log('Male was selected');
     } else if (
       data.inputGender === null &&
@@ -183,9 +176,7 @@ function Home() {
       data.inputGender3 === null &&
       data.inputGender4 === null
     ) {
-      results.splice(3, 1, {
-        gender: 'Female',
-      });
+      results[3] = { ...results[3], gender: 'Female' };
       console.log('Female was selected');
     } else if (
       data.inputGender === null &&
@@ -193,9 +184,7 @@ function Home() {
       data.inputGender3 !== null &&
       data.inputGender4 === null
     ) {
-      results.splice(3, 1, {
-        gender: 'Non-binary',
-      });
+      results[3] = { ...results[3], gender: 'Non-binary' };
       console.log('Non-Binary was selected');
     } else if (
       data.inputGender === null &&
@@ -203,9 +192,7 @@ function Home() {
       data.inputGender3 === null &&
       data.inputGender4 !== null
     ) {
-      results.splice(3, 1, {
-        gender: 'Other',
-      });
+      results[3] = { ...results[3], gender: 'Other' };
       console.log('Other was selected');
     } else if (
       data.inputGender !== null &&
@@ -213,9 +200,7 @@ function Home() {
       data.inputGender3 === null &&
       data.inputGender4 === null
     ) {
-      results.splice(3, 1, {
-        gender: 'Male, Female',
-      });
+      results[3] = { ...results[3], gender: 'Male, Female' };
       console.log('Male and Female was selected');
     } else if (
       data.inputGender !== null &&
@@ -223,9 +208,7 @@ function Home() {
       data.inputGender3 !== null &&
       data.inputGender4 === null
     ) {
-      results.splice(3, 1, {
-        gender: 'Male, Non-binary',
-      });
+      results[3] = { ...results[3], gender: 'Male, Non-binary' };
       console.log('Male and Non-Binary was selected');
     } else if (
       data.inputGender !== null &&
@@ -233,9 +216,7 @@ function Home() {
       data.inputGender3 === null &&
       data.inputGender4 !== null
     ) {
-      results.splice(3, 1, {
-        gender: 'Male, Other',
-      });
+      results[3] = { ...results[3], gender: 'Male, Other' };
       console.log('Male and Other was selected');
     } else if (
       data.inputGender === null &&
@@ -243,9 +224,7 @@ function Home() {
       data.inputGender3 !== null &&
       data.inputGender4 === null
     ) {
-      results.splice(3, 1, {
-        gender: 'Female, Non-binary',
-      });
+      results[3] = { ...results[3], gender: 'Female, Non-binary' };
       console.log('Female and Non-Binary was selected');
     } else if (
       data.inputGender === null &&
@@ -253,9 +232,7 @@ function Home() {
       data.inputGender3 === null &&
       data.inputGender4 !== null
     ) {
-      results.splice(3, 1, {
-        gender: 'Female, Other',
-      });
+      results[3] = { ...results[3], gender: 'Female, Other' };
       console.log('Female and Other was selected');
     } else if (
       data.inputGender === null &&
@@ -263,9 +240,7 @@ function Home() {
       data.inputGender3 !== null &&
       data.inputGender4 !== null
     ) {
-      results.splice(3, 1, {
-        gender: 'Non-binary, Other',
-      });
+      results[3] = { ...results[3], gender: 'Non-binary, Other' };
       console.log('Non-Binary and Other was selected');
     } else if (
       data.inputGender !== null &&
@@ -273,9 +248,7 @@ function Home() {
       data.inputGender3 !== null &&
       data.inputGender4 === null
     ) {
-      results.splice(3, 1, {
-        gender: 'Male, Female, Non-binary',
-      });
+      results[3] = { ...results[3], gender: 'Male, Female, Non-binary' };
       console.log('Male and Female and Non-Binary was selected');
     } else if (
       data.inputGender !== null &&
@@ -283,9 +256,7 @@ function Home() {
       data.inputGender3 === null &&
       data.inputGender4 !== null
     ) {
-      results.splice(3, 1, {
-        gender: 'Male, Female, Other',
-      });
+      results[3] = { ...results[3], gender: 'Male, Female, Other' };
       console.log('Male and Female and Other was selected');
     } else if (
       data.inputGender === null &&
@@ -293,9 +264,7 @@ function Home() {
       data.inputGender3 !== null &&
       data.inputGender4 !== null
     ) {
-      results.splice(3, 1, {
-        gender: 'Female, Non-binary, Other',
-      });
+      results[3] = { ...results[3], gender: 'Female, Non-binary, Other' };
       console.log('Female and Non-Binary and Other was selected');
     } else if (
       data.inputGender !== null &&
@@ -303,44 +272,22 @@ function Home() {
       data.inputGender3 !== null &&
       data.inputGender4 !== null
     ) {
-      results.splice(3, 1, {
-        gender: 'Male, Female, Non-binary, Other',
-      });
+      results[3] = { ...results[3], gender: 'Male, Female, Non-binary, Other' };
       console.log('Everything was selected');
     }
 
     // Checks the value of the pets filter. Whether the filter is active and it they allow pets or don't allow pets. If the filter is not selected then profiles with both options will be a part of the search.
     if (data.inputPetsYes === null && data.inputPetsNo === null) {
       console.log('PETS IS NOT A FILTER');
+      results[4] = { ...results[4], pets: null };
     } else if (data.inputPetsYes !== null && data.inputPetsNo === null) {
-      results.splice(4, 4, { pets: true });
+      results[4] = { ...results[4], pets: true };
       console.log('ALLOW PETS');
     } else if (data.inputPetsYes === null && data.inputPetsNo !== null) {
-      results.splice(4, 4, { pets: false });
+      results[4] = { ...results[4], pets: false };
       console.log("DON'T ALLOW PETS");
     } else {
       console.log('SOMETHING WENT WRONG WITH PETS');
-    }
-
-    // Checks the value of the children filter. Whether the filter is active and it they allow children or don't allow children. If the filter is not selected then profiles with both options will be a part of the search.
-    if (data.inputChildrenYes === null && data.inputChildrenNo === null) {
-      console.log('CHILDREN IS NOT A FILTER');
-    } else if (
-      data.inputChildrenYes !== null &&
-      data.inputChildrenNo === null
-    ) {
-      // changes the value of the children key-pair in the array
-      results.push({ children: true });
-      console.log('ALLOW children');
-    } else if (
-      data.inputChildrenYes === null &&
-      data.inputChildrenNo !== null
-    ) {
-      // changes the value of the children key-pair in the array
-      results.push({ children: false });
-      console.log("DON'T ALLOW children");
-    } else {
-      console.log('SOMETHING WENT WRONG WITH CHILDREN');
     }
 
     filteredResults(results);
@@ -384,57 +331,32 @@ function Home() {
     );
     console.log('GENDER', profilesGenderArr);
 
-    const hasPetsObject = results.some(obj => obj.hasOwnProperty('pets'));
-    console.log(hasPetsObject);
-
-    const petsTrueProfiles = profilesGenderArr.filter(
-      profile => profile.allowPets === true
-    );
-    console.log('petsTrueProfiles', petsTrueProfiles);
-
-    const petsFalseProfiles = profilesGenderArr.filter(
-      profile => profile.allowPets === false
-    );
-    console.log('petsFalseProfiles', petsFalseProfiles);
-    const allPetsProfiles = petsTrueProfiles.concat(petsFalseProfiles);
-    console.log('allPetsProfiles', allPetsProfiles);
-
     let filteredProfiles = profilesGenderArr;
 
-    if (hasPetsObject && results[4].pets) {
+    const hasPetsObject = results[4].pets;
+    console.log(hasPetsObject);
+
+    if (results[4].pets === true) {
       // hasPetsObject is true and the value of the pets key is true
+      const petsTrueProfiles = profilesGenderArr.filter(
+        profile => profile.allowPets === true
+      );
       filteredProfiles = filteredProfiles.filter(
-        profile => profile.pets === true
+        profile => profile.allowPets === true
       );
       console.log('PETS TRUE', petsTrueProfiles);
-    } else if (hasPetsObject && !results[4].pets) {
+    } else if (results[4].pets === false) {
       // hasPetsObject is true and the value of the pets key is false
+      const petsFalseProfiles = profilesGenderArr.filter(
+        profile => profile.allowPets === false
+      );
       filteredProfiles = filteredProfiles.filter(
-        profile => profile.pets === false
+        profile => profile.allowPets === false
       );
       console.log('PETS FALSE', petsFalseProfiles);
-    } else {
+    } else if (results[4].pets === null) {
       // hasPetsObject is false, use the original array
-      filteredProfiles = profilesGenderArr;
-      console.log('PETS NULL', profilesGenderArr);
-    }
-
-    const childrenObject = results.find(obj => obj.hasOwnProperty('children'));
-    if (childrenObject && childrenObject.children) {
-      // ChildrenObject is true and the value of the children key is true
-      filteredProfiles = filteredProfiles.filter(
-        profile => profile.children === true
-      );
-      console.log('CHILDREN TRUE', filteredProfiles);
-    } else if (childrenObject && !childrenObject.children) {
-      // ChildrenObject is true and the value of the children key is false
-      filteredProfiles = filteredProfiles.filter(
-        profile => profile.children === false
-      );
-      console.log('CHILDREN FALSE', filteredProfiles);
-    } else {
-      // ChildrenObject is false, use the filteredProfiles array
-      console.log('CHILDREN NULL', filteredProfiles);
+      console.log('PETS NULL', filteredProfiles);
     }
 
     console.log('FINAL RESULTS:', filteredProfiles);
@@ -442,6 +364,151 @@ function Home() {
 
   let minValue;
   let maxValue;
+
+  mapboxgl.accessToken =
+    'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
+
+  // const accessToken =
+  //   'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
+
+  const [searchResults, setSearchResults] = useState([]);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const searchInput = useRef(null);
+
+  const mapContainer = useRef(null);
+  const map = useRef(null);
+  const [lng, setLng] = useState(-79.05);
+  const [lat, setLat] = useState(35.92);
+  const [zoom, setZoom] = useState(9);
+  // const items = [
+  //   <Cards title="Card 1" description="This is card 1"
+  //   imageUrl="card1.jpg"
+  //   />,
+  //   <Cards title="Card 2" description="This is card 2"
+  //   imageUrl="card1.jpg"
+  //   />,
+  //   <Cards title="Card 3" description="This is card 3"
+  //   imageUrl="card1.jpg"
+  //   />,
+  // ];
+  useEffect(() => {
+    if (map.current) return; // initialize map only once
+    map.current = new mapboxgl.Map({
+      container: mapContainer.current,
+      style: 'mapbox://styles/mapbox/streets-v12',
+      center: [lng, lat],
+      zoom: zoom,
+    });
+  });
+
+  useEffect(() => {
+    if (!map.current) return; // wait for map to initialize
+    map.current.on('move', () => {
+      setLng(map.current.getCenter().lng.toFixed(4));
+      setLat(map.current.getCenter().lat.toFixed(4));
+      setZoom(map.current.getZoom().toFixed(2));
+    });
+  });
+
+  // Handles the search bar underneath the map
+  const handleSearch = event => {
+    const geocoder = MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+    });
+
+    geocoder
+      .forwardGeocode({
+        query: event.target.value,
+        types: ['place'],
+        countries: ['us'],
+      })
+      .send()
+      .then(response => {
+        const results = response.body.features.map(feature => {
+          // Remove "United States" from the end of the place_name
+          feature.place_name = feature.place_name.replace(
+            /, United States$/,
+            ''
+          );
+          return feature;
+        });
+        setSearchResults(results);
+      });
+  };
+
+  const handleResultClick = result => {
+    map.current.flyTo({
+      center: result.geometry.coordinates,
+      zoom: 10,
+    });
+    searchInput.current.value = result.place_name;
+  };
+
+  // When the trash can icon in the search bar is clicked it will clear the search bar input
+  const clearInput = event => {
+    searchInput.current.value = '';
+  };
+
+  // When the autocomplete results are displayed you can use arrow keys and the "Enter" button to interact with them
+  const handleKeyDown = event => {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      // The user can't select something that is not a result
+      setSelectedIndex(prevIndex =>
+        prevIndex === null
+          ? 0
+          : Math.min(prevIndex + 1, searchResults.length - 1)
+      );
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      setSelectedIndex(prevIndex =>
+        prevIndex > 0 ? prevIndex - 1 : prevIndex === 0
+      );
+    } else if (event.key === 'Enter' && selectedIndex !== null) {
+      event.preventDefault();
+      handleResultClick(searchResults[selectedIndex]);
+    }
+  };
+
+  const cities1 = ['Greensboro, NC'];
+  const cities2 = ['Apex, NC'];
+  const cities3 = ['Durham, NC'];
+  const cities4 = ['Boone, NC'];
+  const cities5 = ['Hickory, NC'];
+  const cities6 = ['Wilmington, NC'];
+  const cities7 = ['Raleigh, NC'];
+  const cities8 = ['Charlotte, NC'];
+  const cities9 = ['Winston-Salem, NC'];
+
+  const searchForCity = city => {
+    const geocoder = MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+    });
+
+    geocoder
+      .forwardGeocode({
+        query: city,
+        types: ['place'],
+        countries: ['US'],
+      })
+      .send()
+      .then(response => {
+        const result = response.body.features[0];
+        const results = response.body.features.map(feature => {
+          // Remove "United States" from the end of the place_name
+          feature.place_name = feature.place_name.replace(
+            /, United States$/,
+            ''
+          );
+          return feature;
+        });
+        map.current.flyTo({
+          center: result.geometry.coordinates,
+          zoom: 12,
+        });
+        searchInput.current.value = result.place_name;
+      });
+  };
 
   const filterModal = (
     <div id="filterModal" className="modal">
@@ -452,6 +519,51 @@ function Home() {
         <form onSubmit={filterSubmit}>
           <div className="flex justify-center">
             <div className="py-4">
+              <div>
+                <div className="flex">
+                  <input
+                    className="form-input-address"
+                    placeholder="Enter a city's name to search for people in that area"
+                    name="address"
+                    id="address"
+                    type="text"
+                    ref={searchInput}
+                    onChange={handleSearch}
+                    onKeyDown={handleKeyDown}
+                  />
+                  <span className="input-clear text-3xl text-red-600">
+                    <a onClick={clearInput}>
+                      <GiTrashCan />
+                    </a>
+                  </span>
+                </div>
+                <ul>
+                  {searchResults.map((result, index) => (
+                    <li
+                      key={result.id}
+                      onClick={() => handleResultClick(result)}
+                      tabIndex={index === selectedIndex ? 0 : -1}
+                      onKeyDown={event => {
+                        if (event.key === 'Enter') {
+                          event.preventDefault();
+                          handleResultClick(result);
+                        }
+                      }}
+                      onMouseEnter={() => setSelectedIndex(index)}
+                      onMouseLeave={() => setSelectedIndex(null)}
+                      style={{
+                        backgroundColor:
+                          index === selectedIndex ? 'lightgray' : 'white',
+                        cursor: 'pointer',
+                      }}
+                      className={index === selectedIndex ? 'selected' : ''}
+                      id="autocomplete-result"
+                    >
+                      {result.place_name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
               {/* Budget */}
               <label
                 htmlFor="Budget"
@@ -657,157 +769,6 @@ function Home() {
     </div>
   );
 
-  mapboxgl.accessToken =
-    'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
-
-  // const accessToken =
-  //   'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
-
-  const [searchResults, setSearchResults] = useState([]);
-  const [selectedIndex, setSelectedIndex] = useState(null);
-  const searchInput = useRef(null);
-
-  const mapContainer = useRef(null);
-  const map = useRef(null);
-  const [lng, setLng] = useState(-79.05);
-  const [lat, setLat] = useState(35.92);
-  const [zoom, setZoom] = useState(9);
-  // const items = [
-  //   <Cards title="Card 1" description="This is card 1"
-  //   imageUrl="card1.jpg"
-  //   />,
-  //   <Cards title="Card 2" description="This is card 2"
-  //   imageUrl="card1.jpg"
-  //   />,
-  //   <Cards title="Card 3" description="This is card 3"
-  //   imageUrl="card1.jpg"
-  //   />,
-  // ];
-  useEffect(() => {
-    if (map.current) return; // initialize map only once
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v12',
-      center: [lng, lat],
-      zoom: zoom,
-    });
-  });
-
-  useEffect(() => {
-    if (!map.current) return; // wait for map to initialize
-    map.current.on('move', () => {
-      setLng(map.current.getCenter().lng.toFixed(4));
-      setLat(map.current.getCenter().lat.toFixed(4));
-      setZoom(map.current.getZoom().toFixed(2));
-    });
-  });
-
-  // Handles the search bar underneath the map
-  const handleSearch = event => {
-    const geocoder = MapboxGeocoder({
-      accessToken: mapboxgl.accessToken,
-    });
-
-    geocoder
-      .forwardGeocode({
-        query: event.target.value,
-        types: ['place'],
-        countries: ['us'],
-      })
-      .send()
-      .then(response => {
-        const results = response.body.features.map(feature => {
-          // Remove "United States" from the end of the place_name
-          feature.place_name = feature.place_name.replace(
-            /, United States$/,
-            ''
-          );
-          return feature;
-        });
-        setSearchResults(results);
-      });
-  };
-
-  const handleResultClick = result => {
-    map.current.flyTo({
-      center: result.geometry.coordinates,
-      zoom: 10,
-    });
-    searchInput.current.value = result.place_name;
-  };
-
-  // When the trash can icon in the search bar is clicked it will clear the search bar input
-  const clearInput = event => {
-    searchInput.current.value = '';
-  };
-
-  // When the autocomplete results are displayed you can use arrow keys and the "Enter" button to interact with them
-  const handleKeyDown = event => {
-    if (event.key === 'ArrowDown') {
-      event.preventDefault();
-      // The user can't select something that is not a result
-      setSelectedIndex(prevIndex =>
-        prevIndex === null
-          ? 0
-          : Math.min(prevIndex + 1, searchResults.length - 1)
-      );
-    } else if (event.key === 'ArrowUp') {
-      event.preventDefault();
-      setSelectedIndex(prevIndex =>
-        prevIndex > 0 ? prevIndex - 1 : prevIndex === 0
-      );
-    } else if (event.key === 'Enter' && selectedIndex !== null) {
-      event.preventDefault();
-      handleResultClick(searchResults[selectedIndex]);
-    }
-  };
-
-  const googleSearch = e => {
-    e.preventDefault();
-    const input = document.getElementById('address').value;
-    console.log('Searched for:', input);
-  };
-
-  const cities1 = ['Greensboro, NC'];
-  const cities2 = ['Apex, NC'];
-  const cities3 = ['Durham, NC'];
-  const cities4 = ['Boone, NC'];
-  const cities5 = ['Hickory, NC'];
-  const cities6 = ['Wilmington, NC'];
-  const cities7 = ['Raleigh, NC'];
-  const cities8 = ['Charlotte, NC'];
-  const cities9 = ['Winston-Salem, NC'];
-
-  const searchForCity = city => {
-    const geocoder = MapboxGeocoder({
-      accessToken: mapboxgl.accessToken,
-    });
-
-    geocoder
-      .forwardGeocode({
-        query: city,
-        types: ['place'],
-        countries: ['US'],
-      })
-      .send()
-      .then(response => {
-        const result = response.body.features[0];
-        const results = response.body.features.map(feature => {
-          // Remove "United States" from the end of the place_name
-          feature.place_name = feature.place_name.replace(
-            /, United States$/,
-            ''
-          );
-          return feature;
-        });
-        map.current.flyTo({
-          center: result.geometry.coordinates,
-          zoom: 12,
-        });
-        searchInput.current.value = result.place_name;
-      });
-  };
-
   return (
     <div className="mt-8 mx-4">
       <h2 className="font-semibold text-2xl mb-5">Find Your Next Roommate</h2>
@@ -844,7 +805,7 @@ function Home() {
           </div>
           <div id="map" ref={mapContainer} className="map-container" />
           <div className="form-div">
-            <form className="search-form" onSubmit={googleSearch}>
+            <form className="search-form">
               <div>
                 <div className="flex">
                   <input
@@ -890,13 +851,6 @@ function Home() {
                   ))}
                 </ul>
               </div>
-              <button
-                className="search-button"
-                type="submit"
-                onClick={googleSearch}
-              >
-                Search For Roommates!
-              </button>
             </form>
             <div className="quick-search-cities-section text-center">
               <h3 className="text-3xl font-semibold">Quick Search</h3>
