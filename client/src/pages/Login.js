@@ -7,7 +7,6 @@ import Auth from '../utils/auth';
 
 import { LOGIN_USER } from '../utils/mutations';
 // import { LOGIN } from '../graphql/mutations';
-import Auth from '../utils/auth';
 
 import { useCurrentUserContext } from '../context/currentUser';
 

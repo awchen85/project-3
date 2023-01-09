@@ -49,7 +49,7 @@ function Home() {
 
   // Queries everyone's profile
   const { loading, data } = useQuery(QUERY_GET_PROFILES);
-  const profiles = data?.getProfiles || [];
+  const profile = data?.getProfiles || [];
   // console.log(data);
 
   const filterSubmit = () => {
