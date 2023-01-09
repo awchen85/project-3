@@ -50,7 +50,7 @@ function Home() {
   // Queries everyone's profile
   const { loading, data } = useQuery(QUERY_GET_PROFILES);
   const profile = data?.getProfiles || [];
-  // console.log(data);
+  console.log(data);
 
   const filterSubmit = () => {
     event.preventDefault();
@@ -142,8 +142,8 @@ function Home() {
       { minAge: 18 },
       { maxAge: 100 },
       { gender: 'Male, Female, Non-binary, Other' },
-      { pets: null },
-      { children: null },
+      // { pets: null },
+      // { children: null },
     ];
 
     // initial rent value from the user's input
@@ -311,7 +311,6 @@ function Home() {
 
     // Checks the value of the pets filter. Whether the filter is active and it they allow pets or don't allow pets. If the filter is not selected then profiles with both options will be a part of the search.
     if (data.inputPetsYes === null && data.inputPetsNo === null) {
-      results.splice(4, 4, { pets: null });
       console.log('PETS IS NOT A FILTER');
     } else if (data.inputPetsYes !== null && data.inputPetsNo === null) {
       results.splice(4, 4, { pets: true });
@@ -323,21 +322,23 @@ function Home() {
       console.log('SOMETHING WENT WRONG WITH PETS');
     }
 
+    // Checks the value of the children filter. Whether the filter is active and it they allow children or don't allow children. If the filter is not selected then profiles with both options will be a part of the search.
     if (data.inputChildrenYes === null && data.inputChildrenNo === null) {
-      results.splice(5, 5, { children: null });
       console.log('CHILDREN IS NOT A FILTER');
     } else if (
       data.inputChildrenYes !== null &&
       data.inputChildrenNo === null
     ) {
-      results.splice(5, 5, { children: true });
-      console.log('ALLOW CHILDREN');
+      // changes the value of the children key-pair in the array
+      results.push({ children: true });
+      console.log('ALLOW children');
     } else if (
       data.inputChildrenYes === null &&
       data.inputChildrenNo !== null
     ) {
-      results.splice(5, 5, { children: false });
-      console.log("DON'T ALLOW CHILDREN");
+      // changes the value of the children key-pair in the array
+      results.push({ children: false });
+      console.log("DON'T ALLOW children");
     } else {
       console.log('SOMETHING WENT WRONG WITH CHILDREN');
     }
@@ -383,60 +384,57 @@ function Home() {
     );
     console.log('GENDER', profilesGenderArr);
 
+    const hasPetsObject = results.some(obj => obj.hasOwnProperty('pets'));
+    console.log(hasPetsObject);
+
+    const petsTrueProfiles = profilesGenderArr.filter(
+      profile => profile.allowPets === true
+    );
+    console.log('petsTrueProfiles', petsTrueProfiles);
+
+    const petsFalseProfiles = profilesGenderArr.filter(
+      profile => profile.allowPets === false
+    );
+    console.log('petsFalseProfiles', petsFalseProfiles);
+    const allPetsProfiles = petsTrueProfiles.concat(petsFalseProfiles);
+    console.log('allPetsProfiles', allPetsProfiles);
+
     let filteredProfiles = profilesGenderArr;
 
-    const hasPetsObject = results.some(obj => obj.hasOwnProperty('pets'));
-    const hasChildrenObject = results.some(obj =>
-      obj.hasOwnProperty('children')
-    );
-
-    if (hasPetsObject && hasChildrenObject) {
-      // Both pets and children are filters
-      if (results[4].pets && results[5].children) {
-        // Both pets and children are true
-        filteredProfiles = filteredProfiles.filter(
-          profile => profile.pets === true && profile.children === true
-        );
-      } else if (results[4].pets && !results[5].children) {
-        // Only pets is true
-        filteredProfiles = filteredProfiles.filter(
-          profile => profile.pets === true
-        );
-      } else if (!results[4].pets && results[5].children) {
-        // Only children is true
-        filteredProfiles = filteredProfiles.filter(
-          profile => profile.children === true
-        );
-      }
-    } else if (hasPetsObject && !hasChildrenObject) {
-      // Only pets is a filter
-      if (results[4].pets) {
-        // Pets is true
-        filteredProfiles = filteredProfiles.filter(
-          profile => profile.pets === true
-        );
-      } else {
-        // Pets is false
-        filteredProfiles = filteredProfiles.filter(
-          profile => profile.pets === false
-        );
-      }
-    } else if (!hasPetsObject && hasChildrenObject) {
-      // Only children is a filter
-      if (results[5].children) {
-        // Children is true
-        filteredProfiles = filteredProfiles.filter(
-          profile => profile.children === true
-        );
-      } else {
-        // Children is false
-        filteredProfiles = filteredProfiles.filter(
-          profile => profile.children === false
-        );
-      }
+    if (hasPetsObject && results[4].pets) {
+      // hasPetsObject is true and the value of the pets key is true
+      filteredProfiles = filteredProfiles.filter(
+        profile => profile.pets === true
+      );
+      console.log('PETS TRUE', petsTrueProfiles);
+    } else if (hasPetsObject && !results[4].pets) {
+      // hasPetsObject is true and the value of the pets key is false
+      filteredProfiles = filteredProfiles.filter(
+        profile => profile.pets === false
+      );
+      console.log('PETS FALSE', petsFalseProfiles);
     } else {
-      // neither pets nor children are filters
+      // hasPetsObject is false, use the original array
       filteredProfiles = profilesGenderArr;
+      console.log('PETS NULL', profilesGenderArr);
+    }
+
+    const childrenObject = results.find(obj => obj.hasOwnProperty('children'));
+    if (childrenObject && childrenObject.children) {
+      // ChildrenObject is true and the value of the children key is true
+      filteredProfiles = filteredProfiles.filter(
+        profile => profile.children === true
+      );
+      console.log('CHILDREN TRUE', filteredProfiles);
+    } else if (childrenObject && !childrenObject.children) {
+      // ChildrenObject is true and the value of the children key is false
+      filteredProfiles = filteredProfiles.filter(
+        profile => profile.children === false
+      );
+      console.log('CHILDREN FALSE', filteredProfiles);
+    } else {
+      // ChildrenObject is false, use the filteredProfiles array
+      console.log('CHILDREN NULL', filteredProfiles);
     }
 
     console.log('FINAL RESULTS:', filteredProfiles);

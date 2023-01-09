@@ -22,7 +22,6 @@ import Registration from './pages/Registration';
 import Dashboard from './pages/Dashboard';
 import NotFound from './pages/NotFound';
 import Profile from './pages/ProfileSetup';
-import Footer from './components/Footer';
 import './App.css';
 
 const httpLink = createHttpLink({
