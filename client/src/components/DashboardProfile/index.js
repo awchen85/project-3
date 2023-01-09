@@ -3,17 +3,16 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import placeholder from '../../assets/images/placeholder-icon.jpg';
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
 
-const DashboardProfile = props => {
-  const { userId: userParam } = useParams();
+const DashboardProfile = ({ currentUser }) => {
+  // const { userId: userParam } = useParams();
 
-  const { loading, data } = useQuery(
-    userParam ? QUERY_USER : QUERY_GET_CURRENT_USER,
-    { variables: { userId: userParam } }
-  );
+  // const { loading, data } = useQuery(
+  //   userParam ? QUERY_USER : QUERY_GET_CURRENT_USER,
+  //   { variables: { userId: userParam } }
+  // );
 
-  const user = data?.me || data?.user || {};
+  // const user = data?.me || data?.user || {};
 
   // Allow Pets Radio Buttons
   const options1 = [{ value: 'option1', label: 'Yes' }];
@@ -38,7 +37,7 @@ const DashboardProfile = props => {
   return (
     <div>
       <h1 className="text-center font-bold text-3xl m-8">
-        Welcome, USER_NAME, To Your Profile!
+        Welcome, {currentUser.firstName}, To Your Profile!
       </h1>
       <div className="flex justify-center">
         <div className="border-2 border-black display-image">
