@@ -345,29 +345,85 @@ function Home() {
 
   const filteredResults = results => {
     console.log('THESE ARE THE RESULTS', results);
-    console.log(profiles);
-    console.log('><><><><><><><><', results[0].rent);
+    console.log(profile);
 
-    let profilesArr = [];
+    let profilesRentArr = [];
 
-    for (let i = 0; i < profiles.length; i++) {
-      if (profiles[i].budget <= results[0].rent) {
-        console.log(profiles[i]);
-        console.log(profilesArr);
-        profilesArr.push(profiles[i]);
+    for (let i = 0; i < profile.length; i++) {
+      if (profile[i].budget <= results[0].rent) {
+        console.log(profile[i]);
+        profilesRentArr.push(profile[i]);
       }
     }
 
-    console.log('-=-=-=-=-=-=-=', profilesArr);
+    console.log('-=-=-=-=-=-=-=', profilesRentArr);
 
-    // for (let i = 0; i < profilesArr.length; i++) {
-    //   if (profilesArr[i].)
-    // }
+    const minAge = results[1].minAge;
+    const maxAge = results[2].maxAge;
 
-    // for (let i = 0; i < profilesArr.length; i++) {
-    //   if (profilesArr[i].gender === results[3].gender) {
-    //     console.log('OTHER FILTER', profiles[i]);
-    //   }
+    const profilesMinAgeArr = profilesRentArr.filter(
+      profile => profile.age >= minAge
+    );
+    console.log('PLEASE WORK', profilesMinAgeArr);
+
+    const profilesMaxAgeArr = profilesMinAgeArr.filter(
+      profile => profile.age <= maxAge
+    );
+    console.log('PLEASE WORK TOO', profilesMaxAgeArr);
+
+    const genderString = results[3].gender;
+    console.log(genderString);
+    const genderArray = genderString.split(',');
+    const cleanGenderArray = genderArray.map(string => string.trim());
+    console.log(cleanGenderArray);
+    const profilesGenderArr = profilesMaxAgeArr.filter(profile =>
+      cleanGenderArray.includes(profile.gender)
+    );
+    console.log('GENDER', profilesGenderArr);
+
+    const hasPetsObject = results.some(obj => obj.hasOwnProperty('pets'));
+    console.log(hasPetsObject);
+
+    const petsTrueProfiles = profilesGenderArr.filter(
+      profile => profile.pets === true
+    );
+    console.log('petsTrueProfiles', petsTrueProfiles);
+
+    const petsFalseProfiles = profilesGenderArr.filter(
+      profile => profile.pets === false
+    );
+    console.log('petsFalseProfiles', petsFalseProfiles);
+    const allPetsProfiles = petsTrueProfiles.concat(petsFalseProfiles);
+    console.log('allPetsProfiles', allPetsProfiles);
+
+    if (hasPetsObject && results[4].pets) {
+      // hasPetsObject is true and the value of the pets key is true
+      const petsTrueProfiles = profilesGenderArr.filter(
+        profile => profile.pets === true
+      );
+      console.log('TRUE', petsTrueProfiles);
+    } else if (hasPetsObject && !results[4].pets) {
+      // hasPetsObject is true and the value of the pets key is false
+      const petsFalseProfiles = profilesGenderArr.filter(
+        profile => profile.pets === false
+      );
+      console.log('FALSE', petsFalseProfiles);
+    } else {
+      console.log('WHAT?!?!?');
+    }
+
+    // if (hasPetsObject === true) {
+    //   const petsTrueProfiles = profilesGenderArr.filter(
+    //     profile => profile.pets === true
+    //   );
+    //   console.log('TRUE', petsTrueProfiles);
+    // } else if (hasPetsObject === false) {
+    //   const petsFalseProfiles = profilesGenderArr.filter(
+    //     profile => profile.pets === false
+    //   );
+    //   console.log('FALSE', petsFalseProfiles);
+    // } else {
+    //   console.log('WHAT?!?!?');
     // }
   };
 
@@ -760,8 +816,12 @@ function Home() {
             <section className="profile-card flex flex-col border-2 border-black rounded-md p-2 xl:grid-cols-3">
               {/* Carousel Container */}
               <section className="profilesMap">
-            {loading ? <div>Loading...</div> : <CardList profiles={profile} />}
-          </section>
+                {loading ? (
+                  <div>Loading...</div>
+                ) : (
+                  <CardList profiles={profile} />
+                )}
+              </section>
             </section>
           </div>
         </div>
