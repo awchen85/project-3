@@ -10,8 +10,14 @@ import DashboardConnections from '../components/DashboardConnections';
 import auth from '../utils/auth';
 import underConstruction from '../assets/images/under-construction-2.png';
 import stopSign from '../assets/images/stop-sign.png';
+import { useQuery, useMutation } from '@apollo/client';
+import { QUERY_GET_CURRENT_USER } from '../utils/queries';
 
 function Dashboard() {
+  const { loading, data } = useQuery(QUERY_GET_CURRENT_USER);
+  const currentUser = data?.getCurrentUser || {};
+  console.log(currentUser);
+
   const [currentComponent, setCurrentComponent] = useState('DashboardProfile');
 
   const { firstName: userParam } = useParams();
@@ -22,7 +28,7 @@ function Dashboard() {
 
   const determineComponent = () => {
     if (currentComponent === 'DashboardProfile') {
-      return <DashboardProfile />;
+      return <DashboardProfile currentUser={currentUser} />;
       // eslint-disable-next-line no-else-return
     } else if (currentComponent === 'DashboardFriends') {
       return <DashboardFriends />;
@@ -117,9 +123,9 @@ function Dashboard() {
         <div
           className="dashboard-main border-2 border-black"
           // eslint-disable-next-line react/no-unknown-property
-          currentComponent={currentComponent}
+          // currentComponent={currentComponent}
           // eslint-disable-next-line react/no-unknown-property
-          handleComponentChange={handleComponentChange}
+          // handleComponentChange={handleComponentChange}
         >
           {determineComponent()}
           {/* <DashboardProfile /> */}

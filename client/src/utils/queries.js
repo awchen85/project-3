@@ -17,6 +17,7 @@ export const QUERY_GET_CURRENT_USER = gql`
         allowPets
         allowChildren
         userId
+        username
       }
     }
   }
@@ -39,6 +40,7 @@ export const QUERY_GET_USER = gql`
         allowPets
         allowChildren
         userId
+        username
       }
     }
   }
@@ -61,6 +63,7 @@ export const QUERY_GET_USERS = gql`
         allowPets
         allowChildren
         userId
+        username
       }
     }
   }

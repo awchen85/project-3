@@ -31,6 +31,8 @@ export default function Login() {
       });
       const { token, user } = mutationResponse.data.login;
       loginUser(user, token);
+      // added Auth.login to set token in local storage
+      Auth.login(token);
       navigate('/dashboard');
     } catch (e) {
       console.log(e);

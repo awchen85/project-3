@@ -15,7 +15,7 @@ import { CurrentUserContextProvider } from './context';
 // import mapboxgl from '!mapbox-gl';
 
 import Navigation from './components/Navigation';
-// import Footer from './components/Footer';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
@@ -67,6 +67,7 @@ function App() {
               {/* <Route path="/dashboard" element={<Dashboard />} /> */}
               <Route path="/*" element={<NotFound />} />
             </Routes>
+            <Footer />
           </CurrentUserContextProvider>
         </Router>
         <Footer />
