@@ -23,6 +23,7 @@ const typeDefs = gql`
     allowPets: Boolean
     allowChildren: Boolean
     userId: ID
+    username: String
   }
 
   input ProfileInput {
@@ -33,6 +34,7 @@ const typeDefs = gql`
     aboutMe: String
     allowPets: Boolean
     allowChildren: Boolean
+    username: String
   }
 
   type Room {
