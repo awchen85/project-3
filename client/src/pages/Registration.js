@@ -6,6 +6,7 @@ import logo from '../assets/logo/logo.jpg';
 
 import { CREATE_USER } from '../utils/mutations';
 // import { REGISTER_USER } from '../graphql/mutations';
+import Auth from '../utils/auth';
 
 import { useCurrentUserContext } from '../context/currentUser';
 
@@ -32,6 +33,8 @@ export default function Registration() {
       });
       const { token, user } = mutationResponse.data.createUser;
       loginUser(user, token);
+      // added Auth.login to set token in local storage
+      Auth.login(token);
       navigate('/profile');
     } catch (e) {
       console.log(e);

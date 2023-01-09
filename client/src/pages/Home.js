@@ -7,7 +7,11 @@ import mapboxgl from '!mapbox-gl';
 import MultiRangeSlider from '../components/multiRangeSlider';
 import { GiTrashCan } from 'react-icons/gi';
 import { useQuery } from '@apollo/client';
-import { QUERY_GET_PROFILES, QUERY_GET_USER, QUERY_GET_USERS } from '../utils/queries';
+import {
+  QUERY_GET_PROFILES,
+  QUERY_GET_USER,
+  QUERY_GET_USERS,
+} from '../utils/queries';
 import Cards from '../components/Cards';
 import CardList from '../components/CardList';
 
@@ -45,8 +49,8 @@ function Home() {
 
   // Queries everyone's profile
   const { loading, data } = useQuery(QUERY_GET_PROFILES);
-  const profile = data?.getProfiles || [];
-  console.log(data);
+  const profiles = data?.getProfiles || [];
+  // console.log(data);
 
   const filterSubmit = () => {
     event.preventDefault();

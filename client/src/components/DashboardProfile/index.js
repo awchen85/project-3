@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React, { useState, useRef, useEffect } from 'react';
+import { useQuery, useMutation } from '@apollo/client';
 import placeholder from '../../assets/images/placeholder-icon.jpg';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
