@@ -48,7 +48,13 @@ db.once('open', async () => {
   for (let i = 0; i < userIds.length; i += 1) {
     // const cityName = faker.address.cityName();
     // const stateAbbreviation = faker.address.stateAbbr();
-
+    const username = faker.helpers.arrayElement([
+      'Sarah22',
+      'MarquisTheBeast',
+      'PoppyCakes',
+      'BobbyMcBobby',
+      'MIKE WAZOWSKI',
+    ]);
     const age = Math.floor(Math.random() * 30) + 18;
     const gender = faker.helpers.arrayElement([
       'Female',
@@ -84,6 +90,7 @@ db.once('open', async () => {
       allowPets: allowPets,
       allowChildren: allowChildren,
       userId: userId,
+      username: username,
     };
 
     const profile = await Profile.create(profileInput);
