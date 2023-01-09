@@ -66,15 +66,15 @@ db.once('open', async () => {
     const budget = Math.floor(Math.random() * 1500) + 250;
     // might want to do faker zipCodeByState?
     const location = faker.helpers.arrayElement([
-      'Charlotte, NC',
-      'Raleigh, NC',
-      'Asheville, NC',
-      'Greensboro, NC',
-      'Boone, NC',
-      'Chapel Hill, NC',
-      'Hendersonville, NC',
-      'Wilmington, NC',
-      'Durham, NC',
+      'Charlotte, North Carolina',
+      'Raleigh, North Carolina',
+      'Asheville, North Carolina',
+      'Greensboro, North Carolina',
+      'Boone, North Carolina',
+      'Chapel Hill, North Carolina',
+      'Hendersonville, North Carolina',
+      'Wilmington, North Carolina',
+      'Durham, North Carolina',
     ]);
     const aboutMe = faker.lorem.sentences(3);
     const allowPets = faker.helpers.arrayElement(['true', 'false']);
