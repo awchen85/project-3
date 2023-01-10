@@ -20,6 +20,13 @@ function Home() {
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
 
+  const [reload, setReload] = useState(false);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    setReload(true);
+  }
+
   const [value, setValue] = React.useState(1000);
 
   // Allow Pets Radio Buttons
@@ -519,6 +526,7 @@ function Home() {
     }
 
     console.log('FINAL RESULTS:', filteredProfiles);
+    onCloseModal();
   };
 
   const filterModal = (
@@ -710,6 +718,7 @@ function Home() {
             type="submit"
             className="btn btn-primary button-3d font-effect-neon-green"
             id="apply-filters"
+            onClick={handleSubmit}
           >
             Apply
           </button>
