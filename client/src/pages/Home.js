@@ -45,7 +45,7 @@ function Home() {
   const filterSubmit = () => {
     event.preventDefault();
 
-    const inputLocation = document.querySelector('');
+    // const inputLocation = document.querySelector('');
 
     const inputRent = document.querySelector('#rent').value;
     const inputRentNum = parseInt(inputRent);

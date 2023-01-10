@@ -4,12 +4,13 @@ import validator from 'validator';
 import { useQuery, useMutation } from '@apollo/client';
 import placeholder from '../../assets/images/placeholder-icon.jpg';
 import { useParams } from 'react-router-dom';
-import { CREATE_PROFILE } from '../../utils/mutations';
+import { CREATE_PROFILE, UPDATE_PROFILE } from '../../utils/mutations';
 
 const DashboardProfile = ({ currentUser }) => {
   // const currentUserId = parseInt(currentUser._id);
   // console.log(currentUserId);
   const [createProfile, { error }] = useMutation(CREATE_PROFILE);
+  const [updateProfile, { updateError }] = useMutation(UPDATE_PROFILE);
   const [formState, setFormState] = useState({
     age: null,
     gender: '',
@@ -22,6 +23,8 @@ const DashboardProfile = ({ currentUser }) => {
   });
   const { age, gender, budget, location, aboutMe, allowPets, username } =
     formState;
+  // const { age, gender, budget, location, aboutMe, allowPets, username } =
+  //   currentUser.profile;
   const [errorMessage, setErrorMessage] = useState('');
 
   // Allow Pets Radio Buttons
@@ -73,32 +76,37 @@ const DashboardProfile = ({ currentUser }) => {
     }
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e, currentUser) => {
     e.preventDefault();
     console.log(formState);
-    try {
-      const mutationResponse = await createProfile({
-        variables: {
-          input: {
-            ...formState,
+    if (currentUser.profile === null || currentUser.profile === undefined) {
+      try {
+        const mutationResponse = await createProfile({
+          variables: {
+            input: {
+              ...formState,
+            },
           },
-        },
-      });
-      console.log(mutationResponse);
-    } catch (e) {
-      console.log(e);
+        });
+        console.log(mutationResponse);
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      try {
+        const mutationResponse = await updateProfile({
+          variables: {
+            input: {
+              ...formState,
+            },
+          },
+        });
+        console.log(mutationResponse);
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
-
-  // // Allow Children Radio Buttons
-  // const options3 = [{ value: 'option3', label: 'Yes' }];
-  // const options4 = [{ value: 'option4', label: 'No' }];
-  // // Allow Pets
-  // const [selectedChildValue, setSelectedChildValue] = useState(null);
-  // // Allow Pets
-  // const handleChildChange = event => {
-  //   setSelectedChildValue(event.target.value);
-  // };
 
   const determineWelcome = currentUser => {
     if (currentUser.profile === null || currentUser.profile === undefined) {
@@ -303,6 +311,7 @@ const DashboardProfile = ({ currentUser }) => {
                   placeholder="Budget"
                   className="profile-input border-2"
                   onBlur={handleChange}
+                  defaultValue={budget}
                 />
               </div>
             </div>
