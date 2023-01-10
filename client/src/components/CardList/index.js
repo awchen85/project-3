@@ -43,6 +43,7 @@ console.log(profiles)  }
               <span className="inline-block bg-white px-5 py-3 text-sm font-semibold text-gray-700 mr-2 mb-2">{profile.aboutMe}</span>
               <p className='text-xs'>Allow Pets?</p>
               <span className="inline-block bg-white rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{profile.allowPets}</span>
+              <button className='connect'>Add to friends</button>
             </div>
           ))
         : null}
