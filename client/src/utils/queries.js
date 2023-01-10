@@ -15,7 +15,6 @@ export const QUERY_GET_CURRENT_USER = gql`
         location
         aboutMe
         allowPets
-        allowChildren
         userId
         username
       }
@@ -38,7 +37,6 @@ export const QUERY_GET_USER = gql`
         location
         aboutMe
         allowPets
-        allowChildren
         userId
         username
       }
@@ -61,7 +59,6 @@ export const QUERY_GET_USERS = gql`
         location
         aboutMe
         allowPets
-        allowChildren
         userId
         username
       }
@@ -79,7 +76,6 @@ export const QUERY_GET_PROFILES = gql`
       location
       aboutMe
       allowPets
-      allowChildren
       userId
       username
     }
