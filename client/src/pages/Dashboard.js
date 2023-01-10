@@ -97,7 +97,7 @@ function Dashboard() {
             id="friends"
             className={determineIsActive('DashboardFriends')}
           >
-            Friends
+            Saved
           </button>
           <button
             type="submit"
@@ -107,14 +107,6 @@ function Dashboard() {
             className={determineIsActive('DashboardInbox')}
           >
             Inbox
-          </button>
-          <button
-            type="submit"
-            onClick={() => handleComponentChange('DashboardConnections')}
-            id="connections"
-            className={determineIsActive('DashboardConnections')}
-          >
-            Connections
           </button>
         </section>
         <div

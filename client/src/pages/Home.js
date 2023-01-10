@@ -192,7 +192,6 @@ function Home() {
   const filterSubmit = () => {
     event.preventDefault();
 
-    const inputLocation = document.querySelector('');
     const inputLocation = searchInput.current.value;
 
     if (inputLocation) {
@@ -294,7 +293,7 @@ function Home() {
     // initial rent value from the user's input
     const rent = data.inputRentNum;
     // Changing the default key-value pair from 1000 to the value the user input
-    results.splice(0, 1, { ...results[0], rent: rent });
+    results[0] = { ...results[0], rent: rent };
     console.log('RENT IS:', rent);
 
     const minAge = data.inputMinAge;
@@ -520,154 +519,6 @@ function Home() {
     }
 
     console.log('FINAL RESULTS:', filteredProfiles);
-  };
-
-  let minValue;
-  let maxValue;
-
-  mapboxgl.accessToken =
-    'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
-
-  // const accessToken =
-  //   'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
-
-  const [searchResults, setSearchResults] = useState([]);
-  const [selectedIndex, setSelectedIndex] = useState(null);
-  const searchInput = useRef(null);
-
-  const mapContainer = useRef(null);
-  const map = useRef(null);
-  const [lng, setLng] = useState(-79.05);
-  const [lat, setLat] = useState(35.92);
-  const [zoom, setZoom] = useState(9);
-  // const items = [
-  //   <Cards title="Card 1" description="This is card 1"
-  //   imageUrl="card1.jpg"
-  //   />,
-  //   <Cards title="Card 2" description="This is card 2"
-  //   imageUrl="card1.jpg"
-  //   />,
-  //   <Cards title="Card 3" description="This is card 3"
-  //   imageUrl="card1.jpg"
-  //   />,
-  // ];
-  useEffect(() => {
-    if (map.current) return; // initialize map only once
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v12',
-      center: [lng, lat],
-      zoom: zoom,
-    });
-  });
-
-  useEffect(() => {
-    if (!map.current) return; // wait for map to initialize
-    map.current.on('move', () => {
-      setLng(map.current.getCenter().lng.toFixed(4));
-      setLat(map.current.getCenter().lat.toFixed(4));
-      setZoom(map.current.getZoom().toFixed(2));
-    });
-  });
-
-  // Handles the search bar underneath the map
-  const handleSearch = event => {
-    const geocoder = MapboxGeocoder({
-      accessToken: mapboxgl.accessToken,
-    });
-
-    geocoder
-      .forwardGeocode({
-        query: event.target.value,
-        types: ['place'],
-        countries: ['us'],
-      })
-      .send()
-      .then(response => {
-        const results = response.body.features.map(feature => {
-          // Remove "United States" from the end of the place_name
-          feature.place_name = feature.place_name.replace(
-            /, United States$/,
-            ''
-          );
-          return feature;
-        });
-        setSearchResults(results);
-      });
-  };
-
-  const handleResultClick = result => {
-    map.current.flyTo({
-      center: result.geometry.coordinates,
-      zoom: 10,
-    });
-    searchInput.current.value = result.place_name;
-  };
-
-  // When the trash can icon in the search bar is clicked it will clear the search bar input
-  const clearInput = event => {
-    searchInput.current.value = '';
-  };
-
-  // When the autocomplete results are displayed you can use arrow keys and the "Enter" button to interact with them
-  const handleKeyDown = event => {
-    if (event.key === 'ArrowDown') {
-      event.preventDefault();
-      // The user can't select something that is not a result
-      setSelectedIndex(prevIndex =>
-        prevIndex === null
-          ? 0
-          : Math.min(prevIndex + 1, searchResults.length - 1)
-      );
-    } else if (event.key === 'ArrowUp') {
-      event.preventDefault();
-      setSelectedIndex(prevIndex =>
-        prevIndex > 0 ? prevIndex - 1 : prevIndex === 0
-      );
-    } else if (event.key === 'Enter' && selectedIndex !== null) {
-      event.preventDefault();
-      handleResultClick(searchResults[selectedIndex]);
-    }
-  };
-
-  const cities1 = ['Greensboro, NC'];
-  const cities2 = ['Apex, NC'];
-  const cities3 = ['Durham, NC'];
-  const cities4 = ['Boone, NC'];
-  const cities5 = ['Hickory, NC'];
-  const cities6 = ['Wilmington, NC'];
-  const cities7 = ['Raleigh, NC'];
-  const cities8 = ['Charlotte, NC'];
-  const cities9 = ['Winston-Salem, NC'];
-
-  const searchForCity = city => {
-    const geocoder = MapboxGeocoder({
-      accessToken: mapboxgl.accessToken,
-    });
-
-    geocoder
-      .forwardGeocode({
-        query: city,
-        types: ['place'],
-        countries: ['US'],
-      })
-      .send()
-      .then(response => {
-        const result = response.body.features[0];
-        const results = response.body.features.map(feature => {
-          // Remove "United States" from the end of the place_name
-          feature.place_name = feature.place_name.replace(
-            /, United States$/,
-            ''
-          );
-          return feature;
-        });
-        map.current.flyTo({
-          center: result.geometry.coordinates,
-          zoom: 12,
-        });
-        searchInput.current.value = result.place_name;
-      });
   };
 
   const filterModal = (
