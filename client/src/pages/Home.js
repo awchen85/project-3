@@ -33,16 +33,6 @@ function Home() {
     setSelectedPetValue(event.target.value);
   };
 
-  // Allow Children Radio Buttons
-  const options3 = [{ value: 'true', label: 'Yes' }];
-  const options4 = [{ value: 'false', label: 'No' }];
-  // Allow Pets
-  const [selectedChildValue, setSelectedChildValue] = useState(null);
-  // Allow Pets
-  const handleChildChange = event => {
-    setSelectedChildValue(event.target.value);
-  };
-
   const handleChange = event => {
     setValue(event.target.value);
   };
@@ -111,14 +101,6 @@ function Home() {
       'input[id="filter-pets-no"]:checked'
     );
     console.log(inputPetsYes ? true : inputPetsNo ? false : null);
-
-    const inputChildrenYes = document.querySelector(
-      'input[id="filter-children-yes"]:checked'
-    );
-    const inputChildrenNo = document.querySelector(
-      'input[id="filter-children-no"]:checked'
-    );
-    console.log(inputChildrenYes ? true : inputChildrenNo ? false : null);
 
     filterProfiles({
       inputRentNum,
@@ -687,58 +669,6 @@ function Home() {
                           value={option.value}
                           checked={selectedPetValue === option.value}
                           onChange={handlePetChange}
-                          hidden
-                        />
-                        {option.label}
-                      </label>
-                    ))}
-                  </div>
-                </div>
-                {/* Allow Children */}
-                <div className="filters my-4">
-                  Allow Children
-                  <div className="flex justify-center my-1">
-                    {options3.map(option => (
-                      <label
-                        // htmlFor="children-yes"
-                        id="filter-children-yes"
-                        key={option.value}
-                        className={
-                          selectedChildValue === option.value
-                            ? 'active-children-yes'
-                            : ''
-                        }
-                      >
-                        <input
-                          id="filter-children-yes"
-                          type="radio"
-                          name="children"
-                          value={option.value}
-                          checked={selectedChildValue === option.value}
-                          onChange={handleChildChange}
-                          hidden
-                        />
-                        {option.label}
-                      </label>
-                    ))}
-                    {options4.map(option => (
-                      <label
-                        // htmlFor="children-no"
-                        id="filter-children-no"
-                        key={option.value}
-                        className={
-                          selectedChildValue === option.value
-                            ? 'active-children-no'
-                            : ''
-                        }
-                      >
-                        <input
-                          id="filter-children-no"
-                          type="radio"
-                          name="children"
-                          value={option.value}
-                          checked={selectedChildValue === option.value}
-                          onChange={handleChildChange}
                           hidden
                         />
                         {option.label}
