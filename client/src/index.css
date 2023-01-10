@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-primary: #372b70;
+  --color-primary-hover: #f1f0f7;
+  --color-primary-light: #735fd7;
+  --color-primary-dark: #1a1240;
+  --color-primary-bg: #f1f0f7;
+}
+
 html,
 body {
   box-sizing: border-box;
@@ -18,6 +26,46 @@ body h2 {
   text-align: center;
 }
 
+/* Main Elements */
+/* Main Button Styles */
+
+.btn {
+  position: relative;
+  width: auto;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  padding: 16px 18px 14px;
+  margin: 12px;
+  border: 1px solid rgba(255, 255, 255, 0);
+}
+
+.btn-main {
+  color: #fff;
+  background: var(--color-primary);
+}
+
+.btn-main-active {
+  background: var(--color-primary-light);
+}
+
+.btn-secondary {
+  border: 1px solid var(--color-primary);
+  background-color: none;
+  color: var(--color-primary);
+}
+
+.btn-main:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-primary-dark);
+  background-color: var(--color-primary-hover);
+  color: var(--color-primary);
+}
+
 nav {
   display: flex;
   align-items: flex-end;
@@ -26,7 +74,7 @@ nav {
   background-image: url("./assets/nav-bg/buildings.png");
   background-size: contain;
   background-position: 50%;
-  background-color: #372b70;
+  background-color: var(--color-primary);
   max-height: 10rem;
   top: 0;
   /* This makes it so that the interactive map doesn't overlap this navbar */
@@ -194,68 +242,8 @@ form p {
 .dashboard-nav {
   min-width: 20%;
   min-height: 100%;
-  font-family: "Martian Mono";
-}
-
-.dashboard-btn {
-  border-bottom: 2px solid black;
-  padding: 15px;
-}
-
-.dash-nav {
-  position: relative;
-  width: auto;
-  display: inline-block;
-  color: #ecf0f1;
-  text-decoration: none;
-  border-radius: 5px;
-  border: solid 1px green;
-  background: lightgreen;
-  text-align: center;
-  padding: 16px 18px 14px;
-  margin: 12px;
-
-  -webkit-transition: all 0.1s;
-  -moz-transition: all 0.1s;
-  transition: all 0.1s;
-
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em green, 0 0 0.3em green, 0 0 0.4em green,
-    0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
-  -webkit-box-shadow: 0px 6px 0px green;
-  -moz-box-shadow: 0px 6px 0px green;
-  box-shadow: 0px 6px 0px green;
-}
-
-.dash-nav:hover {
-  border: 2px solid green;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em green, 0 0 0.4em green,
-    0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
-}
-
-.dash-nav:active {
-  border: 2px solid red;
-  background: lightcoral;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
-    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
-  -webkit-box-shadow: 0px 2px 0px darkred;
-  -moz-box-shadow: 0px 2px 0px darkred;
-  box-shadow: 0px 2px 0px darkred;
-}
-
-.dash-nav-active {
-  border: 2px solid red;
-  background: lightcoral;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
-    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
-  -webkit-box-shadow: 0px 2px 0px darkred;
-  -moz-box-shadow: 0px 2px 0px darkred;
-  box-shadow: 0px 2px 0px darkred;
-}
-
-.dash-nav-active:hover {
-  border: 2px solid red;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
-    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+  background-color: var(--color-primary-bg);
+  background-image: url("./assets/images/texture.png");
 }
 
 .dashboard-main {
@@ -292,44 +280,6 @@ form p {
 
 .profile-input {
   width: 100%;
-}
-
-.profile-view {
-  position: relative;
-  width: auto;
-  display: inline-block;
-  color: #ecf0f1;
-  text-decoration: none;
-  border-radius: 5px;
-  border: solid 1px lightblue;
-  background: #006db0;
-  text-align: center;
-  padding: 16px 18px 14px;
-  margin: 12px;
-
-  -webkit-transition: all 0.1s;
-  -moz-transition: all 0.1s;
-  transition: all 0.1s;
-
-  -webkit-box-shadow: 0px 6px 0px blue;
-  -moz-box-shadow: 0px 6px 0px blue;
-  box-shadow: 0px 6px 0px blue;
-}
-
-.profile-view:hover {
-  border: 2px solid blue;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em lightblue,
-    0 0 0.4em lightblue, 0 0 0.6em lightblue, 0 0 0.8em lightblue,
-    0 0 1em lightblue, 0 0 1.2em lightblue;
-}
-
-.profile-view:active {
-  border: 2px solid lightblue;
-  -webkit-box-shadow: 0px 2px 0px darkblue;
-  -moz-box-shadow: 0px 2px 0px darkblue;
-  box-shadow: 0px 2px 0px darkblue;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em blue, 0 0 0.4em blue,
-    0 0 0.6em blue, 0 0 0.8em blue, 0 0 1em blue, 0 0 1.2em blue;
 }
 
 #inbox {
@@ -438,7 +388,7 @@ form p {
 #filter-pets-yes,
 #filter-children-yes {
   border: solid 1px rgb(142, 141, 141);
-  color: #372b70;
+  color: var(--color-primary);
   background: #fff;
   border-radius: 10px;
   width: 50%;
@@ -446,18 +396,18 @@ form p {
   font-size: 22px;
   font-weight: bold;
 }
-
+/* 
 #profile-pets-yes,
 #profile-children-yes {
   border: solid 1px rgb(142, 141, 141);
-  color: #372b70;
+  color: var(--color-primary);
   background: #fff;
   border-radius: 10px;
   width: 50%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-}
+} */
 
 .profile-children,
 .profile-pets {
@@ -470,16 +420,11 @@ form p {
   background-color: #f1f0f7;
 }
 
-#profile-pets-yes:hover,
-#profile-children-yes:hover {
-  background-color: lightgreen;
-}
-
 .active-pets-yes,
 .active-children-yes {
   border: solid 1px rgb(142, 141, 141);
   color: #fff !important;
-  background: #372b70 !important;
+  background: var(--color-primary) !important;
   border-radius: 10px;
   width: 50%;
   padding: 10px;
@@ -490,19 +435,7 @@ form p {
 #filter-pets-no,
 #filter-children-no {
   border: solid 1px rgb(142, 141, 141);
-  color: #372b70;
-  background: #fff;
-  border-radius: 10px;
-  width: 50%;
-  padding: 10px;
-  font-size: 22px;
-  font-weight: bold;
-}
-
-#profile-pets-no,
-#profile-children-no {
-  border: solid 1px rgb(142, 141, 141);
-  color: #372b70;
+  color: var(--color-primary);
   background: #fff;
   border-radius: 10px;
   width: 50%;
@@ -516,16 +449,11 @@ form p {
   background-color: #f1f0f7;
 }
 
-#profile-pets-no:hover,
-#profile-children-no:hover {
-  background-color: lightcoral;
-}
-
 .active-pets-no,
 .active-children-no {
   border: solid 1px rgb(142, 141, 141);
   color: #ffffff !important;
-  background: #372b70 !important;
+  background: var(--color-primary) !important;
   border-radius: 10px;
   width: 50%;
   padding: 10px;
@@ -541,7 +469,7 @@ form p {
 }
 
 #apply-filters {
-  background: #372b70;
+  background: var(--color-primary);
   border-radius: 10px;
   width: 50%;
   padding: 10px;
@@ -551,7 +479,7 @@ form p {
 
 #cancel-filters {
   border: solid 1px rgb(142, 141, 141);
-  color: #372b70;
+  color: var(--color-primary);
   background: #fff;
   border-radius: 10px;
   width: 50%;
@@ -561,7 +489,7 @@ form p {
 }
 
 #apply-filters:hover {
-  background-color: #1a1240;
+  background-color: var(--color-primary-dark);
 }
 
 #cancel-filters:hover {
@@ -583,7 +511,7 @@ form p {
 }
 
 .footer {
-  background-color: #372b70;
+  background-color: var(--color-primary);
   padding: 50px;
   min-height: 250;
   color: #fff;
@@ -619,7 +547,7 @@ form p {
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
-  background: #372b70;
+  background: var(--color-primary);
   text-align: center;
   padding: 5px 15px;
   -webkit-transition: all 0.1s;
@@ -651,7 +579,7 @@ form p {
   }
 
   .filter-btn:hover {
-    background-color: #1a1240;
+    background-color: var(--color-primary-dark);
   }
 
   .filter-btn:active {

@@ -29,9 +29,15 @@ function Footer() {
           <div>
             <p className="footer-title">Project Developed By:</p>
             <ul className="grid grid-cols-1 gap-2">
-              <li className="flex items-center">
-                <img src={footerGitHub} alt="GitHub Logo" className="mr-3" />
-                Alex Chen
+              <li>
+                <a
+                  href="https://github.com/awchen85"
+                  className="flex items-center"
+                  target="_blank"
+                >
+                  <img src={footerGitHub} alt="GitHub Logo" className="mr-3" />
+                  Alex Chen
+                </a>
               </li>
               <li className="flex items-center">
                 <img src={footerGitHub} alt="GitHub Logo" className="mr-3" />

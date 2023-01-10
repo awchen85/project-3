@@ -1,24 +1,24 @@
 /* eslint-disable  */
-import React, { useState } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
-import { Modal } from 'react-responsive-modal';
-import 'react-responsive-modal/styles.css';
-import DashboardProfile from '../components/DashboardProfile';
-import DashboardFriends from '../components/DashboardFriends';
-import DashboardInbox from '../components/DashboardInbox';
-import DashboardConnections from '../components/DashboardConnections';
-import auth from '../utils/auth';
-import underConstruction from '../assets/images/under-construction-2.png';
-import stopSign from '../assets/images/stop-sign.png';
-import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_GET_CURRENT_USER } from '../utils/queries';
+import React, { useState } from "react";
+import { Navigate, useParams } from "react-router-dom";
+import { Modal } from "react-responsive-modal";
+import "react-responsive-modal/styles.css";
+import DashboardProfile from "../components/DashboardProfile";
+import DashboardFriends from "../components/DashboardFriends";
+import DashboardInbox from "../components/DashboardInbox";
+import DashboardConnections from "../components/DashboardConnections";
+import auth from "../utils/auth";
+import underConstruction from "../assets/images/under-construction-2.png";
+import stopSign from "../assets/images/stop-sign.png";
+import { useQuery, useMutation } from "@apollo/client";
+import { QUERY_GET_CURRENT_USER } from "../utils/queries";
 
 function Dashboard() {
   const { loading, data } = useQuery(QUERY_GET_CURRENT_USER);
   const currentUser = data?.getCurrentUser || {};
   console.log(currentUser);
 
-  const [currentComponent, setCurrentComponent] = useState('DashboardProfile');
+  const [currentComponent, setCurrentComponent] = useState("DashboardProfile");
 
   const { firstName: userParam } = useParams();
 
@@ -27,29 +27,29 @@ function Dashboard() {
   }
 
   const determineComponent = () => {
-    if (currentComponent === 'DashboardProfile') {
+    if (currentComponent === "DashboardProfile") {
       return <DashboardProfile currentUser={currentUser} />;
       // eslint-disable-next-line no-else-return
-    } else if (currentComponent === 'DashboardFriends') {
+    } else if (currentComponent === "DashboardFriends") {
       return <DashboardFriends />;
-    } else if (currentComponent === 'DashboardInbox') {
+    } else if (currentComponent === "DashboardInbox") {
       return <DashboardInbox />;
-    } else if (currentComponent === 'DashboardConnections') {
+    } else if (currentComponent === "DashboardConnections") {
       return <DashboardConnections />;
     } else {
       return <DashboardProfile />;
     }
   };
 
-  const determineIsActive = component => {
-    let linkClass = 'dashboard-btn dash-nav';
+  const determineIsActive = (component) => {
+    let linkClass = "dashboard-btn btn btn-main";
     if (component === currentComponent) {
-      linkClass += ' dash-nav-active';
+      linkClass += "btn btn-main-active";
     }
     return linkClass;
   };
 
-  const handleComponentChange = component => setCurrentComponent(component);
+  const handleComponentChange = (component) => setCurrentComponent(component);
 
   const [open, setOpen] = React.useState(false);
 
@@ -85,20 +85,20 @@ function Dashboard() {
   return (
     <div>
       <div className="dashboard flex">
-        <section className="dashboard-nav flex flex-col border-2 border-black">
+        <section className="dashboard-nav flex flex-col">
           <button
             type="submit"
-            onClick={() => handleComponentChange('DashboardProfile')}
+            onClick={() => handleComponentChange("DashboardProfile")}
             id="profile"
-            className={determineIsActive('DashboardProfile')}
+            className={determineIsActive("DashboardProfile")}
           >
             Profile
           </button>
           <button
             type="submit"
-            onClick={() => handleComponentChange('DashboardFriends')}
+            onClick={() => handleComponentChange("DashboardFriends")}
             id="friends"
-            className={determineIsActive('DashboardFriends')}
+            className={determineIsActive("DashboardFriends")}
           >
             Friends
           </button>
@@ -107,21 +107,21 @@ function Dashboard() {
             // onClick={() => handleComponentChange('DashboardInbox')}
             onClick={onOpenModal}
             id="inbox"
-            className={determineIsActive('DashboardInbox')}
+            className={determineIsActive("DashboardInbox")}
           >
             Inbox
           </button>
           <button
             type="submit"
-            onClick={() => handleComponentChange('DashboardConnections')}
+            onClick={() => handleComponentChange("DashboardConnections")}
             id="connections"
-            className={determineIsActive('DashboardConnections')}
+            className={determineIsActive("DashboardConnections")}
           >
             Connections
           </button>
         </section>
         <div
-          className="dashboard-main border-2 border-black"
+          className="dashboard-main"
           // eslint-disable-next-line react/no-unknown-property
           // currentComponent={currentComponent}
           // eslint-disable-next-line react/no-unknown-property
