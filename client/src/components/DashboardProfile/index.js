@@ -1,39 +1,104 @@
 /* eslint-disable */
 import React, { useState, useRef, useEffect } from 'react';
+import validator from 'validator';
 import { useQuery, useMutation } from '@apollo/client';
 import placeholder from '../../assets/images/placeholder-icon.jpg';
 import { useParams } from 'react-router-dom';
+import { CREATE_PROFILE } from '../../utils/mutations';
 
 const DashboardProfile = ({ currentUser }) => {
-  // const { userId: userParam } = useParams();
-
-  // const { loading, data } = useQuery(
-  //   userParam ? QUERY_USER : QUERY_GET_CURRENT_USER,
-  //   { variables: { userId: userParam } }
-  // );
-
-  // const user = data?.me || data?.user || {};
-  // const currentUser = currentUser;
+  // const currentUserId = parseInt(currentUser._id);
+  // console.log(currentUserId);
+  const [createProfile, { error }] = useMutation(CREATE_PROFILE);
+  const [formState, setFormState] = useState({
+    age: null,
+    gender: '',
+    budget: null,
+    location: '',
+    aboutMe: '',
+    allowPets: false,
+    userId: currentUser._id,
+    username: '',
+  });
+  const { age, gender, budget, location, aboutMe, allowPets, username } =
+    formState;
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Allow Pets Radio Buttons
-  const options1 = [{ value: 'option1', label: 'Yes' }];
-  const options2 = [{ value: 'option2', label: 'No' }];
+  const options1 = [{ value: true, label: 'Yes' }];
+  const options2 = [{ value: false, label: 'No' }];
   // Allow Pets
   const [selectedPetValue, setSelectedPetValue] = useState(null);
-  // Allow Pets
-  const handlePetChange = event => {
-    setSelectedPetValue(event.target.value);
+
+  // const [selectedGender, setSelectedGender] = useState('');
+  const handleGenderSelect = event => {
+    // console.log(event.target.value);
+    let genderValue = event.target.value;
+    setFormState({
+      ...formState,
+      gender: genderValue,
+    });
   };
 
-  // Allow Children Radio Buttons
-  const options3 = [{ value: 'option3', label: 'Yes' }];
-  const options4 = [{ value: 'option4', label: 'No' }];
-  // Allow Pets
-  const [selectedChildValue, setSelectedChildValue] = useState(null);
-  // Allow Pets
-  const handleChildChange = event => {
-    setSelectedChildValue(event.target.value);
+  const handlePetChange = event => {
+    // console.log(event.target.value === 'true');
+    let petValue = event.target.value === 'true';
+    setSelectedPetValue(petValue);
+    setFormState({
+      ...formState,
+      allowPets: petValue,
+    });
   };
+
+  const handleChange = e => {
+    if (e.target.name === 'budget') {
+      const finalBudget = parseInt(e.target.value);
+      setFormState({ ...formState, budget: finalBudget });
+      return;
+    }
+    if (e.target.name === 'age') {
+      const finalAge = parseInt(e.target.value);
+      setFormState({ ...formState, age: finalAge });
+      return;
+    }
+    const isEmpty = validator.isEmpty(e.target.value);
+    if (isEmpty) {
+      setErrorMessage(`${capitalizeFirstLetter(e.target.name)} is required`);
+    } else {
+      setErrorMessage('');
+    }
+
+    if (!errorMessage) {
+      setFormState({ ...formState, [e.target.name]: e.target.value });
+    }
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    console.log(formState);
+    try {
+      const mutationResponse = await createProfile({
+        variables: {
+          input: {
+            ...formState,
+          },
+        },
+      });
+      console.log(mutationResponse);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  // // Allow Children Radio Buttons
+  // const options3 = [{ value: 'option3', label: 'Yes' }];
+  // const options4 = [{ value: 'option4', label: 'No' }];
+  // // Allow Pets
+  // const [selectedChildValue, setSelectedChildValue] = useState(null);
+  // // Allow Pets
+  // const handleChildChange = event => {
+  //   setSelectedChildValue(event.target.value);
+  // };
 
   const determineWelcome = currentUser => {
     if (currentUser.profile === null || currentUser.profile === undefined) {
@@ -55,7 +120,7 @@ const DashboardProfile = ({ currentUser }) => {
     <div>
       {determineWelcome(currentUser)}
 
-      <form className="flex justify-center profileForm">
+      <form className="flex justify-center profileForm" onSubmit={handleSubmit}>
         <div className="profile text-2xl">
           <div className="profile-field profile-field-section">
             <div className="flex justify-center">
@@ -68,17 +133,24 @@ const DashboardProfile = ({ currentUser }) => {
               id="imageInput"
               name="upload"
               accept="image/png, image/jpg"
+              className="py-3"
             />
-            <h3 className="profile-h3">First Name</h3>
-            <div className="border-2">
+
+            <div className="form-group">
+              <label for="username" className="profile-h3">
+                Username:
+              </label>
               <input
+                name="username"
                 type="text"
-                placeholder="First Name"
-                className="profile-input border-1"
+                placeholder="Username"
+                className="profile-input border-2"
+                defaultValue={username}
+                onBlur={handleChange}
               />
             </div>
           </div>
-          <div className="profile-field profile-field-section">
+          {/* <div className="profile-field profile-field-section">
             <h3 className="profile-h3">Email</h3>
             <div className="border-2">
               <input
@@ -87,41 +159,68 @@ const DashboardProfile = ({ currentUser }) => {
                 className="profile-input border-1"
               />
             </div>
-          </div>
+          </div> */}
           <div className="profile-field-section">
-            <h3 className="profile-h3">City To Live In</h3>
-            <div className="border-2">
+            <div className="form-group">
+              <label for="location" className="profile-h3">
+                City To Live In
+              </label>
               <input
+                name="location"
                 type="text"
-                placeholder="City"
-                className="profile-input border-1"
+                placeholder="City, State"
+                className="profile-input border-2"
+                defaultValue={location}
+                onBlur={handleChange}
               />
             </div>
           </div>
           <div className="profile-field-section">
-            <h3 className="profile-h3">Age</h3>
-            <div className="border-2 w-1/6">
+            <div className="form-group">
+              <label for="aboutMe" className="profile-h3">
+                Tell us about yourself:
+              </label>
               <input
+                maxLength={500}
+                name="aboutMe"
+                type="text"
+                placeholder="About"
+                className="profile-input border-2"
+                defaultValue={aboutMe}
+                onBlur={handleChange}
+              />
+            </div>
+          </div>
+          <div className="profile-field-section">
+            <div className="form-group w-1/6">
+              <label for="age" className="profile-h3">
+                Your Age
+              </label>
+              <input
+                name="age"
                 type="number"
                 min="18"
                 max="100"
-                placeholder="Age"
+                placeholder="Your Age"
                 id="profile-age-input"
-                className="profile-input border-1"
+                className="profile-input border-2"
+                defaultValue={age}
+                onBlur={handleChange}
               />
             </div>
           </div>
           <div className="profile-field-section">
             <h3 className="profile-h3">Gender</h3>
-            <div className="flex">
+            <div className="flex border-2">
               <div className="flex cursor-pointer text-xl rounded text-blue-400 hover:bg-sky-100 hover:border-4 hover:border-blue-500 m-1 p-1">
                 <label htmlFor="male" className="px-4 cursor-pointer">
                   <input
                     id="male"
                     type="radio"
-                    value="male"
+                    value="Male"
                     name="gender"
                     className="mx-2"
+                    onChange={handleGenderSelect}
                   />
                   Male
                 </label>
@@ -132,9 +231,10 @@ const DashboardProfile = ({ currentUser }) => {
                   <input
                     id="female"
                     type="radio"
-                    value="female"
+                    value="Female"
                     name="gender"
                     className="mx-2"
+                    onChange={handleGenderSelect}
                   />
                   Female
                 </label>
@@ -145,9 +245,10 @@ const DashboardProfile = ({ currentUser }) => {
                   <input
                     id="non-binary"
                     type="radio"
-                    value="non-binary"
+                    value="Non-binary"
                     name="gender"
                     className="mx-2"
+                    onChange={handleGenderSelect}
                   />
                   Non-binary
                 </label>
@@ -158,9 +259,10 @@ const DashboardProfile = ({ currentUser }) => {
                   <input
                     id="other"
                     type="radio"
-                    value="other"
+                    value="Other"
                     name="gender"
                     className="mx-2"
+                    onChange={handleGenderSelect}
                   />
                   Other
                 </label>
@@ -174,9 +276,10 @@ const DashboardProfile = ({ currentUser }) => {
                   <input
                     id="prefer-not-to-say"
                     type="radio"
-                    value="prefer-not-to-say"
+                    value="Prefer Not to Say"
                     name="gender"
                     className="mx-2"
+                    onChange={handleGenderSelect}
                   />
                   Prefer Not To Say
                 </label>
@@ -185,21 +288,30 @@ const DashboardProfile = ({ currentUser }) => {
             </div>
           </div>
           <div className="profile-field-section">
-            <h3 className="profile-h3">Max Rent You Will Pay</h3>
-            <div className="border-2 w-1/6">
-              <input
-                type="number"
-                min="100"
-                max="4000"
-                step="100"
-                placeholder="Rent"
-                className="profile-input border-1"
-              />
+            <div className="form-group w-1/6">
+              <label for="budget" className="profile-h3">
+                Max Rent Budget
+              </label>
+              <div className="flex">
+                <span>$</span>
+                <input
+                  name="budget"
+                  type="number"
+                  min="100"
+                  max="4000"
+                  step="100"
+                  placeholder="Budget"
+                  className="profile-input border-2"
+                  onBlur={handleChange}
+                />
+              </div>
             </div>
           </div>
           {/* Allow Pets */}
           <div className="profile-field-section">
-            <h3 className="profile-h3 mb-4">You Have Pets</h3>
+            <h3 className="profile-h3 mb-4">
+              Would you allow roommates with pets?
+            </h3>
             <div className="profile-pets">
               {options1.map(option => (
                 <label
@@ -214,7 +326,7 @@ const DashboardProfile = ({ currentUser }) => {
                     id="profile-pets-yes"
                     type="radio"
                     name="pets"
-                    value={option.value}
+                    value={true}
                     checked={selectedPetValue === option.value}
                     onChange={handlePetChange}
                     hidden
@@ -235,7 +347,7 @@ const DashboardProfile = ({ currentUser }) => {
                     id="profile-pets-no"
                     type="radio"
                     name="pets"
-                    value={option.value}
+                    value={false}
                     checked={selectedPetValue === option.value}
                     onChange={handlePetChange}
                     hidden
@@ -246,7 +358,7 @@ const DashboardProfile = ({ currentUser }) => {
             </div>
           </div>
           {/* Allow Children */}
-          <div className="profile-field-section">
+          {/* <div className="profile-field-section">
             <h3 className="profile-h3 mb-4">You Have Children</h3>
             <div className="profile-children">
               {options3.map(option => (
@@ -296,11 +408,12 @@ const DashboardProfile = ({ currentUser }) => {
                 </label>
               ))}
             </div>
-          </div>
+          </div> */}
           <div className="flex justify-center">
             <button type="submit" className="profile-view text-2xl">
               Save Profile
             </button>
+            {errorMessage && <p className="error-text">{errorMessage}</p>}
           </div>
         </div>
       </form>
