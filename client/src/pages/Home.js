@@ -12,7 +12,6 @@ import {
   QUERY_GET_USER,
   QUERY_GET_USERS,
 } from '../utils/queries';
-import Cards from '../components/Cards';
 import CardList from '../components/CardList';
 
 function Home() {
@@ -33,16 +32,6 @@ function Home() {
     setSelectedPetValue(event.target.value);
   };
 
-  // Allow Children Radio Buttons
-  const options3 = [{ value: 'true', label: 'Yes' }];
-  const options4 = [{ value: 'false', label: 'No' }];
-  // Allow Pets
-  const [selectedChildValue, setSelectedChildValue] = useState(null);
-  // Allow Pets
-  const handleChildChange = event => {
-    setSelectedChildValue(event.target.value);
-  };
-
   const handleChange = event => {
     setValue(event.target.value);
   };
@@ -51,318 +40,6 @@ function Home() {
   const { loading, data } = useQuery(QUERY_GET_PROFILES);
   const profile = data?.getProfiles || [];
   // console.log(data);
-
-  const filterSubmit = () => {
-    event.preventDefault();
-
-    const inputLocation = document.querySelector('');
-
-    const inputRent = document.querySelector('#rent').value;
-    const inputRentNum = parseInt(inputRent);
-    console.log(inputRent);
-
-    const inputMinAge = minValue;
-    const inputMaxAge = maxValue;
-    console.log('MinAge', inputMinAge);
-    console.log('MaxAge', inputMaxAge);
-
-    const inputGender = document.querySelector('input[id="male"]:checked');
-
-    if (inputGender) {
-      const inputGenderMale = inputGender.value;
-      console.log(inputGenderMale);
-    } else {
-      console.log('null');
-    }
-
-    const inputGender2 = document.querySelector('input[id="female"]:checked');
-
-    if (inputGender2) {
-      const inputGenderFemale = inputGender2.value;
-      console.log(inputGenderFemale);
-    } else {
-      console.log('null');
-    }
-
-    const inputGender3 = document.querySelector(
-      'input[id="non-binary"]:checked'
-    );
-
-    if (inputGender3) {
-      const inputGenderNonBinary = inputGender3.value;
-      console.log(inputGenderNonBinary);
-    } else {
-      console.log('null');
-    }
-
-    const inputGender4 = document.querySelector('input[id="other"]:checked');
-
-    if (inputGender4) {
-      const inputGenderOther = inputGender4.value;
-      console.log(inputGenderOther);
-    } else {
-      console.log('null');
-    }
-
-    const inputPetsYes = document.querySelector(
-      'input[id="filter-pets-yes"]:checked'
-    );
-    const inputPetsNo = document.querySelector(
-      'input[id="filter-pets-no"]:checked'
-    );
-    console.log(inputPetsYes ? true : inputPetsNo ? false : null);
-
-    const inputChildrenYes = document.querySelector(
-      'input[id="filter-children-yes"]:checked'
-    );
-    const inputChildrenNo = document.querySelector(
-      'input[id="filter-children-no"]:checked'
-    );
-    console.log(inputChildrenYes ? true : inputChildrenNo ? false : null);
-
-    filterProfiles({
-      inputRentNum,
-      inputMinAge,
-      inputMaxAge,
-      inputGender,
-      inputGender2,
-      inputGender3,
-      inputGender4,
-      inputPetsYes,
-      inputPetsNo,
-    });
-  };
-
-  function filterProfiles(data) {
-    console.log('HOORAY', data);
-
-    // This is the default values for each filter option
-    let results = [
-      { rent: 1000 },
-      { minAge: 18 },
-      { maxAge: 100 },
-      { gender: 'Male, Female, Non-binary, Other' },
-      { pets: null },
-    ];
-
-    // initial rent value from the user's input
-    const rent = data.inputRentNum;
-    // Changing the default key-value pair from 1000 to the value the user input
-    results.splice(0, 1, { ...results[0], rent: rent });
-    console.log('RENT IS:', rent);
-
-    const minAge = data.inputMinAge;
-    results.splice(1, 1, { ...results[1], minAge: minAge });
-    const maxAge = data.inputMaxAge;
-    results.splice(2, 2, { ...results[2], maxAge: maxAge });
-
-    if (
-      data.inputGender === null &&
-      data.inputGender2 === null &&
-      data.inputGender3 === null &&
-      data.inputGender4 === null
-    ) {
-      results[3] = { ...results[3], gender: 'Male, Female, Non-binary, Other' };
-      console.log('Gender is not a filter');
-    } else if (
-      data.inputGender !== null &&
-      data.inputGender2 === null &&
-      data.inputGender3 === null &&
-      data.inputGender4 === null
-    ) {
-      results[3] = { ...results[3], gender: 'Male' };
-      console.log('Male was selected');
-    } else if (
-      data.inputGender === null &&
-      data.inputGender2 !== null &&
-      data.inputGender3 === null &&
-      data.inputGender4 === null
-    ) {
-      results[3] = { ...results[3], gender: 'Female' };
-      console.log('Female was selected');
-    } else if (
-      data.inputGender === null &&
-      data.inputGender2 === null &&
-      data.inputGender3 !== null &&
-      data.inputGender4 === null
-    ) {
-      results[3] = { ...results[3], gender: 'Non-binary' };
-      console.log('Non-Binary was selected');
-    } else if (
-      data.inputGender === null &&
-      data.inputGender2 === null &&
-      data.inputGender3 === null &&
-      data.inputGender4 !== null
-    ) {
-      results[3] = { ...results[3], gender: 'Other' };
-      console.log('Other was selected');
-    } else if (
-      data.inputGender !== null &&
-      data.inputGender2 !== null &&
-      data.inputGender3 === null &&
-      data.inputGender4 === null
-    ) {
-      results[3] = { ...results[3], gender: 'Male, Female' };
-      console.log('Male and Female was selected');
-    } else if (
-      data.inputGender !== null &&
-      data.inputGender2 === null &&
-      data.inputGender3 !== null &&
-      data.inputGender4 === null
-    ) {
-      results[3] = { ...results[3], gender: 'Male, Non-binary' };
-      console.log('Male and Non-Binary was selected');
-    } else if (
-      data.inputGender !== null &&
-      data.inputGender2 === null &&
-      data.inputGender3 === null &&
-      data.inputGender4 !== null
-    ) {
-      results[3] = { ...results[3], gender: 'Male, Other' };
-      console.log('Male and Other was selected');
-    } else if (
-      data.inputGender === null &&
-      data.inputGender2 !== null &&
-      data.inputGender3 !== null &&
-      data.inputGender4 === null
-    ) {
-      results[3] = { ...results[3], gender: 'Female, Non-binary' };
-      console.log('Female and Non-Binary was selected');
-    } else if (
-      data.inputGender === null &&
-      data.inputGender2 !== null &&
-      data.inputGender3 === null &&
-      data.inputGender4 !== null
-    ) {
-      results[3] = { ...results[3], gender: 'Female, Other' };
-      console.log('Female and Other was selected');
-    } else if (
-      data.inputGender === null &&
-      data.inputGender2 === null &&
-      data.inputGender3 !== null &&
-      data.inputGender4 !== null
-    ) {
-      results[3] = { ...results[3], gender: 'Non-binary, Other' };
-      console.log('Non-Binary and Other was selected');
-    } else if (
-      data.inputGender !== null &&
-      data.inputGender2 !== null &&
-      data.inputGender3 !== null &&
-      data.inputGender4 === null
-    ) {
-      results[3] = { ...results[3], gender: 'Male, Female, Non-binary' };
-      console.log('Male and Female and Non-Binary was selected');
-    } else if (
-      data.inputGender !== null &&
-      data.inputGender2 !== null &&
-      data.inputGender3 === null &&
-      data.inputGender4 !== null
-    ) {
-      results[3] = { ...results[3], gender: 'Male, Female, Other' };
-      console.log('Male and Female and Other was selected');
-    } else if (
-      data.inputGender === null &&
-      data.inputGender2 !== null &&
-      data.inputGender3 !== null &&
-      data.inputGender4 !== null
-    ) {
-      results[3] = { ...results[3], gender: 'Female, Non-binary, Other' };
-      console.log('Female and Non-Binary and Other was selected');
-    } else if (
-      data.inputGender !== null &&
-      data.inputGender2 !== null &&
-      data.inputGender3 !== null &&
-      data.inputGender4 !== null
-    ) {
-      results[3] = { ...results[3], gender: 'Male, Female, Non-binary, Other' };
-      console.log('Everything was selected');
-    }
-
-    // Checks the value of the pets filter. Whether the filter is active and it they allow pets or don't allow pets. If the filter is not selected then profiles with both options will be a part of the search.
-    if (data.inputPetsYes === null && data.inputPetsNo === null) {
-      console.log('PETS IS NOT A FILTER');
-      results[4] = { ...results[4], pets: null };
-    } else if (data.inputPetsYes !== null && data.inputPetsNo === null) {
-      results[4] = { ...results[4], pets: true };
-      console.log('ALLOW PETS');
-    } else if (data.inputPetsYes === null && data.inputPetsNo !== null) {
-      results[4] = { ...results[4], pets: false };
-      console.log("DON'T ALLOW PETS");
-    } else {
-      console.log('SOMETHING WENT WRONG WITH PETS');
-    }
-
-    filteredResults(results);
-  }
-
-  const filteredResults = results => {
-    console.log('THESE ARE THE RESULTS', results);
-    console.log(profile);
-
-    let profilesRentArr = [];
-
-    for (let i = 0; i < profile.length; i++) {
-      if (profile[i].budget <= results[0].rent) {
-        console.log(profile[i]);
-        profilesRentArr.push(profile[i]);
-      }
-    }
-
-    console.log('-=-=-=-=-=-=-=', profilesRentArr);
-
-    const minAge = results[1].minAge;
-    const maxAge = results[2].maxAge;
-
-    const profilesMinAgeArr = profilesRentArr.filter(
-      profile => profile.age >= minAge
-    );
-    console.log('PLEASE WORK', profilesMinAgeArr);
-
-    const profilesMaxAgeArr = profilesMinAgeArr.filter(
-      profile => profile.age <= maxAge
-    );
-    console.log('PLEASE WORK TOO', profilesMaxAgeArr);
-
-    const genderString = results[3].gender;
-    console.log(genderString);
-    const genderArray = genderString.split(',');
-    const cleanGenderArray = genderArray.map(string => string.trim());
-    console.log(cleanGenderArray);
-    const profilesGenderArr = profilesMaxAgeArr.filter(profile =>
-      cleanGenderArray.includes(profile.gender)
-    );
-    console.log('GENDER', profilesGenderArr);
-
-    let filteredProfiles = profilesGenderArr;
-
-    const hasPetsObject = results[4].pets;
-    console.log(hasPetsObject);
-
-    if (results[4].pets === true) {
-      // hasPetsObject is true and the value of the pets key is true
-      const petsTrueProfiles = profilesGenderArr.filter(
-        profile => profile.allowPets === true
-      );
-      filteredProfiles = filteredProfiles.filter(
-        profile => profile.allowPets === true
-      );
-      console.log('PETS TRUE', petsTrueProfiles);
-    } else if (results[4].pets === false) {
-      // hasPetsObject is true and the value of the pets key is false
-      const petsFalseProfiles = profilesGenderArr.filter(
-        profile => profile.allowPets === false
-      );
-      filteredProfiles = filteredProfiles.filter(
-        profile => profile.allowPets === false
-      );
-      console.log('PETS FALSE', petsFalseProfiles);
-    } else if (results[4].pets === null) {
-      // hasPetsObject is false, use the original array
-      console.log('PETS NULL', filteredProfiles);
-    }
-
-    console.log('FINAL RESULTS:', filteredProfiles);
-  };
 
   let minValue;
   let maxValue;
@@ -510,6 +187,338 @@ function Home() {
         });
         searchInput.current.value = result.place_name;
       });
+  };
+
+  const filterSubmit = () => {
+    event.preventDefault();
+
+    const inputLocation = searchInput.current.value;
+
+    if (inputLocation) {
+      // there is input in the inputLocation variable
+      console.log(inputLocation);
+    } else {
+      // there is no input in the inputLocation variable
+      return;
+    }
+
+    const inputRent = document.querySelector('#rent').value;
+    const inputRentNum = parseInt(inputRent);
+    console.log(inputRent);
+
+    const inputMinAge = minValue;
+    const inputMaxAge = maxValue;
+    console.log('MinAge', inputMinAge);
+    console.log('MaxAge', inputMaxAge);
+
+    const inputGender = document.querySelector('input[id="male"]:checked');
+
+    if (inputGender) {
+      const inputGenderMale = inputGender.value;
+      console.log(inputGenderMale);
+    } else {
+      console.log('null');
+    }
+
+    const inputGender2 = document.querySelector('input[id="female"]:checked');
+
+    if (inputGender2) {
+      const inputGenderFemale = inputGender2.value;
+      console.log(inputGenderFemale);
+    } else {
+      console.log('null');
+    }
+
+    const inputGender3 = document.querySelector(
+      'input[id="non-binary"]:checked'
+    );
+
+    if (inputGender3) {
+      const inputGenderNonBinary = inputGender3.value;
+      console.log(inputGenderNonBinary);
+    } else {
+      console.log('null');
+    }
+
+    const inputGender4 = document.querySelector('input[id="other"]:checked');
+
+    if (inputGender4) {
+      const inputGenderOther = inputGender4.value;
+      console.log(inputGenderOther);
+    } else {
+      console.log('null');
+    }
+
+    const inputPetsYes = document.querySelector(
+      'input[id="filter-pets-yes"]:checked'
+    );
+    const inputPetsNo = document.querySelector(
+      'input[id="filter-pets-no"]:checked'
+    );
+    console.log(inputPetsYes ? true : inputPetsNo ? false : null);
+
+    filterProfiles({
+      inputLocation,
+      inputRentNum,
+      inputMinAge,
+      inputMaxAge,
+      inputGender,
+      inputGender2,
+      inputGender3,
+      inputGender4,
+      inputPetsYes,
+      inputPetsNo,
+    });
+  };
+
+  function filterProfiles(data) {
+    console.log('HOORAY', data);
+
+    // This is the default values for each filter option
+    let results = [
+      { rent: 1000 },
+      { minAge: 18 },
+      { maxAge: 100 },
+      { gender: 'Male, Female, Non-binary, Other' },
+      { pets: null },
+      { location: 'Charlotte, North Carolina' },
+    ];
+
+    const location = data.inputLocation;
+    console.log(location);
+
+    results[5] = { ...results[5], location: location };
+    console.log('LOCATION IS:', location);
+
+    // initial rent value from the user's input
+    const rent = data.inputRentNum;
+    // Changing the default key-value pair from 1000 to the value the user input
+    results[0] = { ...results[0], rent: rent };
+    console.log('RENT IS:', rent);
+
+    const minAge = data.inputMinAge;
+    results[1] = { ...results[1], minAge: minAge };
+    const maxAge = data.inputMaxAge;
+    results[2] = { ...results[2], maxAge: maxAge };
+
+    if (
+      data.inputGender === null &&
+      data.inputGender2 === null &&
+      data.inputGender3 === null &&
+      data.inputGender4 === null
+    ) {
+      results[3] = { ...results[3], gender: 'Male, Female, Non-binary, Other' };
+      console.log('Gender is not a filter');
+    } else if (
+      data.inputGender !== null &&
+      data.inputGender2 === null &&
+      data.inputGender3 === null &&
+      data.inputGender4 === null
+    ) {
+      results[3] = { ...results[3], gender: 'Male' };
+      console.log('Male was selected');
+    } else if (
+      data.inputGender === null &&
+      data.inputGender2 !== null &&
+      data.inputGender3 === null &&
+      data.inputGender4 === null
+    ) {
+      results[3] = { ...results[3], gender: 'Female' };
+      console.log('Female was selected');
+    } else if (
+      data.inputGender === null &&
+      data.inputGender2 === null &&
+      data.inputGender3 !== null &&
+      data.inputGender4 === null
+    ) {
+      results[3] = { ...results[3], gender: 'Non-binary' };
+      console.log('Non-Binary was selected');
+    } else if (
+      data.inputGender === null &&
+      data.inputGender2 === null &&
+      data.inputGender3 === null &&
+      data.inputGender4 !== null
+    ) {
+      results[3] = { ...results[3], gender: 'Other' };
+      console.log('Other was selected');
+    } else if (
+      data.inputGender !== null &&
+      data.inputGender2 !== null &&
+      data.inputGender3 === null &&
+      data.inputGender4 === null
+    ) {
+      results[3] = { ...results[3], gender: 'Male, Female' };
+      console.log('Male and Female was selected');
+    } else if (
+      data.inputGender !== null &&
+      data.inputGender2 === null &&
+      data.inputGender3 !== null &&
+      data.inputGender4 === null
+    ) {
+      results[3] = { ...results[3], gender: 'Male, Non-binary' };
+      console.log('Male and Non-Binary was selected');
+    } else if (
+      data.inputGender !== null &&
+      data.inputGender2 === null &&
+      data.inputGender3 === null &&
+      data.inputGender4 !== null
+    ) {
+      results[3] = { ...results[3], gender: 'Male, Other' };
+      console.log('Male and Other was selected');
+    } else if (
+      data.inputGender === null &&
+      data.inputGender2 !== null &&
+      data.inputGender3 !== null &&
+      data.inputGender4 === null
+    ) {
+      results[3] = { ...results[3], gender: 'Female, Non-binary' };
+      console.log('Female and Non-Binary was selected');
+    } else if (
+      data.inputGender === null &&
+      data.inputGender2 !== null &&
+      data.inputGender3 === null &&
+      data.inputGender4 !== null
+    ) {
+      results[3] = { ...results[3], gender: 'Female, Other' };
+      console.log('Female and Other was selected');
+    } else if (
+      data.inputGender === null &&
+      data.inputGender2 === null &&
+      data.inputGender3 !== null &&
+      data.inputGender4 !== null
+    ) {
+      results[3] = { ...results[3], gender: 'Non-binary, Other' };
+      console.log('Non-Binary and Other was selected');
+    } else if (
+      data.inputGender !== null &&
+      data.inputGender2 !== null &&
+      data.inputGender3 !== null &&
+      data.inputGender4 === null
+    ) {
+      results[3] = { ...results[3], gender: 'Male, Female, Non-binary' };
+      console.log('Male and Female and Non-Binary was selected');
+    } else if (
+      data.inputGender !== null &&
+      data.inputGender2 !== null &&
+      data.inputGender3 === null &&
+      data.inputGender4 !== null
+    ) {
+      results[3] = { ...results[3], gender: 'Male, Female, Other' };
+      console.log('Male and Female and Other was selected');
+    } else if (
+      data.inputGender === null &&
+      data.inputGender2 !== null &&
+      data.inputGender3 !== null &&
+      data.inputGender4 !== null
+    ) {
+      results[3] = { ...results[3], gender: 'Female, Non-binary, Other' };
+      console.log('Female and Non-Binary and Other was selected');
+    } else if (
+      data.inputGender !== null &&
+      data.inputGender2 !== null &&
+      data.inputGender3 !== null &&
+      data.inputGender4 !== null
+    ) {
+      results[3] = { ...results[3], gender: 'Male, Female, Non-binary, Other' };
+      console.log('Everything was selected');
+    }
+
+    // Checks the value of the pets filter. Whether the filter is active and it they allow pets or don't allow pets. If the filter is not selected then profiles with both options will be a part of the search.
+    if (data.inputPetsYes === null && data.inputPetsNo === null) {
+      console.log('PETS IS NOT A FILTER');
+      results[4] = { ...results[4], pets: null };
+    } else if (data.inputPetsYes !== null && data.inputPetsNo === null) {
+      results[4] = { ...results[4], pets: true };
+      console.log('ALLOW PETS');
+    } else if (data.inputPetsYes === null && data.inputPetsNo !== null) {
+      results[4] = { ...results[4], pets: false };
+      console.log("DON'T ALLOW PETS");
+    } else {
+      console.log('SOMETHING WENT WRONG WITH PETS');
+    }
+
+    filteredResults(results);
+  }
+
+  const filteredResults = results => {
+    console.log('THESE ARE THE RESULTS', results);
+    console.log(profile);
+
+    let profilesLocationArr = [];
+
+    for (let i = 0; i < profile.length; i++) {
+      if (profile[i].location === results[5].location) {
+        profilesLocationArr.push(profile[i]);
+      }
+    }
+
+    console.log(profilesLocationArr);
+
+    let tempArr = profilesLocationArr;
+
+    let profilesRentArr = [];
+
+    for (let i = 0; i < tempArr.length; i++) {
+      if (tempArr[i].budget <= results[0].rent) {
+        console.log(tempArr[i]);
+        profilesRentArr.push(tempArr[i]);
+      }
+    }
+
+    console.log('-=-=-=-=-=-=-=', profilesRentArr);
+
+    const minAge = results[1].minAge;
+    const maxAge = results[2].maxAge;
+
+    const profilesMinAgeArr = profilesRentArr.filter(
+      profile => profile.age >= minAge
+    );
+    console.log('PLEASE WORK', profilesMinAgeArr);
+
+    const profilesMaxAgeArr = profilesMinAgeArr.filter(
+      profile => profile.age <= maxAge
+    );
+    console.log('PLEASE WORK TOO', profilesMaxAgeArr);
+
+    const genderString = results[3].gender;
+    console.log(genderString);
+    const genderArray = genderString.split(',');
+    const cleanGenderArray = genderArray.map(string => string.trim());
+    console.log(cleanGenderArray);
+    const profilesGenderArr = profilesMaxAgeArr.filter(profile =>
+      cleanGenderArray.includes(profile.gender)
+    );
+    console.log('GENDER', profilesGenderArr);
+
+    let filteredProfiles = profilesGenderArr;
+
+    const hasPetsObject = results[4].pets;
+    console.log(hasPetsObject);
+
+    if (results[4].pets === true) {
+      // hasPetsObject is true and the value of the pets key is true
+      const petsTrueProfiles = profilesGenderArr.filter(
+        profile => profile.allowPets === true
+      );
+      filteredProfiles = filteredProfiles.filter(
+        profile => profile.allowPets === true
+      );
+      console.log('PETS TRUE', petsTrueProfiles);
+    } else if (results[4].pets === false) {
+      // hasPetsObject is true and the value of the pets key is false
+      const petsFalseProfiles = profilesGenderArr.filter(
+        profile => profile.allowPets === false
+      );
+      filteredProfiles = filteredProfiles.filter(
+        profile => profile.allowPets === false
+      );
+      console.log('PETS FALSE', petsFalseProfiles);
+    } else if (results[4].pets === null) {
+      // hasPetsObject is false, use the original array
+      console.log('PETS NULL', filteredProfiles);
+    }
+
+    console.log('FINAL RESULTS:', filteredProfiles);
   };
 
   const filterModal = (
@@ -694,58 +703,6 @@ function Home() {
                     ))}
                   </div>
                 </div>
-                {/* Allow Children */}
-                <div className="filters my-4">
-                  Allow Children
-                  <div className="flex justify-center my-1">
-                    {options3.map(option => (
-                      <label
-                        // htmlFor="children-yes"
-                        id="filter-children-yes"
-                        key={option.value}
-                        className={
-                          selectedChildValue === option.value
-                            ? 'active-children-yes'
-                            : ''
-                        }
-                      >
-                        <input
-                          id="filter-children-yes"
-                          type="radio"
-                          name="children"
-                          value={option.value}
-                          checked={selectedChildValue === option.value}
-                          onChange={handleChildChange}
-                          hidden
-                        />
-                        {option.label}
-                      </label>
-                    ))}
-                    {options4.map(option => (
-                      <label
-                        // htmlFor="children-no"
-                        id="filter-children-no"
-                        key={option.value}
-                        className={
-                          selectedChildValue === option.value
-                            ? 'active-children-no'
-                            : ''
-                        }
-                      >
-                        <input
-                          id="filter-children-no"
-                          type="radio"
-                          name="children"
-                          value={option.value}
-                          checked={selectedChildValue === option.value}
-                          onChange={handleChildChange}
-                          hidden
-                        />
-                        {option.label}
-                      </label>
-                    ))}
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -772,10 +729,10 @@ function Home() {
   );
 
   return (
-    <div className="mt-8 mx-4">
-      <h2 className="font-semibold text-2xl mb-5">Find Your Next Roommate</h2>
-      <div className="flex justify-between mt-12">
-        <div className="left-side">
+    <div>
+      <div className="grid grid-cols-2 justify-items-stretch">
+        <div className="justify-self-center self-center">
+          <h1 className="text-7xl text-black">Find a better roommate...</h1>
           <section className="btn-section">
             <div className="filter-buttons grid grid-cols-4 gap-2 md:grid-cols-4">
               <button
@@ -788,191 +745,205 @@ function Home() {
               </button>
             </div>
           </section>
-          <div className="profile-section md:grid md:grid-cols-1 md:gap-4">
-            <section className="profile-card flex flex-col border-2 border-black rounded-md p-2 xl:grid-cols-3">
-              {/* Carousel Container */}
-              <section className="profilesMap">
-                {loading ? (
-                  <div>Loading...</div>
-                ) : (
-                  <CardList profiles={profile} />
-                )}
-              </section>
-            </section>
-          </div>
         </div>
-        <div className="right-side">
-          <div className="sidebar hidden lg:visible">
-            Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+        <div className="justify-self-end">
+          <img
+            src={require(`../assets/images/badroommate.jpg`)}
+            className="w-[40rem] justify-self-end"
+          ></img>
+        </div>
+      </div>
+      <div className="mt-8 mx-4">
+        <div>
+          <div>
+            <div className="profile-section md:grid md:grid-cols-1 md:gap-4">
+              <section className="profile-card flex flex-col rounded-md p-2 xl:grid-cols-3">
+                {/* Carousel Container */}
+                <section className="profilesMap">
+                  {loading ? (
+                    <div>Loading...</div>
+                  ) : (
+                    <CardList profiles={profile} />
+                  )}
+                </section>
+              </section>
+            </div>
           </div>
-          <div id="map" ref={mapContainer} className="map-container" />
-          <div className="form-div">
-            <form className="search-form">
-              <div>
-                <div className="flex">
-                  <input
-                    className="form-input-address"
-                    placeholder="Enter a city's name to search for people in that area"
-                    name="address"
-                    id="address"
-                    type="text"
-                    ref={searchInput}
-                    onChange={handleSearch}
-                    onKeyDown={handleKeyDown}
-                  />
-                  <span className="input-clear text-3xl text-red-600">
-                    <a onClick={clearInput}>
-                      <GiTrashCan />
-                    </a>
-                  </span>
+          <div>
+            <div className="sidebar hidden lg:visible">
+              Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+            </div>
+            <div className="flex">
+              <div id="map" ref={mapContainer} className="map-container" />
+              <div className="form-div">
+                <form className="search-form">
+                  <div>
+                    <div className="flex">
+                      <input
+                        className="form-input-address"
+                        placeholder="Enter a city's name to search for people in that area"
+                        name="address"
+                        id="address"
+                        type="text"
+                        ref={searchInput}
+                        onChange={handleSearch}
+                        onKeyDown={handleKeyDown}
+                      />
+                      <span className="input-clear text-3xl text-red-600">
+                        <a onClick={clearInput}>
+                          <GiTrashCan />
+                        </a>
+                      </span>
+                    </div>
+                    <ul>
+                      {searchResults.map((result, index) => (
+                        <li
+                          key={result.id}
+                          onClick={() => handleResultClick(result)}
+                          tabIndex={index === selectedIndex ? 0 : -1}
+                          onKeyDown={event => {
+                            if (event.key === 'Enter') {
+                              event.preventDefault();
+                              handleResultClick(result);
+                            }
+                          }}
+                          onMouseEnter={() => setSelectedIndex(index)}
+                          onMouseLeave={() => setSelectedIndex(null)}
+                          style={{
+                            backgroundColor:
+                              index === selectedIndex ? 'lightgray' : 'white',
+                            cursor: 'pointer',
+                          }}
+                          className={index === selectedIndex ? 'selected' : ''}
+                          id="autocomplete-result"
+                        >
+                          {result.place_name}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </form>
+                <div className="quick-search-cities-section text-center">
+                  <h3 className="text-3xl font-semibold">Quick Search</h3>
+                  <div className="quick-search-cities grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                    {cities1.map(city => (
+                      <button key={city} onClick={() => searchForCity(city)}>
+                        <div className="card card-1">
+                          <h3
+                            id="city-value"
+                            className="flex justify-center card-city-text"
+                          >
+                            {city}
+                          </h3>
+                        </div>
+                      </button>
+                    ))}
+                    {cities2.map(city => (
+                      <button key={city} onClick={() => searchForCity(city)}>
+                        <div className="card card-2">
+                          <h3
+                            id="city-value"
+                            className="flex justify-center card-city-text"
+                          >
+                            {city}
+                          </h3>
+                        </div>
+                      </button>
+                    ))}
+                    {cities3.map(city => (
+                      <button key={city} onClick={() => searchForCity(city)}>
+                        <div className="card card-3">
+                          <h3
+                            id="city-value"
+                            className="flex justify-center card-city-text"
+                          >
+                            {city}
+                          </h3>
+                        </div>
+                      </button>
+                    ))}
+                    {cities4.map(city => (
+                      <button key={city} onClick={() => searchForCity(city)}>
+                        <div className="card card-4">
+                          <h3
+                            id="city-value"
+                            className="flex justify-center card-city-text"
+                          >
+                            {city}
+                          </h3>
+                        </div>
+                      </button>
+                    ))}
+                    {cities5.map(city => (
+                      <button key={city} onClick={() => searchForCity(city)}>
+                        <div className="card card-5">
+                          <h3
+                            id="city-value"
+                            className="flex justify-center card-city-text"
+                          >
+                            {city}
+                          </h3>
+                        </div>
+                      </button>
+                    ))}
+                    {cities6.map(city => (
+                      <button key={city} onClick={() => searchForCity(city)}>
+                        <div className="card card-6">
+                          <h3
+                            id="city-value"
+                            className="flex justify-center card-city-text"
+                          >
+                            {city}
+                          </h3>
+                        </div>
+                      </button>
+                    ))}
+                    {cities7.map(city => (
+                      <button key={city} onClick={() => searchForCity(city)}>
+                        <div className="card card-7">
+                          <h3
+                            id="city-value"
+                            className="flex justify-center card-city-text"
+                          >
+                            {city}
+                          </h3>
+                        </div>
+                      </button>
+                    ))}
+                    {cities8.map(city => (
+                      <button key={city} onClick={() => searchForCity(city)}>
+                        <div className="card card-8">
+                          <h3
+                            id="city-value"
+                            className="flex justify-center card-city-text"
+                          >
+                            {city}
+                          </h3>
+                        </div>
+                      </button>
+                    ))}
+                    {cities9.map(city => (
+                      <button key={city} onClick={() => searchForCity(city)}>
+                        <div className="card card-9">
+                          <h3
+                            id="city-value"
+                            className="flex justify-center card-city-text"
+                          >
+                            {city}
+                          </h3>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
                 </div>
-                <ul>
-                  {searchResults.map((result, index) => (
-                    <li
-                      key={result.id}
-                      onClick={() => handleResultClick(result)}
-                      tabIndex={index === selectedIndex ? 0 : -1}
-                      onKeyDown={event => {
-                        if (event.key === 'Enter') {
-                          event.preventDefault();
-                          handleResultClick(result);
-                        }
-                      }}
-                      onMouseEnter={() => setSelectedIndex(index)}
-                      onMouseLeave={() => setSelectedIndex(null)}
-                      style={{
-                        backgroundColor:
-                          index === selectedIndex ? 'lightgray' : 'white',
-                        cursor: 'pointer',
-                      }}
-                      className={index === selectedIndex ? 'selected' : ''}
-                      id="autocomplete-result"
-                    >
-                      {result.place_name}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </form>
-            <div className="quick-search-cities-section text-center">
-              <h3 className="text-3xl font-semibold">Quick Search</h3>
-              <div className="quick-search-cities grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {cities1.map(city => (
-                  <button key={city} onClick={() => searchForCity(city)}>
-                    <div className="card card-1">
-                      <h3
-                        id="city-value"
-                        className="flex justify-center card-city-text"
-                      >
-                        {city}
-                      </h3>
-                    </div>
-                  </button>
-                ))}
-                {cities2.map(city => (
-                  <button key={city} onClick={() => searchForCity(city)}>
-                    <div className="card card-2">
-                      <h3
-                        id="city-value"
-                        className="flex justify-center card-city-text"
-                      >
-                        {city}
-                      </h3>
-                    </div>
-                  </button>
-                ))}
-                {cities3.map(city => (
-                  <button key={city} onClick={() => searchForCity(city)}>
-                    <div className="card card-3">
-                      <h3
-                        id="city-value"
-                        className="flex justify-center card-city-text"
-                      >
-                        {city}
-                      </h3>
-                    </div>
-                  </button>
-                ))}
-                {cities4.map(city => (
-                  <button key={city} onClick={() => searchForCity(city)}>
-                    <div className="card card-4">
-                      <h3
-                        id="city-value"
-                        className="flex justify-center card-city-text"
-                      >
-                        {city}
-                      </h3>
-                    </div>
-                  </button>
-                ))}
-                {cities5.map(city => (
-                  <button key={city} onClick={() => searchForCity(city)}>
-                    <div className="card card-5">
-                      <h3
-                        id="city-value"
-                        className="flex justify-center card-city-text"
-                      >
-                        {city}
-                      </h3>
-                    </div>
-                  </button>
-                ))}
-                {cities6.map(city => (
-                  <button key={city} onClick={() => searchForCity(city)}>
-                    <div className="card card-6">
-                      <h3
-                        id="city-value"
-                        className="flex justify-center card-city-text"
-                      >
-                        {city}
-                      </h3>
-                    </div>
-                  </button>
-                ))}
-                {cities7.map(city => (
-                  <button key={city} onClick={() => searchForCity(city)}>
-                    <div className="card card-7">
-                      <h3
-                        id="city-value"
-                        className="flex justify-center card-city-text"
-                      >
-                        {city}
-                      </h3>
-                    </div>
-                  </button>
-                ))}
-                {cities8.map(city => (
-                  <button key={city} onClick={() => searchForCity(city)}>
-                    <div className="card card-8">
-                      <h3
-                        id="city-value"
-                        className="flex justify-center card-city-text"
-                      >
-                        {city}
-                      </h3>
-                    </div>
-                  </button>
-                ))}
-                {cities9.map(city => (
-                  <button key={city} onClick={() => searchForCity(city)}>
-                    <div className="card card-9">
-                      <h3
-                        id="city-value"
-                        className="flex justify-center card-city-text"
-                      >
-                        {city}
-                      </h3>
-                    </div>
-                  </button>
-                ))}
               </div>
             </div>
           </div>
         </div>
+        <Modal classNames="" open={open} onClose={onCloseModal} center>
+          {filterModal}
+        </Modal>
       </div>
-      <Modal classNames="" open={open} onClose={onCloseModal} center>
-        {filterModal}
-      </Modal>
     </div>
   );
 }

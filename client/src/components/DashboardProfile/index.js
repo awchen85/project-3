@@ -137,7 +137,7 @@ const DashboardProfile = ({ currentUser }) => {
             />
 
             <div className="form-group">
-              <label for="username" className="profile-h3">
+              <label htmlFor="username" className="profile-h3">
                 Username:
               </label>
               <input
@@ -162,7 +162,7 @@ const DashboardProfile = ({ currentUser }) => {
           </div> */}
           <div className="profile-field-section">
             <div className="form-group">
-              <label for="location" className="profile-h3">
+              <label htmlFor="location" className="profile-h3">
                 City To Live In
               </label>
               <input
@@ -177,7 +177,7 @@ const DashboardProfile = ({ currentUser }) => {
           </div>
           <div className="profile-field-section">
             <div className="form-group">
-              <label for="aboutMe" className="profile-h3">
+              <label htmlFor="aboutMe" className="profile-h3">
                 Tell us about yourself:
               </label>
               <input
@@ -193,7 +193,7 @@ const DashboardProfile = ({ currentUser }) => {
           </div>
           <div className="profile-field-section">
             <div className="form-group w-1/6">
-              <label for="age" className="profile-h3">
+              <label htmlFor="age" className="profile-h3">
                 Your Age
               </label>
               <input
@@ -289,7 +289,7 @@ const DashboardProfile = ({ currentUser }) => {
           </div>
           <div className="profile-field-section">
             <div className="form-group w-1/6">
-              <label for="budget" className="profile-h3">
+              <label htmlFor="budget" className="profile-h3">
                 Max Rent Budget
               </label>
               <div className="flex">
