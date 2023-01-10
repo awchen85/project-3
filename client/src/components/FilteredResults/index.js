@@ -1,20 +1,11 @@
 /* eslint-disable */
 import Simu from '../../assets/images/simu.jpg';
-import { useEffect, useState } from 'react';
-function CardList({ profiles }) {
+import { useState } from 'react';
+
+function FilteredList({ filteredResults }) {
 
 const [currentIndex, setCurrentIndex] = useState(0);
-const currentProfile = profiles[currentIndex];
-
-useEffect(() => {
-  function handleResize() {
-    window.location.reload();
-  }
-
-  window.addEventListener('resize', handleResize);
-  return () => window.removeEventListener('resize', handleResize);
-}, []);
-
+const currentProfile = filteredResults[currentIndex];
 
   if (!profiles.length) {
     return <h3>No Profiles Yet</h3>;
@@ -60,27 +51,27 @@ console.log(profiles)  }
               <button className='connect inline-block bg-blue-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'>Add to friends</button>
             </div>
            :
-           profiles.slice(currentIndex, currentIndex + 4).map(profile => (
+           filteredResults.slice(currentIndex, currentIndex + 4).map(filteredResults => (
             <div
-              key={profile._id}
-              className="profileCard bg-[#FFAC99] px-6 py-4 border-2 font-bold text-xl mb-2 text-center"
+              key={filteredResults._id}
+              className="filteredResultsCard bg-[#FFAC99] px-6 py-4 border-2 font-bold text-xl mb-2 text-center"
             >
-              <span className="inline-block bg-white rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 justify-center">{profile.username}</span>
+              <span className="inline-block bg-white rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 justify-center">{filteredResults.username}</span>
               <img src={Simu} alt="thing" className="w-full my-2" />
               <div className='grid grid-cols-2'>
                 <p className='text-xs py-2 text-center'>Gender:</p>
-                <span className="inline-block bg-white rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{profile.gender}</span>
+                <span className="inline-block bg-white rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{filteredResults.gender}</span>
                 <p className='text-xs py-1'>Age:</p>
-                <span className="inline-block bg-white rounded-full mx-center px-2 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{profile.age}</span>
+                <span className="inline-block bg-white rounded-full mx-center px-2 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{filteredResults.age}</span>
                 <p className='text-xs py-1'>Budget:</p>
-                <span className="inline-block bg-white rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{profile.budget}</span>
+                <span className="inline-block bg-white rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{filteredResults.budget}</span>
                 <p className='text-xs'>Location:</p>
-                <span className="inline-block bg-white rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{profile.location}</span>
+                <span className="inline-block bg-white rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{filteredResults.location}</span>
                 <p className='text-xs'>Allow Pets?</p>
-              <span className="inline-block bg-white rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{profile.allowPets}</span>
+              <span className="inline-block bg-white rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{filteredResults.allowPets}</span>
               </div>
               <p className='text-xs'>About Me:</p>
-              <span className="inline-block bg-white px-5 py-3 text-sm font-semibold text-gray-700 mr-2 mb-2">{profile.aboutMe}</span>
+              <span className="inline-block bg-white px-5 py-3 text-sm font-semibold text-gray-700 mr-2 mb-2">{filteredResults.aboutMe}</span>
               <button className='connect inline-block bg-blue-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'>Add to friends</button>
             </div>
            ))}
@@ -88,4 +79,4 @@ console.log(profiles)  }
   );
 }
 
-export default CardList;
+export default FilteredList;

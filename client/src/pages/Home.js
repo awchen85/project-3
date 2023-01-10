@@ -12,7 +12,7 @@ import {
   QUERY_GET_USER,
   QUERY_GET_USERS,
 } from '../utils/queries';
-import Cards from '../components/Cards';
+import FilteredList from '../components/FilteredResults';
 import CardList from '../components/CardList';
 
 function Home() {
@@ -45,7 +45,7 @@ function Home() {
   const filterSubmit = () => {
     event.preventDefault();
 
-    const inputLocation = document.querySelector('');
+    // const inputLocation = document.querySelector('');
 
     const inputRent = document.querySelector('#rent').value;
     const inputRentNum = parseInt(inputRent);
@@ -680,12 +680,22 @@ function Home() {
             </div>
           </div>
           <button
-            type="submit"
-            className="btn btn-primary button-3d font-effect-neon-green"
-            id="apply-filters"
-          >
-            Apply
-          </button>
+          type="submit"
+          className="btn btn-primary button-3d font-effect-neon-green"
+          id="apply-filters"
+          onClick={onCloseModal}
+        >
+          Apply Filters
+        </button>
+        <form onSubmit={() => <FilteredList filteredResults={filteredResults} />}>
+  <button
+    type="submit"
+    className="btn btn-primary button-3d font-effect-neon-green"
+    id="apply-filters"
+  >
+    Submit
+  </button>
+</form>
         </form>
       </div>
       <div id="filterModalFooter" className="modal-footer">
