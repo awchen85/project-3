@@ -66,23 +66,19 @@ export const DELETE_USER = gql`
 export const CREATE_PROFILE = gql`
   mutation createProfile($input: ProfileInput!) {
     createProfile(input: $input) {
-      token
-      user {
+      _id
+      firstName
+      lastName
+      email
+      profile {
         _id
-        firstName
-        lastName
-        email
-        profile {
-          _id
-          age
-          gender
-          budget
-          location
-          aboutMe
-          allowPets
-          allowChildren
-          userId
-        }
+        age
+        gender
+        budget
+        location
+        aboutMe
+        allowPets
+        userId
       }
     }
   }
@@ -103,7 +99,6 @@ export const UPDATE_PROFILE = gql`
         location
         aboutMe
         allowPets
-        allowChildren
         userId
       }
     }

@@ -78,7 +78,6 @@ db.once('open', async () => {
     ]);
     const aboutMe = faker.lorem.sentences(3);
     const allowPets = faker.helpers.arrayElement(['true', 'false']);
-    const allowChildren = faker.helpers.arrayElement(['true', 'false']);
     const userId = userIds[i];
 
     const profileInput = {
@@ -88,7 +87,6 @@ db.once('open', async () => {
       location: location,
       aboutMe: aboutMe,
       allowPets: allowPets,
-      allowChildren: allowChildren,
       userId: userId,
       username: username,
     };

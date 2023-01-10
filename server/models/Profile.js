@@ -31,10 +31,6 @@ const profileSchema = new Schema({
     type: Boolean,
     required: true,
   },
-  allowChildren: {
-    type: Boolean,
-    required: true,
-  },
   username: {
     type: String,
     required: true,
