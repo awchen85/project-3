@@ -811,7 +811,7 @@ function Home() {
   return (
     <div className="mt-8 mx-4">
       <h2 className="font-semibold text-2xl mb-5">Find Your Next Roommate</h2>
-      <div className="flex justify-between mt-12">
+      <div className="md:flex md:justify-between mt-12">
         <div className="left-side">
           <section className="btn-section">
             <div className="filter-buttons grid grid-cols-4 gap-2 md:grid-cols-4">
