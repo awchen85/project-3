@@ -22,7 +22,7 @@ const resolvers = {
       const user = await User.findById(userId)
         .select('-__v -password')
         .populate('profile')
-        .populate('profile')
+        .populate('friends')
       return user;
     },
     getUsers: async () => {

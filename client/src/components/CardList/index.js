@@ -1,10 +1,38 @@
 /* eslint-disable */
 import Simu from '../../assets/images/simu.jpg';
 import { useState } from 'react';
+import { ADD_FRIEND } from '../../utils/mutations';
+import { useMutation, useQuery } from '@apollo/client';
+import { useParams } from 'react-router-dom';
+import { AiFillStar } from 'react-icons/ai';
+import { QUERY_GET_USER } from '../../utils/queries';
+
 function CardList({ profiles }) {
   if (!profiles.length) {
     return <h3>No Profiles Yet</h3>;
 console.log(profiles)  }
+
+const { firstName: userParam } = useParams;
+const [addFriend] = useMutation(ADD_FRIEND);
+const { loading, data } = useQuery(QUERY_GET_USER, {
+  variables: { firstName: userParam },
+});
+
+if (loading) {
+  return <div>Loading...</div>;
+}
+
+const user = data?.user || {};
+
+  const handleClick = async () => {
+    try {
+      await addFriend({
+        variables: { id: user._id },
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
 // // Total Cards
 // const totalCards = 50;
 // // Cards per Page
@@ -27,6 +55,9 @@ console.log(profiles)  }
               key={profile._id}
               className="profileCard bg-yellow-200 px-6 py-4 border-black border-2 font-bold text-xl mb-2 text-center"
             >
+              <div>
+                <button className="text-black hover:animate-pulse" onClick={handleClick}><AiFillStar /></button>
+              </div>
               <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 justify-center">{profile.username}</span>
               <img src={Simu} alt="thing" className="w-full" />
               <div className='grid grid-cols-2'>
