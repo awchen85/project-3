@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
-import { AiFillHome } from 'react-icons/ai';
-import { useCurrentUserContext } from '../../context/currentUser';
+/* eslint-disable */
+import { Link } from "react-router-dom";
+import { AiFillHome } from "react-icons/ai";
+import { useCurrentUserContext } from "../../context/currentUser";
 
 export default function Navigation() {
   const { isLoggedIn, logoutUser } = useCurrentUserContext();
@@ -8,7 +9,7 @@ export default function Navigation() {
   return (
     <nav
       className="flex flex-row md:justify-between justify-center"
-      style={{ width: '100%' }}
+      style={{ width: "100%" }}
     >
       <div>
         <h1 className="our-place text-white md:invisible visible text-start ml-12 text-5xl">
@@ -108,23 +109,17 @@ export default function Navigation() {
           </Link>
         </div>
       </div>
-      <div className="flex nav-links">
+      <div className="flex nav-links items-center">
         {isLoggedIn() ? (
           <>
-            <Link
-              className="mr-1 text-2xl hover:scale-125 hover:-translate-x-1 hover:text-teal-300"
-              to="/"
-            >
+            <Link className="mr-1 text-2xl hover:text-[#d1d1d1]" to="/">
               <AiFillHome />
             </Link>
-            <Link
-              to="/dashboard"
-              className="hover:text-emerald-200 hover:scale-125 hover:-translate-y-1"
-            >
+            <Link to="/dashboard" className="hover:text-[#d1d1d1] text-3xl">
               Dashboard
             </Link>
             <button
-              className="text-white hover:text-red-600 hover:scale-125 hover:translate-x-1"
+              className="text-white nav-button hover:text-[#d1d1d1]"
               type="button"
               onClick={logoutUser}
             >
@@ -133,16 +128,10 @@ export default function Navigation() {
           </>
         ) : (
           <>
-            <Link
-              className="hover:text-emerald-200 hover:scale-125 hover:-translate-x-1"
-              to="/login"
-            >
+            <Link className="hover:text-[#d1d1d1]" to="/login">
               Login
             </Link>
-            <Link
-              className="hover:text-emerald-200 hover:scale-125 hover:translate-x-1"
-              to="/register"
-            >
+            <Link className="hover:text-[#d1d1d1]" to="/register">
               Sign Up
             </Link>
           </>
