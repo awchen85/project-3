@@ -21,7 +21,6 @@ const typeDefs = gql`
     location: String
     aboutMe: String
     allowPets: Boolean
-    allowChildren: Boolean
     userId: ID
     username: String
   }
@@ -33,7 +32,6 @@ const typeDefs = gql`
     location: String
     aboutMe: String
     allowPets: Boolean
-    allowChildren: Boolean
     username: String
   }
 

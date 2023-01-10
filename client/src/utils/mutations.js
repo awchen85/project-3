@@ -78,7 +78,6 @@ export const CREATE_PROFILE = gql`
         location
         aboutMe
         allowPets
-        allowChildren
         userId
       }
     }
@@ -100,7 +99,6 @@ export const UPDATE_PROFILE = gql`
         location
         aboutMe
         allowPets
-        allowChildren
         userId
       }
     }
