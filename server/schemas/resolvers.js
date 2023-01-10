@@ -11,7 +11,8 @@ const resolvers = {
       if (context.user) {
         const user = await User.findById(context.user._id)
           .select('-__v -password')
-          .populate('profile');
+          .populate('profile')
+          .populate('friends')
         console.log(user);
         return user;
       }
@@ -20,7 +21,8 @@ const resolvers = {
     getUser: async (parent, { userId }) => {
       const user = await User.findById(userId)
         .select('-__v -password')
-        .populate('profile');
+        .populate('profile')
+        .populate('profile')
       return user;
     },
     getUsers: async () => {
@@ -109,6 +111,19 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
+    addFriend: async (parent, { friendId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { friends: friendId } },
+          { new: true }
+        ).populate('friends');
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    }
   },
 };
 

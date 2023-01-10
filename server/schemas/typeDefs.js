@@ -11,6 +11,8 @@ const typeDefs = gql`
     reviews: [Review]
     isAuthenticated: Boolean
     profile: Profile
+    friends: [User]
+    friendCount: Int
   }
   type Profile {
     _id: ID
@@ -89,6 +91,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     createProfile(input: ProfileInput!): User
     updateProfile(input: ProfileInput): User
+    addFriend(friendId: ID!): User
   }
 `;
 
