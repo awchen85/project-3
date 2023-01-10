@@ -31,7 +31,7 @@ function Footer() {
             <ul className="grid grid-cols-1 gap-2">
               <li className="flex items-center">
                 <img src={footerGitHub} alt="GitHub Logo" className="mr-3" />
-                Git Hub Username
+                Alex Chen
               </li>
               <li className="flex items-center">
                 <img src={footerGitHub} alt="GitHub Logo" className="mr-3" />
