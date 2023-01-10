@@ -390,7 +390,6 @@ form p {
   color: #ecf0f1;
   text-decoration: none;
   border-radius: 5px;
-  border: solid 1px gray;
   background: lightgray;
   text-align: center;
   padding: 16px 18px 14px;
@@ -399,16 +398,9 @@ form p {
   -webkit-transition: all 0.1s;
   -moz-transition: all 0.1s;
   transition: all 0.1s;
-
-  -webkit-box-shadow: 0px 6px 0px darkgray;
-  -moz-box-shadow: 0px 6px 0px darkgray;
-  box-shadow: 0px 6px 0px darkgray;
 }
 
 .button-3d:active {
-  -webkit-box-shadow: 0px 2px 0px darkgray;
-  -moz-box-shadow: 0px 2px 0px darkgray;
-  box-shadow: 0px 2px 0px darkgray;
   position: relative;
   top: 4px;
 }
@@ -440,32 +432,31 @@ form p {
 .filters {
   border: 2px solid rgba(201, 201, 201, 0.5);
   border-radius: 4px;
-  box-shadow: 10px 5px 5px gray;
   padding: 10px;
 }
 
 #filter-pets-yes,
 #filter-children-yes {
-  width: 50%;
-  text-align: center;
-  border: solid 1px green;
+  border: solid 1px rgb(142, 141, 141);
+  color: #372b70;
+  background: #fff;
   border-radius: 10px;
+  width: 50%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-  margin: 0 4px;
 }
 
 #profile-pets-yes,
 #profile-children-yes {
-  width: 100%;
-  text-align: center;
-  border: solid 1px green;
+  border: solid 1px rgb(142, 141, 141);
+  color: #372b70;
+  background: #fff;
   border-radius: 10px;
+  width: 50%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-  margin: 0 4px;
 }
 
 .profile-children,
@@ -476,7 +467,7 @@ form p {
 
 #filter-pets-yes:hover,
 #filter-children-yes:hover {
-  background-color: lightgreen;
+  background-color: #f1f0f7;
 }
 
 #profile-pets-yes:hover,
@@ -486,47 +477,43 @@ form p {
 
 .active-pets-yes,
 .active-children-yes {
-  border: solid 1px green;
-  background: lightgreen;
+  border: solid 1px rgb(142, 141, 141);
+  color: #fff !important;
+  background: #372b70 !important;
   border-radius: 10px;
+  width: 50%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-  color: white;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em green, 0 0 0.4em green,
-    0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
-  -webkit-box-shadow: 0px 6px 0px green;
-  -moz-box-shadow: 0px 6px 0px green;
-  box-shadow: 0px 6px 0px green;
 }
 
 #filter-pets-no,
 #filter-children-no {
-  width: 50%;
-  text-align: center;
-  border: solid 1px red;
+  border: solid 1px rgb(142, 141, 141);
+  color: #372b70;
+  background: #fff;
   border-radius: 10px;
+  width: 50%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-  margin: 0 4px;
 }
 
 #profile-pets-no,
 #profile-children-no {
-  width: 100%;
-  text-align: center;
-  border: solid 1px red;
+  border: solid 1px rgb(142, 141, 141);
+  color: #372b70;
+  background: #fff;
   border-radius: 10px;
+  width: 50%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-  margin: 0 4px;
 }
 
 #filter-pets-no:hover,
 #filter-children-no:hover {
-  background-color: lightcoral;
+  background-color: #f1f0f7;
 }
 
 #profile-pets-no:hover,
@@ -536,18 +523,14 @@ form p {
 
 .active-pets-no,
 .active-children-no {
-  border: solid 1px red;
-  background: lightcoral;
+  border: solid 1px rgb(142, 141, 141);
+  color: #ffffff !important;
+  background: #372b70 !important;
   border-radius: 10px;
+  width: 50%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-  color: white;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
-    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
-  -webkit-box-shadow: 0px 6px 0px red;
-  -moz-box-shadow: 0px 6px 0px red;
-  box-shadow: 0px 6px 0px red;
 }
 
 #filterModalFooter {
@@ -558,45 +541,31 @@ form p {
 }
 
 #apply-filters {
-  border: solid 1px green;
-  background: lightgreen;
+  background: #372b70;
   border-radius: 10px;
   width: 50%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em green, 0 0 0.3em green, 0 0 0.4em green,
-    0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
-  -webkit-box-shadow: 0px 6px 0px green;
-  -moz-box-shadow: 0px 6px 0px green;
-  box-shadow: 0px 6px 0px green;
 }
 
 #cancel-filters {
-  border: solid 1px red;
-  background: lightcoral;
+  border: solid 1px rgb(142, 141, 141);
+  color: #372b70;
+  background: #fff;
   border-radius: 10px;
   width: 50%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em red, 0 0 0.3em red, 0 0 0.4em red,
-    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
-  -webkit-box-shadow: 0px 6px 0px red;
-  -moz-box-shadow: 0px 6px 0px red;
-  box-shadow: 0px 6px 0px red;
 }
 
 #apply-filters:hover {
-  border: 2px solid green;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em green, 0 0 0.4em green,
-    0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
+  background-color: #1a1240;
 }
 
 #cancel-filters:hover {
-  border: 2px solid red;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
-    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+  background-color: rgb(242, 240, 240);
 }
 
 #apply-filters:active {
@@ -810,7 +779,6 @@ form p {
 
   .form-input-address {
     padding: 12px;
-    box-shadow: 10px 5px 5px gray;
   }
 
   .search-button {
