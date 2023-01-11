@@ -1,26 +1,26 @@
-/* eslint-disable */
-import { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { Link, useNavigate } from 'react-router-dom';
-import logo from '../assets/logo/logo.jpg';
+//* eslint-disable */
+import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { Link, useNavigate } from "react-router-dom";
+import logo from "../assets/logo/logo.jpg";
 
-import { CREATE_USER } from '../utils/mutations';
+import { CREATE_USER } from "../utils/mutations";
 // import { REGISTER_USER } from '../graphql/mutations';
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 
-import { useCurrentUserContext } from '../context/currentUser';
+import { useCurrentUserContext } from "../context/currentUser";
 
 export default function Registration() {
   const { loginUser } = useCurrentUserContext();
   const navigate = useNavigate();
   const [formState, setFormState] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const [createUser, { error }] = useMutation(CREATE_USER);
 
-  const handleFormSubmit = async event => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
       const mutationResponse = await createUser({
@@ -35,19 +35,22 @@ export default function Registration() {
       loginUser(user, token);
       // added Auth.login to set token in local storage
       Auth.login(token);
-      navigate(`'/dashboard'`);
+      navigate("/profile");
     } catch (e) {
       console.log(e);
     }
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({ ...formState, [name]: value });
   };
 
   return (
     <div className="md:flex justify-center">
+      <div className="flex justify-center">
+        <img src={logo} alt="logo"  className="logo self-center mr-7"/>
+      </div>
       <div className="mt-5 group">
         {error ? (
           <div>
@@ -59,7 +62,7 @@ export default function Registration() {
           <label htmlFor="firstName">
             First name:
             <input
-              className="form-input"
+              className="form-input main-input"
               type="text"
               id="firstName"
               name="firstName"
@@ -70,7 +73,7 @@ export default function Registration() {
           <label htmlFor="lastName">
             Last name:
             <input
-              className="form-input"
+              className="form-input main-input"
               type="text"
               id="lastName"
               name="lastName"
@@ -81,7 +84,7 @@ export default function Registration() {
           <label htmlFor="email">
             Email:
             <input
-              className="form-input"
+              className="form-input main-input"
               placeholder="youremail@test.com"
               name="email"
               type="email"
@@ -93,7 +96,7 @@ export default function Registration() {
             <label htmlFor="password">
               Password
               <input
-                className="form-input"
+                className="form-input main-input"
                 placeholder="******"
                 name="password"
                 type="password"
@@ -108,20 +111,20 @@ export default function Registration() {
               </div>
             </label>
           </div>
-          <button className="form-button hover:bg-teal-300" type="submit">
+          <button
+            className="form-button btn btn-main hover:bg-teal-300"
+            type="submit"
+          >
             Sign Up
           </button>
           <p>
             Already have an account? Login
             <Link className="hover:text-teal-300" to="/login">
-              {' '}
+              {" "}
               here
             </Link>
           </p>
         </form>
-      </div>
-      <div className="flex justify-center">
-        <img src={logo} alt="logo" />
       </div>
     </div>
   );
