@@ -13,9 +13,10 @@ import {
   QUERY_GET_USERS,
 } from '../utils/queries';
 import CardList from '../components/CardList';
+import capitalizeFirstLetter from '../utils/helpers';
+import Swal from 'sweetalert2';
 
 function Home(props) {
-
   const [open, setOpen] = React.useState(false);
 
   const onOpenModal = () => setOpen(true);
@@ -113,6 +114,19 @@ function Home(props) {
       zoom: 10,
     });
     searchInput.current.value = result.place_name;
+    const quickInputLocation = searchInput.current.value;
+
+    let profilesQuickLocationArr = [];
+
+    for (let i = 0; i < profile.length; i++) {
+      if (profile[i].location === quickInputLocation) {
+        profilesQuickLocationArr.push(profile[i]);
+      }
+    }
+
+    console.log('QUICK SEARCH', profilesQuickLocationArr);
+
+    setVisibleProfiles(profilesQuickLocationArr);
   };
 
   // When the trash can icon in the search bar is clicked it will clear the search bar input
@@ -156,6 +170,10 @@ function Home(props) {
       accessToken: mapboxgl.accessToken,
     });
 
+    window.scrollTo({ top: 500, behavior: 'smooth' });
+
+    setVisibleProfiles(profile);
+
     geocoder
       .forwardGeocode({
         query: city,
@@ -178,6 +196,19 @@ function Home(props) {
           zoom: 12,
         });
         searchInput.current.value = result.place_name;
+        const quickInputLocation = searchInput.current.value;
+
+        let profilesQuickLocationArr = [];
+
+        for (let i = 0; i < profile.length; i++) {
+          if (profile[i].location === quickInputLocation) {
+            profilesQuickLocationArr.push(profile[i]);
+          }
+        }
+
+        console.log('QUICK SEARCH', profilesQuickLocationArr);
+
+        setVisibleProfiles(profilesQuickLocationArr);
       });
   };
 
@@ -190,6 +221,10 @@ function Home(props) {
       // there is input in the inputLocation variable
       console.log(inputLocation);
     } else {
+      Swal.fire({
+        title: `Location is required`,
+        icon: 'error',
+      });
       // there is no input in the inputLocation variable
       return;
     }
@@ -533,7 +568,6 @@ function Home(props) {
   };
 
   useEffect(() => {
-    console.log('***************', profileRef);
     checkQueriedProfiles(profileRef);
   }, [profile]);
 
