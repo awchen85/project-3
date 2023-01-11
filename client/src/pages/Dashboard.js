@@ -22,7 +22,7 @@ function Dashboard() {
   const { firstName: userParam } = useParams();
 
   if (auth.loggedIn() && auth.getProfile().data.firstName === userParam) {
-    return <Navigate to="/profile" />;
+    return <Navigate to="/dashboard/:firstName" />;
   }
 
   const determineComponent = () => {

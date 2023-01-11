@@ -3,11 +3,6 @@ import Simu from "../../assets/images/simu.jpg";
 import { useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { AiFillStar } from "react-icons/ai";
-import { ADD_FRIEND } from "../../utils/mutations";
-import { useParams } from "react-router-dom";
-import { useQuery, useMutation } from "@apollo/client";
-import { QUERY_GET_USER } from "../../utils/queries";
 
 const responsive = {
   superLargeDesktop: {
@@ -29,29 +24,6 @@ const responsive = {
 };
 
 function CardList({ profiles }) {
-  const { firstName: userParam } = useParams();
-
-  const [addFriend] = useMutation(ADD_FRIEND);
-  const { loading, data } = useQuery(userParam || QUERY_GET_USER, {
-    variables: { firstName: userParam },
-  });
-
-  const user = data?.me || data?.user || {};
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  const handleClick = async () => {
-    try {
-      await addFriend({
-        variables: { id: user._id },
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
   if (!profiles.length) {
     return <h3>No Profiles Yet</h3>;
     console.log(profiles);
@@ -78,9 +50,6 @@ function CardList({ profiles }) {
                 key={profile._id}
                 className="profileCard bg-[#fafafa] px-6 py-4 m-2 font-bold text-xl mb-2 text-center"
               >
-                <div>
-                  <button className="text-black hover:animate-pulse" onClick={handleClick}><AiFillStar /></button>
-                </div>
                 <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 justify-center">
                   {profile.username}
                 </span>

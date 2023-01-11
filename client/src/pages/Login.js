@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo/logo.jpg';
+import Auth from '../utils/auth';
 
 import { LOGIN_USER } from '../utils/mutations';
 // import { LOGIN } from '../graphql/mutations';
@@ -32,7 +33,7 @@ export default function Login() {
       loginUser(user, token);
       // added Auth.login to set token in local storage
       Auth.login(token);
-      navigate('/dashboard');
+      navigate('/');
     } catch (e) {
       console.log(e);
     }

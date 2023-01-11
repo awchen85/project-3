@@ -7,9 +7,8 @@ import { useParams } from 'react-router-dom';
 import { CREATE_PROFILE } from '../../utils/mutations';
 
 const DashboardProfile = ({ currentUser }) => {
-  const currentUserId = parseInt(currentUser._id);
-  console.log(currentUserId);
-  
+  // const currentUserId = parseInt(currentUser._id);
+  // console.log(currentUserId);
   const [createProfile, { error }] = useMutation(CREATE_PROFILE);
   const [formState, setFormState] = useState({
     age: null,
@@ -49,16 +48,6 @@ const DashboardProfile = ({ currentUser }) => {
       ...formState,
       allowPets: petValue,
     });
-  };
-
-  const handleClick = async () => {
-    try {
-      await addFriend({
-        variables: { id: user._id },
-      });
-    } catch (e) {
-      console.error(e);
-    }
   };
 
   const handleChange = e => {

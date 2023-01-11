@@ -7,6 +7,11 @@ export const QUERY_GET_CURRENT_USER = gql`
       firstName
       lastName
       email
+      friendCount
+      friends {
+        _id
+        firstName
+      }
       profile {
         _id
         age
@@ -29,6 +34,11 @@ export const QUERY_GET_USER = gql`
       firstName
       lastName
       email
+      friendCount
+      friends {
+        _id
+        firstName
+      }
       profile {
         _id
         age
@@ -51,6 +61,11 @@ export const QUERY_GET_USERS = gql`
       firstName
       lastName
       email
+      friendCount
+      friends {
+        _id
+        firstName
+      }
       profile {
         _id
         age

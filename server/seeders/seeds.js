@@ -10,6 +10,14 @@ const createRandomUser = () => {
   const email = faker.internet.email();
   const password = '?Bz2' + faker.internet.password(8);
   const phoneNumber = faker.phone.number();
+  const friends = [];
+
+  for(let i = 0; i < 3; i+=1) {
+    const friend = {
+      firstName: faker.name.firstName(),
+    };
+    friends.push(friend);
+  }
 
   return {
     firstName: firstName,
@@ -17,6 +25,7 @@ const createRandomUser = () => {
     email: email,
     password: password,
     phone: phoneNumber,
+    friends: friends
   };
 };
 
@@ -76,6 +85,7 @@ db.once('open', async () => {
       'Wilmington, North Carolina',
       'Durham, North Carolina',
     ]);
+
     const aboutMe = faker.lorem.sentences(3);
     const allowPets = faker.helpers.arrayElement(['true', 'false']);
     const userId = userIds[i];
@@ -89,6 +99,7 @@ db.once('open', async () => {
       allowPets: allowPets,
       userId: userId,
       username: username,
+      friends: userData[i].friends
     };
 
     const profile = await Profile.create(profileInput);

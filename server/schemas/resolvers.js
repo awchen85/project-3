@@ -12,7 +12,7 @@ const resolvers = {
         const user = await User.findById(context.user._id)
           .select('-__v -password')
           .populate('profile')
-          .populate('friends')
+          .populate('friends');
         console.log(user);
         return user;
       }
@@ -22,11 +22,11 @@ const resolvers = {
       const user = await User.findById(userId)
         .select('-__v -password')
         .populate('profile')
-        .populate('friends')
+        .populate('friends');
       return user;
     },
     getUsers: async () => {
-      const users = await User.find().populate('profile');
+      const users = await User.find().populate('profile').populate('friends');
       return users;
     },
 
