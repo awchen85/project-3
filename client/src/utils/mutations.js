@@ -105,3 +105,17 @@ export const UPDATE_PROFILE = gql`
     }
   }
 `;
+
+export const ADD_FRIEND = gql`
+  mutation addFriend($id: ID!) {
+    addFriend(friendId: $id) {
+      _id
+      firstName
+      friendCount
+      friends {
+        _id
+        firstName
+      }
+    }
+  }
+`;

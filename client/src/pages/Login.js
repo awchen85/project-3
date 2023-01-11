@@ -33,7 +33,7 @@ export default function Login() {
       loginUser(user, token);
       // added Auth.login to set token in local storage
       Auth.login(token);
-      navigate('/dashboard');
+      navigate('/');
     } catch (e) {
       console.log(e);
     }
