@@ -13,6 +13,8 @@ import {
   QUERY_GET_USERS,
 } from '../utils/queries';
 import CardList from '../components/CardList';
+import capitalizeFirstLetter from '../utils/helpers';
+import Swal from 'sweetalert2';
 
 function Home() {
   const [open, setOpen] = React.useState(false);
@@ -189,6 +191,10 @@ function Home() {
       // there is input in the inputLocation variable
       console.log(inputLocation);
     } else {
+      Swal.fire({
+        title: `Location is required`,
+        icon: 'error',
+      });
       // there is no input in the inputLocation variable
       return;
     }
