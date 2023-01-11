@@ -1,6 +1,9 @@
 {
-  "name": "react-apollo-graphql-mongo",
+  "name": "project-3",
   "version": "1.0.0",
+  "engines": {
+    "node": "19.3.0"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,15 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jbohde/react-apollo-graphql-mongo.git"
+    "url": "git+https://github.com/awchen85/project-3.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jbohde/react-apollo-graphql-mongo/issues"
+    "url": "https://github.com/awchen85/project-3/issues"
   },
-  "homepage": "https://github.com/jbohde/react-apollo-graphql-mongo#readme",
+  "homepage": "https://github.com/awchen85/project-3",
   "devDependencies": {
     "concurrently": "^7.6.0"
   },
