@@ -24,6 +24,7 @@ const typeDefs = gql`
     allowPets: Boolean
     userId: ID
     username: String
+    avatar: String
   }
   input ProfileInput {
     age: Int

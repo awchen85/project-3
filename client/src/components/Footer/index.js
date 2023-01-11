@@ -26,13 +26,13 @@ function Footer() {
         <div className="footer-right grid md:grid-cols-2 sm:grid-cols-1 gap-8">
           <section className="footer-menu self-center">
             <div className="img-container rounded-md border-4 border-black">
-              <div className="box-1 relative"><img src={David} alt="David" />
-                <p className="absolute top-1 left-1 bg-black p-1 m-1 rounded bg-opacity-30">1/5</p>
-              </div>
-              <div className="box-2 relative"><img src={Mitch} alt="Mitch" />
+            <div className="box-3 relative"><img src={Patrick} alt="Patrick" />
+                <p className="absolute top-1 left-1 bg-black p-1 m-1 rounded bg-opacity-30">1/5</p></div>
+                <div className="box-2 relative"><img src={Mitch} alt="Mitch" />
                 <p className="absolute top-1 left-1 bg-black p-1 m-1 rounded bg-opacity-30">2/5</p></div>
-              <div className="box-3 relative"><img src={Patrick} alt="Patrick" />
-                <p className="absolute top-1 left-1 bg-black p-1 m-1 rounded bg-opacity-30">3/5</p></div>
+              <div className="box-1 relative"><img src={David} alt="David" />
+                <p className="absolute top-1 left-1 bg-black p-1 m-1 rounded bg-opacity-30">3/5</p>
+              </div>
               <div className="box-4 relative"><img src={Alex} alt="Alex" />
                 <p className="absolute top-1 left-1 bg-black p-1 m-1 rounded bg-opacity-30">4/5</p></div>
               <div className="box-5 relative"><img src={Teresa} alt="Teresa" />

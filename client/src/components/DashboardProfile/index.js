@@ -5,6 +5,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import placeholder from "../../assets/images/placeholder-icon.jpg";
 import { useParams } from "react-router-dom";
 import { CREATE_PROFILE } from "../../utils/mutations";
+import ProfilePic from "../ProfilePic";
 
 const DashboardProfile = ({ currentUser }) => {
   // const currentUserId = parseInt(currentUser._id);
@@ -125,17 +126,9 @@ const DashboardProfile = ({ currentUser }) => {
           <div className="profile-field profile-field-section">
             <div className="flex justify-center">
               <div className="border-2 border-black display-image">
-                <img src={placeholder} className="profile-picture" alt="" />
+                <ProfilePic />
               </div>
-            </div>
-            <input
-              type="file"
-              id="imageInput"
-              name="upload"
-              accept="image/png, image/jpg"
-              className="py-3"
-            />
-
+              </div>
             <div className="form-group">
               <label htmlFor="username" className="profile-h3">
                 Username:
