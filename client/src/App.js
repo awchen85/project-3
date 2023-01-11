@@ -64,6 +64,7 @@ function App() {
             <Footer />
           </CurrentUserContextProvider>
         </Router>
+        <Footer />
       </CookiesProvider>
     </ApolloProvider>
   );
