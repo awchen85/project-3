@@ -359,7 +359,7 @@ form p {
 }
 
 .react-responsive-modal-modal {
-  width: fit-content;
+  width: fit-screen;
   padding: 0 !important;
   border-radius: 8px;
 }

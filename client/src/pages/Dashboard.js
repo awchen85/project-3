@@ -13,6 +13,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_GET_CURRENT_USER } from '../utils/queries';
 
 function Dashboard() {
+
   const { loading, data } = useQuery(QUERY_GET_CURRENT_USER);
   const currentUser = data?.getCurrentUser || {};
   console.log(currentUser);
@@ -81,8 +82,8 @@ function Dashboard() {
 
   return (
     <div>
-      <div className="dashboard flex">
-        <section className="dashboard-nav flex flex-col">
+      <div className="dashboard md:flex grid justify-items-center">
+        <section className="dashboard-nav md:flex md:flex-col">
           <button
             type="submit"
             onClick={() => handleComponentChange("DashboardProfile")}
@@ -110,7 +111,7 @@ function Dashboard() {
           </button>
         </section>
         <div
-          className="dashboard-main"
+          className="dashboard-main block md:flex m-auto md:m-0 justify-center"
           // eslint-disable-next-line react/no-unknown-property
           // currentComponent={currentComponent}
           // eslint-disable-next-line react/no-unknown-property
