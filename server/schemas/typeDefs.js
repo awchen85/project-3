@@ -32,6 +32,7 @@ const typeDefs = gql`
     aboutMe: String
     allowPets: Boolean
     username: String
+    userId: ID
   }
   type Room {
     _id: ID
