@@ -13,12 +13,11 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_GET_CURRENT_USER } from '../utils/queries';
 
 function Dashboard() {
-
   const { loading, data } = useQuery(QUERY_GET_CURRENT_USER);
   const currentUser = data?.getCurrentUser || {};
   console.log(currentUser);
 
-  const [currentComponent, setCurrentComponent] = useState("DashboardProfile");
+  const [currentComponent, setCurrentComponent] = useState('DashboardProfile');
 
   const { firstName: userParam } = useParams();
 
@@ -27,27 +26,27 @@ function Dashboard() {
   }
 
   const determineComponent = () => {
-    if (currentComponent === "DashboardProfile") {
+    if (currentComponent === 'DashboardProfile') {
       return <DashboardProfile currentUser={currentUser} />;
       // eslint-disable-next-line no-else-return
-    } else if (currentComponent === "DashboardFriends") {
-      return <DashboardFriends />;
-    } else if (currentComponent === "DashboardInbox") {
+    } else if (currentComponent === 'DashboardFriends') {
+      return <DashboardFriends currentUser={currentUser} />;
+    } else if (currentComponent === 'DashboardInbox') {
       return <DashboardInbox />;
     } else {
       return <DashboardProfile />;
     }
   };
 
-  const determineIsActive = (component) => {
-    let linkClass = "dashboard-btn btn btn-main";
+  const determineIsActive = component => {
+    let linkClass = 'dashboard-btn btn btn-main';
     if (component === currentComponent) {
-      linkClass += "btn btn-main-active";
+      linkClass += 'btn btn-main-active';
     }
     return linkClass;
   };
 
-  const handleComponentChange = (component) => setCurrentComponent(component);
+  const handleComponentChange = component => setCurrentComponent(component);
 
   const [open, setOpen] = React.useState(false);
 
@@ -86,17 +85,17 @@ function Dashboard() {
         <section className="dashboard-nav md:flex md:flex-col">
           <button
             type="submit"
-            onClick={() => handleComponentChange("DashboardProfile")}
+            onClick={() => handleComponentChange('DashboardProfile')}
             id="profile"
-            className={determineIsActive("DashboardProfile")}
+            className={determineIsActive('DashboardProfile')}
           >
             Profile
           </button>
           <button
             type="submit"
-            onClick={() => handleComponentChange("DashboardFriends")}
+            onClick={() => handleComponentChange('DashboardFriends')}
             id="friends"
-            className={determineIsActive("DashboardFriends")}
+            className={determineIsActive('DashboardFriends')}
           >
             Saved
           </button>
@@ -105,7 +104,7 @@ function Dashboard() {
             // onClick={() => handleComponentChange('DashboardInbox')}
             onClick={onOpenModal}
             id="inbox"
-            className={determineIsActive("DashboardInbox")}
+            className={determineIsActive('DashboardInbox')}
           >
             Inbox
           </button>
