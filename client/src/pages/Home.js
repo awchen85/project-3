@@ -6,17 +6,15 @@ import 'react-responsive-modal/styles.css';
 import mapboxgl from '!mapbox-gl';
 import MultiRangeSlider from '../components/multiRangeSlider';
 import { GiTrashCan } from 'react-icons/gi';
-import { useMutation, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import {
   QUERY_GET_PROFILES,
   QUERY_GET_USER,
   QUERY_GET_USERS,
 } from '../utils/queries';
 import CardList from '../components/CardList';
-import capitalizeFirstLetter from '../utils/helpers';
-import Swal from 'sweetalert2';
 
-function Home(props) {
+function Home() {
   const [open, setOpen] = React.useState(false);
 
   const onOpenModal = () => setOpen(true);
@@ -40,18 +38,17 @@ function Home(props) {
 
   // Queries everyone's profile
   const { loading, data } = useQuery(QUERY_GET_PROFILES);
-  let profile = data?.getProfiles || [];
-  const profileRef = useRef(profile);
-  profileRef.current = profile;
+  const profile = data?.getProfiles || [];
   // console.log(data);
-
-  const [visibleProfiles, setVisibleProfiles] = useState([]);
 
   let minValue;
   let maxValue;
 
   mapboxgl.accessToken =
     'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
+
+  // const accessToken =
+  //   'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
 
   const [searchResults, setSearchResults] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -62,7 +59,17 @@ function Home(props) {
   const [lng, setLng] = useState(-79.05);
   const [lat, setLat] = useState(35.92);
   const [zoom, setZoom] = useState(9);
-
+  // const items = [
+  //   <Cards title="Card 1" description="This is card 1"
+  //   imageUrl="card1.jpg"
+  //   />,
+  //   <Cards title="Card 2" description="This is card 2"
+  //   imageUrl="card1.jpg"
+  //   />,
+  //   <Cards title="Card 3" description="This is card 3"
+  //   imageUrl="card1.jpg"
+  //   />,
+  // ];
   useEffect(() => {
     if (map.current) return; // initialize map only once
     map.current = new mapboxgl.Map({
@@ -114,19 +121,6 @@ function Home(props) {
       zoom: 10,
     });
     searchInput.current.value = result.place_name;
-    const quickInputLocation = searchInput.current.value;
-
-    let profilesQuickLocationArr = [];
-
-    for (let i = 0; i < profile.length; i++) {
-      if (profile[i].location === quickInputLocation) {
-        profilesQuickLocationArr.push(profile[i]);
-      }
-    }
-
-    console.log('QUICK SEARCH', profilesQuickLocationArr);
-
-    setVisibleProfiles(profilesQuickLocationArr);
   };
 
   // When the trash can icon in the search bar is clicked it will clear the search bar input
@@ -170,10 +164,6 @@ function Home(props) {
       accessToken: mapboxgl.accessToken,
     });
 
-    window.scrollTo({ top: 500, behavior: 'smooth' });
-
-    setVisibleProfiles(profile);
-
     geocoder
       .forwardGeocode({
         query: city,
@@ -196,19 +186,6 @@ function Home(props) {
           zoom: 12,
         });
         searchInput.current.value = result.place_name;
-        const quickInputLocation = searchInput.current.value;
-
-        let profilesQuickLocationArr = [];
-
-        for (let i = 0; i < profile.length; i++) {
-          if (profile[i].location === quickInputLocation) {
-            profilesQuickLocationArr.push(profile[i]);
-          }
-        }
-
-        console.log('QUICK SEARCH', profilesQuickLocationArr);
-
-        setVisibleProfiles(profilesQuickLocationArr);
       });
   };
 
@@ -221,10 +198,6 @@ function Home(props) {
       // there is input in the inputLocation variable
       console.log(inputLocation);
     } else {
-      Swal.fire({
-        title: `Location is required`,
-        icon: 'error',
-      });
       // there is no input in the inputLocation variable
       return;
     }
@@ -546,30 +519,7 @@ function Home(props) {
     }
 
     console.log('FINAL RESULTS:', filteredProfiles);
-
-    setVisibleProfiles(filteredProfiles);
-    console.log('PROFILE IS', visibleProfiles);
-
-    onCloseModal();
   };
-
-  const checkQueriedProfiles = async profileRef => {
-    console.log('PROFILES', profileRef);
-    if (profileRef) {
-      setVisibleProfiles(profileRef.current);
-      // setTimeout((profile, visibleProfiles) => {
-      //   profile = visibleProfiles;
-      // }, 1000);
-      console.log('I AM RUNNING');
-      return;
-    }
-    console.log("DIDN'T RUN");
-    return;
-  };
-
-  useEffect(() => {
-    checkQueriedProfiles(profileRef);
-  }, [profile]);
 
   const filterModal = (
     <div id="filterModal" className="modal">
@@ -581,9 +531,9 @@ function Home(props) {
           <div className="flex justify-center">
             <div className="py-4">
               <div>
-                <div className="flex">
+                <div className="flex items-center">
                   <input
-                    className="form-input-address"
+                    className="form-input-address main-input"
                     placeholder="Enter a city's name to search for people in that area"
                     name="address"
                     id="address"
@@ -592,7 +542,7 @@ function Home(props) {
                     onChange={handleSearch}
                     onKeyDown={handleKeyDown}
                   />
-                  <span className="input-clear text-3xl text-red-600">
+                  <span className="input-clear text-3xl text-[#372b70]">
                     <a onClick={clearInput}>
                       <GiTrashCan />
                     </a>
@@ -628,7 +578,7 @@ function Home(props) {
               {/* Budget */}
               <label
                 htmlFor="Budget"
-                className="flex flex-col text-center filters my-1"
+                className="flex flex-col filters my-1"
               >
                 Max Rent You Pay Per Month: ${value}
                 <input
@@ -665,23 +615,23 @@ function Home(props) {
                 <div className="py-4 filters my-1">
                   Gender
                   <div className="flex">
-                    <div className="flex cursor-pointer text-xl rounded text-blue-400 hover:bg-sky-100 hover:border-4 hover:border-blue-500 m-1 p-1">
-                      <label htmlFor="male" className="px-4 cursor-pointer">
+                    <div className="flex cursor-pointer text-xl rounded m-1 p-1">
+                      <label htmlFor="male" className="cursor-pointer">
                         <input id="male" type="checkbox" value="male" /> Male
                       </label>
                     </div>
                     <br />
-                    <div className="flex text-xl rounded text-red-200 hover:bg-red-50 hover:border-4 hover:border-red-300 m-1 p-1">
-                      <label htmlFor="female" className="px-4 cursor-pointer">
+                    <div className="flex text-xl rounded m-1 p-1">
+                      <label htmlFor="female" className="cursor-pointer">
                         <input id="female" type="checkbox" value="female" />{' '}
                         Female
                       </label>
                     </div>
                     <br />
-                    <div className="flex cursor-pointer text-xl rounded text-emerald-400 hover:bg-emerald-100 hover:border-4 hover:border-green-500 m-1 p-1">
+                    <div className="flex cursor-pointer text-xl rounded m-1 p-1">
                       <label
                         htmlFor="non-binary"
-                        className="px-4 cursor-pointer"
+                        className="cursor-pointer"
                       >
                         <input
                           id="non-binary"
@@ -692,8 +642,8 @@ function Home(props) {
                       </label>
                     </div>
                     <br />
-                    <div className="cursor-pointer text-xl rounded text-purple-400 hover:bg-purple-100 hover:border-4 hover:border-purple-500 m-1 p-1">
-                      <label htmlFor="other" className="px-4 cursor-pointer">
+                    <div className="cursor-pointer text-xl rounded m-1 p-1">
+                      <label htmlFor="other" className="cursor-pointer">
                         <input id="other" type="checkbox" value="other" /> Other
                       </label>
                     </div>
@@ -760,7 +710,6 @@ function Home(props) {
             type="submit"
             className="btn btn-primary button-3d font-effect-neon-green"
             id="apply-filters"
-            onClick={filteredProfiles => setVisibleProfiles(filteredProfiles)}
           >
             Apply
           </button>
@@ -815,7 +764,7 @@ function Home(props) {
                   {loading ? (
                     <div>Loading...</div>
                   ) : (
-                    <CardList profiles={visibleProfiles} />
+                    <CardList profiles={profile} />
                   )}
                 </section>
               </section>
@@ -832,7 +781,7 @@ function Home(props) {
                   <div>
                     <div className="flex">
                       <input
-                        className="form-input-address"
+                        className="form-input-address main-input"
                         placeholder="Enter a city's name to search for people in that area"
                         name="address"
                         id="address"
