@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Lora&family=Raleway&display=swap');
 
 :root {
   --color-primary: #372b70;
@@ -13,18 +12,18 @@
 
 html,
 body {
-  font-family: 'Lora', serif;
   box-sizing: border-box;
   height: 100%;
+}
+
+body {
   margin: 0;
+  font-family: "Play";
   background-color: white;
 }
 
 body h2 {
   text-align: center;
-}
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Raleway', sans-serif;;
 }
 
 /* Main Elements */
@@ -70,7 +69,6 @@ h1, h2, h3, h4, h5, h6 {
 nav {
   display: flex;
   align-items: flex-end;
-  font-family: "Fredoka One";
   padding: 20px;
   background-image: url("./assets/nav-bg/buildings.png");
   background-size: contain;
@@ -113,33 +111,27 @@ nav button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-family: "Martian Mono";
   height: 100%;
   max-width: 30rem;
   padding: 2rem;
-  box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2);
+}
+
+.main-color {
+  color: (--color-primary) !important;
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
 }
 
 .form-input {
-  border: solid;
-  border-width: .5px;
   box-sizing: border-box;
   line-height: 1.15rem;
   width: 100%;
   margin: 0.5rem 0;
   padding: 0.5rem;
   border-radius: 0.625rem;
-}
-
-.form-button {
-  font-size: 1.25rem;
-  padding: 0.625rem;
-  margin: 1rem 0;
-  border: none;
-  background-color: #006db0;
-  color: #fff;
-  border-radius: 0.625rem;
-  width: 100%;
 }
 
 form p {
@@ -210,20 +202,17 @@ form p {
   padding: 2rem;
 }
 
-.form-input-address {
+.main-input {
   box-sizing: border-box;
-  border: 2px solid #006db0;
-  line-height: 1.15rem;
+  border: 1px solid var(--color-primary-hover);
   width: 100%;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
   border-radius: 0.625rem;
+  border: 1px solid var(--color-primary-hover);
+  font-size: 1.2rem;
+  padding: 5px 10px;
 }
 
 .input-clear {
-  position: relative;
-  left: -40px;
-  bottom: -15px;
 }
 
 .search-button {
@@ -273,9 +262,8 @@ form p {
 }
 
 .profile-field-section {
-  border: 2px solid rgba(201, 201, 201, 0.5);
+  border: 1px solid var(--color-primary-bg);
   border-radius: 4px;
-  box-shadow: 10px 5px 5px gray;
   padding: 10px;
   width: 100%;
   margin: 10px;
@@ -367,23 +355,22 @@ form p {
 #filterModal {
   width: fit-content;
   min-height: 50vh;
-  justify-content: center;
+  justify-content: left;
   border: 2px solid rgba(201, 201, 201, 0.5);
   border-radius: 4px;
   box-shadow: 10px 5px 5px gray;
   padding: 20px;
   /* margin: 100px; */
-  text-align: center;
-  font-family: "Martian Mono";
+  align-items: center;
 }
 
 .filters-title {
-  color: #006db0;
+  color: var(--color-primary);
   font-weight: bold;
 }
 
 .filters {
-  border: 2px solid rgba(201, 201, 201, 0.5);
+  border: 1px solid var(--color-primary-bg);
   border-radius: 4px;
   padding: 10px;
 }
@@ -399,18 +386,6 @@ form p {
   font-size: 22px;
   font-weight: bold;
 }
-/* 
-#profile-pets-yes,
-#profile-children-yes {
-  border: solid 1px rgb(142, 141, 141);
-  color: var(--color-primary);
-  background: #fff;
-  border-radius: 10px;
-  width: 50%;
-  padding: 10px;
-  font-size: 22px;
-  font-weight: bold;
-} */
 
 .profile-children,
 .profile-pets {
@@ -567,14 +542,6 @@ form p {
     width: 70%;
   }
 
-  /* .btn-section {
-    display: flex;
-    justify-content: space-around;
-    border: 2px solid rgba(201, 201, 201, 0.5);
-    border-radius: 4px;
-    box-shadow: 10px 5px 5px gray;
-  } */
-
   .filter-buttons {
     display: flex;
     justify-content: space-evenly;
@@ -726,16 +693,11 @@ form p {
     min-width: 90%;
   }
 
-  .profile-card-img {
-    border-radius: 8px;
-  }
-
   .card {
     display: flex;
     align-items: flex-end;
     justify-content: center;
     border: 2px solid gray;
-    box-shadow: 10px 5px 5px gray;
     border-radius: 8px;
     margin: 4px;
     padding-bottom: 12px;
@@ -826,6 +788,10 @@ form p {
     content-visibility: hidden;
   }
 
+  .left-side {
+    content-visibility: hidden;
+  }
+
   .quick-search-cities-section {
     content-visibility: hidden;
   }
@@ -890,34 +856,4 @@ form p {
       0 0 0.4em orange, 0 0 0.6em orange, 0 0 0.8em orange, 0 0 1em orange,
       0 0 1.2em orange;
   }
-
-  /* 100% {
-    text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #fff, 0 0 0.4em #fff, 0 0 0.6em #fff, 0 0 0.8em #fff, 0 0 1em #fff, 0 0 1.2em #fff;
-  } */
-}
-
-/* .font-effect-neon {
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #fff, 0 0 0.4em purple, 0 0 0.6em purple, 0 0 0.8em purple, 0 0 1em purple, 0 0 1.2em purple;
-} */
-
-.img-container {
-  width: 280px;
-  height: 260px;
-  display: flex;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-}
-
-.img-container::-webkit-scrollbar {
-  display: none;
-}
-
-.img-container div {
-  min-width: 280px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  scroll-snap-align: center;
 }
