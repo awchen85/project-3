@@ -7,22 +7,50 @@ const userSchema = new Schema({
   firstName: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
   },
   lastName: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
   },
   email: {
     type: String,
     required: true,
-    unique: true
+    trim: true,
+    unique: true,
+    match: [/.+@.+\..+/, 'Must match an email address!'],
   },
   password: {
     type: String,
     required: true,
-    minlength: 7
+    minlength: 7,
+    match: [
+      /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{7,}$/,
+      'Must meet requirements!',
+    ],
+  },
+  // likes: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: 'Room',
+  //   },
+  // ],
+  // rooms: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: 'Room',
+  //   },
+  // ],
+  // reviews: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: 'Review',
+  //   },
+  // ],
+  profile: {
+    type: Schema.Types.ObjectId,
+    ref: 'Profile',
   },
 });
 

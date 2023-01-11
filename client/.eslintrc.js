@@ -15,9 +15,12 @@ module.exports = {
   },
   plugins: [
     'react',
+    'tailwindcss',
   ],
   rules: {
-    indent: ['error', 2],
+    indent: 'off',
+    'react/jsx-indent': 'off',
+    'react/jsx-indent-props': 'off',
     'arrow-parens': [2, 'as-needed'],
     'arrow-body-style': [2, 'as-needed'],
     semi: ['error', 'always'],

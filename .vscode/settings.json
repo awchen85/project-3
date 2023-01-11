@@ -1,0 +1,11 @@
+{
+  "eslint.run": "onSave",
+  "cSpell.words": [
+    "mapboxgl",
+    "Simu",
+    "tailwindcss"
+  ]
+  "cSpell.words": ["Simu", "tailwindcss"],
+  "emmet.preferences": {},
+  "editor.linkedEditing": true
+}

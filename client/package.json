@@ -2,19 +2,31 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001",
+  "proxy": "http://localhost:3001/",
   "dependencies": {
     "@apollo/client": "^3.7.3",
+    "@googlemaps/js-api-loader": "^1.15.1",
+    "@mapbox/mapbox-gl-geocoder": "^5.0.1",
+    "@mapbox/mapbox-sdk": "^0.14.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "animejs": "^3.2.1",
     "graphql": "^16.6.0",
     "jwt-decode": "^3.1.2",
+    "mapbox-gl": "^2.11.1",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-cookie": "^4.1.1",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.7.1",
+    "react-multi-carousel": "^2.8.2",
+    "react-responsive-modal": "^6.4.1",
     "react-router-dom": "^6.6.0",
     "react-scripts": "5.0.1",
+    "save": "^2.9.0",
+    "use-places-autocomplete": "^4.0.0",
+    "validator": "^13.7.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -42,11 +54,13 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^8.30.0",
+    "auto": "^10.37.6",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.11",
-    "eslint-plugin-react-hooks": "^4.6.0"
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prefixer": "^0.0.3",
+    "tailwindcss": "^3.2.4"
   }
 }

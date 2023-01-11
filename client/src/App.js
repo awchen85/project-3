@@ -1,26 +1,26 @@
+// import React, { useRef, useEffect, useState } from 'react';
+/* eslint-disable comma-dangle */
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  createHttpLink
+  createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route
-} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie';
 
 import { CurrentUserContextProvider } from './context';
 
+// import mapboxgl from '!mapbox-gl';
+
 import Navigation from './components/Navigation';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
 import Dashboard from './pages/Dashboard';
 import NotFound from './pages/NotFound';
-
 import './App.css';
 
 const httpLink = createHttpLink({
@@ -53,11 +53,18 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Registration />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+              {/* <Route path="/profile" element={<Profile />} /> */}
+              <Route path="/dashboard">
+                <Route path=":email" element={<Dashboard />} />
+                <Route path="" element={<Dashboard />} />
+              </Route>
+              {/* <Route path="/dashboard" element={<Dashboard />} /> */}
               <Route path="/*" element={<NotFound />} />
             </Routes>
+            <Footer />
           </CurrentUserContextProvider>
         </Router>
+        <Footer />
       </CookiesProvider>
     </ApolloProvider>
   );
