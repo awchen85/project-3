@@ -114,22 +114,39 @@ const DashboardProfile = ({ currentUser }) => {
 
   const handleChange = e => {
     if (e.target.name === 'budget') {
-      const finalBudget = parseInt(e.target.value);
-      setFormState({ ...formState, budget: finalBudget });
-      return;
+      const noBudget = isNaN(parseInt(e.target.value));
+      if (noBudget) {
+        console.log('NaN');
+        Swal.fire({
+          title: `${capitalizeFirstLetter(e.target.name)} is required`,
+        });
+      } else {
+        const finalBudget = parseInt(e.target.value);
+        setFormState({ ...formState, budget: finalBudget });
+        return;
+      }
     }
     if (e.target.name === 'age') {
-      const finalAge = parseInt(e.target.value);
-      setFormState({ ...formState, age: finalAge });
-      return;
+      const noAge = isNaN(parseInt(e.target.value));
+      console.log(noAge);
+      if (noAge) {
+        console.log('NaN');
+        Swal.fire({
+          title: `${capitalizeFirstLetter(e.target.name)} is required`,
+        });
+      } else {
+        const finalAge = parseInt(e.target.value);
+        setFormState({ ...formState, age: finalAge });
+        return;
+      }
     }
     const isEmpty = validator.isEmpty(e.target.value);
     if (isEmpty) {
       setErrorMessage(`${capitalizeFirstLetter(e.target.name)} is required`);
       console.log('empty');
-      // Swal.fire({
-      //   title: `${capitalizeFirstLetter(e.target.name)} is required`,
-      // });
+      Swal.fire({
+        title: `${capitalizeFirstLetter(e.target.name)} is required`,
+      });
     } else {
       setErrorMessage('');
     }
@@ -514,7 +531,7 @@ const DashboardProfile = ({ currentUser }) => {
             >
               Save Profile
             </button>
-            {errorMessage && <p className="error-text">{errorMessage}</p>}
+            {/* {errorMessage && <p className="error-text">{errorMessage}</p>} */}
           </div>
         </div>
       </form>
