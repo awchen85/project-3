@@ -114,6 +114,19 @@ function Home() {
       zoom: 10,
     });
     searchInput.current.value = result.place_name;
+    const quickInputLocation = searchInput.current.value;
+
+    let profilesQuickLocationArr = [];
+
+    for (let i = 0; i < profile.length; i++) {
+      if (profile[i].location === quickInputLocation) {
+        profilesQuickLocationArr.push(profile[i]);
+      }
+    }
+
+    console.log('QUICK SEARCH', profilesQuickLocationArr);
+
+    setVisibleProfiles(profilesQuickLocationArr);
   };
 
   // When the trash can icon in the search bar is clicked it will clear the search bar input
@@ -179,6 +192,19 @@ function Home() {
           zoom: 12,
         });
         searchInput.current.value = result.place_name;
+        const quickInputLocation = searchInput.current.value;
+
+        let profilesQuickLocationArr = [];
+
+        for (let i = 0; i < profile.length; i++) {
+          if (profile[i].location === quickInputLocation) {
+            profilesQuickLocationArr.push(profile[i]);
+          }
+        }
+
+        console.log('QUICK SEARCH', profilesQuickLocationArr);
+
+        setVisibleProfiles(profilesQuickLocationArr);
       });
   };
 
@@ -538,7 +564,6 @@ function Home() {
   };
 
   useEffect(() => {
-    console.log('***************', profileRef);
     checkQueriedProfiles(profileRef);
   }, [profile]);
 
