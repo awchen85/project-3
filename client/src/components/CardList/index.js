@@ -1,8 +1,11 @@
 /* eslint-disable */
 import Simu from '../../assets/images/simu.jpg';
 import { useEffect, useState } from 'react';
+import { useMutation } from '@apollo/client';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { ADD_FRIEND } from '../../utils/mutations';
+import Swal from 'sweetalert2';
 
 const responsive = {
   superLargeDesktop: {
@@ -30,6 +33,49 @@ const responsive = {
 function CardList({ profiles }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const currentProfile = profiles[currentIndex];
+  const [addFriend] = useMutation(ADD_FRIEND);
+
+  // const handleClickCurrent = async () => {
+  //   try {
+  //     const mutationResponse = await addFriend({
+  //       variables: { friendId: currentProfile.userId },
+  //     });
+  //     if (mutationResponse) {
+  //       Swal.fire({
+  //         icon: 'success',
+  //         title: 'Friend added succesfully!',
+  //       });
+  //     }
+  //   } catch (e) {
+  //     console.error(e);
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Something went wrong',
+  //       text: e.text,
+  //     });
+  //   }
+  // };
+
+  // const handleClickOther = async userId => {
+  //   try {
+  //     const mutationResponse = await addFriend({
+  //       variables: { friendId: userId },
+  //     });
+  //     if (mutationResponse) {
+  //       Swal.fire({
+  //         icon: 'success',
+  //         title: 'Friend added succesfully!',
+  //       });
+  //     }
+  //   } catch (e) {
+  //     console.error(e);
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Something went wrong',
+  //       text: e.text,
+  //     });
+  //   }
+  // };
 
   if (!profiles.length) {
     return <h3>No Profiles Yet</h3>;
@@ -75,13 +121,16 @@ function CardList({ profiles }) {
                 {currentProfile.allowPets}
               </span>
             </div>
-            <p className="text-xs">About Me:</p>
-            <span className="inline-block bg-blue-200 rounded-md px-5 py-3 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]">
+            <p className="text-xs overflow-auto">About Me:</p>
+            <span className=" inline-block bg-blue-200 rounded-md px-5 py-3 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]">
               {currentProfile.aboutMe}
             </span>
-            <button className="connect inline-block bg-blue-400 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]">
+            {/* <button
+              onClick={handleClickCurrent}
+              className="connect inline-block bg-blue-400 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]"
+            >
               Add to friends
-            </button>
+            </button> */}
           </div>
         ) : (
           profiles.slice(currentIndex, currentIndex + 50).map(profile => (
@@ -127,7 +176,11 @@ function CardList({ profiles }) {
                 </span>
               </div>
               <div className="button flex flex-col items-center">
-                {/* <button className="connect bg-blue-400 p-1 rounded-md text-sm font-semibold text-gray-700 bottom-0 absolute max-w-prose">
+                {/* <button
+                  userId={profile.userId}
+                  onClick={(profile.userId) => handleClickOther(profile.userId)}
+                  className="connect bg-blue-400 rounded-full text-sm font-semibold text-gray-700 bottom-0 absolute max-w-prose"
+                >
                   Add to friends
                 </button> */}
               </div>
