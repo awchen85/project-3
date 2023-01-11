@@ -52,7 +52,19 @@ const userSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Profile',
   },
-});
+  friends: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  ]
+},
+{
+  toJSON: {
+    virtuals: true
+  }
+}
+);
 
 // set up pre-save middleware to create password
 userSchema.pre('save', async function (next) {
@@ -68,6 +80,10 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
+
+userSchema.virtual('friendCount').get(function() {
+  return this.friends.length;
+});
 
 const User = mongoose.model('User', userSchema);
 
