@@ -23,10 +23,10 @@ const responsive = {
   },
 };
 
-function CardList({ profiles }) {
-  if (!profiles.length) {
+function FilteredCardList({ filteredProfiles }) {
+  if (!filteredProfiles.length) {
     return <h3>No Profiles Yet</h3>;
-    console.log(profiles);
+    console.log(filteredProfiles);
   }
   // // Total Cards
   // const totalCards = 50;
@@ -45,44 +45,44 @@ function CardList({ profiles }) {
     <div className="grid grid-cols-1 cardsList mx-auto gap-10">
       <Carousel responsive={responsive}>
         {profiles
-          ? profiles.map(profile => (
+          ? profiles.map(filteredProfiles => (
               <div
-                key={profile._id}
+                key={filteredProfiles._id}
                 className="profileCard bg-[#fafafa] px-6 py-4 m-2 font-bold text-xl mb-2 text-center"
               >
                 <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 justify-center">
-                  {profile.username}
+                  {filteredProfiles.username}
                 </span>
                 <img src={Simu} alt="thing" className="w-full" />
                 <div className="grid grid-cols-2">
                   <p className="text-xs py-2 text-center">Gender:</p>
                   <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    {profile.gender}
+                    {filteredProfiles.gender}
                   </span>
                   <p className="text-xs py-1">Age:</p>
                   <span className="inline-block bg-blue-200 rounded-full mx-center px-2 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    {profile.age}
+                    {filteredProfiles.age}
                   </span>
                   <p className="text-xs py-1">Budget:</p>
                   <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    {profile.budget}
+                    {filteredProfiles.budget}
                   </span>
                   <p className="text-xs">Location:</p>
                   <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    {profile.location}
+                    {filteredProfiles.location}
                   </span>
                 </div>
                 <p className="text-xs">About Me:</p>
                 <span className="inline-block bg-blue-200 px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  {profile.aboutMe}
+                  {filteredProfiles.aboutMe}
                 </span>
                 <p className="text-xs">Allow Pets?</p>
                 <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  {profile.allowPets}
+                  {filteredProfiles.allowPets}
                 </span>
                 <p className="text-xs">Allow Children?</p>
                 <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  {profile.allowChildren}
+                  {filteredProfiles.allowChildren}
                 </span>
               </div>
             ))
@@ -92,4 +92,4 @@ function CardList({ profiles }) {
   );
 }
 
-export default CardList;
+export default FilteredCardList;
