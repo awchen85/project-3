@@ -101,6 +101,7 @@ export const UPDATE_PROFILE = gql`
         aboutMe
         allowPets
         userId
+        avatar
       }
     }
   }
