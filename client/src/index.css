@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-primary: #372b70;
+  --color-primary-hover: #f1f0f7;
+  --color-primary-light: #735fd7;
+  --color-primary-dark: #1a1240;
+  --color-primary-bg: #f1f0f7;
+}
+
 html,
 body {
   box-sizing: border-box;
@@ -18,6 +26,46 @@ body h2 {
   text-align: center;
 }
 
+/* Main Elements */
+/* Main Button Styles */
+
+.btn {
+  position: relative;
+  width: auto;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  padding: 16px 18px 14px;
+  margin: 12px;
+  border: 1px solid rgba(255, 255, 255, 0);
+}
+
+.btn-main {
+  color: #fff;
+  background: var(--color-primary);
+}
+
+.btn-main-active {
+  background: var(--color-primary-light);
+}
+
+.btn-secondary {
+  border: 1px solid var(--color-primary);
+  background-color: none;
+  color: var(--color-primary);
+}
+
+.btn-main:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-primary-dark);
+  background-color: var(--color-primary-hover);
+  color: var(--color-primary);
+}
+
 nav {
   display: flex;
   align-items: flex-end;
@@ -26,9 +74,8 @@ nav {
   background-image: url("./assets/nav-bg/buildings.png");
   background-size: contain;
   background-position: 50%;
-  background-color: #372b70;
+  background-color: var(--color-primary);
   max-height: 10rem;
-  position: sticky;
   top: 0;
   /* This makes it so that the interactive map doesn't overlap this navbar */
   z-index: 3;
@@ -50,6 +97,13 @@ nav button {
   cursor: pointer;
   outline: inherit;
   font-size: 2rem !important;
+}
+
+.home-hero {
+  background-color: #f1f0f7;
+  background-image: url("./assets/images/texture.png");
+  background-size: contain;
+  background-repeat: repeat-x;
 }
 
 .form {
@@ -188,68 +242,8 @@ form p {
 .dashboard-nav {
   min-width: 20%;
   min-height: 100%;
-  font-family: "Martian Mono";
-}
-
-.dashboard-btn {
-  border-bottom: 2px solid black;
-  padding: 15px;
-}
-
-.dash-nav {
-  position: relative;
-  width: auto;
-  display: inline-block;
-  color: #ecf0f1;
-  text-decoration: none;
-  border-radius: 5px;
-  border: solid 1px green;
-  background: lightgreen;
-  text-align: center;
-  padding: 16px 18px 14px;
-  margin: 12px;
-
-  -webkit-transition: all 0.1s;
-  -moz-transition: all 0.1s;
-  transition: all 0.1s;
-
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em green, 0 0 0.3em green, 0 0 0.4em green,
-    0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
-  -webkit-box-shadow: 0px 6px 0px green;
-  -moz-box-shadow: 0px 6px 0px green;
-  box-shadow: 0px 6px 0px green;
-}
-
-.dash-nav:hover {
-  border: 2px solid green;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em green, 0 0 0.4em green,
-    0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
-}
-
-.dash-nav:active {
-  border: 2px solid red;
-  background: lightcoral;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
-    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
-  -webkit-box-shadow: 0px 2px 0px darkred;
-  -moz-box-shadow: 0px 2px 0px darkred;
-  box-shadow: 0px 2px 0px darkred;
-}
-
-.dash-nav-active {
-  border: 2px solid red;
-  background: lightcoral;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
-    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
-  -webkit-box-shadow: 0px 2px 0px darkred;
-  -moz-box-shadow: 0px 2px 0px darkred;
-  box-shadow: 0px 2px 0px darkred;
-}
-
-.dash-nav-active:hover {
-  border: 2px solid red;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
-    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+  background-color: var(--color-primary-bg);
+  background-image: url("./assets/images/texture.png");
 }
 
 .dashboard-main {
@@ -286,44 +280,6 @@ form p {
 
 .profile-input {
   width: 100%;
-}
-
-.profile-view {
-  position: relative;
-  width: auto;
-  display: inline-block;
-  color: #ecf0f1;
-  text-decoration: none;
-  border-radius: 5px;
-  border: solid 1px lightblue;
-  background: #006db0;
-  text-align: center;
-  padding: 16px 18px 14px;
-  margin: 12px;
-
-  -webkit-transition: all 0.1s;
-  -moz-transition: all 0.1s;
-  transition: all 0.1s;
-
-  -webkit-box-shadow: 0px 6px 0px blue;
-  -moz-box-shadow: 0px 6px 0px blue;
-  box-shadow: 0px 6px 0px blue;
-}
-
-.profile-view:hover {
-  border: 2px solid blue;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em lightblue,
-    0 0 0.4em lightblue, 0 0 0.6em lightblue, 0 0 0.8em lightblue,
-    0 0 1em lightblue, 0 0 1.2em lightblue;
-}
-
-.profile-view:active {
-  border: 2px solid lightblue;
-  -webkit-box-shadow: 0px 2px 0px darkblue;
-  -moz-box-shadow: 0px 2px 0px darkblue;
-  box-shadow: 0px 2px 0px darkblue;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em blue, 0 0 0.4em blue,
-    0 0 0.6em blue, 0 0 0.8em blue, 0 0 1em blue, 0 0 1.2em blue;
 }
 
 #inbox {
@@ -384,7 +340,6 @@ form p {
   color: #ecf0f1;
   text-decoration: none;
   border-radius: 5px;
-  border: solid 1px gray;
   background: lightgray;
   text-align: center;
   padding: 16px 18px 14px;
@@ -393,16 +348,9 @@ form p {
   -webkit-transition: all 0.1s;
   -moz-transition: all 0.1s;
   transition: all 0.1s;
-
-  -webkit-box-shadow: 0px 6px 0px darkgray;
-  -moz-box-shadow: 0px 6px 0px darkgray;
-  box-shadow: 0px 6px 0px darkgray;
 }
 
 .button-3d:active {
-  -webkit-box-shadow: 0px 2px 0px darkgray;
-  -moz-box-shadow: 0px 2px 0px darkgray;
-  box-shadow: 0px 2px 0px darkgray;
   position: relative;
   top: 4px;
 }
@@ -434,33 +382,32 @@ form p {
 .filters {
   border: 2px solid rgba(201, 201, 201, 0.5);
   border-radius: 4px;
-  box-shadow: 10px 5px 5px gray;
   padding: 10px;
 }
 
 #filter-pets-yes,
 #filter-children-yes {
-  width: 50%;
-  text-align: center;
-  border: solid 1px green;
+  border: solid 1px rgb(142, 141, 141);
+  color: var(--color-primary);
+  background: #fff;
   border-radius: 10px;
+  width: 50%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-  margin: 0 4px;
 }
-
+/* 
 #profile-pets-yes,
 #profile-children-yes {
-  width: 100%;
-  text-align: center;
-  border: solid 1px green;
+  border: solid 1px rgb(142, 141, 141);
+  color: var(--color-primary);
+  background: #fff;
   border-radius: 10px;
+  width: 50%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-  margin: 0 4px;
-}
+} */
 
 .profile-children,
 .profile-pets {
@@ -470,78 +417,48 @@ form p {
 
 #filter-pets-yes:hover,
 #filter-children-yes:hover {
-  background-color: lightgreen;
-}
-
-#profile-pets-yes:hover,
-#profile-children-yes:hover {
-  background-color: lightgreen;
+  background-color: #f1f0f7;
 }
 
 .active-pets-yes,
 .active-children-yes {
-  border: solid 1px green;
-  background: lightgreen;
+  border: solid 1px rgb(142, 141, 141);
+  color: #fff !important;
+  background: var(--color-primary) !important;
   border-radius: 10px;
+  width: 50%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-  color: white;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em green, 0 0 0.4em green,
-    0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
-  -webkit-box-shadow: 0px 6px 0px green;
-  -moz-box-shadow: 0px 6px 0px green;
-  box-shadow: 0px 6px 0px green;
 }
 
 #filter-pets-no,
 #filter-children-no {
+  border: solid 1px rgb(142, 141, 141);
+  color: var(--color-primary);
+  background: #fff;
+  border-radius: 10px;
   width: 50%;
-  text-align: center;
-  border: solid 1px red;
-  border-radius: 10px;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-  margin: 0 4px;
-}
-
-#profile-pets-no,
-#profile-children-no {
-  width: 100%;
-  text-align: center;
-  border: solid 1px red;
-  border-radius: 10px;
-  padding: 10px;
-  font-size: 22px;
-  font-weight: bold;
-  margin: 0 4px;
 }
 
 #filter-pets-no:hover,
 #filter-children-no:hover {
-  background-color: lightcoral;
-}
-
-#profile-pets-no:hover,
-#profile-children-no:hover {
-  background-color: lightcoral;
+  background-color: #f1f0f7;
 }
 
 .active-pets-no,
 .active-children-no {
-  border: solid 1px red;
-  background: lightcoral;
+  border: solid 1px rgb(142, 141, 141);
+  color: #ffffff !important;
+  background: var(--color-primary) !important;
   border-radius: 10px;
+  width: 50%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-  color: white;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
-    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
-  -webkit-box-shadow: 0px 6px 0px red;
-  -moz-box-shadow: 0px 6px 0px red;
-  box-shadow: 0px 6px 0px red;
 }
 
 #filterModalFooter {
@@ -552,45 +469,31 @@ form p {
 }
 
 #apply-filters {
-  border: solid 1px green;
-  background: lightgreen;
+  background: var(--color-primary);
   border-radius: 10px;
   width: 50%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em green, 0 0 0.3em green, 0 0 0.4em green,
-    0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
-  -webkit-box-shadow: 0px 6px 0px green;
-  -moz-box-shadow: 0px 6px 0px green;
-  box-shadow: 0px 6px 0px green;
 }
 
 #cancel-filters {
-  border: solid 1px red;
-  background: lightcoral;
+  border: solid 1px rgb(142, 141, 141);
+  color: var(--color-primary);
+  background: #fff;
   border-radius: 10px;
   width: 50%;
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em red, 0 0 0.3em red, 0 0 0.4em red,
-    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
-  -webkit-box-shadow: 0px 6px 0px red;
-  -moz-box-shadow: 0px 6px 0px red;
-  box-shadow: 0px 6px 0px red;
 }
 
 #apply-filters:hover {
-  border: 2px solid green;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em green, 0 0 0.4em green,
-    0 0 0.6em green, 0 0 0.8em green, 0 0 1em green, 0 0 1.2em green;
+  background-color: var(--color-primary-dark);
 }
 
 #cancel-filters:hover {
-  border: 2px solid red;
-  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em red, 0 0 0.4em red,
-    0 0 0.6em red, 0 0 0.8em red, 0 0 1em red, 0 0 1.2em red;
+  background-color: rgb(242, 240, 240);
 }
 
 #apply-filters:active {
@@ -608,7 +511,7 @@ form p {
 }
 
 .footer {
-  background-color: #372b70;
+  background-color: var(--color-primary);
   padding: 50px;
   min-height: 250;
   color: #fff;
@@ -636,6 +539,22 @@ form p {
   width: 100vw;
 }
 
+.filter-btn {
+  font-weight: bold;
+  font-size: 24px;
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  background: var(--color-primary);
+  text-align: center;
+  padding: 5px 15px;
+  -webkit-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  transition: all 0.1s;
+}
+
 @media screen and (min-width: 768px) {
   h2 {
     font-size: 2.5rem !important;
@@ -659,37 +578,8 @@ form p {
     min-width: 100%;
   }
 
-  .filter-btn {
-    width: 75%;
-    box-shadow: 10px 5px 5px gray;
-    font-weight: bold;
-    font-size: 24px;
-    position: relative;
-    display: inline-block;
-    color: black;
-    text-decoration: none;
-    border-radius: 5px;
-    border: solid 1px gray;
-    background: lightgray;
-    text-align: center;
-    padding: 10px 10px 10px;
-    margin: 12px;
-
-    -webkit-transition: all 0.1s;
-    -moz-transition: all 0.1s;
-    transition: all 0.1s;
-
-    -webkit-box-shadow: 0px 6px 0px gray;
-    -moz-box-shadow: 0px 6px 0px gray;
-    box-shadow: 0px 6px 0px gray;
-  }
-
   .filter-btn:hover {
-    background-color: darkgray;
-    border: 2px solid black;
-    text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em darkgray,
-      0 0 0.4em darkgray, 0 0 0.6em darkgray, 0 0 0.8em darkgray,
-      0 0 1em darkgray, 0 0 1.2em darkgray;
+    background-color: var(--color-primary-dark);
   }
 
   .filter-btn:active {
@@ -817,7 +707,6 @@ form p {
 
   .form-input-address {
     padding: 12px;
-    box-shadow: 10px 5px 5px gray;
   }
 
   .search-button {
