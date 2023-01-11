@@ -22,10 +22,7 @@
   },
   "homepage": "https://github.com/jbohde/react-apollo-graphql-mongo#readme",
   "devDependencies": {
-    "concurrently": "^7.6.0",
-    "eslint": "^8.31.0",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-tailwindcss": "^3.8.0"
+    "concurrently": "^7.6.0"
   },
   "dependencies": {
     "@apollo/client": "^3.7.3",
