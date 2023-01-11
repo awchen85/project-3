@@ -13,12 +13,15 @@ import {
   QUERY_GET_USERS,
 } from '../utils/queries';
 import CardList from '../components/CardList';
+import FilteredCardList from '../components/FilteredCardList';
 
 function Home() {
   const [open, setOpen] = React.useState(false);
 
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
+
+  const [reload, setReload] = useState(false);
 
   const [value, setValue] = React.useState(1000);
 
@@ -38,17 +41,19 @@ function Home() {
 
   // Queries everyone's profile
   const { loading, data } = useQuery(QUERY_GET_PROFILES);
-  const profile = data?.getProfiles || [];
+  let profile = data?.getProfiles || [];
+  const profileRef = useRef(profile);
+  profileRef.current = profile;
   // console.log(data);
+
+  const [visibleProfiles, setVisibleProfiles] = useState([]);
+  const [profileHelper, setProfileHelper] = useState(false);
 
   let minValue;
   let maxValue;
 
   mapboxgl.accessToken =
     'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
-
-  // const accessToken =
-  //   'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
 
   const [searchResults, setSearchResults] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -519,7 +524,33 @@ function Home() {
     }
 
     console.log('FINAL RESULTS:', filteredProfiles);
+
+    // profile = filteredProfiles;
+    setVisibleProfiles(filteredProfiles);
+    console.log('PROFILE IS', visibleProfiles);
+
+    onCloseModal();
+    // setReload(true);
   };
+
+  const checkQueriedProfiles = async profileRef => {
+    console.log('PROFILES', profileRef);
+    if (profileRef) {
+      setVisibleProfiles(profileRef.current);
+      // setTimeout((profile, visibleProfiles) => {
+      //   profile = visibleProfiles;
+      // }, 1000);
+      console.log('I AM RUNNING');
+      return;
+    }
+    console.log("DIDN'T RUN");
+    return;
+  };
+
+  useEffect(() => {
+    console.log('***************', profileRef);
+    checkQueriedProfiles(profileRef);
+  }, [profile]);
 
   const filterModal = (
     <div id="filterModal" className="modal">
@@ -710,6 +741,7 @@ function Home() {
             type="submit"
             className="btn btn-primary button-3d font-effect-neon-green"
             id="apply-filters"
+            onClick={filteredProfiles => setVisibleProfiles(filteredProfiles)}
           >
             Apply
           </button>
@@ -764,7 +796,7 @@ function Home() {
                   {loading ? (
                     <div>Loading...</div>
                   ) : (
-                    <CardList profiles={profile} />
+                    <CardList profiles={visibleProfiles} />
                   )}
                 </section>
               </section>
