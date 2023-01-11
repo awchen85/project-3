@@ -412,7 +412,9 @@ const DashboardProfile = ({ currentUser }) => {
                   id="profile-pets-yes"
                   key={option.value}
                   className={
-                    selectedPetValue === option.value ? 'active-pets-yes' : ''
+                    selectedPetValue === option.value
+                      ? 'btn btn-main'
+                      : 'btn btn-secondary'
                   }
                 >
                   <input
@@ -433,7 +435,9 @@ const DashboardProfile = ({ currentUser }) => {
                   id="profile-pets-no"
                   key={option.value}
                   className={
-                    selectedPetValue === option.value ? 'active-pets-no' : ''
+                    selectedPetValue === option.value
+                      ? 'btn btn-main'
+                      : 'btn btn-secondary'
                   }
                 >
                   <input
@@ -503,7 +507,10 @@ const DashboardProfile = ({ currentUser }) => {
             </div>
           </div> */}
           <div className="flex justify-center">
-            <button type="submit" className="profile-view text-2xl">
+            <button
+              type="submit"
+              className="profile-view btn btn-main text-2xl"
+            >
               Save Profile
             </button>
             {errorMessage && <p className="error-text">{errorMessage}</p>}
