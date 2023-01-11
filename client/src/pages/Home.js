@@ -13,15 +13,12 @@ import {
   QUERY_GET_USERS,
 } from '../utils/queries';
 import CardList from '../components/CardList';
-import FilteredCardList from '../components/FilteredCardList';
 
 function Home() {
   const [open, setOpen] = React.useState(false);
 
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
-
-  const [reload, setReload] = useState(false);
 
   const [value, setValue] = React.useState(1000);
 
@@ -47,7 +44,6 @@ function Home() {
   // console.log(data);
 
   const [visibleProfiles, setVisibleProfiles] = useState([]);
-  const [profileHelper, setProfileHelper] = useState(false);
 
   let minValue;
   let maxValue;
@@ -64,17 +60,7 @@ function Home() {
   const [lng, setLng] = useState(-79.05);
   const [lat, setLat] = useState(35.92);
   const [zoom, setZoom] = useState(9);
-  // const items = [
-  //   <Cards title="Card 1" description="This is card 1"
-  //   imageUrl="card1.jpg"
-  //   />,
-  //   <Cards title="Card 2" description="This is card 2"
-  //   imageUrl="card1.jpg"
-  //   />,
-  //   <Cards title="Card 3" description="This is card 3"
-  //   imageUrl="card1.jpg"
-  //   />,
-  // ];
+
   useEffect(() => {
     if (map.current) return; // initialize map only once
     map.current = new mapboxgl.Map({
@@ -525,12 +511,10 @@ function Home() {
 
     console.log('FINAL RESULTS:', filteredProfiles);
 
-    // profile = filteredProfiles;
     setVisibleProfiles(filteredProfiles);
     console.log('PROFILE IS', visibleProfiles);
 
     onCloseModal();
-    // setReload(true);
   };
 
   const checkQueriedProfiles = async profileRef => {
