@@ -1,10 +1,10 @@
 /* eslint-disable */
-import React, { useState, useRef, useEffect } from 'react';
-import validator from 'validator';
-import { useQuery, useMutation } from '@apollo/client';
-import placeholder from '../../assets/images/placeholder-icon.jpg';
-import { useParams } from 'react-router-dom';
-import { CREATE_PROFILE } from '../../utils/mutations';
+import React, { useState, useRef, useEffect } from "react";
+import validator from "validator";
+import { useQuery, useMutation } from "@apollo/client";
+import placeholder from "../../assets/images/placeholder-icon.jpg";
+import { useParams } from "react-router-dom";
+import { CREATE_PROFILE } from "../../utils/mutations";
 
 const DashboardProfile = ({ currentUser }) => {
   // const currentUserId = parseInt(currentUser._id);
@@ -12,26 +12,26 @@ const DashboardProfile = ({ currentUser }) => {
   const [createProfile, { error }] = useMutation(CREATE_PROFILE);
   const [formState, setFormState] = useState({
     age: null,
-    gender: '',
+    gender: "",
     budget: null,
-    location: '',
-    aboutMe: '',
+    location: "",
+    aboutMe: "",
     allowPets: false,
     userId: currentUser._id,
-    username: '',
+    username: "",
   });
   const { age, gender, budget, location, aboutMe, allowPets, username } =
     formState;
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   // Allow Pets Radio Buttons
-  const options1 = [{ value: true, label: 'Yes' }];
-  const options2 = [{ value: false, label: 'No' }];
+  const options1 = [{ value: true, label: "Yes" }];
+  const options2 = [{ value: false, label: "No" }];
   // Allow Pets
   const [selectedPetValue, setSelectedPetValue] = useState(null);
 
   // const [selectedGender, setSelectedGender] = useState('');
-  const handleGenderSelect = event => {
+  const handleGenderSelect = (event) => {
     // console.log(event.target.value);
     let genderValue = event.target.value;
     setFormState({
@@ -40,9 +40,9 @@ const DashboardProfile = ({ currentUser }) => {
     });
   };
 
-  const handlePetChange = event => {
+  const handlePetChange = (event) => {
     // console.log(event.target.value === 'true');
-    let petValue = event.target.value === 'true';
+    let petValue = event.target.value === "true";
     setSelectedPetValue(petValue);
     setFormState({
       ...formState,
@@ -50,13 +50,13 @@ const DashboardProfile = ({ currentUser }) => {
     });
   };
 
-  const handleChange = e => {
-    if (e.target.name === 'budget') {
+  const handleChange = (e) => {
+    if (e.target.name === "budget") {
       const finalBudget = parseInt(e.target.value);
       setFormState({ ...formState, budget: finalBudget });
       return;
     }
-    if (e.target.name === 'age') {
+    if (e.target.name === "age") {
       const finalAge = parseInt(e.target.value);
       setFormState({ ...formState, age: finalAge });
       return;
@@ -65,7 +65,7 @@ const DashboardProfile = ({ currentUser }) => {
     if (isEmpty) {
       setErrorMessage(`${capitalizeFirstLetter(e.target.name)} is required`);
     } else {
-      setErrorMessage('');
+      setErrorMessage("");
     }
 
     if (!errorMessage) {
@@ -73,7 +73,7 @@ const DashboardProfile = ({ currentUser }) => {
     }
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formState);
     try {
@@ -100,7 +100,7 @@ const DashboardProfile = ({ currentUser }) => {
   //   setSelectedChildValue(event.target.value);
   // };
 
-  const determineWelcome = currentUser => {
+  const determineWelcome = (currentUser) => {
     if (currentUser.profile === null || currentUser.profile === undefined) {
       return (
         <h1 className="text-center font-bold text-3xl m-8">
@@ -313,13 +313,15 @@ const DashboardProfile = ({ currentUser }) => {
               Would you allow roommates with pets?
             </h3>
             <div className="profile-pets">
-              {options1.map(option => (
+              {options1.map((option) => (
                 <label
                   // htmlFor="pets-yes"
                   id="profile-pets-yes"
                   key={option.value}
                   className={
-                    selectedPetValue === option.value ? 'active-pets-yes' : ''
+                    selectedPetValue === option.value
+                      ? "btn btn-main"
+                      : "btn btn-secondary"
                   }
                 >
                   <input
@@ -334,13 +336,15 @@ const DashboardProfile = ({ currentUser }) => {
                   {option.label}
                 </label>
               ))}
-              {options2.map(option => (
+              {options2.map((option) => (
                 <label
                   // htmlFor="pets-no"
                   id="profile-pets-no"
                   key={option.value}
                   className={
-                    selectedPetValue === option.value ? 'active-pets-no' : ''
+                    selectedPetValue === option.value
+                      ? "btn btn-main"
+                      : "btn btn-secondary"
                   }
                 >
                   <input
@@ -410,7 +414,7 @@ const DashboardProfile = ({ currentUser }) => {
             </div>
           </div> */}
           <div className="flex justify-center">
-            <button type="submit" className="profile-view text-2xl">
+            <button type="submit" className="profile-view btn btn-main text-2xl">
               Save Profile
             </button>
             {errorMessage && <p className="error-text">{errorMessage}</p>}

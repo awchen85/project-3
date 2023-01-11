@@ -730,18 +730,19 @@ function Home() {
 
   return (
     <div>
-      <div className="grid grid-cols-2 justify-items-stretch">
+      <div className="grid md:grid-cols-2 s:grid-cols-1 justify-items-stretch home-hero">
         <div className="justify-self-center self-center">
-          <h1 className="text-7xl text-black">Find a better roommate...</h1>
+          <h1 className="text-7xl text-black text-center">Roommate Trouble?</h1>
+          <h2 className="text-center">Find a better one!</h2>
           <section className="btn-section">
-            <div className="filter-buttons grid grid-cols-4 gap-2 md:grid-cols-4">
+            <div className="filter-buttons grid justify-items-center">
               <button
                 type="submit"
                 id="Filter"
-                className="filter-btn my-2 px-4 py-2"
+                className="filter-btn"
                 onClick={onOpenModal}
               >
-                Filter
+                Search for your roommate
               </button>
             </div>
           </section>
