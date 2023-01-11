@@ -17,7 +17,6 @@ import capitalizeFirstLetter from '../utils/helpers';
 import Swal from 'sweetalert2';
 
 function Home(props) {
-
   const [open, setOpen] = React.useState(false);
 
   const onOpenModal = () => setOpen(true);
@@ -170,6 +169,10 @@ function Home(props) {
     const geocoder = MapboxGeocoder({
       accessToken: mapboxgl.accessToken,
     });
+
+    window.scrollTo({ top: 500, behavior: 'smooth' });
+
+    setVisibleProfiles(profile);
 
     geocoder
       .forwardGeocode({
