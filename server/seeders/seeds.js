@@ -77,6 +77,7 @@ db.once('open', async () => {
       'Wilmington, North Carolina',
       'Durham, North Carolina',
     ]);
+
     const aboutMe = faker.lorem.sentences(3);
     const allowPets = faker.helpers.arrayElement(['true', 'false']);
     const userId = userIds[i];

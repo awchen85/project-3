@@ -892,3 +892,25 @@ form p {
 /* .font-effect-neon {
   text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #fff, 0 0 0.4em purple, 0 0 0.6em purple, 0 0 0.8em purple, 0 0 1em purple, 0 0 1.2em purple;
 } */
+
+.img-container {
+  width: 280px;
+  height: 260px;
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+}
+
+.img-container::-webkit-scrollbar {
+  display: none;
+}
+
+.img-container div {
+  min-width: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  scroll-snap-align: center;
+}
