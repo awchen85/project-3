@@ -35,7 +35,7 @@ export default function Registration() {
       loginUser(user, token);
       // added Auth.login to set token in local storage
       Auth.login(token);
-      navigate('/profile');
+      navigate(`'/dashboard'`);
     } catch (e) {
       console.log(e);
     }
