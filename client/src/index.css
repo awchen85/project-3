@@ -359,7 +359,7 @@ form p {
 }
 
 .react-responsive-modal-modal {
-  width: fit-content;
+  width: fit-screen;
   padding: 0 !important;
   border-radius: 8px;
 }
@@ -724,6 +724,10 @@ form p {
 
   .quick-search-cities {
     min-width: 90%;
+  }
+
+  .profile-card-img {
+    border-radius: 8px;
   }
 
   .card {

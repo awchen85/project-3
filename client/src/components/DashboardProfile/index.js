@@ -325,7 +325,7 @@ const DashboardProfile = ({ currentUser }) => {
           </div>
           <div className="profile-field-section">
             <h3 className="profile-h3">Gender</h3>
-            <div className="flex border-2">
+            <div className=" border-2">
               <div className="flex cursor-pointer text-xl rounded text-blue-400 hover:bg-sky-100 hover:border-4 hover:border-blue-500 m-1 p-1">
                 <label htmlFor="male" className="px-4 cursor-pointer">
                   <input

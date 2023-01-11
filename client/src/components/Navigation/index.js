@@ -2,14 +2,18 @@
 import { Link } from 'react-router-dom';
 import { AiFillHome } from 'react-icons/ai';
 import { useCurrentUserContext } from '../../context/currentUser';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import { useState } from 'react'; 
 
 export default function Navigation() {
   const { isLoggedIn, logoutUser } = useCurrentUserContext();
 
+  const [nav, setNav] = useState(false);
+  const handleClick= () => setNav(!nav);
+
   return (
     <nav
-      className="flex flex-row md:justify-between justify-center"
-      style={{ width: '100%' }}
+      className="flex flex-row md:justify-between justify-center w-screen"
     >
       <div>
         <h1 className="our-place text-white md:invisible visible text-start ml-12 text-5xl">
@@ -109,7 +113,7 @@ export default function Navigation() {
           </Link>
         </div>
       </div>
-      <div className="flex nav-links items-center">
+      <div className="md:flex nav-links items-center hidden">
         {isLoggedIn() ? (
           <>
             <Link className="mr-1 text-2xl hover:text-[#d1d1d1]" to="/">
@@ -137,6 +141,41 @@ export default function Navigation() {
           </>
         )}
       </div>
-    </nav>
+
+      {/* Hamburger */}
+      <div onClick={handleClick} className="md:hidden absolute right-10 z-[10]">
+        {!nav ? <FaBars /> : <FaTimes />}
+      </div>
+
+      {/* Mobile Menu */}
+      <div className={!nav ? 'hidden' : 'absolute top-0 left-0 w-full h-screen flex flex-col bg-[#372b70] opacity-75 justify-center items-center'}>
+        {isLoggedIn() ? (
+          <>
+            <Link className="mr-1 text-2xl hover:text-[#d1d1d1]" to="/" onClick={handleClick}>
+              <AiFillHome />
+            </Link>
+            <Link to="/dashboard" className="hover:text-[#d1d1d1] text-3xl" onClick={handleClick}>
+              Dashboard
+            </Link>
+            <button
+              className="text-white nav-button hover:text-[#d1d1d1]"
+              type="button"
+              onClick={logoutUser}
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link className="hover:text-[#d1d1d1] text-3xl" to="/login" onClick={handleClick}>
+              Login
+            </Link>
+            <Link className="hover:text-[#d1d1d1] text-3xl" to="/register">
+              Sign Up
+            </Link>
+          </>
+        )}
+      </div>
+      </nav>
   );
 }

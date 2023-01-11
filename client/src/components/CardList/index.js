@@ -1,8 +1,11 @@
 /* eslint-disable */
 import Simu from '../../assets/images/simu.jpg';
 import { useEffect, useState } from 'react';
+import { useMutation } from '@apollo/client';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { ADD_FRIEND } from '../../utils/mutations';
+import Swal from 'sweetalert2';
 
 const responsive = {
   superLargeDesktop: {
@@ -30,6 +33,49 @@ const responsive = {
 function CardList({ profiles }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const currentProfile = profiles[currentIndex];
+  const [addFriend] = useMutation(ADD_FRIEND);
+
+  // const handleClickCurrent = async () => {
+  //   try {
+  //     const mutationResponse = await addFriend({
+  //       variables: { friendId: currentProfile.userId },
+  //     });
+  //     if (mutationResponse) {
+  //       Swal.fire({
+  //         icon: 'success',
+  //         title: 'Friend added succesfully!',
+  //       });
+  //     }
+  //   } catch (e) {
+  //     console.error(e);
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Something went wrong',
+  //       text: e.text,
+  //     });
+  //   }
+  // };
+
+  // const handleClickOther = async userId => {
+  //   try {
+  //     const mutationResponse = await addFriend({
+  //       variables: { friendId: userId },
+  //     });
+  //     if (mutationResponse) {
+  //       Swal.fire({
+  //         icon: 'success',
+  //         title: 'Friend added succesfully!',
+  //       });
+  //     }
+  //   } catch (e) {
+  //     console.error(e);
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Something went wrong',
+  //       text: e.text,
+  //     });
+  //   }
+  // };
 
   if (!profiles.length) {
     return <h3>No Profiles Yet</h3>;
@@ -44,43 +90,47 @@ function CardList({ profiles }) {
             key={currentProfile._id}
             className="profileCard bg-blue-200 px-6 py-4 m-2 font-bold text-xl h-6 mb-2 text-center"
           >
-            <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 justify-center mh-[65px]">
-              {currentProfile.username}
-            </span>
             <img
               src={currentProfile.avatar}
               alt="thing"
               className="w-full my-2"
             />
             <div className="grid grid-cols-2">
+              <p className="text-xs py-2 text-center">Username:</p>
+              <span className="inline-block bg-blue-200 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 justify-center mh-[65px]">
+                {currentProfile.username}
+              </span>
               <p className="text-xs py-2 text-center">Gender:</p>
-              <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]">
+              <span className="inline-block bg-blue-200 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]">
                 {currentProfile.gender}
               </span>
               <p className="text-xs py-1">Age:</p>
-              <span className="inline-block bg-blue-200 rounded-full mx-center px-2 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]">
+              <span className="inline-block bg-blue-200 rounded-md mx-center px-2 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]">
                 {currentProfile.age}
               </span>
               <p className="text-xs py-1">Budget:</p>
-              <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]">
+              <span className="inline-block bg-blue-200 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]">
                 {currentProfile.budget}
               </span>
               <p className="text-xs">Location:</p>
-              <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]">
+              <span className="inline-block bg-blue-200 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]">
                 {currentProfile.location}
               </span>
               <p className="text-xs">Allow Pets?</p>
-              <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]">
+              <span className="inline-block bg-blue-200 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]">
                 {currentProfile.allowPets}
               </span>
             </div>
-            <p className="text-xs">About Me:</p>
-            <span className="inline-block bg-blue-200 px-5 py-3 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]">
+            <p className="text-xs overflow-auto">About Me:</p>
+            <span className=" inline-block bg-blue-200 rounded-md px-5 py-3 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]">
               {currentProfile.aboutMe}
             </span>
-            <button className="connect inline-block bg-blue-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]">
+            {/* <button
+              onClick={handleClickCurrent}
+              className="connect inline-block bg-blue-400 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]"
+            >
               Add to friends
-            </button>
+            </button> */}
           </div>
         ) : (
           profiles.slice(currentIndex, currentIndex + 50).map(profile => (
@@ -88,46 +138,51 @@ function CardList({ profiles }) {
               key={profile._id}
               className="profileCard bg-[#fafafa] px-6 py-4 m-2 font-bold text-xl mb-2 text-center h-[670px] min-w-[200px]"
             >
-              <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 justify-center">
-                {profile.username}
-              </span>
               <img
                 src={profile.avatar}
                 alt="thing"
-                className="w-full max-w-fill max-h-[250px]"
+                className="w-full max-w-fill max-h-[250px] profile-card-img"
               />
               <div className="grid grid-cols-2 py-3">
+                <p className="text-xs py-2 text-center">Username:</p>
+                <span className="inline-block bg-blue-200 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 justify-center">
+                  {profile.username}
+                </span>
                 <p className="text-xs py-2 text-center">Gender:</p>
-                <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                <span className="inline-block bg-blue-200 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                   {profile.gender}
                 </span>
                 <p className="text-xs py-1">Age:</p>
-                <span className="inline-block bg-blue-200 rounded-full mx-center px-2 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                <span className="inline-block bg-blue-200 rounded-md mx-center px-2 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                   {profile.age}
                 </span>
                 <p className="text-xs py-1">Budget:</p>
-                <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                <span className="inline-block bg-blue-200 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                   {profile.budget}
                 </span>
                 <p className="text-xs">Location:</p>
-                <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                <span className="inline-block bg-blue-200 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                   {profile.location}
                 </span>
                 <p className="text-xs">Allow Pets?</p>
-                <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 max-w-xs">
+                <span className="inline-block bg-blue-200 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 max-w-xs">
                   {profile.allowPets ? 'Yes' : 'No'}
                 </span>
               </div>
               <div>
                 <p className="text-xs">About Me:</p>
-                <span className="inline-block bg-blue-200 px-5 py-3 text-sm font-semibold text-gray-700 mr-2 mb-2 max-w-prose">
+                <span className="inline-block bg-blue-200 px-5 rounded-md py-3 text-sm font-semibold text-gray-700 mr-2 mb-2 max-w-prose">
                   {profile.aboutMe}
                 </span>
               </div>
               <div className="button flex flex-col items-center">
-                <button className="connect bg-blue-400 rounded-full text-sm font-semibold text-gray-700 bottom-0 absolute max-w-prose">
+                {/* <button
+                  userId={profile.userId}
+                  onClick={(profile.userId) => handleClickOther(profile.userId)}
+                  className="connect bg-blue-400 rounded-full text-sm font-semibold text-gray-700 bottom-0 absolute max-w-prose"
+                >
                   Add to friends
-                </button>
+                </button> */}
               </div>
             </div>
           ))
