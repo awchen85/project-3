@@ -41,7 +41,6 @@ function Home() {
   let profile = data?.getProfiles || [];
   const profileRef = useRef(profile);
   profileRef.current = profile;
-  // console.log(data);
 
   const [visibleProfiles, setVisibleProfiles] = useState([]);
 
@@ -177,6 +176,19 @@ function Home() {
           zoom: 12,
         });
         searchInput.current.value = result.place_name;
+        const quickInputLocation = searchInput.current.value;
+
+        let profilesQuickLocationArr = [];
+
+        for (let i = 0; i < profile.length; i++) {
+          if (profile[i].location === quickInputLocation) {
+            profilesQuickLocationArr.push(profile[i]);
+          }
+        }
+
+        setVisibleProfiles(profilesQuickLocationArr);
+
+        window.scrollTo({ top: 500, behavior: 'smooth' });
       });
   };
 
@@ -195,12 +207,9 @@ function Home() {
 
     const inputRent = document.querySelector('#rent').value;
     const inputRentNum = parseInt(inputRent);
-    console.log(inputRent);
 
     const inputMinAge = minValue;
     const inputMaxAge = maxValue;
-    console.log('MinAge', inputMinAge);
-    console.log('MaxAge', inputMaxAge);
 
     const inputGender = document.querySelector('input[id="male"]:checked');
 
@@ -263,8 +272,6 @@ function Home() {
   };
 
   function filterProfiles(data) {
-    console.log('HOORAY', data);
-
     // This is the default values for each filter option
     let results = [
       { rent: 1000 },
@@ -276,16 +283,13 @@ function Home() {
     ];
 
     const location = data.inputLocation;
-    console.log(location);
 
     results[5] = { ...results[5], location: location };
-    console.log('LOCATION IS:', location);
 
     // initial rent value from the user's input
     const rent = data.inputRentNum;
     // Changing the default key-value pair from 1000 to the value the user input
     results[0] = { ...results[0], rent: rent };
-    console.log('RENT IS:', rent);
 
     const minAge = data.inputMinAge;
     results[1] = { ...results[1], minAge: minAge };
@@ -416,14 +420,11 @@ function Home() {
 
     // Checks the value of the pets filter. Whether the filter is active and it they allow pets or don't allow pets. If the filter is not selected then profiles with both options will be a part of the search.
     if (data.inputPetsYes === null && data.inputPetsNo === null) {
-      console.log('PETS IS NOT A FILTER');
       results[4] = { ...results[4], pets: null };
     } else if (data.inputPetsYes !== null && data.inputPetsNo === null) {
       results[4] = { ...results[4], pets: true };
-      console.log('ALLOW PETS');
     } else if (data.inputPetsYes === null && data.inputPetsNo !== null) {
       results[4] = { ...results[4], pets: false };
-      console.log("DON'T ALLOW PETS");
     } else {
       console.log('SOMETHING WENT WRONG WITH PETS');
     }
@@ -432,9 +433,6 @@ function Home() {
   }
 
   const filteredResults = results => {
-    console.log('THESE ARE THE RESULTS', results);
-    console.log(profile);
-
     let profilesLocationArr = [];
 
     for (let i = 0; i < profile.length; i++) {
@@ -443,20 +441,15 @@ function Home() {
       }
     }
 
-    console.log(profilesLocationArr);
-
     let tempArr = profilesLocationArr;
 
     let profilesRentArr = [];
 
     for (let i = 0; i < tempArr.length; i++) {
       if (tempArr[i].budget <= results[0].rent) {
-        console.log(tempArr[i]);
         profilesRentArr.push(tempArr[i]);
       }
     }
-
-    console.log('-=-=-=-=-=-=-=', profilesRentArr);
 
     const minAge = results[1].minAge;
     const maxAge = results[2].maxAge;
@@ -464,22 +457,17 @@ function Home() {
     const profilesMinAgeArr = profilesRentArr.filter(
       profile => profile.age >= minAge
     );
-    console.log('PLEASE WORK', profilesMinAgeArr);
 
     const profilesMaxAgeArr = profilesMinAgeArr.filter(
       profile => profile.age <= maxAge
     );
-    console.log('PLEASE WORK TOO', profilesMaxAgeArr);
 
     const genderString = results[3].gender;
-    console.log(genderString);
     const genderArray = genderString.split(',');
     const cleanGenderArray = genderArray.map(string => string.trim());
-    console.log(cleanGenderArray);
     const profilesGenderArr = profilesMaxAgeArr.filter(profile =>
       cleanGenderArray.includes(profile.gender)
     );
-    console.log('GENDER', profilesGenderArr);
 
     let filteredProfiles = profilesGenderArr;
 
@@ -491,28 +479,24 @@ function Home() {
       const petsTrueProfiles = profilesGenderArr.filter(
         profile => profile.allowPets === true
       );
+      console.log(petsTrueProfiles);
       filteredProfiles = filteredProfiles.filter(
         profile => profile.allowPets === true
       );
-      console.log('PETS TRUE', petsTrueProfiles);
     } else if (results[4].pets === false) {
       // hasPetsObject is true and the value of the pets key is false
       const petsFalseProfiles = profilesGenderArr.filter(
         profile => profile.allowPets === false
       );
+      console.log(petsFalseProfiles);
       filteredProfiles = filteredProfiles.filter(
         profile => profile.allowPets === false
       );
-      console.log('PETS FALSE', petsFalseProfiles);
     } else if (results[4].pets === null) {
       // hasPetsObject is false, use the original array
-      console.log('PETS NULL', filteredProfiles);
     }
 
-    console.log('FINAL RESULTS:', filteredProfiles);
-
     setVisibleProfiles(filteredProfiles);
-    console.log('PROFILE IS', visibleProfiles);
 
     onCloseModal();
   };
@@ -521,18 +505,12 @@ function Home() {
     console.log('PROFILES', profileRef);
     if (profileRef) {
       setVisibleProfiles(profileRef.current);
-      // setTimeout((profile, visibleProfiles) => {
-      //   profile = visibleProfiles;
-      // }, 1000);
-      console.log('I AM RUNNING');
       return;
     }
-    console.log("DIDN'T RUN");
     return;
   };
 
   useEffect(() => {
-    console.log('***************', profileRef);
     checkQueriedProfiles(profileRef);
   }, [profile]);
 
