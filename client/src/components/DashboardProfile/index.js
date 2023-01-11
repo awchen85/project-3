@@ -124,17 +124,18 @@ const DashboardProfile = ({ currentUser }) => {
       return;
     }
     const isEmpty = validator.isEmpty(e.target.value);
-    if (isEmpty || isNaN(e.target.value)) {
+    if (isEmpty) {
       setErrorMessage(`${capitalizeFirstLetter(e.target.name)} is required`);
       console.log('empty');
-      Swal.fire({
-        title: `${capitalizeFirstLetter(e.target.name)} is required`,
-      });
+      // Swal.fire({
+      //   title: `${capitalizeFirstLetter(e.target.name)} is required`,
+      // });
     } else {
       setErrorMessage('');
     }
 
     if (!errorMessage) {
+      console.log(e.target.name, e.target.value);
       setFormState({ ...formState, [e.target.name]: e.target.value });
     }
   };
