@@ -22,9 +22,19 @@ const DashboardProfile = ({ currentUser }) => {
     allowPets: false,
     userId: currentUser._id,
     username: '',
+    avatar:
+      'https://images.ctfassets.net/ub3bwfd53mwy/6atCoddzStFzz0RcaztYCh/1c3e8a37eebe3c6a435038f8d9eef7f3/3_Image.jpg?w=750',
   });
-  const { age, gender, budget, location, aboutMe, allowPets, username } =
-    formState;
+  const {
+    age,
+    gender,
+    budget,
+    location,
+    aboutMe,
+    allowPets,
+    username,
+    avatar,
+  } = formState;
   // const { age, gender, budget, location, aboutMe, allowPets, username } =
   //   currentUser.profile;
   // console.log(currentUser.profile.age);
@@ -41,7 +51,6 @@ const DashboardProfile = ({ currentUser }) => {
         location: currentUser.profile.location,
         aboutMe: currentUser.profile.aboutMe,
         allowPets: currentUser.profile.allowPets,
-        // userId: currentUser._id,
         username: currentUser.profile.username,
       });
       return;
@@ -240,16 +249,16 @@ const DashboardProfile = ({ currentUser }) => {
           <div className="profile-field profile-field-section">
             <div className="flex justify-center">
               <div className="border-2 border-black display-image">
-                <img src={placeholder} className="profile-picture" alt="" />
+                <img src={avatar} className="profile-picture" alt="" />
               </div>
             </div>
-            <input
+            {/* <input
               type="file"
               id="imageInput"
               name="upload"
               accept="image/png, image/jpg"
               className="py-3"
-            />
+            /> */}
 
             <div className="form-group">
               <label htmlFor="username" className="profile-h3">

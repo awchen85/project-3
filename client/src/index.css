@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Raleway&display=swap');
 
 :root {
   --color-primary: #372b70;
@@ -12,18 +13,18 @@
 
 html,
 body {
+  font-family: 'Lora', serif;
   box-sizing: border-box;
   height: 100%;
-}
-
-body {
   margin: 0;
-  font-family: "Play";
   background-color: white;
 }
 
 body h2 {
   text-align: center;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', sans-serif;;
 }
 
 /* Main Elements */
@@ -120,6 +121,8 @@ nav button {
 }
 
 .form-input {
+  border: solid;
+  border-width: .5px;
   box-sizing: border-box;
   line-height: 1.15rem;
   width: 100%;

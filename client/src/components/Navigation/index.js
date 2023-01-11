@@ -1,7 +1,7 @@
 /* eslint-disable */
-import { Link } from "react-router-dom";
-import { AiFillHome } from "react-icons/ai";
-import { useCurrentUserContext } from "../../context/currentUser";
+import { Link } from 'react-router-dom';
+import { AiFillHome } from 'react-icons/ai';
+import { useCurrentUserContext } from '../../context/currentUser';
 
 export default function Navigation() {
   const { isLoggedIn, logoutUser } = useCurrentUserContext();
@@ -9,7 +9,7 @@ export default function Navigation() {
   return (
     <nav
       className="flex flex-row md:justify-between justify-center"
-      style={{ width: "100%" }}
+      style={{ width: '100%' }}
     >
       <div>
         <h1 className="our-place text-white md:invisible visible text-start ml-12 text-5xl">
@@ -128,10 +128,10 @@ export default function Navigation() {
           </>
         ) : (
           <>
-            <Link className="hover:text-[#d1d1d1]" to="/login">
+            <Link className="hover:text-[#d1d1d1] text-3xl" to="/login">
               Login
             </Link>
-            <Link className="hover:text-[#d1d1d1]" to="/register">
+            <Link className="hover:text-[#d1d1d1] text-3xl" to="/register">
               Sign Up
             </Link>
           </>
