@@ -35,6 +35,7 @@ const typeDefs = gql`
     allowPets: Boolean
     username: String
     userId: ID
+    avatar: String
   }
   type Room {
     _id: ID
