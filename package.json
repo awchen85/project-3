@@ -1,6 +1,9 @@
 {
   "name": "project-3",
   "version": "1.0.0",
+  "engines": {
+    "node": "19.3.0"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
