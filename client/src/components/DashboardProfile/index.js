@@ -408,8 +408,8 @@ const DashboardProfile = ({ currentUser }) => {
           </div>
           <div className="profile-field-section">
             <div className="form-group w-1/6">
-              <label htmlFor="budget" className="profile-h3">
-                Max Rent Budget
+              <label htmlFor="budget" className="profile-h2">
+                Max Rent
               </label>
               <div className="flex">
                 <span>$</span>

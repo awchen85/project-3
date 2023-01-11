@@ -21,7 +21,7 @@ function Footer() {
             Our Place is a hub to locate your next potential roommate! Use the parameters that make you comfortable and browse the homepage for someone that can help you live where you want at an affordable price. Happy searching, and welcome to <b className="text-lg">Our Place</b>.
           </p>
         </div>
-        <div className="footer-right grid md:grid-cols-2 sm:grid-cols-1 gap-8 scale-95">
+        <div className="footer-right grid md:grid-cols-2 sm:grid-cols-1 gap-8">
           <section className="footer-menu self-center">
             <div className="img-container rounded-md border-4 border-black">
               <div className="box-2 relative"><img src={Mitch} alt="Mitch" />
