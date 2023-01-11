@@ -6,15 +6,17 @@ import 'react-responsive-modal/styles.css';
 import mapboxgl from '!mapbox-gl';
 import MultiRangeSlider from '../components/multiRangeSlider';
 import { GiTrashCan } from 'react-icons/gi';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import {
   QUERY_GET_PROFILES,
   QUERY_GET_USER,
   QUERY_GET_USERS,
 } from '../utils/queries';
 import CardList from '../components/CardList';
+import capitalizeFirstLetter from '../utils/helpers';
+import Swal from 'sweetalert2';
 
-function Home() {
+function Home(props) {
   const [open, setOpen] = React.useState(false);
 
   const onOpenModal = () => setOpen(true);
@@ -112,6 +114,19 @@ function Home() {
       zoom: 10,
     });
     searchInput.current.value = result.place_name;
+    const quickInputLocation = searchInput.current.value;
+
+    let profilesQuickLocationArr = [];
+
+    for (let i = 0; i < profile.length; i++) {
+      if (profile[i].location === quickInputLocation) {
+        profilesQuickLocationArr.push(profile[i]);
+      }
+    }
+
+    console.log('QUICK SEARCH', profilesQuickLocationArr);
+
+    setVisibleProfiles(profilesQuickLocationArr);
   };
 
   // When the trash can icon in the search bar is clicked it will clear the search bar input
@@ -155,6 +170,10 @@ function Home() {
       accessToken: mapboxgl.accessToken,
     });
 
+    window.scrollTo({ top: 500, behavior: 'smooth' });
+
+    setVisibleProfiles(profile);
+
     geocoder
       .forwardGeocode({
         query: city,
@@ -177,6 +196,19 @@ function Home() {
           zoom: 12,
         });
         searchInput.current.value = result.place_name;
+        const quickInputLocation = searchInput.current.value;
+
+        let profilesQuickLocationArr = [];
+
+        for (let i = 0; i < profile.length; i++) {
+          if (profile[i].location === quickInputLocation) {
+            profilesQuickLocationArr.push(profile[i]);
+          }
+        }
+
+        console.log('QUICK SEARCH', profilesQuickLocationArr);
+
+        setVisibleProfiles(profilesQuickLocationArr);
       });
   };
 
@@ -189,6 +221,10 @@ function Home() {
       // there is input in the inputLocation variable
       console.log(inputLocation);
     } else {
+      Swal.fire({
+        title: `Location is required`,
+        icon: 'error',
+      });
       // there is no input in the inputLocation variable
       return;
     }
@@ -532,7 +568,6 @@ function Home() {
   };
 
   useEffect(() => {
-    console.log('***************', profileRef);
     checkQueriedProfiles(profileRef);
   }, [profile]);
 
