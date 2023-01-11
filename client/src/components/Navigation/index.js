@@ -3,18 +3,16 @@ import { Link } from 'react-router-dom';
 import { AiFillHome } from 'react-icons/ai';
 import { useCurrentUserContext } from '../../context/currentUser';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { useState } from 'react'; 
+import { useState } from 'react';
 
 export default function Navigation() {
   const { isLoggedIn, logoutUser } = useCurrentUserContext();
 
   const [nav, setNav] = useState(false);
-  const handleClick= () => setNav(!nav);
+  const handleClick = () => setNav(!nav);
 
   return (
-    <nav
-      className="flex flex-row md:justify-between justify-center w-screen"
-    >
+    <nav className="flex flex-row md:justify-between justify-center w-screen">
       <div>
         <h1 className="our-place text-white md:invisible visible text-start ml-12 text-5xl">
           Our Place
@@ -143,18 +141,35 @@ export default function Navigation() {
       </div>
 
       {/* Hamburger */}
-      <div onClick={handleClick} className="md:hidden absolute right-10 z-[10]">
+      <div
+        onClick={handleClick}
+        className="md:hidden absolute right-10 z-[10] text-white"
+      >
         {!nav ? <FaBars /> : <FaTimes />}
       </div>
 
       {/* Mobile Menu */}
-      <div className={!nav ? 'hidden' : 'absolute top-0 left-0 w-full h-screen flex flex-col bg-[#372b70] opacity-75 justify-center items-center'}>
+      <div
+        className={
+          !nav
+            ? 'hidden'
+            : 'absolute top-0 left-0 w-full h-screen flex flex-col bg-[#372b70] opacity-75 justify-center items-center'
+        }
+      >
         {isLoggedIn() ? (
           <>
-            <Link className="mr-1 text-2xl hover:text-[#d1d1d1]" to="/" onClick={handleClick}>
+            <Link
+              className="mr-1 text-2xl hover:text-[#d1d1d1]"
+              to="/"
+              onClick={handleClick}
+            >
               <AiFillHome />
             </Link>
-            <Link to="/dashboard" className="hover:text-[#d1d1d1] text-3xl" onClick={handleClick}>
+            <Link
+              to="/dashboard"
+              className="hover:text-[#d1d1d1] text-3xl"
+              onClick={handleClick}
+            >
               Dashboard
             </Link>
             <button
@@ -167,7 +182,11 @@ export default function Navigation() {
           </>
         ) : (
           <>
-            <Link className="hover:text-[#d1d1d1] text-3xl" to="/login" onClick={handleClick}>
+            <Link
+              className="hover:text-[#d1d1d1] text-3xl"
+              to="/login"
+              onClick={handleClick}
+            >
               Login
             </Link>
             <Link className="hover:text-[#d1d1d1] text-3xl" to="/register">
@@ -176,6 +195,6 @@ export default function Navigation() {
           </>
         )}
       </div>
-      </nav>
+    </nav>
   );
 }

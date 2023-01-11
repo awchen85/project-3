@@ -6,6 +6,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { ADD_FRIEND } from '../../utils/mutations';
 import Swal from 'sweetalert2';
+import FriendButton from '../FriendButton';
 
 const responsive = {
   superLargeDesktop: {
@@ -125,12 +126,7 @@ function CardList({ profiles }) {
             <span className=" inline-block bg-blue-200 rounded-md px-5 py-3 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]">
               {currentProfile.aboutMe}
             </span>
-            {/* <button
-              onClick={handleClickCurrent}
-              className="connect inline-block bg-blue-400 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]"
-            >
-              Add to friends
-            </button> */}
+            <FriendButton currentProfile={currentProfile}></FriendButton>
           </div>
         ) : (
           profiles.slice(currentIndex, currentIndex + 50).map(profile => (
@@ -176,13 +172,7 @@ function CardList({ profiles }) {
                 </span>
               </div>
               <div className="button flex flex-col items-center">
-                {/* <button
-                  userId={profile.userId}
-                  onClick={(profile.userId) => handleClickOther(profile.userId)}
-                  className="connect bg-blue-400 rounded-full text-sm font-semibold text-gray-700 bottom-0 absolute max-w-prose"
-                >
-                  Add to friends
-                </button> */}
+                <FriendButton currentProfile={profile}></FriendButton>
               </div>
             </div>
           ))
