@@ -39,17 +39,18 @@ function Home(props) {
 
   // Queries everyone's profile
   const { loading, data } = useQuery(QUERY_GET_PROFILES);
-  const profile = data?.getProfiles || [];
+  let profile = data?.getProfiles || [];
+  const profileRef = useRef(profile);
+  profileRef.current = profile;
   // console.log(data);
+
+  const [visibleProfiles, setVisibleProfiles] = useState([]);
 
   let minValue;
   let maxValue;
 
   mapboxgl.accessToken =
     'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
-
-  // const accessToken =
-  //   'pk.eyJ1IjoibS1hcm1zdHJvbmciLCJhIjoiY2xjZmI3cTdrMG1zazNvbjY5MXRuMTRndCJ9.J-vt4XTs6_aJjJIhrju_OQ';
 
   const [searchResults, setSearchResults] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -60,17 +61,7 @@ function Home(props) {
   const [lng, setLng] = useState(-79.05);
   const [lat, setLat] = useState(35.92);
   const [zoom, setZoom] = useState(9);
-  // const items = [
-  //   <Cards title="Card 1" description="This is card 1"
-  //   imageUrl="card1.jpg"
-  //   />,
-  //   <Cards title="Card 2" description="This is card 2"
-  //   imageUrl="card1.jpg"
-  //   />,
-  //   <Cards title="Card 3" description="This is card 3"
-  //   imageUrl="card1.jpg"
-  //   />,
-  // ];
+
   useEffect(() => {
     if (map.current) return; // initialize map only once
     map.current = new mapboxgl.Map({
@@ -520,7 +511,31 @@ function Home(props) {
     }
 
     console.log('FINAL RESULTS:', filteredProfiles);
+
+    setVisibleProfiles(filteredProfiles);
+    console.log('PROFILE IS', visibleProfiles);
+
+    onCloseModal();
   };
+
+  const checkQueriedProfiles = async profileRef => {
+    console.log('PROFILES', profileRef);
+    if (profileRef) {
+      setVisibleProfiles(profileRef.current);
+      // setTimeout((profile, visibleProfiles) => {
+      //   profile = visibleProfiles;
+      // }, 1000);
+      console.log('I AM RUNNING');
+      return;
+    }
+    console.log("DIDN'T RUN");
+    return;
+  };
+
+  useEffect(() => {
+    console.log('***************', profileRef);
+    checkQueriedProfiles(profileRef);
+  }, [profile]);
 
   const filterModal = (
     <div id="filterModal" className="modal">
@@ -711,6 +726,7 @@ function Home(props) {
             type="submit"
             className="btn btn-primary button-3d font-effect-neon-green"
             id="apply-filters"
+            onClick={filteredProfiles => setVisibleProfiles(filteredProfiles)}
           >
             Apply
           </button>
@@ -731,18 +747,19 @@ function Home(props) {
 
   return (
     <div>
-      <div className="grid grid-cols-2 justify-items-stretch">
+      <div className="grid md:grid-cols-2 s:grid-cols-1 justify-items-stretch home-hero">
         <div className="justify-self-center self-center">
-          <h1 className="text-7xl text-black">Find a better roommate...</h1>
+          <h1 className="text-7xl text-black text-center">Roommate Trouble?</h1>
+          <h2 className="text-center">Find a better one!</h2>
           <section className="btn-section">
-            <div className="filter-buttons grid grid-cols-4 gap-2 md:grid-cols-4">
+            <div className="filter-buttons grid justify-items-center">
               <button
                 type="submit"
                 id="Filter"
-                className="filter-btn my-2 px-4 py-2"
+                className="filter-btn"
                 onClick={onOpenModal}
               >
-                Filter
+                Search for your roommate
               </button>
             </div>
           </section>
@@ -764,7 +781,7 @@ function Home(props) {
                   {loading ? (
                     <div>Loading...</div>
                   ) : (
-                    <CardList profiles={profile} />
+                    <CardList profiles={visibleProfiles} />
                   )}
                 </section>
               </section>

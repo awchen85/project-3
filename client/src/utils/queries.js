@@ -93,6 +93,7 @@ export const QUERY_GET_PROFILES = gql`
       allowPets
       userId
       username
+      avatar
     }
   }
 `;

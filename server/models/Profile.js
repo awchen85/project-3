@@ -39,6 +39,10 @@ const profileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
+  avatar: {
+    type: String,
+    // required: true,
+  },
 });
 
 const Profile = mongoose.model('Profile', profileSchema);

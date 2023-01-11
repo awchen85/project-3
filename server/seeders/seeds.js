@@ -10,14 +10,7 @@ const createRandomUser = () => {
   const email = faker.internet.email();
   const password = '?Bz2' + faker.internet.password(8);
   const phoneNumber = faker.phone.number();
-  const friends = [];
-
-  for(let i = 0; i < 3; i+=1) {
-    const friend = {
-      firstName: faker.name.firstName(),
-    };
-    friends.push(friend);
-  }
+  const avatar = faker.image.avatar();
 
   return {
     firstName: firstName,
@@ -25,7 +18,6 @@ const createRandomUser = () => {
     email: email,
     password: password,
     phone: phoneNumber,
-    friends: friends
   };
 };
 
@@ -89,9 +81,10 @@ db.once('open', async () => {
     const aboutMe = faker.lorem.sentences(3);
     const allowPets = faker.helpers.arrayElement(['true', 'false']);
     const userId = userIds[i];
-
+    const avatar = faker.internet.avatar();
     const profileInput = {
       age: age,
+      avatar: avatar,
       gender: gender,
       budget: budget,
       location: location,
@@ -99,7 +92,6 @@ db.once('open', async () => {
       allowPets: allowPets,
       userId: userId,
       username: username,
-      friends: userData[i].friends
     };
 
     const profile = await Profile.create(profileInput);

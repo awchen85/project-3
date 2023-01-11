@@ -24,6 +24,7 @@ const typeDefs = gql`
     allowPets: Boolean
     userId: ID
     username: String
+    avatar: String
   }
   input ProfileInput {
     age: Int
@@ -33,6 +34,7 @@ const typeDefs = gql`
     aboutMe: String
     allowPets: Boolean
     username: String
+    userId: ID
   }
   type Room {
     _id: ID
