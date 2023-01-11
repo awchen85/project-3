@@ -41,7 +41,7 @@ const profileSchema = new Schema({
   },
   avatar: {
     type: String,
-    required: true,
+    // required: true,
   },
 });
 

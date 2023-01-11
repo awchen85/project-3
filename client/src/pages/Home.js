@@ -13,7 +13,6 @@ import {
   QUERY_GET_USERS,
 } from '../utils/queries';
 import CardList from '../components/CardList';
-import FilteredCardList from '../components/FilteredCardList';
 
 function Home() {
   const [open, setOpen] = React.useState(false);
