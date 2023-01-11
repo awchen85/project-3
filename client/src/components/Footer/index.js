@@ -42,11 +42,15 @@ function Footer() {
           <div>
             <p className="footer-title">Project Developed By:</p>
             <ul className="grid grid-cols-1 gap-2">
-              <li className="flex items-center">
-                <a href="https://github.com/DavidDowell" alt="GitHub Logo" target="_blank" className="mr-3">
-                  <AiFillGithub className="text-2xl" />
+              <li>
+                <a
+                  href="https://github.com/awchen85"
+                  className="flex items-center"
+                  target="_blank"
+                >
+                  <img src={footerGitHub} alt="GitHub Logo" className="mr-3" />
+                  Alex Chen
                 </a>
-                DavidDowell
               </li>
               <li className="flex items-center">
                 <a href="https://github.com/ScarElite" alt="GitHub Logo" target="_blank" className="mr-3">
