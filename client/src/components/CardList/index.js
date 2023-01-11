@@ -7,7 +7,7 @@ import "react-multi-carousel/lib/styles.css";
 const responsive = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 3000 },
-    items: 5,
+    items: 6,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -15,7 +15,7 @@ const responsive = {
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 2,
+    items: 1,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
@@ -27,16 +27,6 @@ function CardList({ profiles }) {
 
 const [currentIndex, setCurrentIndex] = useState(0);
 const currentProfile = profiles[currentIndex];
-
-useEffect(() => {
-  function handleResize() {
-    window.location.reload();
-  }
-
-  window.addEventListener('resize', handleResize);
-  return () => window.removeEventListener('resize', handleResize);
-}, []);
-
 
   if (!profiles.length) {
     return <h3>No Profiles Yet</h3>;
@@ -63,10 +53,10 @@ console.log(profiles)  }
       {window.innerWidth < 768
       ? <div
       key={currentProfile._id}
-      className="profileCard bg-blue-200 px-6 py-4 m-2 font-bold text-xl mh-[665px] mb-2 text-center h-[685px]"
+      className="profileCard bg-blue-200 px-6 py-4 m-2 font-bold text-xl h-6 mb-2 text-center"
       >
               <span className="inline-block bg-white rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 justify-center mh-[65px]">{currentProfile.username}</span>
-              <img src={Simu} alt="thing" className="w-full my-2" />
+              <img src={currentProfile.avatar} alt="thing" className="w-full my-2" />
               <div className='grid grid-cols-2'>
                 <p className='text-xs py-2 text-center'>Gender:</p>
                 <span className="inline-block bg-white rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]">{currentProfile.gender}</span>
@@ -87,10 +77,10 @@ console.log(profiles)  }
            profiles.slice(currentIndex, currentIndex + 50).map(profile => (
             <div
               key={profile._id}
-              className="profileCard bg-[#fafafa] px-6 py-4 m-2 font-bold text-xl mb-2 text-center"
+              className="profileCard bg-[#fafafa] px-6 py-4 m-2 font-bold text-xl mb-2 text-center h-[670px] min-w-[200px]"
             >
               <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 justify-center">{profile.username}</span>
-              <img src={Simu} alt="thing" className="w-full my-2" />
+                  <img src={profile.avatar} alt="thing" className="w-full max-w-fill max-h-[250px]" />
               <div className='grid grid-cols-2'>
                 <p className='text-xs py-2 text-center'>Gender:</p>
                 <span className="inline-block bg-white rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{profile.gender}</span>
@@ -101,11 +91,15 @@ console.log(profiles)  }
                 <p className='text-xs'>Location:</p>
                 <span className="inline-block bg-white rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{profile.location}</span>
                 <p className='text-xs'>Allow Pets?</p>
-              <span className="inline-block bg-white rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{profile.allowPets}</span>
+              <span className="inline-block bg-white rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 max-w-xs">{profile.allowPets}</span>
               </div>
+              <div>
               <p className='text-xs'>About Me:</p>
-              <span className="inline-block bg-white px-5 py-3 text-sm font-semibold text-gray-700 mr-2 mb-2">{profile.aboutMe}</span>
-              <button className='connect inline-block bg-blue-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'>Add to friends</button>
+              <span className="inline-block bg-white px-5 py-3 text-sm font-semibold text-gray-700 mr-2 mb-2 max-w-prose">{profile.aboutMe}</span>
+              </div>
+              <div className='button flex flex-col items-center'>
+              <button className='connect bg-blue-400 rounded-full text-sm font-semibold text-gray-700 bottom-0 p-1  my-2 absolute max-w-prose'>Add to friends</button>
+            </div>
             </div>
            ))}
            </Carousel>

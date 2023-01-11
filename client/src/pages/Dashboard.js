@@ -6,7 +6,6 @@ import 'react-responsive-modal/styles.css';
 import DashboardProfile from '../components/DashboardProfile';
 import DashboardFriends from '../components/DashboardFriends';
 import DashboardInbox from '../components/DashboardInbox';
-import DashboardConnections from '../components/DashboardConnections';
 import auth from '../utils/auth';
 import underConstruction from '../assets/images/under-construction-2.png';
 import stopSign from '../assets/images/stop-sign.png';
@@ -34,8 +33,6 @@ function Dashboard() {
       return <DashboardFriends />;
     } else if (currentComponent === 'DashboardInbox') {
       return <DashboardInbox />;
-    } else if (currentComponent === 'DashboardConnections') {
-      return <DashboardConnections />;
     } else {
       return <DashboardProfile />;
     }
@@ -100,7 +97,7 @@ function Dashboard() {
             id="friends"
             className={determineIsActive('DashboardFriends')}
           >
-            Friends
+            Saved
           </button>
           <button
             type="submit"
@@ -110,14 +107,6 @@ function Dashboard() {
             className={determineIsActive('DashboardInbox')}
           >
             Inbox
-          </button>
-          <button
-            type="submit"
-            onClick={() => handleComponentChange('DashboardConnections')}
-            id="connections"
-            className={determineIsActive('DashboardConnections')}
-          >
-            Connections
           </button>
         </section>
         <div
