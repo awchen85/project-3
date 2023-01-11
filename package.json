@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/awchen85/project-3/issues"
   },
-  "homepage": "https://github.com/awchen85/project-3#readme",
+  "homepage": "https://github.com/awchen85/project-3",
   "devDependencies": {
     "concurrently": "^7.6.0"
   },
