@@ -126,7 +126,6 @@ function CardList({ profiles }) {
             <span className=" inline-block bg-blue-200 rounded-md px-5 py-3 text-sm font-semibold text-gray-700 mr-2 mb-2 mh-[65px]">
               {currentProfile.aboutMe}
             </span>
-            <FriendButton currentProfile={currentProfile}></FriendButton>
           </div>
         ) : (
           profiles.slice(currentIndex, currentIndex + 50).map(profile => (
@@ -139,6 +138,9 @@ function CardList({ profiles }) {
                 alt="thing"
                 className="w-full max-w-fill max-h-[250px] profile-card-img"
               />
+              <div className="button flex flex-col items-center fixed">
+                <FriendButton currentProfile={profile}></FriendButton>
+              </div>
               <div className="grid grid-cols-2 py-3">
                 <p className="text-xs py-2 text-center">Username:</p>
                 <span className="inline-block bg-blue-200 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 justify-center">
@@ -170,9 +172,6 @@ function CardList({ profiles }) {
                 <span className="inline-block bg-blue-200 px-5 rounded-md py-3 text-sm font-semibold text-gray-700 mr-2 mb-2 max-w-prose">
                   {profile.aboutMe}
                 </span>
-              </div>
-              <div className="button flex flex-col items-center">
-                <FriendButton currentProfile={profile}></FriendButton>
               </div>
             </div>
           ))
