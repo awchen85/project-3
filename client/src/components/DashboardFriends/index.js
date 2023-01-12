@@ -1,24 +1,31 @@
 /* eslint-disable */
+
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { CurrentUserContext } from '../../context/currentUser';
+import CardList from '../CardList';
 
-function DashboardFriends({ friendCount, firstName, friends }) {
-  if (!friends || !friends.length) {
-    return <p className="bg-dark text-light p-3">{firstName} make some friends!</p>;
+function DashboardFriends({ currentUser }) {
+  // console.log(currentUser.friends);
+  if (!currentUser.friends || !currentUser.friends.length) {
+    return (
+      <p className="bg-dark text-light p-3">
+        {currentUser.firstName} make some friends!
+      </p>
+    );
   }
+  const friends = currentUser.friends;
+  // let friendProfileArray = [];
+  // for (i = 0; i < friends.length; i++) {
+  //   const profile = friends[i].profile;
+  //   friendProfileArray.push(profile);
+  // }
 
   return (
-    <div>
-      <h5>
-        {firstName}
-        s
-        {friendCount}
-        {friendCount === 1 ? 'friend' : 'friends'}
-      </h5>
+    <div className="py-4">
+      <h1>Your friends:</h1>
       {friends.map(friend => (
-        <button type="button" className="btn w-100 display-block mb-2" key={friend._id}>
-          <Link to={`/dashboard/${friend.firstName}`}>{friend.firstName}</Link>
-        </button>
+        <p key={friend._id}>{friend.profile.username}</p>
       ))}
     </div>
   );
