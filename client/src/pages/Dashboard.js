@@ -15,7 +15,6 @@ import { QUERY_GET_CURRENT_USER } from '../utils/queries';
 function Dashboard() {
   const { loading, data } = useQuery(QUERY_GET_CURRENT_USER);
   const currentUser = data?.getCurrentUser || {};
-  console.log(currentUser);
 
   const [currentComponent, setCurrentComponent] = useState('DashboardProfile');
 

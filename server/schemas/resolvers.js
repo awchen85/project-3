@@ -13,7 +13,6 @@ const resolvers = {
           .select('-__v -password')
           .populate('profile')
           .populate('friends');
-        console.log(user);
         return user;
       }
       throw new AuthenticationError('Not logged in');
@@ -32,7 +31,6 @@ const resolvers = {
 
     getProfiles: async (parent, { filter }) => {
       const profiles = await Profile.find(filter);
-      console.log(profiles);
       return profiles;
     },
   },
@@ -123,7 +121,7 @@ const resolvers = {
       }
 
       throw new AuthenticationError('You need to be logged in!');
-    }
+    },
   },
 };
 

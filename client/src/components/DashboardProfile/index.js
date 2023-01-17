@@ -38,7 +38,6 @@ const DashboardProfile = ({ currentUser }) => {
 
   const checkExistingProfile = async currentUser => {
     if (currentUser.profile === null || currentUser.profile === undefined) {
-      console.log('no existing profile');
       return;
     } else {
       await setFormState({
@@ -72,7 +71,6 @@ const DashboardProfile = ({ currentUser }) => {
 
   // const [selectedGender, setSelectedGender] = useState('');
   const handleGenderSelect = event => {
-    // console.log(event.target.value);
     let genderValue = event.target.value;
     setFormState({
       ...formState,
@@ -81,7 +79,6 @@ const DashboardProfile = ({ currentUser }) => {
   };
 
   const handlePetChange = event => {
-    // console.log(event.target.value === 'true');
     let petValue = event.target.value === 'true';
     setSelectedPetValue(petValue);
     setFormState({
@@ -94,7 +91,6 @@ const DashboardProfile = ({ currentUser }) => {
     if (e.target.name === 'budget') {
       const noBudget = isNaN(parseInt(e.target.value));
       if (noBudget) {
-        console.log('NaN');
         Swal.fire({
           title: `${capitalizeFirstLetter(e.target.name)} is required`,
         });
@@ -106,9 +102,7 @@ const DashboardProfile = ({ currentUser }) => {
     }
     if (e.target.name === 'age') {
       const noAge = isNaN(parseInt(e.target.value));
-      console.log(noAge);
       if (noAge) {
-        console.log('NaN');
         Swal.fire({
           title: `${capitalizeFirstLetter(e.target.name)} is required`,
         });
@@ -121,7 +115,6 @@ const DashboardProfile = ({ currentUser }) => {
     const isEmpty = validator.isEmpty(e.target.value);
     if (isEmpty) {
       setErrorMessage(`${capitalizeFirstLetter(e.target.name)} is required`);
-      console.log('empty');
       Swal.fire({
         title: `${capitalizeFirstLetter(e.target.name)} is required`,
       });
@@ -130,7 +123,6 @@ const DashboardProfile = ({ currentUser }) => {
     }
 
     if (!errorMessage) {
-      console.log(e.target.name, e.target.value);
       setFormState({ ...formState, [e.target.name]: e.target.value });
     }
   };
@@ -139,7 +131,6 @@ const DashboardProfile = ({ currentUser }) => {
   // if they do have a profile, use updateProfile
   const handleSubmit = async (e, currentUser) => {
     e.preventDefault();
-    console.log(formState);
     if (currentUser.profile === null || currentUser.profile === undefined) {
       try {
         const mutationResponse = await createProfile({
@@ -150,14 +141,12 @@ const DashboardProfile = ({ currentUser }) => {
           },
         });
         if (mutationResponse) {
-          console.log(mutationResponse);
           Swal.fire({
             icon: 'success',
             title: 'Profile created successfully!',
           });
         }
       } catch (e) {
-        console.log(e);
         Swal.fire({
           icon: 'error',
           title: 'Something went wrong',
@@ -174,14 +163,12 @@ const DashboardProfile = ({ currentUser }) => {
           },
         });
         if (mutationResponse) {
-          console.log(mutationResponse);
           Swal.fire({
             icon: 'success',
             title: 'Profile updated successfully!',
           });
         }
       } catch (e) {
-        console.log(e);
         Swal.fire({
           icon: 'error',
           title: 'Something went wrong',
