@@ -9,8 +9,6 @@ import capitalizeFirstLetter from '../../utils/helpers';
 import Swal from 'sweetalert2';
 
 const DashboardProfile = ({ currentUser }) => {
-  // const currentUserId = parseInt(currentUser._id);
-  // console.log(currentUserId);
   const [createProfile, { error }] = useMutation(CREATE_PROFILE);
   const [updateProfile, { updateError }] = useMutation(UPDATE_PROFILE);
   const [formState, setFormState] = useState({
@@ -37,7 +35,7 @@ const DashboardProfile = ({ currentUser }) => {
   } = formState;
   // const { age, gender, budget, location, aboutMe, allowPets, username } =
   //   currentUser.profile;
-  // console.log(currentUser.profile.age);
+
   const checkExistingProfile = async currentUser => {
     if (currentUser.profile === null || currentUser.profile === undefined) {
       console.log('no existing profile');
@@ -57,41 +55,12 @@ const DashboardProfile = ({ currentUser }) => {
     }
   };
 
+  // check for an existing profile once, on page load, and set formState accordingly
   useEffect(() => {
     checkExistingProfile(currentUser);
   }, []);
 
   const [checkedHelper, setCheckedHelper] = useState(false);
-
-  // const determineCheckedInput = currentUser => {
-  //   console.log(this.value);
-  //   if (
-  //     currentUser.profile !== undefined &&
-  //     currentUser.profile.gender === this.value
-  //   ) {
-  //     // setCheckedHelper(!checkedHelper);
-  //     // console.log(checkedHelper);
-  //     console.log(this.value);
-  //     return true;
-  //   }
-  //   return false;
-  // };
-
-  // checkExistingProfile(currentUser);
-
-  // if (currentUser.profile !== null) {
-  //   console.log(currentUser.profile.age);
-  //   setFormState({
-  //     age: currentUser.profile.age,
-  //     gender: currentUser.profile.gender,
-  //     budget: currentUser.profile.budget,
-  //     location: currentUser.profile.location,
-  //     aboutMe: currentUser.profile.aboutMe,
-  //     allowPets: currentUser.profile.allowPets,
-  //     userId: currentUser._id,
-  //     username: currentUser.profile.username,
-  //   });
-  // }
 
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -166,6 +135,8 @@ const DashboardProfile = ({ currentUser }) => {
     }
   };
 
+  // if a user does not have a profile, use createProfile mutation
+  // if they do have a profile, use updateProfile
   const handleSubmit = async (e, currentUser) => {
     e.preventDefault();
     console.log(formState);
@@ -481,58 +452,6 @@ const DashboardProfile = ({ currentUser }) => {
               ))}
             </div>
           </div>
-          {/* Allow Children */}
-          {/* <div className="profile-field-section">
-            <h3 className="profile-h3 mb-4">You Have Children</h3>
-            <div className="profile-children">
-              {options3.map(option => (
-                <label
-                  // htmlFor="children-yes"
-                  id="profile-children-yes"
-                  key={option.value}
-                  className={
-                    selectedChildValue === option.value
-                      ? 'active-children-yes'
-                      : ''
-                  }
-                >
-                  <input
-                    id="profile-children-yes"
-                    type="radio"
-                    name="children"
-                    value={option.value}
-                    checked={selectedChildValue === option.value}
-                    onChange={handleChildChange}
-                    hidden
-                  />
-                  {option.label}
-                </label>
-              ))}
-              {options4.map(option => (
-                <label
-                  // htmlFor="children-no"
-                  id="profile-children-no"
-                  key={option.value}
-                  className={
-                    selectedChildValue === option.value
-                      ? 'active-children-no'
-                      : ''
-                  }
-                >
-                  <input
-                    id="profile-children-no"
-                    type="radio"
-                    name="children"
-                    value={option.value}
-                    checked={selectedChildValue === option.value}
-                    onChange={handleChildChange}
-                    hidden
-                  />
-                  {option.label}
-                </label>
-              ))}
-            </div>
-          </div> */}
           <div className="flex justify-center">
             <button
               type="submit"
