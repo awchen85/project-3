@@ -1,5 +1,6 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
+const path = require('path');
 
 require('dotenv').config();
 
@@ -15,10 +16,19 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: authMiddleware,
+  cache: 'bounded',
 });
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+// Serve up static assets
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+}
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
 const startApolloServer = async () => {
   await server.start();

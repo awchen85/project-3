@@ -11,6 +11,18 @@ export const QUERY_GET_CURRENT_USER = gql`
       friends {
         _id
         firstName
+        lastName
+        profile {
+          _id
+          age
+          gender
+          budget
+          location
+          aboutMe
+          allowPets
+          userId
+          username
+        }
       }
       profile {
         _id

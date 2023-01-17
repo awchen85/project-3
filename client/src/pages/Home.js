@@ -12,7 +12,7 @@ import {
   QUERY_GET_USER,
   QUERY_GET_USERS,
 } from '../utils/queries';
-import CardList from '../components/CardList';
+import CardList from '../components/CardList/index';
 
 function Home() {
   const [open, setOpen] = React.useState(false);
@@ -176,6 +176,19 @@ function Home() {
           zoom: 12,
         });
         searchInput.current.value = result.place_name;
+        const quickInputLocation = searchInput.current.value;
+
+        let profilesQuickLocationArr = [];
+
+        for (let i = 0; i < profile.length; i++) {
+          if (profile[i].location === quickInputLocation) {
+            profilesQuickLocationArr.push(profile[i]);
+          }
+        }
+
+        setVisibleProfiles(profilesQuickLocationArr);
+
+        window.scrollTo({ top: 500, behavior: 'smooth' });
       });
   };
 
@@ -254,8 +267,6 @@ function Home() {
   };
 
   function filterProfiles(data) {
-    // console.log('HOORAY', data);
-
     // This is the default values for each filter option
     let results = [
       { rent: 1000 },
@@ -402,8 +413,6 @@ function Home() {
   }
 
   const filteredResults = results => {
-    // console.log('THESE ARE THE RESULTS', results);
-
     let profilesLocationArr = [];
 
     for (let i = 0; i < profile.length; i++) {
@@ -418,12 +427,9 @@ function Home() {
 
     for (let i = 0; i < tempArr.length; i++) {
       if (tempArr[i].budget <= results[0].rent) {
-        // console.log(tempArr[i]);
         profilesRentArr.push(tempArr[i]);
       }
     }
-
-    // console.log('-=-=-=-=-=-=-=', profilesRentArr);
 
     const minAge = results[1].minAge;
     const maxAge = results[2].maxAge;
@@ -452,6 +458,7 @@ function Home() {
       const petsTrueProfiles = profilesGenderArr.filter(
         profile => profile.allowPets === true
       );
+      console.log(petsTrueProfiles);
       filteredProfiles = filteredProfiles.filter(
         profile => profile.allowPets === true
       );
@@ -460,15 +467,13 @@ function Home() {
       const petsFalseProfiles = profilesGenderArr.filter(
         profile => profile.allowPets === false
       );
+      console.log(petsFalseProfiles);
       filteredProfiles = filteredProfiles.filter(
         profile => profile.allowPets === false
       );
     } else if (results[4].pets === null) {
       // hasPetsObject is false, use the original array
-      // console.log('PETS NULL', filteredProfiles);
     }
-
-    // console.log('FINAL RESULTS:', filteredProfiles);
 
     setVisibleProfiles(filteredProfiles);
 
@@ -478,10 +483,8 @@ function Home() {
   const checkQueriedProfiles = async profileRef => {
     if (profileRef) {
       setVisibleProfiles(profileRef.current);
-      // console.log('I AM RUNNING');
       return;
     }
-    // console.log("DIDN'T RUN");
     return;
   };
 
