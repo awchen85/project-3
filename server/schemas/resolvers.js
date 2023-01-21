@@ -12,7 +12,10 @@ const resolvers = {
         const user = await User.findById(context.user._id)
           .select('-__v -password')
           .populate('profile')
-          .populate('friends');
+          .populate({
+            path: 'friends',
+            populate: { path: 'profile' },
+          });
         console.log(user);
         return user;
       }
@@ -123,7 +126,7 @@ const resolvers = {
       }
 
       throw new AuthenticationError('You need to be logged in!');
-    }
+    },
   },
 };
 

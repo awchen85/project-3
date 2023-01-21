@@ -13,8 +13,12 @@ const responsive = {
     breakpoint: { max: 4000, min: 3000 },
     items: 6,
   },
+  largeDesktop: {
+    breakpoint: { max: 2999, min: 2100 },
+    items: 5,
+  },
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
+    breakpoint: { max: 2099, min: 1024 },
     items: 4,
   },
   tablet: {
@@ -78,15 +82,15 @@ function CardList({ profiles }) {
   //   }
   // };
 
-  if (!profiles.length) {
-    return <h3>No Profiles Yet</h3>;
-    console.log(profiles);
-  }
+  // if (!profiles.length) {
+  //   return <h3>No Profiles Yet</h3>;
+  //   console.log(profiles);
+  // }
 
   return (
     <div className="grid grid-cols-1 grid-rows-1 cardsList mx-auto gap-10">
-      <Carousel responsive={responsive}>
-        {window.innerWidth < 768 ? (
+      <Carousel responsive={responsive} centerMode={false} slidesToSlide={1}>
+        {/* {window.innerWidth < 768 ? (
           <div
             key={currentProfile._id}
             className="profileCard bg-blue-200 px-6 py-4 m-2 font-bold text-xl h-6 mb-2 text-center"
@@ -127,11 +131,13 @@ function CardList({ profiles }) {
               {currentProfile.aboutMe}
             </span>
           </div>
-        ) : (
-          profiles.slice(currentIndex, currentIndex + 50).map(profile => (
+        ) : ( */}
+        {/* profiles.slice(currentIndex, currentIndex + 50).map(profile => ( */}
+        {profiles ? (
+          profiles.map(profile => (
             <div
               key={profile._id}
-              className="profileCard bg-[#fafafa] px-6 py-4 m-2 font-bold text-xl mb-2 text-center h-[670px] min-w-[200px]"
+              className="profileCard bg-[#fafafa] px-6 py-4 m-2 font-bold text-xl mb-2 text-center h-[670px] min-w-[200px] max-w-[375px]"
             >
               <img
                 src={profile.avatar}
@@ -143,7 +149,7 @@ function CardList({ profiles }) {
               </div>
               <div className="grid grid-cols-2 py-3">
                 <p className="text-xs py-2 text-center">Username:</p>
-                <span className="inline-block bg-blue-200 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 justify-center">
+                <span className="overflow-auto inline-block bg-blue-200 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 justify-center">
                   {profile.username}
                 </span>
                 <p className="text-xs py-2 text-center">Gender:</p>
@@ -169,12 +175,14 @@ function CardList({ profiles }) {
               </div>
               <div>
                 <p className="text-xs">About Me:</p>
-                <span className="inline-block bg-blue-200 px-5 rounded-md py-3 text-sm font-semibold text-gray-700 mr-2 mb-2 max-w-prose">
+                <span className="overflow-y-auto inline-block bg-blue-200 px-5 rounded-md py-3 text-sm font-semibold text-gray-700 mr-2 mb-2 max-w-prose">
                   {profile.aboutMe}
                 </span>
               </div>
             </div>
           ))
+        ) : (
+          <h3>No Profiles Yet</h3>
         )}
       </Carousel>
     </div>

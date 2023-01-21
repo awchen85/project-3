@@ -36,6 +36,8 @@ function CardList({ profiles }) {
   const currentProfile = profiles[currentIndex];
   const [addFriend] = useMutation(ADD_FRIEND);
 
+  console.log(profiles);
+
   const handleClickCurrent = async () => {
     try {
       const mutationResponse = await addFriend({
@@ -57,9 +59,13 @@ function CardList({ profiles }) {
     }
   };
 
+  if (!profiles.length) {
+    return <h3>No Profiles Yet</h3>;
+  }
+
   return (
     <div className="grid grid-cols-1 grid-rows-1 cardsList mx-auto gap-10">
-      <Carousel responsive={responsive} handleClickCurrent={handleClickCurrent}>
+      <Carousel responsive={responsive}>
         {profiles &&
           profiles.map(profile => (
             <div

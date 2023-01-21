@@ -502,7 +502,7 @@ function Home() {
   };
 
   const checkQueriedProfiles = async profileRef => {
-    console.log('PROFILES', profileRef);
+    // console.log('PROFILES', profileRef);
     if (profileRef) {
       setVisibleProfiles(profileRef.current);
       return;

@@ -111,7 +111,7 @@ export default function Navigation() {
           </Link>
         </div>
       </div>
-      <div className="md:flex nav-links items-center hidden">
+      <div className="md:flex nav-links items-center hidden pr-3">
         {isLoggedIn() ? (
           <>
             <Link className="mr-1 text-2xl hover:text-[#d1d1d1]" to="/">
