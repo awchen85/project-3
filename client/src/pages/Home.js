@@ -215,18 +215,16 @@ function Home() {
 
     if (inputGender) {
       const inputGenderMale = inputGender.value;
-      console.log(inputGenderMale);
     } else {
-      console.log('null');
+      // console.log('null');
     }
 
     const inputGender2 = document.querySelector('input[id="female"]:checked');
 
     if (inputGender2) {
       const inputGenderFemale = inputGender2.value;
-      console.log(inputGenderFemale);
     } else {
-      console.log('null');
+      // console.log('null');
     }
 
     const inputGender3 = document.querySelector(
@@ -235,18 +233,16 @@ function Home() {
 
     if (inputGender3) {
       const inputGenderNonBinary = inputGender3.value;
-      console.log(inputGenderNonBinary);
     } else {
-      console.log('null');
+      // console.log('null');
     }
 
     const inputGender4 = document.querySelector('input[id="other"]:checked');
 
     if (inputGender4) {
       const inputGenderOther = inputGender4.value;
-      console.log(inputGenderOther);
     } else {
-      console.log('null');
+      // console.log('null');
     }
 
     const inputPetsYes = document.querySelector(
@@ -255,7 +251,6 @@ function Home() {
     const inputPetsNo = document.querySelector(
       'input[id="filter-pets-no"]:checked'
     );
-    console.log(inputPetsYes ? true : inputPetsNo ? false : null);
 
     filterProfiles({
       inputLocation,
@@ -303,7 +298,6 @@ function Home() {
       data.inputGender4 === null
     ) {
       results[3] = { ...results[3], gender: 'Male, Female, Non-binary, Other' };
-      console.log('Gender is not a filter');
     } else if (
       data.inputGender !== null &&
       data.inputGender2 === null &&
@@ -311,7 +305,6 @@ function Home() {
       data.inputGender4 === null
     ) {
       results[3] = { ...results[3], gender: 'Male' };
-      console.log('Male was selected');
     } else if (
       data.inputGender === null &&
       data.inputGender2 !== null &&
@@ -319,7 +312,6 @@ function Home() {
       data.inputGender4 === null
     ) {
       results[3] = { ...results[3], gender: 'Female' };
-      console.log('Female was selected');
     } else if (
       data.inputGender === null &&
       data.inputGender2 === null &&
@@ -327,7 +319,6 @@ function Home() {
       data.inputGender4 === null
     ) {
       results[3] = { ...results[3], gender: 'Non-binary' };
-      console.log('Non-Binary was selected');
     } else if (
       data.inputGender === null &&
       data.inputGender2 === null &&
@@ -335,7 +326,6 @@ function Home() {
       data.inputGender4 !== null
     ) {
       results[3] = { ...results[3], gender: 'Other' };
-      console.log('Other was selected');
     } else if (
       data.inputGender !== null &&
       data.inputGender2 !== null &&
@@ -343,7 +333,6 @@ function Home() {
       data.inputGender4 === null
     ) {
       results[3] = { ...results[3], gender: 'Male, Female' };
-      console.log('Male and Female was selected');
     } else if (
       data.inputGender !== null &&
       data.inputGender2 === null &&
@@ -351,7 +340,6 @@ function Home() {
       data.inputGender4 === null
     ) {
       results[3] = { ...results[3], gender: 'Male, Non-binary' };
-      console.log('Male and Non-Binary was selected');
     } else if (
       data.inputGender !== null &&
       data.inputGender2 === null &&
@@ -359,7 +347,6 @@ function Home() {
       data.inputGender4 !== null
     ) {
       results[3] = { ...results[3], gender: 'Male, Other' };
-      console.log('Male and Other was selected');
     } else if (
       data.inputGender === null &&
       data.inputGender2 !== null &&
@@ -367,7 +354,6 @@ function Home() {
       data.inputGender4 === null
     ) {
       results[3] = { ...results[3], gender: 'Female, Non-binary' };
-      console.log('Female and Non-Binary was selected');
     } else if (
       data.inputGender === null &&
       data.inputGender2 !== null &&
@@ -375,7 +361,6 @@ function Home() {
       data.inputGender4 !== null
     ) {
       results[3] = { ...results[3], gender: 'Female, Other' };
-      console.log('Female and Other was selected');
     } else if (
       data.inputGender === null &&
       data.inputGender2 === null &&
@@ -383,7 +368,6 @@ function Home() {
       data.inputGender4 !== null
     ) {
       results[3] = { ...results[3], gender: 'Non-binary, Other' };
-      console.log('Non-Binary and Other was selected');
     } else if (
       data.inputGender !== null &&
       data.inputGender2 !== null &&
@@ -391,7 +375,6 @@ function Home() {
       data.inputGender4 === null
     ) {
       results[3] = { ...results[3], gender: 'Male, Female, Non-binary' };
-      console.log('Male and Female and Non-Binary was selected');
     } else if (
       data.inputGender !== null &&
       data.inputGender2 !== null &&
@@ -399,7 +382,6 @@ function Home() {
       data.inputGender4 !== null
     ) {
       results[3] = { ...results[3], gender: 'Male, Female, Other' };
-      console.log('Male and Female and Other was selected');
     } else if (
       data.inputGender === null &&
       data.inputGender2 !== null &&
@@ -407,7 +389,6 @@ function Home() {
       data.inputGender4 !== null
     ) {
       results[3] = { ...results[3], gender: 'Female, Non-binary, Other' };
-      console.log('Female and Non-Binary and Other was selected');
     } else if (
       data.inputGender !== null &&
       data.inputGender2 !== null &&
@@ -415,7 +396,6 @@ function Home() {
       data.inputGender4 !== null
     ) {
       results[3] = { ...results[3], gender: 'Male, Female, Non-binary, Other' };
-      console.log('Everything was selected');
     }
 
     // Checks the value of the pets filter. Whether the filter is active and it they allow pets or don't allow pets. If the filter is not selected then profiles with both options will be a part of the search.
@@ -426,7 +406,7 @@ function Home() {
     } else if (data.inputPetsYes === null && data.inputPetsNo !== null) {
       results[4] = { ...results[4], pets: false };
     } else {
-      console.log('SOMETHING WENT WRONG WITH PETS');
+      // console.log('SOMETHING WENT WRONG WITH PETS');
     }
 
     filteredResults(results);
@@ -472,7 +452,6 @@ function Home() {
     let filteredProfiles = profilesGenderArr;
 
     const hasPetsObject = results[4].pets;
-    console.log(hasPetsObject);
 
     if (results[4].pets === true) {
       // hasPetsObject is true and the value of the pets key is true
@@ -502,7 +481,6 @@ function Home() {
   };
 
   const checkQueriedProfiles = async profileRef => {
-    // console.log('PROFILES', profileRef);
     if (profileRef) {
       setVisibleProfiles(profileRef.current);
       return;

@@ -35,7 +35,6 @@ const resolvers = {
 
     getProfiles: async (parent, { filter }) => {
       const profiles = await Profile.find(filter);
-      console.log(profiles);
       return profiles;
     },
   },

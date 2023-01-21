@@ -118,7 +118,7 @@ export default function Navigation() {
               <AiFillHome />
             </Link>
             <Link to="/dashboard" className="hover:text-[#d1d1d1] text-3xl">
-              Dashboard
+              Profile
             </Link>
             <button
               className="text-white nav-button hover:text-[#d1d1d1]"
@@ -170,7 +170,7 @@ export default function Navigation() {
               className="hover:text-[#d1d1d1] text-3xl"
               onClick={handleClick}
             >
-              Dashboard
+              Profile
             </Link>
             <button
               className="text-white nav-button hover:text-[#d1d1d1]"

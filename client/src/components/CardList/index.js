@@ -40,48 +40,6 @@ function CardList({ profiles }) {
   const currentProfile = profiles[currentIndex];
   const [addFriend] = useMutation(ADD_FRIEND);
 
-  // const handleClickCurrent = async () => {
-  //   try {
-  //     const mutationResponse = await addFriend({
-  //       variables: { friendId: currentProfile.userId },
-  //     });
-  //     if (mutationResponse) {
-  //       Swal.fire({
-  //         icon: 'success',
-  //         title: 'Friend added succesfully!',
-  //       });
-  //     }
-  //   } catch (e) {
-  //     console.error(e);
-  //     Swal.fire({
-  //       icon: 'error',
-  //       title: 'Something went wrong',
-  //       text: e.text,
-  //     });
-  //   }
-  // };
-
-  // const handleClickOther = async userId => {
-  //   try {
-  //     const mutationResponse = await addFriend({
-  //       variables: { friendId: userId },
-  //     });
-  //     if (mutationResponse) {
-  //       Swal.fire({
-  //         icon: 'success',
-  //         title: 'Friend added succesfully!',
-  //       });
-  //     }
-  //   } catch (e) {
-  //     console.error(e);
-  //     Swal.fire({
-  //       icon: 'error',
-  //       title: 'Something went wrong',
-  //       text: e.text,
-  //     });
-  //   }
-  // };
-
   // if (!profiles.length) {
   //   return <h3>No Profiles Yet</h3>;
   //   console.log(profiles);
