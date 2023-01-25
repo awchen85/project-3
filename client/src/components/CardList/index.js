@@ -1,6 +1,7 @@
 /* eslint-disable */
 import Simu from '../../assets/images/simu.jpg';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -108,7 +109,9 @@ function CardList({ profiles }) {
                 <div className="grid grid-cols-2 py-3">
                   <p className="text-xs py-2 text-center">Username:</p>
                   <span className="overflow-auto inline-block bg-blue-200 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 justify-center">
-                    {profile.username}
+                    <Link to={`/user/${profile.userId}`}>
+                      {profile.username}
+                    </Link>
                   </span>
                   <p className="text-xs py-2 text-center">Gender:</p>
                   <span className="inline-block bg-blue-200 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">

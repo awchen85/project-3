@@ -62,6 +62,7 @@ export const QUERY_GET_USER = gql`
         allowPets
         userId
         username
+        avatar
       }
     }
   }
