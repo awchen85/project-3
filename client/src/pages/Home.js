@@ -740,6 +740,9 @@ function Home() {
                   )}
                 </section>
               </section>
+              <h3 className="text-center text-lg">
+                click to see a user's full profile
+              </h3>
             </div>
           </div>
           <div>
