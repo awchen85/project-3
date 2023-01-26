@@ -26,9 +26,6 @@ function OtherUser() {
   }
 
   return (
-    //     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
-    // <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
-
     <section className="pt-16 bg-blueGray-50">
       <div className="w-full md:w-8/12 lg:w-4/12 px-4 mx-auto">
         <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-16">
@@ -57,12 +54,6 @@ function OtherUser() {
                     </span>
                     <span className="text-sm text-blueGray-400">Budget</span>
                   </div>
-                  {/* <div className="lg:mr-4 p-3 text-center">
-                    <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                      89
-                    </span>
-                    <span className="text-sm text-blueGray-400">Comments</span>
-                  </div> */}
                   <FriendButton currentProfile={user.profile}></FriendButton>
                 </div>
               </div>
@@ -88,47 +79,12 @@ function OtherUser() {
                   <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
                     {user.profile.aboutMe}
                   </p>
-                  {/* <a
-                    href="javascript:void(0);"
-                    className="font-normal text-pink-500"
-                  >
-                    Show more
-                  </a> */}
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* <footer className="relative  pt-8 pb-6 mt-8">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap items-center md:justify-between justify-center">
-            <div className="w-full md:w-6/12 px-4 mx-auto text-center">
-              <div className="text-sm text-blueGray-500 font-semibold py-1">
-                Made with{' '}
-                <a
-                  href="https://www.creative-tim.com/product/notus-js"
-                  className="text-blueGray-500 hover:text-gray-800"
-                  target="_blank"
-                >
-                  Notus JS
-                </a>{' '}
-                by{' '}
-                <a
-                  href="https://www.creative-tim.com"
-                  className="text-blueGray-500 hover:text-blueGray-800"
-                  target="_blank"
-                >
-                  {' '}
-                  Creative Tim
-                </a>
-                .
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer> */}
     </section>
   );
 }
