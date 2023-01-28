@@ -21,6 +21,7 @@ import Login from './pages/Login';
 import Registration from './pages/Registration';
 import Dashboard from './pages/Dashboard';
 import NotFound from './pages/NotFound';
+import OtherUser from './pages/OtherUser';
 import './App.css';
 
 const httpLink = createHttpLink({
@@ -55,10 +56,11 @@ function App() {
               <Route path="/register" element={<Registration />} />
               {/* <Route path="/profile" element={<Profile />} /> */}
               <Route path="/dashboard">
-                <Route path=":email" element={<Dashboard />} />
                 <Route path="" element={<Dashboard />} />
               </Route>
-              {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+              <Route path="/user">
+                <Route path=":userId" element={<OtherUser />} />
+              </Route>
               <Route path="/*" element={<NotFound />} />
             </Routes>
             <Footer />

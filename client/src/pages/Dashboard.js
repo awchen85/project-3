@@ -10,19 +10,19 @@ import auth from '../utils/auth';
 import underConstruction from '../assets/images/under-construction-2.png';
 import stopSign from '../assets/images/stop-sign.png';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_GET_CURRENT_USER } from '../utils/queries';
+import { QUERY_GET_CURRENT_USER, QUERY_GET_USER } from '../utils/queries';
 
 function Dashboard() {
+  // const { userId: userParam } = useParams();
+
   const { loading, data } = useQuery(QUERY_GET_CURRENT_USER);
   const currentUser = data?.getCurrentUser || {};
 
   const [currentComponent, setCurrentComponent] = useState('DashboardProfile');
 
-  const { firstName: userParam } = useParams();
-
-  if (auth.loggedIn() && auth.getProfile().data.firstName === userParam) {
-    return <Navigate to="/dashboard/:firstName" />;
-  }
+  // if (auth.loggedIn() && auth.getProfile().data.firstName === userParam) {
+  //   return <Navigate to="/dashboard/:firstName" />;
+  // }
 
   const determineComponent = () => {
     if (currentComponent === 'DashboardProfile') {

@@ -26,12 +26,14 @@ function FriendButton({ currentProfile }) {
       });
     }
   };
+  // className="connect rounded-full text-sm font-semibold text-gray-700 bottom-0 absolute max-w-prose"
   return (
     <button
       onClick={() => handleClickCurrent(currentProfile.userId)}
-      className="connect rounded-full text-sm font-semibold text-gray-700 bottom-0 absolute max-w-prose"
+      className="connect rounded-full text-sm font-semibold text-gray-700 bottom-0 max-w-prose"
     >
-      <AiFillHeart className="text-3xl text-red-500 translate-x-5" />
+      {/* <AiFillHeart className="text-3xl text-red-500 translate-x-5" /> */}
+      <AiFillHeart className="text-3xl text-red-500" />
     </button>
   );
 }
