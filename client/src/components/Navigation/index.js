@@ -111,14 +111,14 @@ export default function Navigation() {
           </Link>
         </div>
       </div>
-      <div className="md:flex nav-links items-center hidden">
+      <div className="md:flex nav-links items-center hidden pr-3">
         {isLoggedIn() ? (
           <>
             <Link className="mr-1 text-2xl hover:text-[#d1d1d1]" to="/">
               <AiFillHome />
             </Link>
             <Link to="/dashboard" className="hover:text-[#d1d1d1] text-3xl">
-              Dashboard
+              Profile
             </Link>
             <button
               className="text-white nav-button hover:text-[#d1d1d1]"
@@ -170,7 +170,7 @@ export default function Navigation() {
               className="hover:text-[#d1d1d1] text-3xl"
               onClick={handleClick}
             >
-              Dashboard
+              Profile
             </Link>
             <button
               className="text-white nav-button hover:text-[#d1d1d1]"

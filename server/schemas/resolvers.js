@@ -12,7 +12,10 @@ const resolvers = {
         const user = await User.findById(context.user._id)
           .select('-__v -password')
           .populate('profile')
-          .populate('friends');
+          .populate({
+            path: 'friends',
+            populate: { path: 'profile' },
+          });
         console.log(user);
         return user;
       }
@@ -32,7 +35,6 @@ const resolvers = {
 
     getProfiles: async (parent, { filter }) => {
       const profiles = await Profile.find(filter);
-      console.log(profiles);
       return profiles;
     },
   },
@@ -123,7 +125,7 @@ const resolvers = {
       }
 
       throw new AuthenticationError('You need to be logged in!');
-    }
+    },
   },
 };
 

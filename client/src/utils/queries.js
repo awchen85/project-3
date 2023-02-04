@@ -22,6 +22,7 @@ export const QUERY_GET_CURRENT_USER = gql`
           allowPets
           userId
           username
+          avatar
         }
       }
       profile {
@@ -61,6 +62,7 @@ export const QUERY_GET_USER = gql`
         allowPets
         userId
         username
+        avatar
       }
     }
   }
