@@ -47,49 +47,53 @@ export default function Login() {
   return (
     <div>
       <div className="flex justify-center">
-        <img src={logo} alt="logo" />
-      </div>
-      {error ? (
-        <div>
-          <p className="error-text text-center">
-            The provided credentials are incorrect
-          </p>
+        <div className="mt-5 group">
+          {error ? (
+            <div>
+              <p className="error-text text-center">
+                The provided credentials are incorrect
+              </p>
+            </div>
+          ) : null}
+          <form className="form" onSubmit={handleFormSubmit}>
+            <h2>Login</h2>
+            <label htmlFor="email">
+              Email:
+              <input
+                className="focus:bg-indigo-50 focus:ring-1 focus:ring-indigo-900 form-input"
+                placeholder="youremail@test.com"
+                name="email"
+                type="email"
+                value={formState.email}
+                onChange={handleChange}
+              />
+            </label>
+            <label htmlFor="password">
+              Password
+              <input
+                className="focus:bg-indigo-50 focus:ring-1 focus:ring-indigo-900 form-input"
+                placeholder="******"
+                name="password"
+                type="password"
+                value={formState.password}
+                onChange={handleChange}
+              />
+            </label>
+            <button className="form-button hover:bg-cyan-200" type="submit">
+              Login
+            </button>
+            <p>
+              Need an account? Sign up{' '}
+              <Link className="hover:text-green-400" to="/register">
+                here
+              </Link>
+            </p>
+          </form>
         </div>
-      ) : null}
-      <form className="form" onSubmit={handleFormSubmit}>
-        <h2>Login</h2>
-        <label htmlFor="email">
-          Email:
-          <input
-            className="focus:bg-indigo-50 focus:ring-1 focus:ring-indigo-900 form-input"
-            placeholder="youremail@test.com"
-            name="email"
-            type="email"
-            value={formState.email}
-            onChange={handleChange}
-          />
-        </label>
-        <label htmlFor="password">
-          Password
-          <input
-            className="focus:bg-indigo-50 focus:ring-1 focus:ring-indigo-900 form-input"
-            placeholder="******"
-            name="password"
-            type="password"
-            value={formState.password}
-            onChange={handleChange}
-          />
-        </label>
-        <button className="form-button hover:bg-cyan-200" type="submit">
-          Login
-        </button>
-        <p>
-          Need an account? Sign up{' '}
-          <Link className="hover:text-green-400" to="/register">
-            here
-          </Link>
-        </p>
-      </form>
+        <div className="flex justify-center">
+          <img src={logo} alt="logo" />
+        </div>
+      </div>
     </div>
   );
 }
