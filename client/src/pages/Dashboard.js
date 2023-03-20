@@ -1,5 +1,5 @@
 /* eslint-disable  */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
@@ -20,6 +20,20 @@ function Dashboard() {
 
   const [currentComponent, setCurrentComponent] = useState('DashboardProfile');
 
+  const [friends, setFriends] = useState([]);
+
+  let friendProfileArray = [];
+
+  useEffect(() => {
+    // setFriends(currentUser.friends);
+    console.log(currentUser.friends);
+    for (let i = 0; i < currentUser.friends.length; i++) {
+      const profile = currentUser.friends[i].profile;
+      friendProfileArray.push(profile);
+    }
+    setFriends(friendProfileArray);
+  }, [currentUser]);
+
   // if (auth.loggedIn() && auth.getProfile().data.firstName === userParam) {
   //   return <Navigate to="/dashboard/:firstName" />;
   // }
@@ -29,7 +43,12 @@ function Dashboard() {
       return <DashboardProfile currentUser={currentUser} />;
       // eslint-disable-next-line no-else-return
     } else if (currentComponent === 'DashboardFriends') {
-      return <DashboardFriends currentUser={currentUser} />;
+      return (
+        <DashboardFriends
+          currentUser={currentUser}
+          friendProfileArray={friends}
+        />
+      );
     } else if (currentComponent === 'DashboardInbox') {
       return <DashboardInbox />;
     } else {

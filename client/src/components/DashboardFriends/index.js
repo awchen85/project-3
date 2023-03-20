@@ -5,19 +5,27 @@ import { Link } from 'react-router-dom';
 import { CurrentUserContext } from '../../context/currentUser';
 import CardList from '../CardList';
 
-function DashboardFriends({ currentUser }) {
-  if (!currentUser.friends || !currentUser.friends.length) {
+function DashboardFriends({ currentUser, friendProfileArray }) {
+  // if (!currentUser.friends || !currentUser.friends.length) {
+  //   return (
+  //     <p className="text-4xl text-center underline mb-3">
+  //       {currentUser.firstName}, make some friends!
+  //     </p>
+  //   );
+  // }
+  // const friends = currentUser.friends;
+  // let friendProfileArray = [];
+  // for (let i = 0; i < friends.length; i++) {
+  //   const profile = friends[i].profile;
+  //   friendProfileArray.push(profile);
+  // }
+
+  if (!friendProfileArray || !friendProfileArray.length) {
     return (
       <p className="text-4xl text-center underline mb-3">
         {currentUser.firstName}, make some friends!
       </p>
     );
-  }
-  const friends = currentUser.friends;
-  let friendProfileArray = [];
-  for (let i = 0; i < friends.length; i++) {
-    const profile = friends[i].profile;
-    friendProfileArray.push(profile);
   }
 
   return (
