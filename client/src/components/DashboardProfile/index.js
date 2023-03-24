@@ -200,16 +200,34 @@ const DashboardProfile = ({ currentUser }) => {
       {determineWelcome(currentUser)}
 
       <form
-        className="flex justify-center profileForm"
+        className="flex justify-center profile-form mt-8 shadow-xl"
         onSubmit={e => handleSubmit(e, currentUser)}
       >
         <div className="profile text-2xl">
-          <div className="profile-field profile-field-section">
-            <div className="flex justify-center">
-              <div className="border-2 border-black display-image">
-                <img src={avatar} className="profile-picture" alt="" />
+          <div className="flex flex-wrap justify-center border-t border-blueGray-200">
+            <div className="w-full px-4 flex justify-center">
+              <div className="relative">
+                <img
+                  alt="..."
+                  src={avatar}
+                  className="shadow-xl border-white border-8 rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px user-img"
+                />
               </div>
             </div>
+            <div className="w-full px-4 text-center margin-top-3rem">
+              <div className="flex justify-center py-4 lg:pt-4 pt-8"></div>
+            </div>
+          </div>
+          <div className="profile-field-section mt-8 border-blueGray-200">
+            {/* <div className="w-full px-4 flex justify-center">
+              <div className="flex justify-content-center">
+                <img
+                  src={avatar}
+                  className="proshadow-xl border-white border-8 rounded-full h-auto align-middle border-none max-w-150-px user-img"
+                  alt=""
+                />
+              </div>
+            </div> */}
             {/* <input
               type="file"
               id="imageInput"
@@ -220,7 +238,7 @@ const DashboardProfile = ({ currentUser }) => {
 
             <div className="form-group">
               <label htmlFor="username" className="profile-h3">
-                Username:
+                Username
               </label>
               <input
                 name="username"
@@ -232,7 +250,7 @@ const DashboardProfile = ({ currentUser }) => {
               />
             </div>
           </div>
-          <div className="profile-field-section">
+          <div className="profile-field-section border-t border-blueGray-200">
             <div className="form-group">
               <label htmlFor="location" className="profile-h3">
                 City To Live In
@@ -247,12 +265,13 @@ const DashboardProfile = ({ currentUser }) => {
               />
             </div>
           </div>
-          <div className="profile-field-section">
+          <div className="profile-field-section border-t border-blueGray-200">
             <div className="form-group">
               <label htmlFor="aboutMe" className="profile-h3">
-                Tell us about yourself:
+                Tell us about yourself
               </label>
-              <input
+              <textarea
+                rows={3}
                 maxLength={500}
                 name="aboutMe"
                 type="text"
@@ -263,8 +282,8 @@ const DashboardProfile = ({ currentUser }) => {
               />
             </div>
           </div>
-          <div className="profile-field-section">
-            <div className="form-group w-1/6">
+          <div className="profile-field-section border-t border-blueGray-200">
+            <div className="form-group">
               <label htmlFor="age" className="profile-h3">
                 Your Age
               </label>
@@ -281,7 +300,7 @@ const DashboardProfile = ({ currentUser }) => {
               />
             </div>
           </div>
-          <div className="profile-field-section">
+          <div className="profile-field-section border-t border-blueGray-200">
             <h3 className="profile-h3">Gender</h3>
             <div className=" border-2">
               <div className="flex cursor-pointer text-xl rounded text-blue-400 hover:bg-sky-100 hover:border-4 hover:border-blue-500 m-1 p-1">
@@ -364,9 +383,9 @@ const DashboardProfile = ({ currentUser }) => {
               <br />
             </div>
           </div>
-          <div className="profile-field-section">
-            <div className="form-group w-1/6">
-              <label htmlFor="budget" className="profile-h2">
+          <div className="profile-field-section border-t border-blueGray-200">
+            <div className="form-group">
+              <label htmlFor="budget" className="profile-h3">
                 Max Rent
               </label>
               <div className="flex">
@@ -386,11 +405,11 @@ const DashboardProfile = ({ currentUser }) => {
             </div>
           </div>
           {/* Allow Pets */}
-          <div className="profile-field-section">
+          <div className="profile-field-section border-t border-blueGray-200">
             <h3 className="profile-h3 mb-4">
               Would you allow roommates with pets?
             </h3>
-            <div className="profile-pets">
+            <div className="profile-pets justify-center">
               {options1.map(option => (
                 <label
                   // htmlFor="pets-yes"
@@ -439,7 +458,7 @@ const DashboardProfile = ({ currentUser }) => {
               ))}
             </div>
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center border-t border-blueGray-200 profile-field-section">
             <button
               type="submit"
               className="profile-view btn btn-main text-2xl"

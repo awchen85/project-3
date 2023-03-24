@@ -44,7 +44,6 @@ function CardList({ profiles }) {
 
   if (!profiles.length) {
     return <h3>No Profiles Yet</h3>;
-    console.log(profiles);
   }
 
   return (
