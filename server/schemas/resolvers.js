@@ -37,6 +37,26 @@ const resolvers = {
       const profiles = await Profile.find(filter);
       return profiles;
     },
+
+    getFriendProfiles: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id)
+          .select('-__v -password')
+          .populate('profile')
+          .populate({
+            path: 'friends',
+            populate: { path: 'profile' },
+          });
+        const friends = user.friends;
+        let friendProfileArray = [];
+        for (let i = 0; i < friends.length; i++) {
+          const profile = friends[i].profile;
+          friendProfileArray.push(profile);
+        }
+        return friendProfileArray;
+      }
+      throw new AuthenticationError('Not logged in');
+    },
   },
 
   Mutation: {

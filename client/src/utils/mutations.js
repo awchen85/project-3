@@ -80,6 +80,7 @@ export const CREATE_PROFILE = gql`
         allowPets
         userId
         avatar
+        username
       }
     }
   }
@@ -102,6 +103,7 @@ export const UPDATE_PROFILE = gql`
         allowPets
         userId
         avatar
+        username
       }
     }
   }

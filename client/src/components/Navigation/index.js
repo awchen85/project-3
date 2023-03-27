@@ -14,9 +14,11 @@ export default function Navigation() {
   return (
     <nav className="flex flex-row md:justify-between justify-center w-screen">
       <div>
-        <h1 className="our-place text-white md:invisible visible text-start ml-12 text-5xl">
-          Our Place
-        </h1>
+        <Link to="/">
+          <h1 className="our-place text-white md:invisible visible text-start ml-12 text-5xl">
+            Our Place
+          </h1>
+        </Link>
         <div className="ml-4 md:visible invisible title">
           <Link to="/">
             <svg
@@ -143,7 +145,7 @@ export default function Navigation() {
       {/* Hamburger */}
       <div
         onClick={handleClick}
-        className="md:hidden absolute right-10 z-[10] text-white"
+        className="md:hidden absolute right-10 z-20 text-white"
       >
         {!nav ? <FaBars /> : <FaTimes />}
       </div>
@@ -153,13 +155,13 @@ export default function Navigation() {
         className={
           !nav
             ? 'hidden'
-            : 'absolute top-0 left-0 w-full h-screen flex flex-col bg-[#372b70] opacity-75 justify-center items-center'
+            : 'absolute z-10 top-0 left-0 w-full h-screen flex flex-col bg-[#372b70] opacity-75 justify-center items-center'
         }
       >
         {isLoggedIn() ? (
           <>
             <Link
-              className="mr-1 text-2xl hover:text-[#d1d1d1]"
+              className="mr-1 text-2xl hover:text-[#d1d1d1] mb-1"
               to="/"
               onClick={handleClick}
             >
@@ -167,7 +169,7 @@ export default function Navigation() {
             </Link>
             <Link
               to="/dashboard"
-              className="hover:text-[#d1d1d1] text-3xl"
+              className="hover:text-[#d1d1d1] text-3xl z-10"
               onClick={handleClick}
             >
               Profile

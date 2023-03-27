@@ -81,6 +81,7 @@ const typeDefs = gql`
     getProfile: User
     getUsers: [User]
     getProfiles(filter: ProfileInput): [Profile]
+    getFriendProfiles: [Profile]
   }
   type Mutation {
     createUser(

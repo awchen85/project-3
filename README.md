@@ -56,11 +56,12 @@
 
   Once logged in, users can create the their profile by clicking the "Profile" link in the nav bar. By filling out the profile form, users will create their profile card which allows them to be searched for.
 
-  ![OP Create Profile](https://user-images.githubusercontent.com/108894754/218576686-63ac1e8c-7810-40b3-85ba-77a046c87b18.png)
+ ![OP Profile Updated](https://user-images.githubusercontent.com/108894754/228004558-75414536-4b88-40e3-8862-fb0709295776.png)
 
   Under the hood, the profile page uses React's state for the profile form. Once a user fills out one of the input fields, it updates the form state with that value. If the user clicks away from a required input, SweetAlert2 displays a modal that lets them know that field is needed:
 
-  ![OP Required Fields](https://user-images.githubusercontent.com/108894754/218578116-bb989366-bb9b-4658-898a-beb602a9c64f.png)
+  ![OP Required Fields Updated](https://user-images.githubusercontent.com/108894754/228005193-d9420ac1-5c2e-4d5b-a368-317823f30be7.png)
+
 
   Whenever a user visits the profile page, a function checks to see if they have already created a profile. If they do not have a profile, the form state defaults to empty values, and the "Save" button fires the "Create Profile" mutation. If they do have a profile, React sets the form state to their existing profile values, and the "Save" button fires the "Update Profile" mutation.
 
