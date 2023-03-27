@@ -39,7 +39,7 @@ const responsive = {
 
 function CardList({ profiles }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const currentProfile = profiles[currentIndex];
+  // const currentProfile = profiles[currentIndex];
   const [addFriend] = useMutation(ADD_FRIEND);
 
   if (!profiles.length) {

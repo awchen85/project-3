@@ -111,3 +111,20 @@ export const QUERY_GET_PROFILES = gql`
     }
   }
 `;
+
+export const QUERY_GET_FRIEND_PROFILES = gql`
+  query getFriendProfiles {
+    getFriendProfiles {
+      _id
+      age
+      gender
+      budget
+      location
+      aboutMe
+      allowPets
+      userId
+      username
+      avatar
+    }
+  }
+`;
