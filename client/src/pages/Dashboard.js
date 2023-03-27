@@ -10,13 +10,21 @@ import auth from '../utils/auth';
 import underConstruction from '../assets/images/under-construction-2.png';
 import stopSign from '../assets/images/stop-sign.png';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_GET_CURRENT_USER, QUERY_GET_USER } from '../utils/queries';
+import {
+  QUERY_GET_CURRENT_USER,
+  QUERY_GET_FRIEND_PROFILES,
+} from '../utils/queries';
 
 function Dashboard() {
   // const { userId: userParam } = useParams();
 
   const { loading, data } = useQuery(QUERY_GET_CURRENT_USER);
   const currentUser = data?.getCurrentUser || {};
+
+  // const { friendLoading, friendData } = useQuery(QUERY_GET_FRIEND_PROFILES);
+  // const friendProfileArray = friendData?.getFriendProfiles || {};
+
+  // console.log(friendProfileArray);
 
   const [currentComponent, setCurrentComponent] = useState('DashboardProfile');
 
@@ -29,7 +37,7 @@ function Dashboard() {
       return <DashboardProfile currentUser={currentUser} />;
       // eslint-disable-next-line no-else-return
     } else if (currentComponent === 'DashboardFriends') {
-      return <DashboardFriends currentUser={currentUser} />;
+      return <DashboardFriends />;
     } else if (currentComponent === 'DashboardInbox') {
       return <DashboardInbox />;
     } else {
